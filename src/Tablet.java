@@ -31,7 +31,7 @@ public class Tablet implements Attributi {
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return "";
+        return "Un prodotto " + produttore + " di ottima fattura, parliamo del " + modello + " dotato di un da " + rom + "GB di spazio di archiviazione con un display di " + display + " pollici. Il costo del prodotto è di " + prezzoVendita;
     }
 
     @Override

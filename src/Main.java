@@ -9,6 +9,7 @@ public class Main {
 
         System.out.println(tablet1);
         System.out.println("Modello: " + tablet1.leggiModello());
+        System.out.println("Descrizione: " + tablet1.leggiDescrizioneProdotto());
     }
 
 }
