@@ -31,7 +31,10 @@ public class Tablet implements Attributi {
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return "Un prodotto " + produttore + " di ottima fattura, parliamo del " + modello + " dotato di un da " + rom + "GB di spazio di archiviazione con un display di " + display + " pollici. Il costo del prodotto è di " + prezzoVendita;
+        return "Un prodotto " + produttore + " di ottima fattura, parliamo del " +
+                modello + " dotato di uno spazio di archiviazione di " + rom +
+                " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
+                prezzoVendita;
     }
 
     @Override
@@ -74,7 +77,6 @@ public class Tablet implements Attributi {
                 ", prezzoAcquisto = " + prezzoAcquisto +
                 ", prezzoVendita = " + prezzoVendita +
                 ", dispositivo = " + dispositivo +
-                ", id = " + id +
-                '}';
+                ", id = " + id;
     }
 }
