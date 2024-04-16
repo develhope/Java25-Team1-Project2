@@ -33,7 +33,9 @@ public class Nootebook implements Attributi{
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return "";
+        return "Un prodotto " + produttore + " di ottima fattura, parliamo del " + modello + " dotato di un SSD da "
+                + rom + "GB di spazio di archiviazione con un display di " + display + " pollici. Il costo del prodotto è di "
+                + prezzoVendita;
     }
 
     @Override
@@ -68,14 +70,14 @@ public class Nootebook implements Attributi{
 
     @Override
     public String toString() {
-        return "Nootebook: " +
-                "produttore= " + produttore +
-                ", modello= " + modello +
-                ", display= " + display +
-                ", rom= " + rom +
-                ", prezzoAcquisto= " + prezzoAcquisto +
-                ", prezzoVendita= " + prezzoVendita +
-                ", dispositivo= " + dispositivo +
-                ", id= " + id;
+        return "Nootebook = " +
+                "produttore: " + produttore +
+                ", modello: " + modello +
+                ", display: " + display +
+                ", rom: " + rom +
+                ", prezzoAcquisto: " + prezzoAcquisto +
+                ", prezzoVendita: " + prezzoVendita +
+                ", dispositivo: " + dispositivo +
+                ", id: " + id;
     }
 }
