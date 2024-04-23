@@ -3,19 +3,20 @@ public class Nootebook implements Attributi{
     private String produttore;
     private String modello;
     private double display;
-    private int rom;
+    private int spazioArchiviazione;
+    private TipoMemoriaArchiviazione tipoMemoriaArchiviazione;
     private double prezzoAcquisto;
     private double prezzoVendita;
     private TipoDispositivo dispositivo;
     private int id;
 
-    public Nootebook(TipoDispositivo dispositivo, int id,  String produttore, String modello, double display, int rom,
+    public Nootebook(TipoDispositivo dispositivo, int id,  String produttore, String modello, double display, int spazioArchiviazione, TipoMemoriaArchiviazione tipoMemoriaArchiviazione,
                      double prezzoAcquisto, double prezzoVendita) {
         this.dispositivo = dispositivo;
         this.produttore = produttore;
         this.modello = modello;
         this.display = display;
-        this.rom = rom;
+        this.spazioArchiviazione = spazioArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
         this.prezzoVendita = prezzoVendita;
         this.id = id;
@@ -33,14 +34,15 @@ public class Nootebook implements Attributi{
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return "Un prodotto " + produttore + " di ottima fattura, parliamo del " + modello + " dotato di un SSD da "
-                + rom + "GB di spazio di archiviazione con un display di " + display + " pollici. Il costo del prodotto è di "
-                + prezzoVendita;
+        return '\n' + "Un dispositivo di ottima fattura, parliamo dello " + TipoDispositivo.notebook + "  " + produttore +
+                " " + modello + ", dotato  16 GB di RAM e di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.SSD + "da " + spazioArchiviazione +
+                " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
+                prezzoVendita + " €" + '\n';
     }
 
     @Override
-    public int leggiRom() {
-        return rom;
+    public int leggiSpazioArchiviazione() {
+        return spazioArchiviazione;
     }
 
     @Override
@@ -69,15 +71,13 @@ public class Nootebook implements Attributi{
     }
 
     @Override
+    public TipoMemoriaArchiviazione leggiTipoMemoriaArchiviazione() {
+        return tipoMemoriaArchiviazione;
+    }
+
+    @Override
     public String toString() {
-        return "Nootebook = " +
-                "produttore: " + produttore +
-                ", modello: " + modello +
-                ", display: " + display +
-                ", rom: " + rom +
-                ", prezzoAcquisto: " + prezzoAcquisto +
-                ", prezzoVendita: " + prezzoVendita +
-                ", dispositivo: " + dispositivo +
-                ", id: " + id;
+        return "Smartphone : " +
+                "produttore = " + produttore;
     }
 }
