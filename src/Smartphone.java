@@ -2,7 +2,8 @@ public class Smartphone implements  Attributi{
     private String produttore;
     private String modello;
     private double display;
-    private int rom;
+    private int spazioArchiviazione;
+    private TipoMemoriaArchiviazione tipoMemoriaArchiviazione;
     private double prezzoAcquisto;
     private double prezzoVendita;
     private TipoDispositivo dispositivo;
@@ -10,14 +11,15 @@ public class Smartphone implements  Attributi{
 
     public Smartphone(
             TipoDispositivo dispositivo, int id,  String produttore,
-            String modello, double display, int rom,
+            String modello, double display, int spazioArchiviazione, TipoMemoriaArchiviazione tipoMemoriaArchiviazione,
             double prezzoAcquisto, double prezzoVendita) {
 
         this.dispositivo = dispositivo;
         this.produttore = produttore;
         this.modello = modello;
         this.display = display;
-        this.rom = rom;
+        this.spazioArchiviazione = spazioArchiviazione;
+        this.tipoMemoriaArchiviazione = tipoMemoriaArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
         this.prezzoVendita = prezzoVendita;
         this.id = id;
@@ -37,14 +39,14 @@ public class Smartphone implements  Attributi{
     @Override
     public String leggiDescrizioneProdotto() {
         return '\n' + "Un dispositivo di ottima fattura, parliamo dello " + TipoDispositivo.smartphone + "  " + produttore +
-                " " + modello + ", dotato di uno spazio di archiviazione di " + rom +
+                " " + modello + ", dotato di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.NVMe + "da " + spazioArchiviazione +
                 " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
                 prezzoVendita + " €" + '\n';
     }
 
     @Override
-    public int leggiRom() {
-        return rom;
+    public int leggiSpazioArchiviazione() {
+        return spazioArchiviazione;
     }
 
     @Override
@@ -73,8 +75,13 @@ public class Smartphone implements  Attributi{
     }
 
     @Override
+    public TipoMemoriaArchiviazione leggiTipoMemoriaArchiviazione() {
+        return tipoMemoriaArchiviazione;
+    }
+
+    @Override
     public String toString() {
-        return "Smartphone: " +
+        return "Smartphone : " +
                 "produttore = " + produttore;
     }
 }

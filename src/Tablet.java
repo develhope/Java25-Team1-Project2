@@ -2,21 +2,23 @@ public class Tablet implements Attributi {
     private String produttore;
     private String modello;
     private double display;
-    private int rom;
+    private int spazioArchiviazione;
     private double prezzoAcquisto;
     private double prezzoVendita;
     private TipoDispositivo dispositivo;
     private int id;
+    private TipoMemoriaArchiviazione tipoMemoriaArchiviazione;
 
-    public Tablet(TipoDispositivo dispositivo, int id,  String produttore, String modello, double display, int rom, double prezzoAcquisto, double prezzoVendita) {
+    public Tablet(TipoDispositivo dispositivo, int id, String produttore, String modello, double display, int spazioArchiviazione, TipoMemoriaArchiviazione tipoMemoriaArchiviazione, double prezzoAcquisto, double prezzoVendita) {
         this.produttore = produttore;
         this.modello = modello;
         this.display = display;
-        this.rom = rom;
+        this.spazioArchiviazione = spazioArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
         this.prezzoVendita = prezzoVendita;
         this.dispositivo = dispositivo;
         this.id = id;
+        this.tipoMemoriaArchiviazione = tipoMemoriaArchiviazione;
     }
 
     @Override
@@ -31,15 +33,15 @@ public class Tablet implements Attributi {
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return "Un prodotto " + produttore + " di ottima fattura, parliamo del " +
-                modello + " dotato di uno spazio di archiviazione di " + rom +
+        return '\n' + "Un dispositivo di ottima fattura, parliamo dello " + TipoDispositivo.tablet + "  " + produttore +
+                " " + modello + ", dotato di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.NVMe + "da " + spazioArchiviazione +
                 " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
-                prezzoVendita;
+                prezzoVendita + " €" + '\n';
     }
 
     @Override
-    public int leggiRom() {
-        return rom;
+    public int leggiSpazioArchiviazione() {
+        return spazioArchiviazione;
     }
 
     @Override
@@ -68,15 +70,13 @@ public class Tablet implements Attributi {
     }
 
     @Override
+    public TipoMemoriaArchiviazione leggiTipoMemoriaArchiviazione() {
+        return tipoMemoriaArchiviazione;
+    }
+
+    @Override
     public String toString() {
-        return "Tablet: " +
-                "produttore = " + produttore +
-                ", modello = " + modello +
-                ", display = " + display +
-                ", rom = " + rom +
-                ", prezzoAcquisto = " + prezzoAcquisto +
-                ", prezzoVendita = " + prezzoVendita +
-                ", dispositivo = " + dispositivo +
-                ", id = " + id;
+        return "Smartphone : " +
+                "produttore = " + produttore;
     }
 }
