@@ -6,7 +6,7 @@ public interface Attributi {
     public double leggiDisplay();
     public double leggiPrezzoAcquisto();
     public double leggiPrezzoVendita();
-    public int leggiId();
+    public  int leggiId();
     public TipoDispositivo leggiTipoDispositivo();
     public TipoMemoriaArchiviazione leggiTipoMemoriaArchiviazione();
 }
