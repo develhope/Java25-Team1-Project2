@@ -33,8 +33,8 @@ public class Tablet implements Attributi {
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return '\n' + "Un dispositivo di ottima fattura, parliamo dello " + TipoDispositivo.tablet + "  " + produttore +
-                " " + modello + ", dotato di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.NVMe + "da " + spazioArchiviazione +
+        return '\n' + "Un dispositivo di ottima fattura, parliamo del " + TipoDispositivo.tablet + "  " + produttore +
+                " " + modello + ", dotato di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.NVMe + " da " + spazioArchiviazione +
                 " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
                 prezzoVendita + " €" + '\n';
     }

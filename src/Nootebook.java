@@ -34,8 +34,8 @@ public class Nootebook implements Attributi{
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return '\n' + "Un dispositivo di ottima fattura, parliamo dello " + TipoDispositivo.notebook + "  " + produttore +
-                " " + modello + ", dotato  16 GB di RAM e di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.SSD + "da " + spazioArchiviazione +
+        return '\n' + "Un dispositivo di ottima fattura, parliamo del " + TipoDispositivo.notebook + "  " + produttore +
+                " " + modello + ", dotato  16 GB di RAM e di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.SSD + " da " + spazioArchiviazione +
                 " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
                 prezzoVendita + " €" + '\n';
     }

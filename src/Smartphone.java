@@ -1,4 +1,4 @@
-public class Smartphone implements  Attributi{
+public class Smartphone implements  Attributi {
     private String produttore;
     private String modello;
     private double display;
@@ -39,7 +39,7 @@ public class Smartphone implements  Attributi{
     @Override
     public String leggiDescrizioneProdotto() {
         return '\n' + "Un dispositivo di ottima fattura, parliamo dello " + TipoDispositivo.smartphone + "  " + produttore +
-                " " + modello + ", dotato di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.NVMe + "da " + spazioArchiviazione +
+                " " + modello + ", dotato di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.NVMe + " da " + spazioArchiviazione +
                 " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
                 prezzoVendita + " €" + '\n';
     }
