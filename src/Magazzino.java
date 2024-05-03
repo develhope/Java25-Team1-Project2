@@ -35,11 +35,10 @@ public class Magazzino {
         return idCounter++;
     }
 
-    /*public void stampaMagazzino() {
+    public void stampaMagazzino() { //rinomina in elencoProdotti?
         System.out.println("Prodotti in magazzino:");
         for (Prodotti prodotto : prodottiInMagazzino) {
             System.out.println("ID: " + prodotto.leggiId() + ", Tipo: " + prodotto.leggiTipoDispositivo() + ", Produttore: " + prodotto.leggiProduttore() + ", Modello: " + prodotto.leggiModello());
         }
     }
-    */
  }
