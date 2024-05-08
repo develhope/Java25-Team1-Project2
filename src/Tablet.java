@@ -76,7 +76,7 @@ public class Tablet extends Prodotti implements Attributi {
 
     @Override
     public String toString() {
-        return "Smartphone : " +
+        return "Tablet : " +
                 "produttore = " + produttore;
     }
 }
