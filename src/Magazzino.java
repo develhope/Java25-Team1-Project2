@@ -5,6 +5,18 @@ public class Magazzino {
      ArrayList<Prodotti> prodottiInCarrello = new ArrayList<>();
      int idCounter = 1;
 
+    public ArrayList<Prodotti> getProdottiInMagazzino() {
+        return prodottiInMagazzino;
+    }
+
+    public ArrayList<Prodotti> getProdottiInCarrello() {
+        return prodottiInCarrello;
+    }
+
+    public int getIdCounter() {
+        return idCounter;
+    }
+
     public void aggiungiProdotto(Prodotti prodotto) {
         prodottiInMagazzino.add(prodotto);
     }
