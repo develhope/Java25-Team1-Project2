@@ -1,30 +1,25 @@
-public class Smartphone implements  Attributi {
+public class Smartphone extends Prodotti implements  Attributi {
     private String produttore;
     private String modello;
     private double display;
     private int spazioArchiviazione;
-    private TipoMemoriaArchiviazione tipoMemoriaArchiviazione;
     private double prezzoAcquisto;
     private double prezzoVendita;
     private TipoDispositivo dispositivo;
     private int id;
+    private TipoMemoriaArchiviazione tipoMemoriaArchiviazione;
 
-    public Smartphone(
-            TipoDispositivo dispositivo, int id,  String produttore,
-            String modello, double display, int spazioArchiviazione, TipoMemoriaArchiviazione tipoMemoriaArchiviazione,
-            double prezzoAcquisto, double prezzoVendita) {
-
-        this.dispositivo = dispositivo;
+    public Smartphone(int id, String produttore, String modello, double display, int spazioArchiviazione, double prezzoAcquisto, double prezzoVendita, TipoMemoriaArchiviazione tipoMemoriaArchiviazione) {
+        super(TipoDispositivo.TABLET, id);
         this.produttore = produttore;
         this.modello = modello;
         this.display = display;
         this.spazioArchiviazione = spazioArchiviazione;
-        this.tipoMemoriaArchiviazione = tipoMemoriaArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
         this.prezzoVendita = prezzoVendita;
+        this.tipoMemoriaArchiviazione = tipoMemoriaArchiviazione;
         this.id = id;
     }
-
 
     @Override
     public String leggiProduttore() {
@@ -38,7 +33,7 @@ public class Smartphone implements  Attributi {
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return '\n' + "Un dispositivo di ottima fattura, parliamo dello " + TipoDispositivo.smartphone + "  " + produttore +
+        return '\n' + "Un dispositivo di ottima fattura, parliamo dello " + TipoDispositivo.SMARTPHONE + "  " + produttore +
                 " " + modello + ", dotato di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.NVMe + " da " + spazioArchiviazione +
                 " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
                 prezzoVendita + " €" + '\n';

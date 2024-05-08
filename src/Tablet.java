@@ -1,4 +1,4 @@
-public class Tablet implements Attributi {
+public class Tablet extends Prodotti implements Attributi {
     private String produttore;
     private String modello;
     private double display;
@@ -9,16 +9,16 @@ public class Tablet implements Attributi {
     private int id;
     private TipoMemoriaArchiviazione tipoMemoriaArchiviazione;
 
-    public Tablet(TipoDispositivo dispositivo, int id, String produttore, String modello, double display, int spazioArchiviazione, TipoMemoriaArchiviazione tipoMemoriaArchiviazione, double prezzoAcquisto, double prezzoVendita) {
+    public Tablet(int id, String produttore, String modello, double display, int spazioArchiviazione, double prezzoAcquisto, double prezzoVendita, TipoMemoriaArchiviazione tipoMemoriaArchiviazione) {
+        super(TipoDispositivo.TABLET, id);
         this.produttore = produttore;
         this.modello = modello;
         this.display = display;
         this.spazioArchiviazione = spazioArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
         this.prezzoVendita = prezzoVendita;
-        this.dispositivo = dispositivo;
-        this.id = id;
         this.tipoMemoriaArchiviazione = tipoMemoriaArchiviazione;
+        this.id = id;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Tablet implements Attributi {
 
     @Override
     public String leggiDescrizioneProdotto() {
-        return '\n' + "Un dispositivo di ottima fattura, parliamo del " + TipoDispositivo.tablet + "  " + produttore +
+        return '\n' + "Un dispositivo di ottima fattura, parliamo del " + TipoDispositivo.TABLET + "  " + produttore +
                 " " + modello + ", dotato di uno spazio di archiviazione di tipo " + TipoMemoriaArchiviazione.NVMe + " da " + spazioArchiviazione +
                 " GB, con un display di " + display + " pollici. Il costo del prodotto è di " +
                 prezzoVendita + " €" + '\n';
