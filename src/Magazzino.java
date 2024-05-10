@@ -1,12 +1,14 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Magazzino {
      ArrayList<Prodotti> prodottiInMagazzino = new ArrayList<>();
      ArrayList<Prodotti> prodottiInCarrello = new ArrayList<>();
      int idCounter = 1;
 
-    public void aggiungiProdotto(Prodotti prodotto) {
+    public List<Prodotti> aggiungiProdotto(Prodotti prodotto) {
         prodottiInMagazzino.add(prodotto);
+        return prodottiInMagazzino;
     }
 
     public void aggiungiDispositivi(int quantita, TipoDispositivo tipo) {
