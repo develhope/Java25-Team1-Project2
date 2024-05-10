@@ -17,4 +17,26 @@ public class Metodi {
             return dispositivi;
         }
     }
+
+    // Metodo per fare la ricerca per tipo di dispositivo
+    public static ArrayList<Prodotti> cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
+        ArrayList<Prodotti> dispositiviRicercati = new ArrayList<>();
+
+        for (Prodotti dispositivo : magazzino.getProdottiInMagazzino()) {
+            if (dispositivo.leggiTipoDispositivo() == tipoDispositivo) {
+                dispositiviRicercati.add(dispositivo);
+            }
+        }
+
+        if (dispositiviRicercati.isEmpty()) {
+            System.out.println("Nessun dispositivo di tipo " + tipoDispositivo + " trovato.");
+            return null;
+        } else {
+            System.out.println("Dispositivi di tipo " + tipoDispositivo + " trovati:");
+            for (Prodotti dispositivo : dispositiviRicercati) {
+                System.out.println(dispositivo);
+            }
+            return dispositiviRicercati;
+        }
+    }
 }
