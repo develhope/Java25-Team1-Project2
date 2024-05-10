@@ -61,4 +61,26 @@ public class Metodi {
             return dispositiviRicercati;
         }
     }
+
+    // Metodo per fare la ricerca per modello
+    public static ArrayList<Prodotti> cercaDispositiviPerModello(Magazzino magazzino, String modello) {
+        ArrayList<Prodotti> dispositiviRicercati = new ArrayList<>();
+
+        for (Prodotti dispositivo : magazzino.getProdottiInMagazzino()) {
+            if (dispositivo.leggiModello().equalsIgnoreCase(modello)) {
+                dispositiviRicercati.add(dispositivo);
+            }
+        }
+
+        if (dispositiviRicercati.isEmpty()) {
+            System.out.println("Nessun dispositivo con il modello " + modello + " trovato.");
+            return null;
+        } else {
+            System.out.println("Dispositivi con il modello " + modello + " trovati:");
+            for (Prodotti dispositivo : dispositiviRicercati) {
+                System.out.println(dispositivo);
+            }
+            return dispositiviRicercati;
+        }
+    }
 }
