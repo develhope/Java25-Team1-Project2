@@ -39,4 +39,26 @@ public class Metodi {
             return dispositiviRicercati;
         }
     }
+
+    // Metodo per fare la ricerca per produttore
+    public static ArrayList<Prodotti> cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
+        ArrayList<Prodotti> dispositiviRicercati = new ArrayList<>();
+
+        for (Prodotti dispositivo : magazzino.getProdottiInMagazzino()) {
+            if (dispositivo.leggiProduttore().equalsIgnoreCase(produttore)) {
+                dispositiviRicercati.add(dispositivo);
+            }
+        }
+
+        if (dispositiviRicercati.isEmpty()) {
+            System.out.println("Nessun dispositivo del produttore " + produttore + " trovato.");
+            return null;
+        } else {
+            System.out.println("Dispositivi del produttore " + produttore + " trovati:");
+            for (Prodotti dispositivo : dispositiviRicercati) {
+                System.out.println(dispositivo);
+            }
+            return dispositiviRicercati;
+        }
+    }
 }
