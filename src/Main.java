@@ -2,8 +2,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MenuPrincipale menuPrincipale = new MenuPrincipale();
-        menuPrincipale.menu();
+        MenuPrincipale menu = new MenuPrincipale();
+        System.out.println("Benvenuto nel programma di gestione del magazzino!");
+        menu.mostraMenu();
 
     }
 }

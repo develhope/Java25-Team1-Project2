@@ -8,10 +8,6 @@ public class Magazzino {
 
     public List<Prodotti> aggiungiProdotto(Prodotti prodotto) {
         prodottiInMagazzino.add(prodotto);
-        return null;
-    }
-
-    public List<Prodotti> getProdottiInMagazzino() {
         return prodottiInMagazzino;
     }
 
