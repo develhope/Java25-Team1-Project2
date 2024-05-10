@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class Magazzino {
+     public class Magazzino {
      ArrayList<Prodotti> prodottiInMagazzino = new ArrayList<>();
      ArrayList<Prodotti> prodottiInCarrello = new ArrayList<>();
      int idCounter = 1;
@@ -35,10 +36,15 @@ public class Magazzino {
         return idCounter++;
     }
 
-    public void stampaMagazzino() { //rinomina in elencoProdotti?
+    public void stampaMagazzino() {
         System.out.println("Prodotti in magazzino:");
         for (Prodotti prodotto : prodottiInMagazzino) {
             System.out.println("ID: " + prodotto.leggiId() + ", Tipo: " + prodotto.leggiTipoDispositivo() + ", Produttore: " + prodotto.leggiProduttore() + ", Modello: " + prodotto.leggiModello());
         }
-    }
- }
+
+
+
+
+
+
+     }

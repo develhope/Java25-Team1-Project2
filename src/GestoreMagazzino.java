@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class GestoreMagazzino {
@@ -50,4 +51,8 @@ public class GestoreMagazzino {
 
         System.out.println("Dispositivo aggiunto al magazzino.");
     }
-}
+
+    public static List<Prodotti> ricercaPerPrezzoVendita(Magazzino magazzino, double prezzoDaCercare) {
+
+        return List.of();
+    }}
