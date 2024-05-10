@@ -9,6 +9,10 @@ public class Magazzino {
     public Magazzino() {
         inventario = new ArrayList<>();
         dispositivi();
+
+    public List<Prodotti> aggiungiProdotto(Prodotti prodotto) {
+        prodottiInMagazzino.add(prodotto);
+        return prodottiInMagazzino;
     }
 
     public List<Prodotti> dispositivi() {
