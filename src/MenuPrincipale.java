@@ -1,69 +1,68 @@
 import java.util.Scanner;
-
+import java.util.UUID;
 
 public class MenuPrincipale {
-    Magazzino magazzino = new Magazzino();
-    GestoreMagazzino gestoreMagazzino = new GestoreMagazzino();
-    //TODO aggiungere oggetto carrello
-    // Metodo per gestire il menu principale
-    public void menu(){
+    private Magazzino magazzino;
+    private Carrello carrello;
+    private Scanner scanner;
 
-        Boolean continua = true;
-        Scanner scanner= new Scanner(System.in);
+    public MenuPrincipale() {
+        magazzino = new Magazzino();
+        carrello = new Carrello();
+        scanner = new Scanner(System.in);
+    }
 
-        while (continua){
-            System.out.println("Menu Principale:");
+    public void mostraMenu() {
+        int scelta = 0;
+
+        do {
+            System.out.println("\nCosa vuoi fare?");
             System.out.println("1. Accedi al magazzino");
-            System.out.println("2. Creazione carrello");
+            System.out.println("2. Accedi al carrello");
             System.out.println("0. Esci");
             System.out.print("Scelta: ");
 
-            int scelta = scanner.nextInt();
+            scelta = scanner.nextInt();
 
             switch (scelta) {
+                case 0:
+                    System.out.println("Arrivederci!");
+                    break;
                 case 1:
-                    menuMagazzino(scanner);
+                    menuMagazzino();
                     break;
                 case 2:
-                    menuCarrello(scanner);
-                    break;
-                case 0:
-                    continua = false;
+                    menuCarrello();
                     break;
                 default:
-                    System.out.println("Scelta non valida!");
-                    break;
+                    System.out.println("Scelta non valida. Riprova.");
             }
-        }
-        // Chiude lo scanner alla fine del programma per liberare le risorse
+        } while (scelta != 0);
         scanner.close();
     }
+
     // Metodo per gestire il menu del magazzino
-    public void menuMagazzino(Scanner scanner) {
+    public void menuMagazzino() {
+        System.out.println("Magazzino:");
         boolean continua = true;
         while (continua) {
-            System.out.println("Menu Magazzino:");
-            System.out.println("1. Elenco prodotti");
-            System.out.println("2. cerca prodotto");
-            System.out.println("3. Aggiungi Prodotto");
-            System.out.println("0. Torna al  menu principale ");
+            System.out.println("\nMenu:");
+            System.out.println("1. Aggiungi Prodotto");
+            System.out.println("2. Cerca Prodotto");
+            System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
+
+            visualizzaInventario();
 
             int scelta = scanner.nextInt();
 
             switch (scelta) {
                 case 1:
-                    magazzino.stampaMagazzino();
+                    aggiungiAlMagazzino();
                     break;
-
                 case 2:
-
+                    // TODO: Implementare metodi di ricerca del prodotto
                     break;
-
-                case 3:
-                    gestoreMagazzino.aggiungiDispositivoManuale(magazzino);
-                    break;
-
                 case 0:
                     continua = false;
                     break;
@@ -73,27 +72,37 @@ public class MenuPrincipale {
             }
         }
     }
-    // Metodo per gestire il menu del carrello
-    public void menuCarrello(Scanner scanner) {
 
+    // Metodo per gestire il menu del carrello
+    public void menuCarrello() {
+        System.out.println("Carrello:");
         boolean continua = true;
         while (continua) {
-            System.out.println("Menu Carrello:");
-            System.out.println("1. Aggiungi prodotto al carrello: ");
-            System.out.println("2. cerca prodotto");
-            System.out.println("0. Torna al  menu principale ");
+            System.out.println("\nMenu:");
+            System.out.println("1. Aggiungi Prodotto al Carrello");
+            System.out.println("2. Rimuovi Prodotto dal Carrello");
+            System.out.println("3. Calcola Totale Carrello");
+            System.out.println("4. Finalizza Acquisto");
+            System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
+
+            visualizzaCarrello();
 
             int scelta = scanner.nextInt();
 
             switch (scelta) {
                 case 1:
-
+                    aggiungiAlCarrello();
                     break;
-
                 case 2:
+                    rimuoviDalCarrello();
                     break;
-
+                case 3:
+                    calcolaTotaleCarrello();
+                    break;
+                case 4:
+                    finalizzaAcquisto();
+                    break;
                 case 0:
                     continua = false;
                     break;
@@ -102,5 +111,100 @@ public class MenuPrincipale {
                     break;
             }
         }
+    }
+
+    private void aggiungiAlMagazzino() {
+        // Richiedi all'utente i dettagli del nuovo prodotto
+        System.out.println("Inserisci il tipo di dispositivo (smartphone, tablet o notebook): ");
+        String tipoDispositivo = scanner.next().toUpperCase();
+        System.out.println("Inserisci il produttore: ");
+        String produttore = scanner.next();
+        System.out.println("Inserisci il modello: ");
+        String modello = scanner.next();
+        System.out.println("Inserisci una descrizione (opzionale): ");
+        String descrizione = scanner.nextLine().trim();
+        System.out.println("Inserisci la dimensione del display: ");
+        double dimensioneDisplay = scanner.nextDouble();
+        System.out.println("Inserisci il tipo di memoria (HDD, SSD, NVMe): ");
+        String tipoMemoria = scanner.next().toUpperCase();
+        System.out.println("Inserisci la dimensione dello spazio di archiviazione: ");
+        double dimensioneArchiviazione = scanner.nextDouble();
+        System.out.println("Inserisci il prezzo di acquisto:");
+        double prezzoAcquisto = scanner.nextDouble();
+        System.out.println("Inserisci il prezzo di vendita:");
+        double prezzoVendita = scanner.nextDouble();
+
+        // Genera un ID casuale per il nuovo prodotto
+        UUID id = UUID.randomUUID();
+
+        // Aggiungi il nuovo prodotto all'inventario
+        Prodotti nuovoProdotto = new Prodotti(
+                TipoDispositivo.valueOf(tipoDispositivo),
+                produttore,
+                modello,
+                descrizione,
+                dimensioneDisplay,
+                TipoMemoriaArchiviazione.valueOf(tipoMemoria),
+                dimensioneArchiviazione,
+                prezzoAcquisto,
+                prezzoVendita,
+                id
+        );
+        magazzino.aggiungiProdotto(nuovoProdotto);
+        System.out.println("Prodotto aggiunto all'inventario.");
+    }
+
+    private void visualizzaInventario() {
+        System.out.println("Lista dell'inventario:");
+        for (Prodotti prodotto : magazzino.getInventario()) {
+            System.out.println(prodotto);
+        }
+    }
+    private void visualizzaCarrello() {
+        System.out.println("Lista del carrello:");
+        for (Prodotti prodotto : carrello.getProdotti()) {
+            System.out.println(prodotto);
+        }
+    }
+        private void aggiungiAlCarrello() {
+            // Richiedi all'utente l'ID del prodotto da aggiungere al carrello
+            System.out.println("Inserisci l'ID del prodotto da aggiungere al carrello:");
+            String idString = scanner.next();
+            try {
+                UUID id = UUID.fromString(idString);
+                // Trova il prodotto nell'inventario e aggiungilo al carrello
+                Prodotti prodotto = magazzino.trovaProdottoPerId(id);
+                if (prodotto != null) {
+                    carrello.aggiungiProdotto(prodotto);
+                    System.out.println("Prodotto aggiunto al carrello.");
+                } else {
+                    System.out.println("Prodotto non trovato nell'inventario.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("ID non valido.");
+            }
+        }
+
+    private void rimuoviDalCarrello() {
+        // Richiedi all'utente l'ID del prodotto da rimuovere dal carrello
+        System.out.println("Inserisci l'ID del prodotto da rimuovere dal carrello:");
+        String idString = scanner.next();
+        try {
+            UUID id = UUID.fromString(idString);
+            // Rimuovi il prodotto dal carrello
+            if (carrello.rimuoviProdotto(id)) {
+                System.out.println("Prodotto rimosso dal carrello.");
+            } else {
+                System.out.println("Prodotto non trovato nel carrello.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("ID non valido.");
+        }
+    }
+    private void calcolaTotaleCarrello() {
+        System.out.println("Totale carrello: " + carrello.calcolaTotale() + " euro");
+    }
+    private void finalizzaAcquisto() {
+        carrello.finalizzaAcquisto();
     }
 }
