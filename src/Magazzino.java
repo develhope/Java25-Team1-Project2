@@ -3,16 +3,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class Magazzino {
-    private List<Prodotti> inventario ;
+    private List<Prodotti> inventario;
 
     //costruttore
     public Magazzino() {
         inventario = new ArrayList<>();
         dispositivi();
-
-    public List<Prodotti> aggiungiProdotto(Prodotti prodotto) {
-        prodottiInMagazzino.add(prodotto);
-        return prodottiInMagazzino;
     }
 
     public List<Prodotti> dispositivi() {
@@ -54,4 +50,3 @@ public class Magazzino {
         return null;
     }
 }
-
