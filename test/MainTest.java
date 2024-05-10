@@ -1,5 +1,5 @@
 import org.junit.Test;
-import java.util.List;
+import java.util.UUID;
 import static org.junit.Assert.assertTrue;
 
 public class MainTest {
@@ -8,9 +8,8 @@ public class MainTest {
     public void testAggiungiProdotto() {
 
         Magazzino magazzino = new Magazzino();
-        Notebook notebook = new Notebook(2, "Apple", "Macbook Pro", 16.0, 512, 2650.00, 3099.00, TipoMemoriaArchiviazione.SSD);
+        Notebook notebook = new Notebook(TipoDispositivo.NOTEBOOK, "Intel", "Chuwi", "Ciao2", 15.4, TipoMemoriaArchiviazione.HDD, 512, 269.99, 599.99, UUID.randomUUID());
 
-        List<Prodotti> listaProdotti = magazzino.aggiungiProdotto(notebook);
-        assertTrue(listaProdotti.contains(notebook));
+        assertTrue(magazzino.aggiungiProdotto(notebook));
     }
 }
