@@ -1,86 +1,53 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Metodi {
 
     // Metodo per stampare tutti i dispositivi presenti nel magazzino
-    public ArrayList<Prodotti> stampaDispositiviMagazzino(Magazzino magazzino) {
-        ArrayList<Prodotti> dispositivi = (ArrayList<Prodotti>) magazzino.getProdottiInMagazzino();
+    public static void stampaDispositiviMagazzino(Magazzino magazzino) {
+        List<Prodotti> dispositivi = magazzino.getInventario();
 
         if (dispositivi.isEmpty()) {
             System.out.println("Nessun dispositivo presente in magazzino.");
-            return null;
         } else {
             System.out.println("Dispositivi in magazzino:");
-            for (Prodotti dispositivo : dispositivi) {
-                System.out.println(dispositivo);
-            }
-            return dispositivi;
+            dispositivi.forEach(System.out::println);
         }
+    }
+
+    // Metodo generico per la ricerca di dispositivi
+    public static ArrayList<Prodotti> cercaDispositivi(Magazzino magazzino, Predicate<Prodotti> condition, String message) {
+        List<Prodotti> dispositiviRicercati = magazzino.getInventario().stream()
+                .filter(condition)
+                .collect(Collectors.toList());
+
+        if (dispositiviRicercati.isEmpty()) {
+            System.out.println("Nessun dispositivo " + message + " trovato.");
+        } else {
+            System.out.println("Dispositivi " + message + " trovati:");
+            dispositiviRicercati.forEach(System.out::println);
+        }
+
+        return new ArrayList<>(dispositiviRicercati);
     }
 
     // Metodo per fare la ricerca per tipo di dispositivo
     public static ArrayList<Prodotti> cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
-        ArrayList<Prodotti> dispositiviRicercati = new ArrayList<>();
-
-        for (Prodotti dispositivo : magazzino.getProdottiInMagazzino()) {
-            if (dispositivo.leggiTipoDispositivo() == tipoDispositivo) {
-                dispositiviRicercati.add(dispositivo);
-            }
-        }
-
-        if (dispositiviRicercati.isEmpty()) {
-            System.out.println("Nessun dispositivo di tipo " + tipoDispositivo + " trovato.");
-            return null;
-        } else {
-            System.out.println("Dispositivi di tipo " + tipoDispositivo + " trovati:");
-            for (Prodotti dispositivo : dispositiviRicercati) {
-                System.out.println(dispositivo);
-            }
-            return dispositiviRicercati;
-        }
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getSetTipoDispositivo() == tipoDispositivo,
+                "di tipo " + tipoDispositivo);
     }
 
     // Metodo per fare la ricerca per produttore
     public static ArrayList<Prodotti> cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
-        ArrayList<Prodotti> dispositiviRicercati = new ArrayList<>();
-
-        for (Prodotti dispositivo : magazzino.getProdottiInMagazzino()) {
-            if (dispositivo.leggiProduttore().equalsIgnoreCase(produttore)) {
-                dispositiviRicercati.add(dispositivo);
-            }
-        }
-
-        if (dispositiviRicercati.isEmpty()) {
-            System.out.println("Nessun dispositivo del produttore " + produttore + " trovato.");
-            return null;
-        } else {
-            System.out.println("Dispositivi del produttore " + produttore + " trovati:");
-            for (Prodotti dispositivo : dispositiviRicercati) {
-                System.out.println(dispositivo);
-            }
-            return dispositiviRicercati;
-        }
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getProduttore().equalsIgnoreCase(produttore),
+                "del produttore " + produttore);
     }
 
     // Metodo per fare la ricerca per modello
     public static ArrayList<Prodotti> cercaDispositiviPerModello(Magazzino magazzino, String modello) {
-        ArrayList<Prodotti> dispositiviRicercati = new ArrayList<>();
-
-        for (Prodotti dispositivo : magazzino.getProdottiInMagazzino()) {
-            if (dispositivo.leggiModello().equalsIgnoreCase(modello)) {
-                dispositiviRicercati.add(dispositivo);
-            }
-        }
-
-        if (dispositiviRicercati.isEmpty()) {
-            System.out.println("Nessun dispositivo con il modello " + modello + " trovato.");
-            return null;
-        } else {
-            System.out.println("Dispositivi con il modello " + modello + " trovati:");
-            for (Prodotti dispositivo : dispositiviRicercati) {
-                System.out.println(dispositivo);
-            }
-            return dispositiviRicercati;
-        }
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().equalsIgnoreCase(modello),
+                "con il modello " + modello);
     }
 }
