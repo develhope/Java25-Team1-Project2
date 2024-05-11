@@ -115,8 +115,17 @@ public class MenuPrincipale {
 
     private void aggiungiAlMagazzino() {
         // Richiedi all'utente i dettagli del nuovo prodotto
-        System.out.println("Inserisci il tipo di dispositivo (smartphone, tablet o notebook): ");
-        String tipoDispositivo = scanner.next().toUpperCase();
+        TipoDispositivo tipoDispositivo = null;
+        while (tipoDispositivo == null){
+            try{
+                System.out.println("Inserisci il tipo di dispositivo (smartphone, tablet o notebook): ");
+                tipoDispositivo = TipoDispositivo.valueOf(scanner.next().toUpperCase());
+            }catch (IllegalArgumentException e){
+                System.out.println("Tipo di dispositivo non valido. Inserisci nuovamente: ");
+            }
+
+        }
+
         System.out.println("Inserisci il produttore: ");
         String produttore = scanner.next();
         System.out.println("Inserisci il modello: ");
@@ -125,8 +134,16 @@ public class MenuPrincipale {
         String descrizione = scanner.nextLine().trim();
         System.out.println("Inserisci la dimensione del display: ");
         Double dimensioneDisplay = scanner.nextDouble();
-        System.out.println("Inserisci il tipo di memoria (HDD, SSD, NVMe): ");
-        String tipoMemoria = scanner.next().toUpperCase();
+
+        TipoMemoriaArchiviazione tipoMemoria = null;
+        while(tipoMemoria == null){
+            try{
+                System.out.println("Inserisci il tipo di memoria (HDD, SSD, NVMe): ");
+                tipoMemoria = TipoMemoriaArchiviazione.valueOf(scanner.next().toUpperCase());
+            }catch (IllegalArgumentException e){
+                System.out.println("Tipo di memoria non valido. Inserisci nuovamente: ");
+            }
+        }
         System.out.println("Inserisci la dimensione dello spazio di archiviazione: ");
         Integer dimensioneArchiviazione = scanner.nextInt();
         System.out.println("Inserisci il prezzo di acquisto:");
@@ -139,12 +156,12 @@ public class MenuPrincipale {
 
         // Aggiungi il nuovo prodotto all'inventario
         Prodotti nuovoProdotto = new Prodotti(
-                TipoDispositivo.valueOf(tipoDispositivo),
+                tipoDispositivo,
                 produttore,
                 modello,
                 descrizione,
                 dimensioneDisplay,
-                TipoMemoriaArchiviazione.valueOf(tipoMemoria),
+                tipoMemoria,
                 dimensioneArchiviazione,
                 prezzoAcquisto,
                 prezzoVendita,
