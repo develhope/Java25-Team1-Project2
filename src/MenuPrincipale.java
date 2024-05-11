@@ -124,15 +124,15 @@ public class MenuPrincipale {
         System.out.println("Inserisci una descrizione (opzionale): ");
         String descrizione = scanner.nextLine().trim();
         System.out.println("Inserisci la dimensione del display: ");
-        double dimensioneDisplay = scanner.nextDouble();
+        Double dimensioneDisplay = scanner.nextDouble();
         System.out.println("Inserisci il tipo di memoria (HDD, SSD, NVMe): ");
         String tipoMemoria = scanner.next().toUpperCase();
         System.out.println("Inserisci la dimensione dello spazio di archiviazione: ");
-        double dimensioneArchiviazione = scanner.nextDouble();
+        Integer dimensioneArchiviazione = scanner.nextInt();
         System.out.println("Inserisci il prezzo di acquisto:");
-        double prezzoAcquisto = scanner.nextDouble();
+        Double prezzoAcquisto = scanner.nextDouble();
         System.out.println("Inserisci il prezzo di vendita:");
-        double prezzoVendita = scanner.nextDouble();
+        Double prezzoVendita = scanner.nextDouble();
 
         // Genera un ID casuale per il nuovo prodotto
         UUID id = UUID.randomUUID();
