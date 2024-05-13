@@ -5,14 +5,14 @@ public class Prodotti {
     private String produttore;
     private String modello;
     private String descrizione;
-    private double dimensioneDisplay;
+    private Double dimensioneDisplay;
     private TipoMemoriaArchiviazione setTipoMemoria;
-    private double dimensioneArchiviazione;
-    private double prezzoAcquisto;
-    private double prezzoVendita;
+    private Integer dimensioneArchiviazione;
+    private Double prezzoAcquisto;
+    private Double prezzoVendita;
     private UUID id;
 
-    public Prodotti(TipoDispositivo setTipoDispositivo, String produttore, String modello, String descrizione, double dimensioneDisplay, TipoMemoriaArchiviazione setTipoMemoria, double dimensioneArchiviazione, double prezzoAcquisto, double prezzoVendita, UUID id) {
+    public Prodotti(TipoDispositivo setTipoDispositivo, String produttore, String modello, String descrizione, Double dimensioneDisplay, TipoMemoriaArchiviazione setTipoMemoria, Integer dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
         this.setTipoDispositivo = setTipoDispositivo;
         this.produttore = produttore;
         this.modello = modello;
@@ -57,7 +57,7 @@ public class Prodotti {
         return descrizione;
     }
 
-    public double getDimensioneDisplay() {
+    public Double getDimensioneDisplay() {
         return dimensioneDisplay;
     }
 
@@ -65,15 +65,15 @@ public class Prodotti {
         return setTipoMemoria;
     }
 
-    public double getDimensioneArchiviazione() {
+    public Integer getDimensioneArchiviazione() {
         return dimensioneArchiviazione;
     }
 
-    public double getPrezzoAcquisto() {
+    public Double getPrezzoAcquisto() {
         return prezzoAcquisto;
     }
 
-    public double getPrezzoVendita() {
+    public Double getPrezzoVendita() {
         return prezzoVendita;
     }
 

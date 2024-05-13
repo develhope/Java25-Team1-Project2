@@ -4,22 +4,31 @@ import java.util.UUID;
 
 public class Carrello {
     private List<Prodotti> prodotti;
+    private Magazzino magazzino;
 
-    public Carrello() {
+    public Carrello(Magazzino magazzino) {
         this.prodotti = new ArrayList<>();
+        this.magazzino = magazzino;
     }
 
     // Aggiungi un prodotto al carrello
     public Boolean aggiungiProdotto(Prodotti prodotto) {
-        return prodotti.add(prodotto);
+        Boolean aggProdotto = prodotti.add(prodotto);
+        if(aggProdotto){
+            magazzino.rimuoviProdotto(prodotto.getId());
+        }
+        return aggProdotto;
     }
 
     // Rimuovi un prodotto dal carrello
     public Boolean rimuoviProdotto(UUID id) {
         for (Prodotti prodotto : prodotti) {
             if (prodotto.getId().equals(id)) {
-                prodotti.remove(prodotto);
-                return true;
+                Boolean remProdotto = prodotti.remove(prodotto);
+                if(remProdotto){
+                    magazzino.aggiungiProdotto(prodotto);
+                }
+                return remProdotto;
             }
         }
         return false;
