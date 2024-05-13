@@ -61,7 +61,11 @@ public class MenuPrincipale {
                     aggiungiAlMagazzino();
                     break;
                 case 2:
-                    // TODO: Implementare metodi di ricerca del prodotto
+                    System.out.println("Inserisci prezzo minimo: ");
+                    double prezzoMinimo = scanner.nextDouble();
+                    System.out.println("Inserisci prezzo massimo: ");
+                    double prezzoMassimo = scanner.nextDouble();
+                    magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
                     break;
                 case 0:
                     continua = false;

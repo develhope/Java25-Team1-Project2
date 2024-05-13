@@ -41,7 +41,7 @@ public class Magazzino {
     }
 
     // Trova un prodotto per id
-    Prodotti trovaProdottoPerId(UUID id) {
+    public Prodotti trovaProdottoPerId(UUID id) {
         for (Prodotti prodotto : inventario) {
             if (prodotto.getId().equals(id)) {
                 return prodotto;
@@ -49,4 +49,21 @@ public class Magazzino {
         }
         return null;
     }
+
+    // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
+    public List<Prodotti> cercaPerRangePrezzo(double minPrice, double maxPrice) {
+        List<Prodotti> result = new ArrayList<>();
+        for (Prodotti dispositivo : inventario) {
+            if ( dispositivo.getPrezzoVendita()>= minPrice && dispositivo.getPrezzoVendita() <= maxPrice) {
+                result.add(dispositivo);
+                System.out.println(dispositivo);
+            }
+        }
+        if (result.isEmpty()) {
+            throw new RuntimeException("Nessun dispositivo trovato nel range di prezzo specificato.");
+        }
+        return result;
+    }
+
 }
+
