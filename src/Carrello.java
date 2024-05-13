@@ -52,8 +52,22 @@ public class Carrello {
         return prodotti;
     }
 
+    public Boolean rimuoviProdotto(UUID id) {
+        for (Prodotti prodotto : prodotti) {
+            if (prodotto.getId().equals(id)) {
+                Boolean rimuoviProdotto = prodotti.remove(prodotto);
+                if (rimuoviProdotto) {
+                    magazzino.aggiungiProdotto(prodotto);
+                }
+                return rimuoviProdotto;
+            }
+        } return false;
+    }
+
+
+
     // Rimuove un prodotto dal carrello tramite l'ID e aggiorna l'inventario nel magazzino
-    public List<Prodotti> rimuoviProdottoDalCarrello(UUID id, Magazzino magazzino) {
+    public List<Prodotti> rimuoviProdottoDalCarrello(UUID id) {
         Prodotti prodottoDaRimuovere = null;
         for (Prodotti prodotto : prodotti) {
             if (prodotto.getId().equals(id)) {
