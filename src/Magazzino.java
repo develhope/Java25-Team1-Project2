@@ -41,7 +41,7 @@ public class Magazzino {
     }
 
     // Trova un prodotto per id
-    public Prodotti trovaProdottoPerId(UUID id) {
+    Prodotti trovaProdottoPerId(UUID id) {
         for (Prodotti prodotto : inventario) {
             if (prodotto.getId().equals(id)) {
                 return prodotto;
@@ -66,4 +66,3 @@ public class Magazzino {
     }
 
 }
-

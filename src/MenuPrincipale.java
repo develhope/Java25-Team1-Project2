@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -65,7 +66,7 @@ public class MenuPrincipale {
                     double prezzoMinimo = scanner.nextDouble();
                     System.out.println("Inserisci prezzo massimo: ");
                     double prezzoMassimo = scanner.nextDouble();
-                    magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
+                    //magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
                     break;
                 case 0:
                     continua = false;
@@ -175,19 +176,28 @@ public class MenuPrincipale {
         System.out.println("Prodotto aggiunto all'inventario.");
     }
 
+    // Metodo per stampare tutti i dispositivi presenti nel magazzino
     private void visualizzaInventario() {
         System.out.println("Lista dell'inventario:");
-        for (Prodotti prodotto : magazzino.getInventario()) {
-            System.out.println(prodotto);
+
+        List<Prodotti> dispositivi = magazzino.getInventario();
+        if (dispositivi.isEmpty()) {
+            System.out.println("Nessun dispositivo presente in magazzino.");
+        } else {
+            System.out.println("Dispositivi in magazzino:");
+            dispositivi.forEach(System.out::println);
         }
     }
+
+    // Metodo per stampare tutti i dispositivi presenti nel carrello
     private void visualizzaCarrello() {
         System.out.println("Lista del carrello:");
         for (Prodotti prodotto : carrello.getProdotti()) {
             System.out.println(prodotto);
         }
     }
-        private void aggiungiAlCarrello() {
+
+    private void aggiungiAlCarrello() {
             // Richiedi all'utente l'ID del prodotto da aggiungere al carrello
             System.out.println("Inserisci l'ID del prodotto da aggiungere al carrello:");
             String idString = scanner.next();
