@@ -38,4 +38,15 @@ public class Metodi {
         return cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().equalsIgnoreCase(modello),
                 "con il modello " + modello);
     }
+
+    public static ArrayList<Prodotti> ricercaPrezzoVendita(Magazzino magazzino, double prezzoDaCercare) {
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoVendita() == prezzoDaCercare,
+                "Per prezzo vendita " + prezzoDaCercare + " €");
+    }
+
+    public static ArrayList<Prodotti> ricercaPrezzoAcquisto(Magazzino magazzino, double prezzoDaCercare) {
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto() == prezzoDaCercare,
+                "Per prezzo d' acquisto " + prezzoDaCercare + " €");
+    }
+
 }
