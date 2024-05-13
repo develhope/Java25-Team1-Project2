@@ -21,7 +21,7 @@ public class Metodi {
     public static ArrayList<Prodotti> cercaDispositivi(Magazzino magazzino, Predicate<Prodotti> condition, String message) {
         List<Prodotti> dispositiviRicercati = magazzino.getInventario().stream()
                 .filter(condition)
-                .collect(Collectors.toList());
+                .toList();
 
         if (dispositiviRicercati.isEmpty()) {
             System.out.println("Nessun dispositivo " + message + " trovato.");

@@ -65,7 +65,7 @@ public class MenuPrincipale {
                     double prezzoMinimo = scanner.nextDouble();
                     System.out.println("Inserisci prezzo massimo: ");
                     double prezzoMassimo = scanner.nextDouble();
-                    magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
+                    //magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
                     break;
                 case 0:
                     continua = false;
