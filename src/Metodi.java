@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -39,14 +40,15 @@ public class Metodi {
                 "con il modello " + modello);
     }
 
-    public static ArrayList<Prodotti> ricercaPrezzoVendita(Magazzino magazzino, double prezzoDaCercare) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoVendita() == prezzoDaCercare,
-                "Per prezzo vendita " + prezzoDaCercare + " €");
+    // Metodo per fare la ricerca per prezzo di vendita
+    public static ArrayList<Prodotti> ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoVendita().doubleValue() == prezzoDaCercare.doubleValue(),
+                "con prezzo di vendita " + prezzoDaCercare + " €");
     }
 
-    public static ArrayList<Prodotti> ricercaPrezzoAcquisto(Magazzino magazzino, double prezzoDaCercare) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto() == prezzoDaCercare,
-                "Per prezzo d' acquisto " + prezzoDaCercare + " €");
+    // Metodo per fare la ricerca per prezzo di acquisto
+    public static ArrayList<Prodotti> ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto().doubleValue() == prezzoDaCercare.doubleValue(),
+                "con prezzo di acquisto " + prezzoDaCercare + " €");
     }
-
 }
