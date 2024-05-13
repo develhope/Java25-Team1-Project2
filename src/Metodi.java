@@ -5,18 +5,6 @@ import java.util.stream.Collectors;
 
 public class Metodi {
 
-    // Metodo per stampare tutti i dispositivi presenti nel magazzino
-    public static void stampaDispositiviMagazzino(Magazzino magazzino) {
-        List<Prodotti> dispositivi = magazzino.getInventario();
-
-        if (dispositivi.isEmpty()) {
-            System.out.println("Nessun dispositivo presente in magazzino.");
-        } else {
-            System.out.println("Dispositivi in magazzino:");
-            dispositivi.forEach(System.out::println);
-        }
-    }
-
     // Metodo generico per la ricerca di dispositivi
     public static ArrayList<Prodotti> cercaDispositivi(Magazzino magazzino, Predicate<Prodotti> condition, String message) {
         List<Prodotti> dispositiviRicercati = magazzino.getInventario().stream()
