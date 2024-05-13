@@ -8,7 +8,7 @@ public class MenuPrincipale {
 
     public MenuPrincipale() {
         magazzino = new Magazzino();
-        carrello = new Carrello();
+        carrello = new Carrello(magazzino);
         scanner = new Scanner(System.in);
     }
 
