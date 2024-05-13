@@ -13,7 +13,7 @@ public class MenuPrincipale {
     }
 
     public void mostraMenu() {
-        int scelta = 0;
+        int scelta;
 
         do {
             System.out.println("\nCosa vuoi fare?");
@@ -131,7 +131,7 @@ public class MenuPrincipale {
         System.out.println("Inserisci il modello: ");
         String modello = scanner.next();
         System.out.println("Inserisci una descrizione (opzionale): ");
-        String descrizione = scanner.nextLine().trim();
+        String descrizione = scanner.next();
         System.out.println("Inserisci la dimensione del display: ");
         Double dimensioneDisplay = scanner.nextDouble();
 
