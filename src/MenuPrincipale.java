@@ -8,12 +8,12 @@ public class MenuPrincipale {
 
     public MenuPrincipale() {
         magazzino = new Magazzino();
-        carrello = new Carrello();
+        carrello = new Carrello(magazzino);
         scanner = new Scanner(System.in);
     }
 
     public void mostraMenu() {
-        int scelta = 0;
+        int scelta;
 
         do {
             System.out.println("\nCosa vuoi fare?");
@@ -115,36 +115,53 @@ public class MenuPrincipale {
 
     private void aggiungiAlMagazzino() {
         // Richiedi all'utente i dettagli del nuovo prodotto
-        System.out.println("Inserisci il tipo di dispositivo (smartphone, tablet o notebook): ");
-        String tipoDispositivo = scanner.next().toUpperCase();
+        TipoDispositivo tipoDispositivo = null;
+        while (tipoDispositivo == null){
+            try{
+                System.out.println("Inserisci il tipo di dispositivo (smartphone, tablet o notebook): ");
+                tipoDispositivo = TipoDispositivo.valueOf(scanner.next().toUpperCase());
+            }catch (IllegalArgumentException e){
+                System.out.println("Tipo di dispositivo non valido. Inserisci nuovamente: ");
+            }
+
+        }
+
         System.out.println("Inserisci il produttore: ");
         String produttore = scanner.next();
         System.out.println("Inserisci il modello: ");
         String modello = scanner.next();
         System.out.println("Inserisci una descrizione (opzionale): ");
-        String descrizione = scanner.nextLine().trim();
+        String descrizione = scanner.next();
         System.out.println("Inserisci la dimensione del display: ");
-        double dimensioneDisplay = scanner.nextDouble();
-        System.out.println("Inserisci il tipo di memoria (HDD, SSD, NVMe): ");
-        String tipoMemoria = scanner.next().toUpperCase();
+        Double dimensioneDisplay = scanner.nextDouble();
+
+        TipoMemoriaArchiviazione tipoMemoria = null;
+        while(tipoMemoria == null){
+            try{
+                System.out.println("Inserisci il tipo di memoria (HDD, SSD, NVMe): ");
+                tipoMemoria = TipoMemoriaArchiviazione.valueOf(scanner.next().toUpperCase());
+            }catch (IllegalArgumentException e){
+                System.out.println("Tipo di memoria non valido. Inserisci nuovamente: ");
+            }
+        }
         System.out.println("Inserisci la dimensione dello spazio di archiviazione: ");
-        double dimensioneArchiviazione = scanner.nextDouble();
+        Integer dimensioneArchiviazione = scanner.nextInt();
         System.out.println("Inserisci il prezzo di acquisto:");
-        double prezzoAcquisto = scanner.nextDouble();
+        Double prezzoAcquisto = scanner.nextDouble();
         System.out.println("Inserisci il prezzo di vendita:");
-        double prezzoVendita = scanner.nextDouble();
+        Double prezzoVendita = scanner.nextDouble();
 
         // Genera un ID casuale per il nuovo prodotto
         UUID id = UUID.randomUUID();
 
         // Aggiungi il nuovo prodotto all'inventario
         Prodotti nuovoProdotto = new Prodotti(
-                TipoDispositivo.valueOf(tipoDispositivo),
+                tipoDispositivo,
                 produttore,
                 modello,
                 descrizione,
                 dimensioneDisplay,
-                TipoMemoriaArchiviazione.valueOf(tipoMemoria),
+                tipoMemoria,
                 dimensioneArchiviazione,
                 prezzoAcquisto,
                 prezzoVendita,
