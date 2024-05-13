@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.util.UUID;
 
+//TODO aggiungere quantità del prodotto in modo tale che non venga più eliminato il prodotto dal magazzino e dia un messaggiodi errore se è terminato
+
+
 public class MenuPrincipale {
     private Magazzino magazzino;
     private Carrello carrello;
