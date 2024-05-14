@@ -40,6 +40,9 @@ public class Magazzino {
         return inventario;
     }
 
+    public List<Prodotti> setInventario() {
+        return inventario;
+    }
     // Trova un prodotto per id
     Prodotti trovaProdottoPerId(UUID id) {
         for (Prodotti prodotto : inventario) {
@@ -49,5 +52,4 @@ public class Magazzino {
         }
         return null;
     }
-
 }

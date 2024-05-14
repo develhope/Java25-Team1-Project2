@@ -1,7 +1,5 @@
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 
 //TODO aggiungere quantità del prodotto in modo tale che non venga più eliminato il prodotto dal magazzino e dia un messaggiodi errore se è terminato
 
@@ -136,8 +134,8 @@ public class MenuPrincipale {
             System.out.println("2. Per range di prezzo");
             System.out.println("3. Per produttore");
             System.out.println("4. Per modello");
-            System.out.println("5. Per prezzo di vendita");
-            System.out.println("6. Per prezzo di acquisto");
+            System.out.println("5. Per prezzo di acquisto");
+            System.out.println("6. Per prezzo di vendita");
             System.out.println("0. Torna al menu Magazzino");
             System.out.print("Scelta: ");
             int sceltaRicerca = scanner.nextInt();
@@ -147,9 +145,19 @@ public class MenuPrincipale {
                 case 0:
                     menuMagazzino();
                 case 1:
-                    System.out.print("Inserisci il tipo di dispositivo: ");
-                    String tipoDispositivo = scanner.next().toUpperCase();
-                    metodi.cercaDispositiviPerTipo(magazzino, TipoDispositivo.valueOf(tipoDispositivo));
+                    System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
+                    String tipoDispositivoStr = scanner.next().toUpperCase();
+
+                    try {
+                        TipoDispositivo tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
+                        ArrayList<Prodotti> dispositiviTrovati = Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
+
+                        for (Prodotti dispositivo : dispositiviTrovati) {
+                            System.out.println(dispositivo);
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Tipo di dispositivo non valido.");
+                    }
                     break;
                 case 2:
                     System.out.println("Inserisci prezzo minimo: ");
@@ -161,22 +169,61 @@ public class MenuPrincipale {
                 case 3:
                     System.out.print("Inserisci il produttore: ");
                     String produttore = scanner.next().toUpperCase();
-                    metodi.cercaDispositiviPerProduttore(magazzino, produttore);
+                    ArrayList<Prodotti> dispositiviTrovati1 = Metodi.cercaDispositiviPerProduttore(magazzino, produttore);
+
+                    for (Prodotti dispositivo : dispositiviTrovati1) {
+                        System.out.println(dispositivo);
+                    }
                     break;
                 case 4:
                     System.out.print("Inserisci il modello: ");
                     String modello = scanner.next().toUpperCase();
-                    metodi.cercaDispositiviPerModello(magazzino, modello);
+                    ArrayList<Prodotti> dispositiviTrovati2 = Metodi.cercaDispositiviPerModello(magazzino, modello);
+
+                    for (Prodotti dispositivo : dispositiviTrovati2) {
+                        System.out.println(dispositivo);
+                    }
                     break;
                 case 5:
-                    System.out.print("Inserisci il prezzo vendita: ");
-                    Double prezzoVendita = scanner.nextDouble();
-                    metodi.ricercaPerPrezzoVendita(magazzino, BigDecimal.valueOf(prezzoVendita));
+                    try {
+                        System.out.print("Inserisci il prezzo di acquisto: ");
+                        String inputPrezzo = scanner.next();
+                        BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
+                        Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoAcquisto(magazzino, prezzoAcquisto);
+
+                        if (dispositivoTrovato != null) {
+                            System.out.println("Prodotto trovato:");
+                            System.out.println(dispositivoTrovato);
+                        } else {
+                            System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
+                            for (Prodotti dispositivo : magazzino.getInventario()) {
+                                System.out.println(dispositivo);
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+                    }
                     break;
                 case 6:
-                    System.out.print("Inserisci il prezzo acquisto: ");
-                    Double prezzoAcquisto = scanner.nextDouble();
-                    metodi.ricercaPerPrezzoAcquisto(magazzino, BigDecimal.valueOf(prezzoAcquisto));
+                    try {
+                        System.out.print("Inserisci il prezzo di vendita: ");
+                        String inputPrezzo = scanner.next();
+                        BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
+                        Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoVendita(magazzino, prezzoVendita);
+
+                        if (dispositivoTrovato != null) {
+                            System.out.println("Prodotto trovato:");
+                            System.out.println(dispositivoTrovato);
+                        } else {
+                            System.out.println("Nessun dispositivo trovato con questo prezzo di vendita " + prezzoVendita + " €. Dispositivi già presenti nel magazzino:");
+                            for (Prodotti dispositivo : magazzino.getInventario()) {
+                                System.out.println(dispositivo);
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+                    }
+                    break;
 
                 default:
                     System.out.println("Scelta non valida!");

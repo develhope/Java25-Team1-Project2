@@ -14,7 +14,7 @@ public class Metodi {
     }
 
     // Metodo generico per la ricerca di dispositivi
-    public ArrayList<Prodotti> cercaDispositivi(Magazzino magazzino, Predicate<Prodotti> condition, String message) {
+    public static ArrayList<Prodotti> cercaDispositivi(Magazzino magazzino, Predicate<Prodotti> condition, String message) {
         List<Prodotti> dispositiviRicercati = magazzino.getInventario().stream()
                 .filter(condition)
                 .toList();
@@ -30,41 +30,82 @@ public class Metodi {
     }
 
     // Metodo per fare la ricerca per tipo di dispositivo
-    public ArrayList<Prodotti> cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
+    public static ArrayList<Prodotti> cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
+        ArrayList<Prodotti> dispositiviTrovati = cercaDispositivi(magazzino, dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
                 "di tipo " + tipoDispositivo);
+
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Dispositivo non trovato.");
+            System.out.println("Dispositivi già presenti nel magazzino:");
+            for (Prodotti dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo);
+            }
+        }
+        return dispositiviTrovati;
     }
 
     // Metodo per fare la ricerca per produttore
-    public ArrayList<Prodotti> cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getProduttore().equalsIgnoreCase(produttore),
-                "del produttore " + produttore);
+    public static ArrayList<Prodotti> cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
+        ArrayList<Prodotti> dispositiviTrovati = new ArrayList<>();
+
+        for (Prodotti dispositivo : magazzino.getInventario()) {
+            if (dispositivo.getProduttore().equalsIgnoreCase(produttore)) {
+                dispositiviTrovati.add(dispositivo);
+            }
+        }
+
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Produttore non trovato.");
+            System.out.println("Produttori già presenti nel magazzino:");
+            for (Prodotti dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo.getProduttore());
+            }
+        }
+        return dispositiviTrovati;
     }
 
     // Metodo per fare la ricerca per modello
-    public ArrayList<Prodotti> cercaDispositiviPerModello(Magazzino magazzino, String modello) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().toLowerCase().equalsIgnoreCase(modello),
+    public static ArrayList<Prodotti> cercaDispositiviPerModello(Magazzino magazzino, String modello) {
+        ArrayList<Prodotti> dispositiviTrovati = cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().toLowerCase().equalsIgnoreCase(modello),
                 "con il modello " + modello);
+
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Modello non trovato.");
+            System.out.println("Modelli già presenti nel magazzino:");
+            for (Prodotti dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo.getModello());
+            }
+        }
+        return dispositiviTrovati;
     }
- 
-  // Metodo per fare la ricerca per prezzo di vendita
-  public ArrayList<Prodotti> ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
-      return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoVendita().doubleValue() == prezzoDaCercare.doubleValue(),
-              "con prezzo di vendita " + prezzoDaCercare + " €");
-  }
-  
+
     // Metodo per fare la ricerca per prezzo di acquisto
-  public ArrayList<Prodotti> ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
-      return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto().doubleValue() == prezzoDaCercare.doubleValue(),
-              "con prezzo di acquisto " + prezzoDaCercare + " €");
+    public Prodotti ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+        for (Prodotti dispositivo : magazzino.getInventario()) {
+            if (dispositivo.getPrezzoAcquisto().doubleValue() == prezzoDaCercare.doubleValue()) {
+                return dispositivo;
+            }
+        }
+        return null;
+    }
+
+  // Metodo per fare la ricerca per prezzo di vendita
+  public Prodotti ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+      for (Prodotti dispositivo : magazzino.getInventario()) {
+          if (dispositivo.getPrezzoVendita().doubleValue() == prezzoDaCercare.doubleValue()) {
+              return dispositivo;
+          }
+      }
+      return null;
   }
 
-    // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
-    public List<Prodotti> cercaPerRangePrezzo(BigDecimal prezzoMinimo, BigDecimal prezzoMassimo) {
-        List<Prodotti> result = new ArrayList<>();
 
-        boolean rangeValido = false;
-        while (!rangeValido) {
+  // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
+  public List<Prodotti> cercaPerRangePrezzo(BigDecimal prezzoMinimo, BigDecimal prezzoMassimo) {
+       List<Prodotti> result = new ArrayList<>();
+
+       boolean rangeValido = false;
+       while (!rangeValido) {
             rangeValido = true; // Assume the range is valid initially
             for (Prodotti dispositivo : articoli.getInventario()) {
                 // Cast esplicito di BigDecimal in double per il confronto
@@ -85,7 +126,7 @@ public class Metodi {
                 prezzoMassimo = scanner.nextBigDecimal();
                 scanner.close(); // Chiudere lo scanner dopo l'uso
             }
-        }
-        return result;
+       }
+       return result;
     }
 }
