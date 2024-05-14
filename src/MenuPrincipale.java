@@ -134,8 +134,8 @@ public class MenuPrincipale {
             System.out.println("2. Per range di prezzo");
             System.out.println("3. Per produttore");
             System.out.println("4. Per modello");
-            System.out.println("5. Per prezzo di vendita");
-            System.out.println("6. Per prezzo di acquisto");
+            System.out.println("5. Per prezzo di acquisto");
+            System.out.println("6. Per prezzo di vendita");
             System.out.println("0. Torna al menu Magazzino");
             System.out.print("Scelta: ");
             int sceltaRicerca = scanner.nextInt();
@@ -186,6 +186,26 @@ public class MenuPrincipale {
                     break;
                 case 5:
                     try {
+                        System.out.print("Inserisci il prezzo di acquisto: ");
+                        String inputPrezzo = scanner.next();
+                        BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
+                        Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoAcquisto(magazzino, prezzoAcquisto);
+
+                        if (dispositivoTrovato != null) {
+                            System.out.println("Prodotto trovato:");
+                            System.out.println(dispositivoTrovato);
+                        } else {
+                            System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
+                            for (Prodotti dispositivo : magazzino.getInventario()) {
+                                System.out.println(dispositivo);
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+                    }
+                    break;
+                case 6:
+                    try {
                         System.out.print("Inserisci il prezzo di vendita: ");
                         String inputPrezzo = scanner.next();
                         BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
@@ -204,10 +224,6 @@ public class MenuPrincipale {
                         System.out.println("Input non valido. Assicurati di inserire un numero valido.");
                     }
                     break;
-                case 6:
-                    System.out.print("Inserisci il prezzo acquisto: ");
-                    Double prezzoAcquisto = scanner.nextDouble();
-                    metodi.ricercaPerPrezzoAcquisto(magazzino, BigDecimal.valueOf(prezzoAcquisto));
 
                 default:
                     System.out.println("Scelta non valida!");

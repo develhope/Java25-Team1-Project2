@@ -78,7 +78,17 @@ public class Metodi {
         }
         return dispositiviTrovati;
     }
- 
+
+    // Metodo per fare la ricerca per prezzo di acquisto
+    public Prodotti ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+        for (Prodotti dispositivo : magazzino.getInventario()) {
+            if (dispositivo.getPrezzoAcquisto().doubleValue() == prezzoDaCercare.doubleValue()) {
+                return dispositivo;
+            }
+        }
+        return null;
+    }
+
   // Metodo per fare la ricerca per prezzo di vendita
   public Prodotti ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
       for (Prodotti dispositivo : magazzino.getInventario()) {
@@ -88,19 +98,14 @@ public class Metodi {
       }
       return null;
   }
-  
-    // Metodo per fare la ricerca per prezzo di acquisto
-  public ArrayList<Prodotti> ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
-      return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto().doubleValue() == prezzoDaCercare.doubleValue(),
-              "con prezzo di acquisto " + prezzoDaCercare + " €");
-  }
 
-    // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
-    public List<Prodotti> cercaPerRangePrezzo(BigDecimal prezzoMinimo, BigDecimal prezzoMassimo) {
-        List<Prodotti> result = new ArrayList<>();
 
-        boolean rangeValido = false;
-        while (!rangeValido) {
+  // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
+  public List<Prodotti> cercaPerRangePrezzo(BigDecimal prezzoMinimo, BigDecimal prezzoMassimo) {
+       List<Prodotti> result = new ArrayList<>();
+
+       boolean rangeValido = false;
+       while (!rangeValido) {
             rangeValido = true; // Assume the range is valid initially
             for (Prodotti dispositivo : articoli.getInventario()) {
                 // Cast esplicito di BigDecimal in double per il confronto
@@ -121,7 +126,7 @@ public class Metodi {
                 prezzoMassimo = scanner.nextBigDecimal();
                 scanner.close(); // Chiudere lo scanner dopo l'uso
             }
-        }
-        return result;
+       }
+       return result;
     }
 }
