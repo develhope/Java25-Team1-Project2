@@ -1,10 +1,9 @@
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
+
 import static org.junit.Assert.assertTrue;
 
 public class MainTest {
@@ -17,5 +16,4 @@ public class MainTest {
 
         assertTrue(magazzino.aggiungiProdotto(notebook));
     }
-
 }

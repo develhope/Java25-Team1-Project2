@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -161,7 +162,12 @@ public class MenuPrincipale {
                 case 3:
                     System.out.print("Inserisci il produttore: ");
                     String produttore = scanner.next().toUpperCase();
-                    metodi.cercaDispositiviPerProduttore(magazzino, produttore);
+                    ArrayList<Prodotti> dispositiviTrovati = metodi.cercaDispositiviPerProduttore(magazzino, produttore);
+
+                    // Stampare i dispositivi trovati
+                    for (Prodotti dispositivo : dispositiviTrovati) {
+                        System.out.println(dispositivo);
+                    }
                     break;
                 case 4:
                     System.out.print("Inserisci il modello: ");

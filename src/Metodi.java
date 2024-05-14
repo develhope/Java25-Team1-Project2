@@ -36,9 +36,25 @@ public class Metodi {
     }
 
     // Metodo per fare la ricerca per produttore
-    public ArrayList<Prodotti> cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getProduttore().equalsIgnoreCase(produttore),
-                "del produttore " + produttore);
+    public static ArrayList<Prodotti> cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
+        ArrayList<Prodotti> dispositiviTrovati = new ArrayList<>();
+
+        for (Prodotti dispositivo : magazzino.getInventario()) {
+            if (dispositivo.getProduttore().equalsIgnoreCase(produttore)) {
+                dispositiviTrovati.add(dispositivo);
+            }
+        }
+
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Produttore non trovato.");
+
+            // Visualizza i produttori già presenti nel magazzino
+            System.out.println("Produttori già presenti nel magazzino:");
+            for (Prodotti dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo.getProduttore());
+            }
+        }
+        return dispositiviTrovati;
     }
 
     // Metodo per fare la ricerca per modello
