@@ -14,7 +14,7 @@ public class Metodi {
     }
 
     // Metodo generico per la ricerca di dispositivi
-    public ArrayList<Prodotti> cercaDispositivi(Magazzino magazzino, Predicate<Prodotti> condition, String message) {
+    public static ArrayList<Prodotti> cercaDispositivi(Magazzino magazzino, Predicate<Prodotti> condition, String message) {
         List<Prodotti> dispositiviRicercati = magazzino.getInventario().stream()
                 .filter(condition)
                 .toList();
@@ -30,9 +30,18 @@ public class Metodi {
     }
 
     // Metodo per fare la ricerca per tipo di dispositivo
-    public ArrayList<Prodotti> cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
+    public static ArrayList<Prodotti> cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
+        ArrayList<Prodotti> dispositiviTrovati = cercaDispositivi(magazzino, dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
                 "di tipo " + tipoDispositivo);
+
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Dispositivo non trovato.");
+            System.out.println("Dispositivi già presenti nel magazzino:");
+            for (Prodotti dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo);
+            }
+        }
+        return dispositiviTrovati;
     }
 
     // Metodo per fare la ricerca per produttore
@@ -47,8 +56,6 @@ public class Metodi {
 
         if (dispositiviTrovati.isEmpty()) {
             System.out.println("Produttore non trovato.");
-
-            // Visualizza i produttori già presenti nel magazzino
             System.out.println("Produttori già presenti nel magazzino:");
             for (Prodotti dispositivo : magazzino.getInventario()) {
                 System.out.println(dispositivo.getProduttore());

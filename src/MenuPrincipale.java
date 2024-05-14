@@ -148,9 +148,19 @@ public class MenuPrincipale {
                 case 0:
                     menuMagazzino();
                 case 1:
-                    System.out.print("Inserisci il tipo di dispositivo: ");
-                    String tipoDispositivo = scanner.next().toUpperCase();
-                    metodi.cercaDispositiviPerTipo(magazzino, TipoDispositivo.valueOf(tipoDispositivo));
+                    System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
+                    String tipoDispositivoStr = scanner.next().toUpperCase();
+
+                    try {
+                        TipoDispositivo tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
+                        ArrayList<Prodotti> dispositiviTrovati = Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
+
+                        for (Prodotti dispositivo : dispositiviTrovati) {
+                            System.out.println(dispositivo);
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Tipo di dispositivo non valido.");
+                    }
                     break;
                 case 2:
                     System.out.println("Inserisci prezzo minimo: ");
@@ -162,10 +172,9 @@ public class MenuPrincipale {
                 case 3:
                     System.out.print("Inserisci il produttore: ");
                     String produttore = scanner.next().toUpperCase();
-                    ArrayList<Prodotti> dispositiviTrovati = metodi.cercaDispositiviPerProduttore(magazzino, produttore);
+                    ArrayList<Prodotti> dispositiviTrovati1 = metodi.cercaDispositiviPerProduttore(magazzino, produttore);
 
-                    // Stampare i dispositivi trovati
-                    for (Prodotti dispositivo : dispositiviTrovati) {
+                    for (Prodotti dispositivo : dispositiviTrovati1) {
                         System.out.println(dispositivo);
                     }
                     break;
