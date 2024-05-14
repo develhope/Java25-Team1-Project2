@@ -1,8 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class Metodi {
+
+    private Magazzino articoli;
+
+    public Metodi(){
+        articoli = new Magazzino();
+
+    }
 
     // Metodo generico per la ricerca di dispositivi
     public ArrayList<Prodotti> cercaDispositivi(Magazzino magazzino, Predicate<Prodotti> condition, String message) {
@@ -34,7 +42,7 @@ public class Metodi {
 
     // Metodo per fare la ricerca per modello
     public ArrayList<Prodotti> cercaDispositiviPerModello(Magazzino magazzino, String modello) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().equalsIgnoreCase(modello),
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().toLowerCase().equalsIgnoreCase(modello),
                 "con il modello " + modello);
     }
 
@@ -47,5 +55,31 @@ public class Metodi {
         return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto() == prezzoDaCercare,
                 "Per prezzo d' acquisto " + prezzoDaCercare + " €");
     }
+    // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
+    public List<Prodotti> cercaPerRangePrezzo(double prezzoMinimo, double prezzoMassimo) {
+        List<Prodotti> result = new ArrayList<>();
 
+        Boolean rangeValido = false;
+        while (!rangeValido) {
+            rangeValido = true; // Assume the range is valid initially
+            for (Prodotti dispositivo : articoli.getInventario()) {
+                if (dispositivo.getPrezzoVendita() >= prezzoMinimo && dispositivo.getPrezzoVendita() <= prezzoMassimo) {
+                    result.add(dispositivo);
+                    System.out.println(dispositivo);
+                }
+            }
+            if (result.isEmpty()) {
+                rangeValido = false;
+                System.out.println("Nessun dispositivo trovato nel range di prezzo specificato.");
+                // Richiedere nuovi parametri
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Inserisci nuovamente il prezzo minimo: ");
+                prezzoMinimo = scanner.nextDouble();
+                System.out.println("Inserisci nuovamente il prezzo massimo: ");
+                prezzoMassimo = scanner.nextDouble();
+                scanner.close(); // Chiudere lo scanner dopo l'uso
+            }
+        }
+        return result;
+    }
 }

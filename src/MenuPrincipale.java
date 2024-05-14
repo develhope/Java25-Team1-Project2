@@ -147,24 +147,24 @@ public class MenuPrincipale {
                     menuMagazzino();
                 case 1:
                     System.out.print("Inserisci il tipo di dispositivo: ");
-                    String tipoDispositivo = scanner.next();
+                    String tipoDispositivo = scanner.next().toUpperCase();
                     metodi.cercaDispositiviPerTipo(magazzino, TipoDispositivo.valueOf(tipoDispositivo));
                     break;
                 case 2:
                     System.out.println("Inserisci prezzo minimo: ");
-                    double prezzoMinimo = scanner.nextDouble();
+                    Double prezzoMinimo = scanner.nextDouble();
                     System.out.println("Inserisci prezzo massimo: ");
-                    double prezzoMassimo = scanner.nextDouble();
-                    magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
+                    Double prezzoMassimo = scanner.nextDouble();
+                    metodi.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
                     break;
                 case 3:
                     System.out.print("Inserisci il produttore: ");
-                    String produttore = scanner.next();
+                    String produttore = scanner.next().toUpperCase();
                     metodi.cercaDispositiviPerProduttore(magazzino, produttore);
                     break;
                 case 4:
                     System.out.print("Inserisci il modello: ");
-                    String modello = scanner.next();
+                    String modello = scanner.next().toUpperCase();
                     metodi.cercaDispositiviPerModello(magazzino, modello);
                     break;
                 case 5:
