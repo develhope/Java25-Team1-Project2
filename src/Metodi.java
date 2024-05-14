@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Metodi {
 
@@ -23,7 +22,7 @@ public class Metodi {
 
     // Metodo per fare la ricerca per tipo di dispositivo
     public static ArrayList<Prodotti> cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getSetTipoDispositivo() == tipoDispositivo,
+        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
                 "di tipo " + tipoDispositivo);
     }
 

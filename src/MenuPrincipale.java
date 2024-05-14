@@ -9,11 +9,13 @@ public class MenuPrincipale {
     private Magazzino magazzino;
     private Carrello carrello;
     private Scanner scanner;
+    private  Metodi metodi;
 
     public MenuPrincipale() {
         magazzino = new Magazzino();
         carrello = new Carrello(magazzino);
         scanner = new Scanner(System.in);
+        metodi = new Metodi();
     }
 
     public void mostraMenu() {
@@ -65,11 +67,7 @@ public class MenuPrincipale {
                     aggiungiAlMagazzino();
                     break;
                 case 2:
-                    System.out.println("Inserisci prezzo minimo: ");
-                    double prezzoMinimo = scanner.nextDouble();
-                    System.out.println("Inserisci prezzo massimo: ");
-                    double prezzoMassimo = scanner.nextDouble();
-                    //magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
+                   menuRicerca();
                     break;
                 case 0:
                     continua = false;
@@ -121,6 +119,49 @@ public class MenuPrincipale {
         }
     }
 
+    // Metodo per gestire il menu del carrello
+    public void menuRicerca() {
+        System.out.println("cerca:");
+        boolean continua = true;
+        while (continua) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Ricerca Dispositivi");
+            System.out.println("2. Ricerca per Range di prezzo");
+            System.out.println("3. Calcola Totale Carrello");
+            System.out.println("4. Finalizza Acquisto");
+            System.out.println("0. Torna al menu principale");
+            System.out.print("Scelta: ");
+
+            visualizzaCarrello();
+
+            int scelta = scanner.nextInt();
+
+            switch (scelta) {
+                case 1:
+
+                    break;
+                case 2:
+                    System.out.println("Inserisci prezzo minimo: ");
+                    double prezzoMinimo = scanner.nextDouble();
+                    System.out.println("Inserisci prezzo massimo: ");
+                    double prezzoMassimo = scanner.nextDouble();
+                    magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
+                    break;
+                case 3:
+                    calcolaTotaleCarrello();
+                    break;
+                case 4:
+                    finalizzaAcquisto();
+                    break;
+                case 0:
+                    continua = false;
+                    break;
+                default:
+                    System.out.println("Scelta non valida!");
+                    break;
+            }
+        }
+    }
     private void aggiungiAlMagazzino() {
         // Richiedi all'utente i dettagli del nuovo prodotto
         TipoDispositivo tipoDispositivo = null;
@@ -236,7 +277,7 @@ public class MenuPrincipale {
         }
     }
     private void calcolaTotaleCarrello() {
-        System.out.println("Totale carrello: " + carrello.calcolaTotale() + " euro");
+        System.out.println("Totale carrello: " + carrello.calcolaTotale() + " €");
     }
     private void finalizzaAcquisto() {
         carrello.finalizzaAcquisto();
