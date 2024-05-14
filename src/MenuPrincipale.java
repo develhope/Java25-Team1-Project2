@@ -124,21 +124,25 @@ public class MenuPrincipale {
         System.out.println("cerca:");
         boolean continua = true;
         while (continua) {
-            System.out.println("\nMenu:");
-            System.out.println("1. Ricerca Dispositivi");
-            System.out.println("2. Ricerca per Range di prezzo");
-            System.out.println("3. Calcola Totale Carrello");
-            System.out.println("4. Finalizza Acquisto");
-            System.out.println("0. Torna al menu principale");
+            System.out.println("Scegli il tipo di ricerca:");
+            System.out.println("1. Per tipo di dispositivo");
+            System.out.println("2. Per range di prezzo");
+            System.out.println("3. Per produttore");
+            System.out.println("4. Per modello");
+            System.out.println("5. Per prezzo di vendita");
+            System.out.println("6. Per prezzo di acquisto");
+            System.out.println("0. Torna al menu Magazzino");
             System.out.print("Scelta: ");
+            int sceltaRicerca = scanner.nextInt();
+            scanner.nextLine(); // Consume newline char
 
-            visualizzaCarrello();
-
-            int scelta = scanner.nextInt();
-
-            switch (scelta) {
+            switch (sceltaRicerca) {
+                case 0:
+                    menuMagazzino();
                 case 1:
-                    metodi.cercaDispositivi()
+                    System.out.print("Inserisci il tipo di dispositivo: ");
+                    String tipoDispositivo = scanner.next();
+                    metodi.cercaDispositiviPerTipo(magazzino, TipoDispositivo.valueOf(tipoDispositivo));
                     break;
                 case 2:
                     System.out.println("Inserisci prezzo minimo: ");
@@ -148,14 +152,25 @@ public class MenuPrincipale {
                     magazzino.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
                     break;
                 case 3:
-                    calcolaTotaleCarrello();
+                    System.out.print("Inserisci il produttore: ");
+                    String produttore = scanner.next();
+                    metodi.cercaDispositiviPerProduttore(magazzino, produttore);
                     break;
                 case 4:
-                    finalizzaAcquisto();
+                    System.out.print("Inserisci il modello: ");
+                    String modello = scanner.next();
+                    metodi.cercaDispositiviPerModello(magazzino, modello);
                     break;
-                case 0:
-                    continua = false;
+                case 5:
+                    System.out.print("Inserisci il prezzo vendita: ");
+                    Double prezzoVendita = scanner.nextDouble();
+                    metodi.ricercaPrezzoVendita(magazzino, prezzoVendita);
                     break;
+                case 6:
+                    System.out.print("Inserisci il prezzo acquisto: ");
+                    Double prezzoAcquisto = scanner.nextDouble();
+                    metodi.ricercaPrezzoAcquisto(magazzino, prezzoAcquisto);
+
                 default:
                     System.out.println("Scelta non valida!");
                     break;
