@@ -1,24 +1,24 @@
 import java.util.UUID;
 
 public class Prodotti {
-    private TipoDispositivo setTipoDispositivo;
+    private TipoDispositivo tipoDispositivo;
     private String produttore;
     private String modello;
     private String descrizione;
     private Double dimensioneDisplay;
-    private TipoMemoriaArchiviazione setTipoMemoria;
+    private TipoMemoriaArchiviazione tipoMemoria;
     private Integer dimensioneArchiviazione;
     private Double prezzoAcquisto;
     private Double prezzoVendita;
     private UUID id;
 
-    public Prodotti(TipoDispositivo setTipoDispositivo, String produttore, String modello, String descrizione, Double dimensioneDisplay, TipoMemoriaArchiviazione setTipoMemoria, Integer dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
-        this.setTipoDispositivo = setTipoDispositivo;
+    public Prodotti(TipoDispositivo tipoDispositivo, String produttore, String modello, String descrizione, Double dimensioneDisplay, TipoMemoriaArchiviazione tipoMemoria, Integer dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
+        this.tipoDispositivo = tipoDispositivo;
         this.produttore = produttore;
         this.modello = modello;
         this.descrizione = descrizione;
         this.dimensioneDisplay = dimensioneDisplay;
-        this.setTipoMemoria = setTipoMemoria;
+        this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
         this.prezzoVendita = prezzoVendita;
@@ -29,20 +29,20 @@ public class Prodotti {
     public String toString() {
         return "Prodotto { " +
                 "id = " + id +
-                "  TipoDispositivo = " + setTipoDispositivo +
+                "  TipoDispositivo = " + tipoDispositivo +
                 ", produttore = " + produttore +
                 ", modello = " + modello +
                 ", descrizione = " + descrizione  +
                 ", dimensioneDisplay = " + dimensioneDisplay +
-                ", TipoMemoria = " + setTipoMemoria +
+                ", TipoMemoria = " + tipoMemoria +
                 ", dimensioneArchiviazione = " + dimensioneArchiviazione +
                 ", prezzoAcquisto = " + prezzoAcquisto +
                 ", prezzoVendita = " + prezzoVendita +
                 "}";
     }
 
-    public TipoDispositivo getSetTipoDispositivo() {
-        return setTipoDispositivo;
+    public TipoDispositivo getTipoDispositivo() {
+        return tipoDispositivo;
     }
 
     public String getProduttore() {
@@ -61,8 +61,8 @@ public class Prodotti {
         return dimensioneDisplay;
     }
 
-    public TipoMemoriaArchiviazione getSetTipoMemoria() {
-        return setTipoMemoria;
+    public TipoMemoriaArchiviazione getTipoMemoria() {
+        return tipoMemoria;
     }
 
     public Integer getDimensioneArchiviazione() {
