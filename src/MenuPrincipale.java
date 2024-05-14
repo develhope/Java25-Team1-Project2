@@ -138,7 +138,7 @@ public class MenuPrincipale {
 
             switch (scelta) {
                 case 1:
-
+                    metodi.cercaDispositivi()
                     break;
                 case 2:
                     System.out.println("Inserisci prezzo minimo: ");
