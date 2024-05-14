@@ -55,6 +55,7 @@ public class MenuPrincipale {
             System.out.println("\nMenu:");
             System.out.println("1. Aggiungi Prodotto");
             System.out.println("2. Cerca Prodotto");
+            System.out.println("3. Accedi al carrello");
             System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
 
@@ -69,6 +70,8 @@ public class MenuPrincipale {
                 case 2:
                    menuRicerca();
                     break;
+                case 3:
+                    menuCarrello();
                 case 0:
                     continua = false;
                     break;
@@ -89,6 +92,7 @@ public class MenuPrincipale {
             System.out.println("2. Rimuovi Prodotto dal Carrello");
             System.out.println("3. Calcola Totale Carrello");
             System.out.println("4. Finalizza Acquisto");
+            System.out.println("5. Accedi al Magazzino");
             System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
 
@@ -109,6 +113,8 @@ public class MenuPrincipale {
                 case 4:
                     finalizzaAcquisto();
                     break;
+                case 5:
+                    menuMagazzino();
                 case 0:
                     continua = false;
                     break;

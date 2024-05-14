@@ -7,7 +7,5 @@ public class Main {
         MenuPrincipale menu = new MenuPrincipale();
         System.out.println("Benvenuto nel programma di gestione del magazzino!");
         menu.mostraMenu();
-
-
     }
 }
