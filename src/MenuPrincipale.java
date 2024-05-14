@@ -181,7 +181,11 @@ public class MenuPrincipale {
                 case 4:
                     System.out.print("Inserisci il modello: ");
                     String modello = scanner.next().toUpperCase();
-                    metodi.cercaDispositiviPerModello(magazzino, modello);
+                    ArrayList<Prodotti> dispositiviTrovati2 = metodi.cercaDispositiviPerModello(magazzino, modello);
+
+                    for (Prodotti dispositivo : dispositiviTrovati2) {
+                        System.out.println(dispositivo);
+                    }
                     break;
                 case 5:
                     System.out.print("Inserisci il prezzo vendita: ");

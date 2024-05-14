@@ -65,9 +65,18 @@ public class Metodi {
     }
 
     // Metodo per fare la ricerca per modello
-    public ArrayList<Prodotti> cercaDispositiviPerModello(Magazzino magazzino, String modello) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().toLowerCase().equalsIgnoreCase(modello),
+    public static ArrayList<Prodotti> cercaDispositiviPerModello(Magazzino magazzino, String modello) {
+        ArrayList<Prodotti> dispositiviTrovati = cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().toLowerCase().equalsIgnoreCase(modello),
                 "con il modello " + modello);
+
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Modello non trovato.");
+            System.out.println("Modelli già presenti nel magazzino:");
+            for (Prodotti dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo.getModello());
+            }
+        }
+        return dispositiviTrovati;
     }
  
   // Metodo per fare la ricerca per prezzo di vendita
