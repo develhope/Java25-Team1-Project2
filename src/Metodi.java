@@ -80,9 +80,13 @@ public class Metodi {
     }
  
   // Metodo per fare la ricerca per prezzo di vendita
-  public ArrayList<Prodotti> ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
-      return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoVendita().doubleValue() == prezzoDaCercare.doubleValue(),
-              "con prezzo di vendita " + prezzoDaCercare + " €");
+  public Prodotti ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+      for (Prodotti dispositivo : magazzino.getInventario()) {
+          if (dispositivo.getPrezzoVendita().doubleValue() == prezzoDaCercare.doubleValue()) {
+              return dispositivo;
+          }
+      }
+      return null;
   }
   
     // Metodo per fare la ricerca per prezzo di acquisto

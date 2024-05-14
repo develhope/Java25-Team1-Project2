@@ -1,8 +1,5 @@
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 
 //TODO aggiungere quantità del prodotto in modo tale che non venga più eliminato il prodotto dal magazzino e dia un messaggiodi errore se è terminato
 
@@ -172,7 +169,7 @@ public class MenuPrincipale {
                 case 3:
                     System.out.print("Inserisci il produttore: ");
                     String produttore = scanner.next().toUpperCase();
-                    ArrayList<Prodotti> dispositiviTrovati1 = metodi.cercaDispositiviPerProduttore(magazzino, produttore);
+                    ArrayList<Prodotti> dispositiviTrovati1 = Metodi.cercaDispositiviPerProduttore(magazzino, produttore);
 
                     for (Prodotti dispositivo : dispositiviTrovati1) {
                         System.out.println(dispositivo);
@@ -181,16 +178,31 @@ public class MenuPrincipale {
                 case 4:
                     System.out.print("Inserisci il modello: ");
                     String modello = scanner.next().toUpperCase();
-                    ArrayList<Prodotti> dispositiviTrovati2 = metodi.cercaDispositiviPerModello(magazzino, modello);
+                    ArrayList<Prodotti> dispositiviTrovati2 = Metodi.cercaDispositiviPerModello(magazzino, modello);
 
                     for (Prodotti dispositivo : dispositiviTrovati2) {
                         System.out.println(dispositivo);
                     }
                     break;
                 case 5:
-                    System.out.print("Inserisci il prezzo vendita: ");
-                    Double prezzoVendita = scanner.nextDouble();
-                    metodi.ricercaPerPrezzoVendita(magazzino, BigDecimal.valueOf(prezzoVendita));
+                    try {
+                        System.out.print("Inserisci il prezzo di vendita: ");
+                        String inputPrezzo = scanner.next();
+                        BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
+                        Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoVendita(magazzino, prezzoVendita);
+
+                        if (dispositivoTrovato != null) {
+                            System.out.println("Prodotto trovato:");
+                            System.out.println(dispositivoTrovato);
+                        } else {
+                            System.out.println("Nessun dispositivo trovato con questo prezzo di vendita " + prezzoVendita + " €. Dispositivi già presenti nel magazzino:");
+                            for (Prodotti dispositivo : magazzino.getInventario()) {
+                                System.out.println(dispositivo);
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+                    }
                     break;
                 case 6:
                     System.out.print("Inserisci il prezzo acquisto: ");
