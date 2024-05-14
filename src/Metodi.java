@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -45,12 +46,14 @@ public class Metodi {
         return cercaDispositivi(magazzino, dispositivo -> dispositivo.getModello().toLowerCase().equalsIgnoreCase(modello),
                 "con il modello " + modello);
     }
-
+ 
+  // Metodo per fare la ricerca per prezzo di vendita
     public ArrayList<Prodotti> ricercaPrezzoVendita(Magazzino magazzino, double prezzoDaCercare) {
         return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoVendita() == prezzoDaCercare,
                 "Per prezzo vendita " + prezzoDaCercare + " €");
     }
-
+  
+    // Metodo per fare la ricerca per prezzo di acquisto
     public ArrayList<Prodotti> ricercaPrezzoAcquisto(Magazzino magazzino, double prezzoDaCercare) {
         return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto() == prezzoDaCercare,
                 "Per prezzo d' acquisto " + prezzoDaCercare + " €");
