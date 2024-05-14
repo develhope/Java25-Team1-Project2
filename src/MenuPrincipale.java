@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -152,10 +153,10 @@ public class MenuPrincipale {
                     break;
                 case 2:
                     System.out.println("Inserisci prezzo minimo: ");
-                    Double prezzoMinimo = scanner.nextDouble();
+                    BigDecimal prezzoMinimo = BigDecimal.valueOf(scanner.nextDouble());
                     System.out.println("Inserisci prezzo massimo: ");
                     Double prezzoMassimo = scanner.nextDouble();
-                    metodi.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
+                    metodi.cercaPerRangePrezzo(prezzoMinimo, BigDecimal.valueOf(prezzoMassimo));
                     break;
                 case 3:
                     System.out.print("Inserisci il produttore: ");
@@ -170,12 +171,12 @@ public class MenuPrincipale {
                 case 5:
                     System.out.print("Inserisci il prezzo vendita: ");
                     Double prezzoVendita = scanner.nextDouble();
-                    metodi.ricercaPrezzoVendita(magazzino, prezzoVendita);
+                    metodi.ricercaPerPrezzoVendita(magazzino, BigDecimal.valueOf(prezzoVendita));
                     break;
                 case 6:
                     System.out.print("Inserisci il prezzo acquisto: ");
                     Double prezzoAcquisto = scanner.nextDouble();
-                    metodi.ricercaPrezzoAcquisto(magazzino, prezzoAcquisto);
+                    metodi.ricercaPerPrezzoAcquisto(magazzino, BigDecimal.valueOf(prezzoAcquisto));
 
                 default:
                     System.out.println("Scelta non valida!");
