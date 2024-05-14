@@ -48,25 +48,28 @@ public class Metodi {
     }
  
   // Metodo per fare la ricerca per prezzo di vendita
-    public ArrayList<Prodotti> ricercaPrezzoVendita(Magazzino magazzino, double prezzoDaCercare) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoVendita() == prezzoDaCercare,
-                "Per prezzo vendita " + prezzoDaCercare + " €");
-    }
+  public ArrayList<Prodotti> ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+      return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoVendita().doubleValue() == prezzoDaCercare.doubleValue(),
+              "con prezzo di vendita " + prezzoDaCercare + " €");
+  }
   
     // Metodo per fare la ricerca per prezzo di acquisto
-    public ArrayList<Prodotti> ricercaPrezzoAcquisto(Magazzino magazzino, double prezzoDaCercare) {
-        return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto() == prezzoDaCercare,
-                "Per prezzo d' acquisto " + prezzoDaCercare + " €");
-    }
+  public ArrayList<Prodotti> ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+      return cercaDispositivi(magazzino, dispositivo -> dispositivo.getPrezzoAcquisto().doubleValue() == prezzoDaCercare.doubleValue(),
+              "con prezzo di acquisto " + prezzoDaCercare + " €");
+  }
+
     // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
-    public List<Prodotti> cercaPerRangePrezzo(double prezzoMinimo, double prezzoMassimo) {
+    public List<Prodotti> cercaPerRangePrezzo(BigDecimal prezzoMinimo, BigDecimal prezzoMassimo) {
         List<Prodotti> result = new ArrayList<>();
 
-        Boolean rangeValido = false;
+        boolean rangeValido = false;
         while (!rangeValido) {
             rangeValido = true; // Assume the range is valid initially
             for (Prodotti dispositivo : articoli.getInventario()) {
-                if (dispositivo.getPrezzoVendita() >= prezzoMinimo && dispositivo.getPrezzoVendita() <= prezzoMassimo) {
+                // Cast esplicito di BigDecimal in double per il confronto
+                if (dispositivo.getPrezzoVendita().doubleValue() >= prezzoMinimo.doubleValue() &&
+                        dispositivo.getPrezzoVendita().doubleValue() <= prezzoMassimo.doubleValue()) {
                     result.add(dispositivo);
                     System.out.println(dispositivo);
                 }
@@ -77,9 +80,9 @@ public class Metodi {
                 // Richiedere nuovi parametri
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Inserisci nuovamente il prezzo minimo: ");
-                prezzoMinimo = scanner.nextDouble();
+                prezzoMinimo = scanner.nextBigDecimal();
                 System.out.println("Inserisci nuovamente il prezzo massimo: ");
-                prezzoMassimo = scanner.nextDouble();
+                prezzoMassimo = scanner.nextBigDecimal();
                 scanner.close(); // Chiudere lo scanner dopo l'uso
             }
         }
