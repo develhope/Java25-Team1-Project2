@@ -132,31 +132,36 @@ public class Metodi {
 
   // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
   public List<Prodotti> cercaPerRangePrezzo(BigDecimal prezzoMinimo, BigDecimal prezzoMassimo) {
-       List<Prodotti> result = new ArrayList<>();
+        List<Prodotti> result = new ArrayList<>();
 
-       boolean rangeValido = false;
-       while (!rangeValido) {
-            rangeValido = true; // Assume the range is valid initially
-            for (Prodotti dispositivo : articoli.getInventario()) {
-                // Cast esplicito di BigDecimal in double per il confronto
-                if (dispositivo.getPrezzoVendita().doubleValue() >= prezzoMinimo.doubleValue() &&
-                        dispositivo.getPrezzoVendita().doubleValue() <= prezzoMassimo.doubleValue()) {
-                    result.add(dispositivo);
-                    System.out.println(dispositivo);
+        boolean rangeValido = false;
+        Scanner scanner = new Scanner(System.in);
+        while (!rangeValido) {
+            rangeValido = true;
+
+            try {
+                for (Prodotti dispositivo : articoli.getInventario()) {
+                    if (dispositivo.getPrezzoVendita() >= prezzoMinimo.doubleValue() &&
+                            dispositivo.getPrezzoVendita() <= prezzoMassimo.doubleValue()) {
+                        result.add(dispositivo);
+                        System.out.println(dispositivo);
+                    }
                 }
-            }
-            if (result.isEmpty()) {
-                rangeValido = false;
-                System.out.println("Nessun dispositivo trovato nel range di prezzo specificato.");
-                // Richiedere nuovi parametri
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("Inserisci nuovamente il prezzo minimo: ");
-                prezzoMinimo = scanner.nextBigDecimal();
-                System.out.println("Inserisci nuovamente il prezzo massimo: ");
-                prezzoMassimo = scanner.nextBigDecimal();
-                scanner.close(); // Chiudere lo scanner dopo l'uso
+                if (result.isEmpty()) {
+                    rangeValido = false;
+                    System.out.println("Nessun dispositivo trovato nel range di prezzo specificato.");
+                    // Richiedere nuovi parametri
+                    System.out.println("Inserisci nuovamente il prezzo minimo: ");
+                    prezzoMinimo = new BigDecimal(scanner.next().replace(",", "."));
+                    System.out.println("Inserisci nuovamente il prezzo massimo: ");
+                    prezzoMassimo = new BigDecimal(scanner.next().replace(",", "."));
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+                scanner.nextLine();
             }
        }
+        scanner.close();
        return result;
     }
 }
