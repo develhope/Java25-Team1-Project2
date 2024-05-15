@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 public class Metodi {
 
     private Magazzino articoli;
+    private Scanner scanner = new Scanner(System.in);
 
     public Metodi(){
         articoli = new Magazzino();
@@ -82,7 +83,7 @@ public class Metodi {
     // Metodo per fare la ricerca per prezzo di acquisto
     public Prodotti ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
         for (Prodotti dispositivo : magazzino.getInventario()) {
-            if (dispositivo.getPrezzoAcquisto().doubleValue() == prezzoDaCercare.doubleValue()) {
+            if (dispositivo.getPrezzoAcquisto() == prezzoDaCercare.doubleValue()) {
                 return dispositivo;
             }
         }
@@ -92,7 +93,7 @@ public class Metodi {
   // Metodo per fare la ricerca per prezzo di vendita
   public Prodotti ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
       for (Prodotti dispositivo : magazzino.getInventario()) {
-          if (dispositivo.getPrezzoVendita().doubleValue() == prezzoDaCercare.doubleValue()) {
+          if (dispositivo.getPrezzoVendita() == prezzoDaCercare.doubleValue()) {
               return dispositivo;
           }
       }
@@ -101,6 +102,7 @@ public class Metodi {
 
 
   // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
+
   public List<Prodotti> cercaPerRangePrezzo(Double prezzoMinimo, Double prezzoMassimo) {
        List<Prodotti> result = new ArrayList<>();
 

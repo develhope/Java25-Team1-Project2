@@ -166,6 +166,7 @@ public class MenuPrincipale {
                     Double prezzoMassimo = scanner.nextDouble();
                     metodi.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
                     break;
+
                 case 3:
                     System.out.print("Inserisci il produttore: ");
                     String produttore = scanner.next().toUpperCase();
@@ -188,6 +189,9 @@ public class MenuPrincipale {
                     try {
                         System.out.print("Inserisci il prezzo di acquisto: ");
                         String inputPrezzo = scanner.next();
+
+                        inputPrezzo = inputPrezzo.replace(",", ".");
+
                         BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
                         Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoAcquisto(magazzino, prezzoAcquisto);
 
@@ -208,14 +212,17 @@ public class MenuPrincipale {
                     try {
                         System.out.print("Inserisci il prezzo di vendita: ");
                         String inputPrezzo = scanner.next();
-                        BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
-                        Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoVendita(magazzino, prezzoVendita);
+
+                        inputPrezzo = inputPrezzo.replace(",", ".");
+
+                        BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
+                        Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoVendita(magazzino, prezzoAcquisto);
 
                         if (dispositivoTrovato != null) {
                             System.out.println("Prodotto trovato:");
                             System.out.println(dispositivoTrovato);
                         } else {
-                            System.out.println("Nessun dispositivo trovato con questo prezzo di vendita " + prezzoVendita + " €. Dispositivi già presenti nel magazzino:");
+                            System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
                             for (Prodotti dispositivo : magazzino.getInventario()) {
                                 System.out.println(dispositivo);
                             }
