@@ -160,12 +160,38 @@ public class MenuPrincipale {
                     }
                     break;
                 case 2:
-                    System.out.println("Inserisci prezzo minimo: ");
-                    BigDecimal prezzoMinimo = BigDecimal.valueOf(scanner.nextDouble());
-                    System.out.println("Inserisci prezzo massimo: ");
-                    Double prezzoMassimo = scanner.nextDouble();
-                    metodi.cercaPerRangePrezzo(prezzoMinimo, BigDecimal.valueOf(prezzoMassimo));
+                    try (Scanner scanner = new Scanner(System.in)) {
+                        double prezzoMinimo;
+                        double prezzoMassimo;
+                        do {
+                            System.out.println("Inserisci prezzo minimo: ");
+                            prezzoMinimo = scanner.nextDouble();
+                            System.out.println("Inserisci prezzo massimo: ");
+                            prezzoMassimo = scanner.nextDouble();
+                            if (prezzoMassimo < prezzoMinimo) {
+                                System.out.println("Il prezzo massimo non può essere inferiore al prezzo minimo.");
+                            }
+                        } while (prezzoMassimo < prezzoMinimo);
+
+                        // Ricerca e stampa risultati
+                        List<Prodotti> risultati = metodi.cercaPerRangePrezzo(scanner, prezzoMinimo, prezzoMassimo);
+
+                        // Stampa dei risultati (solo se la lista non è vuota)
+                        if (!risultati.isEmpty()) {
+                            System.out.println("Risultati della ricerca:");
+                            for (Prodotti prodotto : risultati) {
+                                System.out.println(prodotto);
+                            }
+                        } else {
+                            System.out.println("Nessun dispositivo trovato nel range di prezzo specificato.");
+                        }
+                    } catch (NoSuchElementException e) {
+                        System.err.println("Errore durante l'input dell'utente: " + e.getMessage());
+                    } catch (Exception e) {
+                        System.err.println("Si è verificato un errore durante l'esecuzione: " + e.getMessage());
+                    }
                     break;
+
                 case 3:
                     System.out.print("Inserisci il produttore: ");
                     String produttore = scanner.next().toUpperCase();
@@ -188,6 +214,9 @@ public class MenuPrincipale {
                     try {
                         System.out.print("Inserisci il prezzo di acquisto: ");
                         String inputPrezzo = scanner.next();
+
+                        inputPrezzo = inputPrezzo.replace(",", ".");
+
                         BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
                         Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoAcquisto(magazzino, prezzoAcquisto);
 

@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 public class Metodi {
 
     private Magazzino articoli;
+    private Scanner scanner = new Scanner(System.in);
 
     public Metodi(){
         articoli = new Magazzino();
@@ -81,23 +82,8 @@ public class Metodi {
 
     // Metodo per fare la ricerca per prezzo di acquisto
     public Prodotti ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
-        Scanner scanner = new Scanner(System.in);
-
-        BigDecimal prezzoInserito = null;
-        boolean inputValido = false;
-
-        while (!inputValido) {
-            try {
-                System.out.print("Inserisci il prezzo di acquisto: ");
-                String inputPrezzo = scanner.next().replace(",", ".");
-                inputValido = true;
-            } catch (NumberFormatException e) {
-                System.out.println("Input non valido. Assicurati di inserire un numero valido.");
-            }
-        }
-
         for (Prodotti dispositivo : magazzino.getInventario()) {
-            if (dispositivo.getPrezzoVendita() == prezzoDaCercare.doubleValue()) {
+            if (dispositivo.getPrezzoAcquisto() == prezzoDaCercare.doubleValue()) {
                 return dispositivo;
             }
         }
@@ -106,8 +92,6 @@ public class Metodi {
 
   // Metodo per fare la ricerca per prezzo di vendita
   public Prodotti ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
-      Scanner scanner = new Scanner(System.in);
-
       BigDecimal prezzoInserito = null;
       boolean inputValido = false;
 
@@ -131,37 +115,36 @@ public class Metodi {
 
 
   // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
-  public List<Prodotti> cercaPerRangePrezzo(BigDecimal prezzoMinimo, BigDecimal prezzoMassimo) {
-        List<Prodotti> result = new ArrayList<>();
+  public List<Prodotti> cercaPerRangePrezzo(Scanner scanner, double prezzoMinimo, double prezzoMassimo) {
+      List<Prodotti> result = new ArrayList<>();
+      boolean trovati = false;
 
-        boolean rangeValido = false;
-        Scanner scanner = new Scanner(System.in);
-        while (!rangeValido) {
-            rangeValido = true;
+      try {
+          // Controllo range valido
+          if (prezzoMassimo < prezzoMinimo) {
+              throw new IllegalArgumentException("Il prezzo massimo non può essere inferiore al prezzo minimo.");
+          }
 
-            try {
-                for (Prodotti dispositivo : articoli.getInventario()) {
-                    if (dispositivo.getPrezzoVendita() >= prezzoMinimo.doubleValue() &&
-                            dispositivo.getPrezzoVendita() <= prezzoMassimo.doubleValue()) {
-                        result.add(dispositivo);
-                        System.out.println(dispositivo);
-                    }
-                }
-                if (result.isEmpty()) {
-                    rangeValido = false;
-                    System.out.println("Nessun dispositivo trovato nel range di prezzo specificato.");
-                    // Richiedere nuovi parametri
-                    System.out.println("Inserisci nuovamente il prezzo minimo: ");
-                    prezzoMinimo = new BigDecimal(scanner.next().replace(",", "."));
-                    System.out.println("Inserisci nuovamente il prezzo massimo: ");
-                    prezzoMassimo = new BigDecimal(scanner.next().replace(",", "."));
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Input non valido. Assicurati di inserire un numero valido.");
-                scanner.nextLine();
-            }
-       }
-        scanner.close();
-       return result;
-    }
+          // Ricerca prodotti nel range
+          for (Prodotti dispositivo : articoli.getInventario()) {
+              double prezzoVenditaDispositivo = dispositivo.getPrezzoVendita();
+              if (prezzoVenditaDispositivo >= prezzoMinimo &&
+                      prezzoVenditaDispositivo <= prezzoMassimo) {
+                  result.add(dispositivo);
+                  trovati = true; // Aggiorna flag se trovato un prodotto
+              }
+          }
+
+          // Gestione lista vuota (solo se non siamo nel case 2)
+          if (!trovati) {
+              return result;
+          }
+      } catch (NumberFormatException e) {
+          System.out.println("Formato prezzo non valido. Inserisci un numero decimale.");
+      } catch (IllegalArgumentException e) {
+          return result;
+      }
+
+      return result;
+  }
 }
