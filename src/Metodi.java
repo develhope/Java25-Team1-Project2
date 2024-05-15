@@ -102,36 +102,33 @@ public class Metodi {
 
 
   // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
-  public List<Prodotti> cercaPerRangePrezzo(Scanner scanner, double prezzoMinimo, double prezzoMassimo) {
-      List<Prodotti> result = new ArrayList<>();
-      boolean trovati = false;
 
-      try {
-          // Controllo range valido
-          if (prezzoMassimo < prezzoMinimo) {
-              throw new IllegalArgumentException("Il prezzo massimo non può essere inferiore al prezzo minimo.");
-          }
+  public List<Prodotti> cercaPerRangePrezzo(Double prezzoMinimo, Double prezzoMassimo) {
+       List<Prodotti> result = new ArrayList<>();
 
-          // Ricerca prodotti nel range
-          for (Prodotti dispositivo : articoli.getInventario()) {
-              double prezzoVenditaDispositivo = dispositivo.getPrezzoVendita();
-              if (prezzoVenditaDispositivo >= prezzoMinimo &&
-                      prezzoVenditaDispositivo <= prezzoMassimo) {
-                  result.add(dispositivo);
-                  trovati = true; // Aggiorna flag se trovato un prodotto
-              }
-          }
+       boolean rangeValido = false;
+       while (!rangeValido) {
+            rangeValido = true; // Assume the range is valid initially
+            for (Prodotti dispositivo : articoli.getInventario()) {
 
-          // Gestione lista vuota (solo se non siamo nel case 2)
-          if (!trovati) {
-              return result;
-          }
-      } catch (NumberFormatException e) {
-          System.out.println("Formato prezzo non valido. Inserisci un numero decimale.");
-      } catch (IllegalArgumentException e) {
-          return result;
-      }
-
-      return result;
-  }
+                if (dispositivo.getPrezzoVendita() >= prezzoMinimo &&
+                        dispositivo.getPrezzoVendita() <= prezzoMassimo) {
+                    result.add(dispositivo);
+                    System.out.println(dispositivo);
+                }
+            }
+            if (result.isEmpty()) {
+                rangeValido = false;
+                System.out.println("Nessun dispositivo trovato nel range di prezzo specificato.");
+                // Richiedere nuovi parametri
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Inserisci nuovamente il prezzo minimo: ");
+                prezzoMinimo = scanner.nextDouble();
+                System.out.println("Inserisci nuovamente il prezzo massimo: ");
+                prezzoMassimo = scanner.nextDouble();
+                scanner.close(); // Chiudere lo scanner dopo l'uso
+            }
+       }
+       return result;
+    }
 }
