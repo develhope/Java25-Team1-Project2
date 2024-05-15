@@ -106,6 +106,21 @@ public class Metodi {
 
   // Metodo per fare la ricerca per prezzo di vendita
   public Prodotti ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+      Scanner scanner = new Scanner(System.in);
+
+      BigDecimal prezzoInserito = null;
+      boolean inputValido = false;
+
+      while (!inputValido) {
+          try {
+              System.out.println("Inserisci il prezzo di vendita: ");
+              String inputPrezzo = scanner.next().replace(",", ".");
+              prezzoInserito = new BigDecimal(inputPrezzo);
+              inputValido = true;
+          } catch (NumberFormatException e) {
+              System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+          }
+      }
       for (Prodotti dispositivo : magazzino.getInventario()) {
           if (dispositivo.getPrezzoVendita() == prezzoDaCercare.doubleValue()) {
               return dispositivo;
