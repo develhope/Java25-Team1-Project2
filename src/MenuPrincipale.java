@@ -161,10 +161,10 @@ public class MenuPrincipale {
                     break;
                 case 2:
                     System.out.println("Inserisci prezzo minimo: ");
-                    BigDecimal prezzoMinimo = BigDecimal.valueOf(scanner.nextDouble());
+                    Double prezzoMinimo = scanner.nextDouble();
                     System.out.println("Inserisci prezzo massimo: ");
                     Double prezzoMassimo = scanner.nextDouble();
-                    metodi.cercaPerRangePrezzo(prezzoMinimo, BigDecimal.valueOf(prezzoMassimo));
+                    metodi.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
                     break;
                 case 3:
                     System.out.print("Inserisci il produttore: ");
