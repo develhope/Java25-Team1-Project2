@@ -81,8 +81,23 @@ public class Metodi {
 
     // Metodo per fare la ricerca per prezzo di acquisto
     public Prodotti ricercaPerPrezzoAcquisto(Magazzino magazzino, BigDecimal prezzoDaCercare) {
+        Scanner scanner = new Scanner(System.in);
+
+        BigDecimal prezzoInserito = null;
+        boolean inputValido = false;
+
+        while (!inputValido) {
+            try {
+                System.out.print("Inserisci il prezzo di acquisto: ");
+                String inputPrezzo = scanner.next().replace(",", ".");
+                inputValido = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+            }
+        }
+
         for (Prodotti dispositivo : magazzino.getInventario()) {
-            if (dispositivo.getPrezzoAcquisto().doubleValue() == prezzoDaCercare.doubleValue()) {
+            if (dispositivo.getPrezzoVendita() == prezzoDaCercare.doubleValue()) {
                 return dispositivo;
             }
         }
@@ -92,7 +107,7 @@ public class Metodi {
   // Metodo per fare la ricerca per prezzo di vendita
   public Prodotti ricercaPerPrezzoVendita(Magazzino magazzino, BigDecimal prezzoDaCercare) {
       for (Prodotti dispositivo : magazzino.getInventario()) {
-          if (dispositivo.getPrezzoVendita().doubleValue() == prezzoDaCercare.doubleValue()) {
+          if (dispositivo.getPrezzoVendita() == prezzoDaCercare.doubleValue()) {
               return dispositivo;
           }
       }
