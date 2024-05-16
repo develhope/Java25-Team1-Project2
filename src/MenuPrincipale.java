@@ -95,8 +95,7 @@ public class MenuPrincipale {
             System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
 
-            visualizzaCarrello();
-
+            //visualizzaCarrello();
             int scelta = scanner.nextInt();
 
             switch (scelta) {
@@ -114,6 +113,7 @@ public class MenuPrincipale {
                     break;
                 case 5:
                     menuMagazzino();
+                    break;
                 case 0:
                     continua = false;
                     break;
