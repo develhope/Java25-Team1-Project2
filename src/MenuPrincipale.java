@@ -72,8 +72,7 @@ public class MenuPrincipale {
                     menuCarrello();
                     break;
                 case 0:
-                    continua = false;
-                    break;
+                    return;
                 default:
                     System.out.println("Scelta non valida!");
                     break;
