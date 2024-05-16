@@ -8,13 +8,13 @@ public class MenuPrincipale {
     private Magazzino magazzino;
     private Carrello carrello;
     private Scanner scanner;
-    private  Metodi metodi;
+    private Metodi metodi;
 
     public MenuPrincipale() {
-        magazzino = new Magazzino();
-        carrello = new Carrello(magazzino);
-        scanner = new Scanner(System.in);
-        metodi = new Metodi();
+        this.magazzino = new Magazzino();
+        this.carrello = new Carrello(magazzino);
+        this.scanner = new Scanner(System.in);
+        this.metodi = new Metodi();
     }
 
     public void mostraMenu() {
@@ -145,6 +145,7 @@ public class MenuPrincipale {
                 case 0:
                     menuMagazzino();
                 case 1:
+                    //TODO
                     System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
                     String tipoDispositivoStr = scanner.next().toUpperCase();
 
@@ -245,6 +246,7 @@ public class MenuPrincipale {
             try{
                 System.out.println("Inserisci il tipo di dispositivo (smartphone, tablet o notebook): ");
                 tipoDispositivo = TipoDispositivo.valueOf(scanner.next().toUpperCase());
+
             }catch (IllegalArgumentException e){
                 System.out.println("Tipo di dispositivo non valido. Inserisci nuovamente: ");
             }
@@ -253,10 +255,13 @@ public class MenuPrincipale {
 
         System.out.println("Inserisci il produttore: ");
         String produttore = scanner.next();
+
         System.out.println("Inserisci il modello: ");
         String modello = scanner.next();
+
         System.out.println("Inserisci una descrizione (opzionale): ");
         String descrizione = scanner.next();
+
         System.out.println("Inserisci la dimensione del display: ");
         Double dimensioneDisplay = scanner.nextDouble();
 
@@ -265,12 +270,29 @@ public class MenuPrincipale {
             try{
                 System.out.println("Inserisci il tipo di memoria (HDD, SSD, NVMe): ");
                 tipoMemoria = TipoMemoriaArchiviazione.valueOf(scanner.next().toUpperCase());
+
             }catch (IllegalArgumentException e){
                 System.out.println("Tipo di memoria non valido. Inserisci nuovamente: ");
             }
         }
-        System.out.println("Inserisci la dimensione dello spazio di archiviazione: ");
-        Integer dimensioneArchiviazione = scanner.nextInt();
+
+        SpazioDiArchiviazione dimensioneArchiviazione = null;
+        while (dimensioneArchiviazione == null){
+            System.out.println("Inserisci la dimensione dello spazio di archiviazione: ");
+            String imput = scanner.nextLine();
+            try {
+                Integer valore = Integer.parseInt(imput);
+                dimensioneArchiviazione = SpazioDiArchiviazione.fromInt(valore);
+
+
+            }catch (NumberFormatException e) {
+                System.out.println("Input non valido. Inserisci un numero.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Inserisci un numero valido.");
+            }
+        }
+
         System.out.println("Inserisci il prezzo di acquisto:");
         Double prezzoAcquisto = scanner.nextDouble();
         System.out.println("Inserisci il prezzo di vendita:");

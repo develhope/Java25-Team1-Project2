@@ -7,12 +7,12 @@ public class Prodotti {
     private String descrizione;
     private Double dimensioneDisplay;
     private TipoMemoriaArchiviazione tipoMemoria;
-    private Integer dimensioneArchiviazione;
+    private SpazioDiArchiviazione dimensioneArchiviazione;
     private Double prezzoAcquisto;
     private Double prezzoVendita;
     private UUID id;
 
-    public Prodotti(TipoDispositivo tipoDispositivo, String produttore, String modello, String descrizione, Double dimensioneDisplay, TipoMemoriaArchiviazione tipoMemoria, Integer dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
+    public Prodotti(TipoDispositivo tipoDispositivo, String produttore, String modello, String descrizione, Double dimensioneDisplay, TipoMemoriaArchiviazione tipoMemoria, SpazioDiArchiviazione dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
         this.tipoDispositivo = tipoDispositivo;
         this.produttore = produttore;
         this.modello = modello;
@@ -65,7 +65,7 @@ public class Prodotti {
         return tipoMemoria;
     }
 
-    public Integer getDimensioneArchiviazione() {
+    public SpazioDiArchiviazione getDimensioneArchiviazione() {
         return dimensioneArchiviazione;
     }
 

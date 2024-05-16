@@ -12,10 +12,10 @@ public class Magazzino {
     }
 
     public List<Prodotti> dispositivi() {
-        Smartphone smartphone1 = new Smartphone(TipoDispositivo.SMARTPHONE, "Apple", "Iphone12", "Ciao", 5.5, TipoMemoriaArchiviazione.NVMe, 128, 899.99, 999.99, UUID.randomUUID());
-        Smartphone smartphone2 = new Smartphone(TipoDispositivo.SMARTPHONE, "Samsung", "Galaxy A71", "è un buon telefono", 6.3, TipoMemoriaArchiviazione.NVMe, 512, 499.99, 799.99, UUID.randomUUID());
-        Notebook notebook1 = new Notebook(TipoDispositivo.NOTEBOOK, "Intel", "Chuwi", "Ciao2", 15.4, TipoMemoriaArchiviazione.HDD, 512, 269.99, 599.99, UUID.randomUUID());
-        Tablet tablet1 = new Tablet(TipoDispositivo.TABLET, "Samsung", "Galaxy S7", "è bello", 10.1, TipoMemoriaArchiviazione.SSD, 512, 249.99, 599.99, UUID.randomUUID());
+        Smartphone smartphone1 = new Smartphone(TipoDispositivo.SMARTPHONE, "Apple", "Iphone12", "Ciao", 5.5, TipoMemoriaArchiviazione.NVMe, SpazioDiArchiviazione.CINQUECENTODODICI, 899.99, 999.99, UUID.randomUUID());
+        Smartphone smartphone2 = new Smartphone(TipoDispositivo.SMARTPHONE, "Samsung", "Galaxy A71", "è un buon telefono", 6.3, TipoMemoriaArchiviazione.NVMe, SpazioDiArchiviazione.DUECENTOCINQUANTASEI, 499.99, 799.99, UUID.randomUUID());
+        Notebook notebook1 = new Notebook(TipoDispositivo.NOTEBOOK, "Intel", "Chuwi", "Ciao2", 15.4, TipoMemoriaArchiviazione.HDD, SpazioDiArchiviazione.CINQUECENTODODICI, 269.99, 599.99, UUID.randomUUID());
+        Tablet tablet1 = new Tablet(TipoDispositivo.TABLET, "Samsung", "Galaxy S7", "è bello", 10.1, TipoMemoriaArchiviazione.SSD, SpazioDiArchiviazione.CENTOVENTOTTO, 249.99, 599.99, UUID.randomUUID());
 
         inventario.add(smartphone1);
         inventario.add(smartphone2);
