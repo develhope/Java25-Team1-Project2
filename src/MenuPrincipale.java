@@ -58,8 +58,7 @@ public class MenuPrincipale {
             System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
 
-            visualizzaInventario();
-
+            //visualizzaInventario();
             int scelta = scanner.nextInt();
 
             switch (scelta) {
@@ -71,9 +70,9 @@ public class MenuPrincipale {
                     break;
                 case 3:
                     menuCarrello();
-                case 0:
-                    continua = false;
                     break;
+                case 0:
+                    return;
                 default:
                     System.out.println("Scelta non valida!");
                     break;
@@ -95,8 +94,7 @@ public class MenuPrincipale {
             System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
 
-            visualizzaCarrello();
-
+            //visualizzaCarrello();
             int scelta = scanner.nextInt();
 
             switch (scelta) {
@@ -114,6 +112,7 @@ public class MenuPrincipale {
                     break;
                 case 5:
                     menuMagazzino();
+                    break;
                 case 0:
                     continua = false;
                     break;
@@ -242,12 +241,12 @@ public class MenuPrincipale {
     private void aggiungiAlMagazzino() {
         // Richiedi all'utente i dettagli del nuovo prodotto
         TipoDispositivo tipoDispositivo = null;
-        while (tipoDispositivo == null){
-            try{
+        while (tipoDispositivo == null) {
+            try {
                 System.out.println("Inserisci il tipo di dispositivo (smartphone, tablet o notebook): ");
                 tipoDispositivo = TipoDispositivo.valueOf(scanner.next().toUpperCase());
 
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e){
                 System.out.println("Tipo di dispositivo non valido. Inserisci nuovamente: ");
             }
 
@@ -260,32 +259,29 @@ public class MenuPrincipale {
         String modello = scanner.next();
 
         System.out.println("Inserisci una descrizione (opzionale): ");
-        String descrizione = scanner.next();
+        String descrizione = scanner.nextLine();
 
         System.out.println("Inserisci la dimensione del display: ");
         Double dimensioneDisplay = scanner.nextDouble();
 
         TipoMemoriaArchiviazione tipoMemoria = null;
-        while(tipoMemoria == null){
-            try{
+        while (tipoMemoria == null) {
+            try {
                 System.out.println("Inserisci il tipo di memoria (HDD, SSD, NVMe): ");
                 tipoMemoria = TipoMemoriaArchiviazione.valueOf(scanner.next().toUpperCase());
-
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e){
                 System.out.println("Tipo di memoria non valido. Inserisci nuovamente: ");
             }
         }
 
         SpazioDiArchiviazione dimensioneArchiviazione = null;
-        while (dimensioneArchiviazione == null){
+        while (dimensioneArchiviazione == null) {
             System.out.println("Inserisci la dimensione dello spazio di archiviazione: ");
-            String imput = scanner.nextLine();
+            String input = scanner.next();
             try {
-                Integer valore = Integer.parseInt(imput);
+                Integer valore = Integer.parseInt(input);
                 dimensioneArchiviazione = SpazioDiArchiviazione.fromInt(valore);
-
-
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Input non valido. Inserisci un numero.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -373,9 +369,11 @@ public class MenuPrincipale {
             System.out.println("ID non valido.");
         }
     }
+
     private void calcolaTotaleCarrello() {
         System.out.println("Totale carrello: " + carrello.calcolaTotale() + " €");
     }
+
     private void finalizzaAcquisto() {
         carrello.finalizzaAcquisto();
     }
