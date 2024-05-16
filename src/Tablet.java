@@ -48,7 +48,7 @@ public class Tablet {
         this.id = id;
     }
 
-    public Prodotto smartphoneBiuld(){
+    public Prodotto tabletBiuld(){
         return new Prodotto(tipoDispositivo,produttore,modello,dimensioneDisplay,tipoMemoria,dimensioneArchiviazione,prezzoAcquisto,prezzoVendita,id);
     }
 }

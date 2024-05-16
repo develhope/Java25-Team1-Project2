@@ -48,7 +48,7 @@ public class Notebook  {
         this.id = id;
     }
 
-    public Prodotto smartphoneBiuld(){
+    public Prodotto notebookBiuld(){
         return new Prodotto(tipoDispositivo,produttore,modello,dimensioneDisplay,tipoMemoria,dimensioneArchiviazione,prezzoAcquisto,prezzoVendita,id);
     }
 }
