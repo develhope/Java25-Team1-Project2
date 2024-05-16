@@ -10,7 +10,6 @@ public class Smartphone {
     private Double prezzoAcquisto;
     private Double prezzoVendita;
     private UUID id;
-    private String descrizione;
 
     public void setTipoDispositivo(TipoDispositivo tipoDispositivo) {
         this.tipoDispositivo = tipoDispositivo;
@@ -48,9 +47,6 @@ public class Smartphone {
         return UUID.randomUUID();
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
     public Prodotto smartphoneBiuld(){
         return new Prodotto(tipoDispositivo,produttore,modello,dimensioneDisplay,tipoMemoria,dimensioneArchiviazione,prezzoAcquisto,prezzoVendita,id);
     }

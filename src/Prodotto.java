@@ -4,15 +4,13 @@ public class Prodotto {
     private TipoDispositivo tipoDispositivo;
     private String produttore;
     private String modello;
-
-
-
     private Double dimensioneDisplay;
     private TipoMemoriaArchiviazione tipoMemoria;
     private SpazioDiArchiviazione dimensioneArchiviazione;
     private Double prezzoAcquisto;
     private Double prezzoVendita;
     private UUID id;
+
 
     public Prodotto(TipoDispositivo tipoDispositivo, String produttore, String modello, Double dimensioneDisplay,
                     TipoMemoriaArchiviazione tipoMemoria, SpazioDiArchiviazione dimensioneArchiviazione,
@@ -26,6 +24,7 @@ public class Prodotto {
         this.prezzoAcquisto = prezzoAcquisto;
         this.prezzoVendita = prezzoVendita;
         this.id = id;
+
     }
     public TipoDispositivo getTipoDispositivo() {
         return tipoDispositivo;
@@ -62,6 +61,9 @@ public class Prodotto {
     public UUID getId() {
         return id;
     }
+
+
+
     @Override
     public String toString() {
         return "Prodotto{ " +
