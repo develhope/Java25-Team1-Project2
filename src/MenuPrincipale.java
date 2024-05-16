@@ -58,8 +58,7 @@ public class MenuPrincipale {
             System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
 
-            visualizzaInventario();
-
+            //visualizzaInventario();
             int scelta = scanner.nextInt();
 
             switch (scelta) {
@@ -71,6 +70,7 @@ public class MenuPrincipale {
                     break;
                 case 3:
                     menuCarrello();
+                    break;
                 case 0:
                     continua = false;
                     break;
@@ -371,9 +371,11 @@ public class MenuPrincipale {
             System.out.println("ID non valido.");
         }
     }
+
     private void calcolaTotaleCarrello() {
         System.out.println("Totale carrello: " + carrello.calcolaTotale() + " €");
     }
+
     private void finalizzaAcquisto() {
         carrello.finalizzaAcquisto();
     }
