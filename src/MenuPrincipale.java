@@ -115,6 +115,7 @@ public class MenuPrincipale {
                     break;
                 case 0:
                     continua = false;
+                    mostraMenu();
                     break;
                 default:
                     System.out.println("Scelta non valida!");
