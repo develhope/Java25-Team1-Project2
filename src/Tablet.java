@@ -44,8 +44,8 @@ public class Tablet {
         this.prezzoVendita = prezzoVendita;
     }
 
-    public UUID getId(UUID uuid) {
-        return UUID.randomUUID();
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public Prodotto smartphoneBiuld(){

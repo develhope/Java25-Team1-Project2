@@ -22,7 +22,7 @@ public class Magazzino {
         smartphoneBuilder.setDimensioneArchiviazione(SpazioDiArchiviazione.CINQUECENTODODICI);
         smartphoneBuilder.setPrezzoAcquisto(899.99);
         smartphoneBuilder.setPrezzoVendita(1299.99);
-        smartphoneBuilder.getId(UUID.randomUUID());
+        smartphoneBuilder.setId(UUID.randomUUID());
         Prodotto smartphone1 = smartphoneBuilder.smartphoneBiuld();
 
         Smartphone smartphoneBuilde2 = new Smartphone();
@@ -34,7 +34,7 @@ public class Magazzino {
         smartphoneBuilde2.setDimensioneArchiviazione(SpazioDiArchiviazione.CENTOVENTOTTO);
         smartphoneBuilde2.setPrezzoAcquisto(799.99);
         smartphoneBuilde2.setPrezzoVendita(1399.99);
-        smartphoneBuilde2.getId(UUID.randomUUID());
+        smartphoneBuilde2.setId(UUID.randomUUID());
         Prodotto smartphone2 = smartphoneBuilder.smartphoneBiuld();
 
 
