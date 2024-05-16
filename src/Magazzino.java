@@ -13,17 +13,26 @@ public class Magazzino {
     }
 
     public List<Prodotto> dispositivi() {
-        Prodotto smartphone1 = new Prodotto();
-        smartphone1.set();
+        Smartphone smartphone = new Smartphone();
+        smartphone.setTipoDispositivo(TipoDispositivo.SMARTPHONE);
+        smartphone.setProduttore("Asus");
+        smartphone.setModello("Rog Phone 7 Ultimate");
+        smartphone.setDimensioneDisplay(5.7);
+        smartphone.setTipoMemoria(TipoMemoriaArchiviazione.NVMe);
+        smartphone.setDimensioneArchiviazione(SpazioDiArchiviazione.CINQUECENTODODICI);
+        smartphone.setPrezzoAcquisto(899.99);
+        smartphone.setPrezzoVendita(1299.99);
+        smartphone.getId(UUID.randomUUID());
+        Prodotto smartphone1 = smartphone.smartphoneBiuld();
 
-        Smartphone smartphone2 = new Smartphone(TipoDispositivo.SMARTPHONE, "Samsung", "Galaxy A71",6.3, TipoMemoriaArchiviazione.NVMe, SpazioDiArchiviazione.DUECENTOCINQUANTASEI, 499.99, 799.99, UUID.randomUUID());
-        Notebook notebook1 = new Notebook(TipoDispositivo.NOTEBOOK, "Intel", "Chuwi",15.4, TipoMemoriaArchiviazione.HDD, SpazioDiArchiviazione.CINQUECENTODODICI, 269.99, 599.99, UUID.randomUUID());
-        Tablet tablet1 = new Tablet(TipoDispositivo.TABLET, "Samsung", "Galaxy S7",10.1, TipoMemoriaArchiviazione.SSD, SpazioDiArchiviazione.CENTOVENTOTTO, 249.99, 599.99, UUID.randomUUID());
+//        Smartphone smartphone2 = new Smartphone(TipoDispositivo.SMARTPHONE, "Samsung", "Galaxy A71",6.3, TipoMemoriaArchiviazione.NVMe, SpazioDiArchiviazione.DUECENTOCINQUANTASEI, 499.99, 799.99, UUID.randomUUID());
+//        Notebook notebook1 = new Notebook(TipoDispositivo.NOTEBOOK, "Intel", "Chuwi",15.4, TipoMemoriaArchiviazione.HDD, SpazioDiArchiviazione.CINQUECENTODODICI, 269.99, 599.99, UUID.randomUUID());
+//        Tablet tablet1 = new Tablet(TipoDispositivo.TABLET, "Samsung", "Galaxy S7",10.1, TipoMemoriaArchiviazione.SSD, SpazioDiArchiviazione.CENTOVENTOTTO, 249.99, 599.99, UUID.randomUUID());
 
         inventario.add(smartphone1);
-        inventario.add(smartphone2);
-        inventario.add(notebook1);
-        inventario.add(tablet1);
+//        inventario.add(smartphone2);
+//        inventario.add(notebook1);
+//        inventario.add(tablet1);
 
         return inventario;
     }

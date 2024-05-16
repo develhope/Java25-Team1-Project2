@@ -1,24 +1,57 @@
 import java.util.UUID;
 
-public class Smartphone extends Prodotto {
+public class Smartphone {
+    private TipoDispositivo tipoDispositivo;
+    private String produttore;
+    private String modello;
+    private Double dimensioneDisplay;
+    private TipoMemoriaArchiviazione tipoMemoria;
+    private SpazioDiArchiviazione dimensioneArchiviazione;
+    private Double prezzoAcquisto;
+    private Double prezzoVendita;
+    private UUID id;
     private String descrizione;
 
-
-    public Smartphone(TipoDispositivo tipoDispositivo, String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazione tipoMemoria, SpazioDiArchiviazione dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id , String descrizione) {
-        super(tipoDispositivo, produttore, modello, dimensioneDisplay, tipoMemoria, dimensioneArchiviazione, prezzoAcquisto, prezzoVendita, id);
-        this.descrizione = descrizione;
+    public void setTipoDispositivo(TipoDispositivo tipoDispositivo) {
+        this.tipoDispositivo = tipoDispositivo;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public void setProduttore(String produttore) {
+        this.produttore = produttore;
     }
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setModello(String modello) {
+        this.modello = modello;
     }
 
-    public String stampaDescrizioneDefoultSmartphone(){
-        return "Questo smartphone e' un " + getProduttore() + " " + getModello() + ", la dimensione del display e' di " + getDimensioneDisplay() +
-                " pollici, con una capacita' di " + getDimensioneArchiviazione()  + " Gb";
+    public void setDimensioneDisplay(Double dimensioneDisplay) {
+        this.dimensioneDisplay = dimensioneDisplay;
+    }
+
+    public void setTipoMemoria(TipoMemoriaArchiviazione tipoMemoria) {
+        this.tipoMemoria = tipoMemoria;
+    }
+
+    public void setDimensioneArchiviazione(SpazioDiArchiviazione dimensioneArchiviazione) {
+        this.dimensioneArchiviazione = dimensioneArchiviazione;
+    }
+
+    public void setPrezzoAcquisto(Double prezzoAcquisto) {
+        this.prezzoAcquisto = prezzoAcquisto;
+    }
+
+    public void setPrezzoVendita(Double prezzoVendita) {
+        this.prezzoVendita = prezzoVendita;
+    }
+
+    public UUID getId(UUID id) {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    public Prodotto smartphoneBiuld(){
+        return new Prodotto(tipoDispositivo,produttore,modello,dimensioneDisplay,tipoMemoria,dimensioneArchiviazione,prezzoAcquisto,prezzoVendita,id);
     }
 }
