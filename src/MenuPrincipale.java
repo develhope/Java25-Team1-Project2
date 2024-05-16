@@ -151,9 +151,9 @@ public class MenuPrincipale {
 
                     try {
                         TipoDispositivo tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
-                        ArrayList<Prodotti> dispositiviTrovati = Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
+                        ArrayList<Prodotto> dispositiviTrovati = Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
 
-                        for (Prodotti dispositivo : dispositiviTrovati) {
+                        for (Prodotto dispositivo : dispositiviTrovati) {
                             System.out.println(dispositivo);
                         }
                     } catch (IllegalArgumentException e) {
@@ -171,18 +171,18 @@ public class MenuPrincipale {
                 case 3:
                     System.out.print("Inserisci il produttore: ");
                     String produttore = scanner.next().toUpperCase();
-                    ArrayList<Prodotti> dispositiviTrovati1 = Metodi.cercaDispositiviPerProduttore(magazzino, produttore);
+                    ArrayList<Prodotto> dispositiviTrovati1 = Metodi.cercaDispositiviPerProduttore(magazzino, produttore);
 
-                    for (Prodotti dispositivo : dispositiviTrovati1) {
+                    for (Prodotto dispositivo : dispositiviTrovati1) {
                         System.out.println(dispositivo);
                     }
                     break;
                 case 4:
                     System.out.print("Inserisci il modello: ");
                     String modello = scanner.next().toUpperCase();
-                    ArrayList<Prodotti> dispositiviTrovati2 = Metodi.cercaDispositiviPerModello(magazzino, modello);
+                    ArrayList<Prodotto> dispositiviTrovati2 = Metodi.cercaDispositiviPerModello(magazzino, modello);
 
-                    for (Prodotti dispositivo : dispositiviTrovati2) {
+                    for (Prodotto dispositivo : dispositiviTrovati2) {
                         System.out.println(dispositivo);
                     }
                     break;
@@ -194,14 +194,14 @@ public class MenuPrincipale {
                         inputPrezzo = inputPrezzo.replace(",", ".");
 
                         BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
-                        Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoAcquisto(magazzino, prezzoAcquisto);
+                        Prodotto dispositivoTrovato = metodi.ricercaPerPrezzoAcquisto(magazzino, prezzoAcquisto);
 
                         if (dispositivoTrovato != null) {
                             System.out.println("Prodotto trovato:");
                             System.out.println(dispositivoTrovato);
                         } else {
                             System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
-                            for (Prodotti dispositivo : magazzino.getInventario()) {
+                            for (Prodotto dispositivo : magazzino.getInventario()) {
                                 System.out.println(dispositivo);
                             }
                         }
@@ -217,14 +217,14 @@ public class MenuPrincipale {
                         inputPrezzo = inputPrezzo.replace(",", ".");
 
                         BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
-                        Prodotti dispositivoTrovato = metodi.ricercaPerPrezzoVendita(magazzino, prezzoAcquisto);
+                        Prodotto dispositivoTrovato = metodi.ricercaPerPrezzoVendita(magazzino, prezzoAcquisto);
 
                         if (dispositivoTrovato != null) {
                             System.out.println("Prodotto trovato:");
                             System.out.println(dispositivoTrovato);
                         } else {
                             System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
-                            for (Prodotti dispositivo : magazzino.getInventario()) {
+                            for (Prodotto dispositivo : magazzino.getInventario()) {
                                 System.out.println(dispositivo);
                             }
                         }
@@ -302,11 +302,10 @@ public class MenuPrincipale {
         UUID id = UUID.randomUUID();
 
         // Aggiungi il nuovo prodotto all'inventario
-        Prodotti nuovoProdotto = new Prodotti(
+        Prodotto nuovoProdotto = new Prodotto(
                 tipoDispositivo,
                 produttore,
                 modello,
-                descrizione,
                 dimensioneDisplay,
                 tipoMemoria,
                 dimensioneArchiviazione,
@@ -322,7 +321,7 @@ public class MenuPrincipale {
     private void visualizzaInventario() {
         System.out.println("Lista dell'inventario:");
 
-        List<Prodotti> dispositivi = magazzino.getInventario();
+        List<Prodotto> dispositivi = magazzino.getInventario();
         if (dispositivi.isEmpty()) {
             System.out.println("Nessun dispositivo presente in magazzino.");
         } else {
@@ -334,7 +333,7 @@ public class MenuPrincipale {
     // Metodo per stampare tutti i dispositivi presenti nel carrello
     private void visualizzaCarrello() {
         System.out.println("Lista del carrello:");
-        for (Prodotti prodotto : carrello.getProdotti()) {
+        for (Prodotto prodotto : carrello.getProdotti()) {
             System.out.println(prodotto);
         }
     }
@@ -346,7 +345,7 @@ public class MenuPrincipale {
             try {
                 UUID id = UUID.fromString(idString);
                 // Trova il prodotto nell'inventario e aggiungilo al carrello
-                Prodotti prodotto = magazzino.trovaProdottoPerId(id);
+                Prodotto prodotto = magazzino.trovaProdottoPerId(id);
                 if (prodotto != null) {
                     carrello.aggiungiProdotto(prodotto);
                     System.out.println("Prodotto aggiunto al carrello.");

@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class Carrello {
-    private List<Prodotti> prodotti;
+    private List<Prodotto> prodotti;
     private Magazzino magazzino;
 
     public Carrello(Magazzino magazzino) {
@@ -12,7 +12,7 @@ public class Carrello {
     }
 
     // Aggiungi un prodotto al carrello
-    public Boolean aggiungiProdotto(Prodotti prodotto) {
+    public Boolean aggiungiProdotto(Prodotto prodotto) {
         Boolean aggProdotto = prodotti.add(prodotto);
         if(aggProdotto){
             magazzino.rimuoviProdotto(prodotto.getId());
@@ -25,7 +25,7 @@ public class Carrello {
     // Calcola il totale del carrello
     public double calcolaTotale() {
         double totale = 0;
-        for (Prodotti prodotto : prodotti) {
+        for (Prodotto prodotto : prodotti) {
             totale += prodotto.getPrezzoVendita();
         }
         return totale;
@@ -38,8 +38,8 @@ public class Carrello {
     }
 
     // Trova un prodotto nel carrello per id
-    private Prodotti trovaProdottoPerId(UUID id) {
-        for (Prodotti prodotto : prodotti) {
+    private Prodotto trovaProdottoPerId(UUID id) {
+        for (Prodotto prodotto : prodotti) {
             if (prodotto.getId().equals(id)) {
                 return prodotto;
             }
@@ -48,12 +48,12 @@ public class Carrello {
     }
 
     // Restituisce i prodotti nel carrello
-    public List<Prodotti> getProdotti() {
+    public List<Prodotto> getProdotti() {
         return prodotti;
     }
 
     public Boolean rimuoviProdotto(UUID id) {
-        for (Prodotti prodotto : prodotti) {
+        for (Prodotto prodotto : prodotti) {
             if (prodotto.getId().equals(id)) {
                 Boolean rimuoviProdotto = prodotti.remove(prodotto);
                 if (rimuoviProdotto) {
@@ -67,9 +67,9 @@ public class Carrello {
 
 
     // Rimuove un prodotto dal carrello tramite l'ID e aggiorna l'inventario nel magazzino
-    public List<Prodotti> rimuoviProdottoDalCarrello(UUID id) {
-        Prodotti prodottoDaRimuovere = null;
-        for (Prodotti prodotto : prodotti) {
+    public List<Prodotto> rimuoviProdottoDalCarrello(UUID id) {
+        Prodotto prodottoDaRimuovere = null;
+        for (Prodotto prodotto : prodotti) {
             if (prodotto.getId().equals(id)) {
                 prodottoDaRimuovere = prodotto;
                 break;
@@ -88,7 +88,7 @@ public class Carrello {
 
     public void visualizzaCarrello() {
         System.out.println("Prodotti nel carrello:");
-        for (Prodotti prodotto : prodotti) {
+        for (Prodotto prodotto : prodotti) {
             System.out.println(prodotto);
         }
     }

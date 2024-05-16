@@ -1,10 +1,9 @@
 import java.util.UUID;
 
-public class Prodotti {
+public class Prodotto {
     private TipoDispositivo tipoDispositivo;
     private String produttore;
     private String modello;
-    private String descrizione;
     private Double dimensioneDisplay;
     private TipoMemoriaArchiviazione tipoMemoria;
     private SpazioDiArchiviazione dimensioneArchiviazione;
@@ -12,11 +11,10 @@ public class Prodotti {
     private Double prezzoVendita;
     private UUID id;
 
-    public Prodotti(TipoDispositivo tipoDispositivo, String produttore, String modello, String descrizione, Double dimensioneDisplay, TipoMemoriaArchiviazione tipoMemoria, SpazioDiArchiviazione dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
+    public Prodotto(TipoDispositivo tipoDispositivo, String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazione tipoMemoria, SpazioDiArchiviazione dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
         this.tipoDispositivo = tipoDispositivo;
         this.produttore = produttore;
         this.modello = modello;
-        this.descrizione = descrizione;
         this.dimensioneDisplay = dimensioneDisplay;
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
@@ -32,7 +30,6 @@ public class Prodotti {
                 "  TipoDispositivo = " + tipoDispositivo +
                 ", produttore = " + produttore +
                 ", modello = " + modello +
-                ", descrizione = " + descrizione  +
                 ", dimensioneDisplay = " + dimensioneDisplay +
                 ", TipoMemoria = " + tipoMemoria +
                 ", dimensioneArchiviazione = " + dimensioneArchiviazione +
@@ -51,10 +48,6 @@ public class Prodotti {
 
     public String getModello() {
         return modello;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
     }
 
     public Double getDimensioneDisplay() {
@@ -79,5 +72,41 @@ public class Prodotti {
 
     public UUID getId() {
         return id;
+    }
+
+    public void setTipoDispositivo(TipoDispositivo tipoDispositivo) {
+        this.tipoDispositivo = tipoDispositivo;
+    }
+
+    public void setProduttore(String produttore) {
+        this.produttore = produttore;
+    }
+
+    public void setModello(String modello) {
+        this.modello = modello;
+    }
+
+    public void setDimensioneDisplay(Double dimensioneDisplay) {
+        this.dimensioneDisplay = dimensioneDisplay;
+    }
+
+    public void setTipoMemoria(TipoMemoriaArchiviazione tipoMemoria) {
+        this.tipoMemoria = tipoMemoria;
+    }
+
+    public void setDimensioneArchiviazione(SpazioDiArchiviazione dimensioneArchiviazione) {
+        this.dimensioneArchiviazione = dimensioneArchiviazione;
+    }
+
+    public void setPrezzoAcquisto(Double prezzoAcquisto) {
+        this.prezzoAcquisto = prezzoAcquisto;
+    }
+
+    public void setPrezzoVendita(Double prezzoVendita) {
+        this.prezzoVendita = prezzoVendita;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }
