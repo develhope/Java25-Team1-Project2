@@ -26,17 +26,17 @@ public class Magazzino {
         smartphoneBuilder.setId(UUID.randomUUID());
         Prodotto smartphone1 = smartphoneBuilder.smartphoneBiuld();
 
-        Smartphone smartphoneBuilde2 = new Smartphone();
-        smartphoneBuilde2.setTipoDispositivo(TipoDispositivo.SMARTPHONE);
-        smartphoneBuilde2.setProduttore("Apple");
-        smartphoneBuilde2.setModello("Iphone X");
-        smartphoneBuilde2.setDimensioneDisplay(4.5);
-        smartphoneBuilde2.setTipoMemoria(TipoMemoriaArchiviazione.NVMe);
-        smartphoneBuilde2.setDimensioneArchiviazione(SpazioDiArchiviazione.CENTOVENTOTTO);
-        smartphoneBuilde2.setPrezzoAcquisto(799.99);
-        smartphoneBuilde2.setPrezzoVendita(1399.99);
-        smartphoneBuilde2.setId(UUID.randomUUID());
-        Prodotto smartphone2 = smartphoneBuilder.smartphoneBiuld();
+        Smartphone smartphoneBuilder2 = new Smartphone();
+        smartphoneBuilder2.setTipoDispositivo(TipoDispositivo.SMARTPHONE);
+        smartphoneBuilder2.setProduttore("Apple");
+        smartphoneBuilder2.setModello("Iphone X");
+        smartphoneBuilder2.setDimensioneDisplay(4.5);
+        smartphoneBuilder2.setTipoMemoria(TipoMemoriaArchiviazione.NVMe);
+        smartphoneBuilder2.setDimensioneArchiviazione(SpazioDiArchiviazione.CENTOVENTOTTO);
+        smartphoneBuilder2.setPrezzoAcquisto(799.99);
+        smartphoneBuilder2.setPrezzoVendita(1399.99);
+        smartphoneBuilder2.setId(UUID.randomUUID());
+        Prodotto smartphone2 = smartphoneBuilder2.smartphoneBiuld();
 
         Notebook notebookBuilder = new Notebook();
         notebookBuilder.setTipoDispositivo(TipoDispositivo.NOTEBOOK);

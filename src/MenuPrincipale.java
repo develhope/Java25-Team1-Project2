@@ -152,7 +152,7 @@ public class MenuPrincipale {
                 case 0:
                     menuMagazzino();
                 case 1:
-                    //TODO
+
                     System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
                     String tipoDispositivoStr = scanner.next().toUpperCase();
 
