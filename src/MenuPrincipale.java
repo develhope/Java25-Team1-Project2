@@ -1,6 +1,5 @@
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.function.Predicate;
 
 //TODO aggiungere quantità del prodotto in modo tale che non venga più eliminato il prodotto dal magazzino e dia un messaggiodi errore se è terminato
 
@@ -132,12 +131,10 @@ public class MenuPrincipale {
         }
     }
 
-    // Metodo per gestire il menu ricerca del prodotto
+    // Metodo per gestire il menu del carrello
     public void menuRicerca() {
         System.out.println("cerca:");
         boolean continua = true;
-        ArrayList<Prodotti> prodottiTrovati = (ArrayList<Prodotti>) magazzino.getInventario();
-
         while (continua) {
             System.out.println("Scegli il tipo di ricerca:");
             System.out.println("1. Per tipo di dispositivo");
@@ -149,16 +146,23 @@ public class MenuPrincipale {
             System.out.println("0. Torna al menu Magazzino");
             System.out.print("Scelta: ");
             int sceltaRicerca = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Consume newline char
 
             switch (sceltaRicerca) {
+                case 0:
+                    menuMagazzino();
                 case 1:
+                    //TODO
                     System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
                     String tipoDispositivoStr = scanner.next().toUpperCase();
 
                     try {
                         TipoDispositivo tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
-                        prodottiTrovati = (ArrayList<Prodotti>) filtraProdotti(prodottiTrovati, prodotto -> prodotto.getTipoDispositivo().equals(tipoDispositivo));
+                        ArrayList<Prodotto> dispositiviTrovati = Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
+
+                        for (Prodotto dispositivo : dispositiviTrovati) {
+                            System.out.println(dispositivo);
+                        }
                     } catch (IllegalArgumentException e) {
                         System.out.println("Tipo di dispositivo non valido.");
                     }
@@ -168,27 +172,46 @@ public class MenuPrincipale {
                     Double prezzoMinimo = scanner.nextDouble();
                     System.out.println("Inserisci prezzo massimo: ");
                     Double prezzoMassimo = scanner.nextDouble();
-                    prodottiTrovati = (ArrayList<Prodotti>) filtraProdotti(prodottiTrovati, prodotto -> prodotto.getPrezzoVendita().compareTo(prezzoMinimo) >= 0 && prodotto.getPrezzoVendita().compareTo(prezzoMassimo) <= 0);
+                    metodi.cercaPerRangePrezzo(prezzoMinimo, prezzoMassimo);
                     break;
+
                 case 3:
                     System.out.print("Inserisci il produttore: ");
                     String produttore = scanner.next().toUpperCase();
-                    prodottiTrovati = (ArrayList<Prodotti>) filtraProdotti(prodottiTrovati, prodotto -> prodotto.getProduttore().equalsIgnoreCase(produttore));
+                    ArrayList<Prodotto> dispositiviTrovati1 = Metodi.cercaDispositiviPerProduttore(magazzino, produttore);
+
+                    for (Prodotto dispositivo : dispositiviTrovati1) {
+                        System.out.println(dispositivo);
+                    }
                     break;
                 case 4:
                     System.out.print("Inserisci il modello: ");
                     String modello = scanner.next().toUpperCase();
-                    prodottiTrovati = (ArrayList<Prodotti>) filtraProdotti(prodottiTrovati, prodotto -> prodotto.getModello().toUpperCase().contains(modello.toUpperCase()));
+                    ArrayList<Prodotto> dispositiviTrovati2 = Metodi.cercaDispositiviPerModello(magazzino, modello);
+
+                    for (Prodotto dispositivo : dispositiviTrovati2) {
+                        System.out.println(dispositivo);
+                    }
                     break;
                 case 5:
                     try {
                         System.out.print("Inserisci il prezzo di acquisto: ");
                         String inputPrezzo = scanner.next();
+
                         inputPrezzo = inputPrezzo.replace(",", ".");
 
-                        BigDecimal prezzoAcquistoInput = new BigDecimal(inputPrezzo);
+                        BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
+                        Prodotto dispositivoTrovato = metodi.ricercaPerPrezzoAcquisto(magazzino, prezzoAcquisto);
 
-                        prodottiTrovati = (ArrayList<Prodotti>) filtraProdotti(prodottiTrovati, prodotto -> false);
+                        if (dispositivoTrovato != null) {
+                            System.out.println("Prodotto trovato:");
+                            System.out.println(dispositivoTrovato);
+                        } else {
+                            System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
+                            for (Prodotto dispositivo : magazzino.getInventario()) {
+                                System.out.println(dispositivo);
+                            }
+                        }
                     } catch (NumberFormatException e) {
                         System.out.println("Input non valido. Assicurati di inserire un numero valido.");
                     }
@@ -200,33 +223,29 @@ public class MenuPrincipale {
 
                         inputPrezzo = inputPrezzo.replace(",", ".");
 
-                        BigDecimal prezzoVenditaInput = new BigDecimal(inputPrezzo);
+                        BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
+                        Prodotto dispositivoTrovato = metodi.ricercaPerPrezzoVendita(magazzino, prezzoAcquisto);
 
-                        prodottiTrovati = (ArrayList<Prodotti>) filtraProdotti(prodottiTrovati, prodotto -> false);
+                        if (dispositivoTrovato != null) {
+                            System.out.println("Prodotto trovato:");
+                            System.out.println(dispositivoTrovato);
+                        } else {
+                            System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
+                            for (Prodotto dispositivo : magazzino.getInventario()) {
+                                System.out.println(dispositivo);
+                            }
+                        }
                     } catch (NumberFormatException e) {
                         System.out.println("Input non valido. Assicurati di inserire un numero valido.");
                     }
                     break;
-                case 0:
-                    continua = false;
-                    menuMagazzino();
-                    break;
+
                 default:
                     System.out.println("Scelta non valida!");
                     break;
             }
-            // Stampa i risultati di ricerca filtrati (se non vuoti)
-            if (!prodottiTrovati.isEmpty()) {
-                System.out.println("\nRisultati di ricerca:");
-                for (Prodotti prodotto : prodottiTrovati) {
-                    System.out.println(prodotto); // Stampa le informazioni di ciascun prodotto
-                }
-            } else {
-                System.out.println("Nessun prodotto trovato con i criteri specificati.");
-            }
         }
     }
-
     private void aggiungiAlMagazzino() {
         // Richiedi all'utente i dettagli del nuovo prodotto
         TipoDispositivo tipoDispositivo = null;
@@ -287,11 +306,10 @@ public class MenuPrincipale {
         UUID id = UUID.randomUUID();
 
         // Aggiungi il nuovo prodotto all'inventario
-        Prodotti nuovoProdotto = new Prodotti(
+        Prodotto nuovoProdotto = new Prodotto(
                 tipoDispositivo,
                 produttore,
                 modello,
-                descrizione,
                 dimensioneDisplay,
                 tipoMemoria,
                 dimensioneArchiviazione,
@@ -307,7 +325,7 @@ public class MenuPrincipale {
     private void visualizzaInventario() {
         System.out.println("Lista dell'inventario:");
 
-        List<Prodotti> dispositivi = magazzino.getInventario();
+        List<Prodotto> dispositivi = magazzino.getInventario();
         if (dispositivi.isEmpty()) {
             System.out.println("Nessun dispositivo presente in magazzino.");
         } else {
@@ -319,7 +337,7 @@ public class MenuPrincipale {
     // Metodo per stampare tutti i dispositivi presenti nel carrello
     private void visualizzaCarrello() {
         System.out.println("Lista del carrello:");
-        for (Prodotti prodotto : carrello.getProdotti()) {
+        for (Prodotto prodotto : carrello.getProdotti()) {
             System.out.println(prodotto);
         }
     }
@@ -331,7 +349,7 @@ public class MenuPrincipale {
             try {
                 UUID id = UUID.fromString(idString);
                 // Trova il prodotto nell'inventario e aggiungilo al carrello
-                Prodotti prodotto = magazzino.trovaProdottoPerId(id);
+                Prodotto prodotto = magazzino.trovaProdottoPerId(id);
                 if (prodotto != null) {
                     carrello.aggiungiProdotto(prodotto);
                     System.out.println("Prodotto aggiunto al carrello.");
@@ -366,16 +384,5 @@ public class MenuPrincipale {
 
     private void finalizzaAcquisto() {
         carrello.finalizzaAcquisto();
-    }
-
-    // Metodo per filtrare i prodotti
-    private List<Prodotti> filtraProdotti(List<Prodotti> prodotti, Predicate<Prodotti> predicate) {
-        List<Prodotti> prodottiFiltrati = new ArrayList<>();
-        for (Prodotti prodotto : prodotti) {
-            if (predicate.test(prodotto)) {
-                prodottiFiltrati.add(prodotto);
-            }
-        }
-        return prodottiFiltrati;
     }
 }
