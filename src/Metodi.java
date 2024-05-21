@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -10,7 +11,7 @@ public class Metodi {
     private Scanner scanner = new Scanner(System.in);
     private Carrello prodotti;
 
-    public Metodi(){
+    public Metodi() {
         this.articoli = new Magazzino();
         this.prodotti = new Carrello(articoli);
 
@@ -102,32 +103,42 @@ public class Metodi {
         return null;
     }
 
-    // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
-
-    public List<Prodotto> cercaPerRangePrezzo(Double prezzoMinimo, Double prezzoMassimo) {
+    // Metodo che cerca e stampa i dispositivi presenti in un determinato Range di prezzo
+    public List<Prodotto> cercaPerRangePrezzo() {
         List<Prodotto> result = new ArrayList<>();
-
+        Scanner scanner = new Scanner(System.in);
         boolean rangeValido = false;
-        while (!rangeValido) {
-            rangeValido = true; // Assume the range is valid initially
-            for (Prodotto dispositivo : articoli.getInventario()) {
+        Double prezzoMinimo = null;
+        Double prezzoMassimo = null;
 
+        while (!rangeValido) {
+            boolean inputValido = false;
+            while (!inputValido) {
+                try {
+                    System.out.println("Inserisci il prezzo minimo: ");
+                    prezzoMinimo = scanner.nextDouble();
+                    System.out.println("Inserisci il prezzo massimo: ");
+                    prezzoMassimo = scanner.nextDouble();
+                    inputValido = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Inserimento non valido. Per favore inserisci un numero.");
+                    scanner.next(); // Pulisci l'input non valido
+                }
+            }
+
+            rangeValido = true;
+            result.clear(); // Pulisce i risultati della ricerca precedente
+            for (Prodotto dispositivo : articoli.getInventario()) {
                 if (dispositivo.getPrezzoVendita() >= prezzoMinimo &&
                         dispositivo.getPrezzoVendita() <= prezzoMassimo) {
                     result.add(dispositivo);
                     System.out.println(dispositivo);
                 }
             }
+
             if (result.isEmpty()) {
                 rangeValido = false;
                 System.out.println("Nessun dispositivo trovato nel range di prezzo specificato.");
-                // Richiedere nuovi parametri
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("Inserisci nuovamente il prezzo minimo: ");
-                prezzoMinimo = scanner.nextDouble();
-                System.out.println("Inserisci nuovamente il prezzo massimo: ");
-                prezzoMassimo = scanner.nextDouble();
-                scanner.close(); // Chiudere lo scanner dopo l'uso
             }
         }
         return result;
