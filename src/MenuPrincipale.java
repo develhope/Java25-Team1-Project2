@@ -195,50 +195,10 @@ public class MenuPrincipale {
                     }
                     break;
                 case 5:
-                    try {
-                        System.out.print("Inserisci il prezzo di acquisto: ");
-                        String inputPrezzo = scanner.next();
-
-                        inputPrezzo = inputPrezzo.replace(",", ".");
-
-                        BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
-                        Prodotto dispositivoTrovato = metodi.ricercaPerPrezzoAcquisto(magazzino, prezzoAcquisto);
-
-                        if (dispositivoTrovato != null) {
-                            System.out.println("Prodotto trovato:");
-                            System.out.println(dispositivoTrovato);
-                        } else {
-                            System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
-                            for (Prodotto dispositivo : magazzino.getInventario()) {
-                                System.out.println(dispositivo);
-                            }
-                        }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Input non valido. Assicurati di inserire un numero valido.");
-                    }
+                    metodi.ricercaPerPrezzoAcquisto(magazzino);
                     break;
                 case 6:
-                    try {
-                        System.out.print("Inserisci il prezzo di vendita: ");
-                        String inputPrezzo = scanner.next();
-
-                        inputPrezzo = inputPrezzo.replace(",", ".");
-
-                        BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
-                        Prodotto dispositivoTrovato = metodi.ricercaPerPrezzoVendita(magazzino, prezzoAcquisto);
-
-                        if (dispositivoTrovato != null) {
-                            System.out.println("Prodotto trovato:");
-                            System.out.println(dispositivoTrovato);
-                        } else {
-                            System.out.println("Nessun dispositivo trovato con questo prezzo di acquisto " + prezzoAcquisto + " €. Dispositivi già presenti nel magazzino:");
-                            for (Prodotto dispositivo : magazzino.getInventario()) {
-                                System.out.println(dispositivo);
-                            }
-                        }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Input non valido. Assicurati di inserire un numero valido.");
-                    }
+                    metodi.ricercaPerPrezzoVendita(magazzino);
                     break;
 
                 default:
