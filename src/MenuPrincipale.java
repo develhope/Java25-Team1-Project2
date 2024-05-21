@@ -96,6 +96,7 @@ public class MenuPrincipale {
             System.out.println("4. Finalizza Acquisto");
             System.out.println("5. Accedi al Magazzino");
             System.out.println("6. Visualizza Carrello");
+            System.out.println("7. Calcola Spesa Media");
             System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
 
@@ -119,6 +120,10 @@ public class MenuPrincipale {
                     break;
                 case 6:
                     visualizzaCarrello();
+                    break;
+                case 7:
+                    BigDecimal mediaSpesaTotale = carrello.calcolaSpesaMedia();
+                    System.out.println("La spesa media dell'aquisto è: " + mediaSpesaTotale + "€");
                     break;
                 case 0:
                     continua = false;

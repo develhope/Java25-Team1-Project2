@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -64,8 +65,6 @@ public class Carrello {
         } return false;
     }
 
-
-
     // Rimuove un prodotto dal carrello tramite l'ID e aggiorna l'inventario nel magazzino
     public List<Prodotto> rimuoviProdottoDalCarrello(UUID id) {
         Prodotto prodottoDaRimuovere = null;
@@ -93,5 +92,12 @@ public class Carrello {
         }
     }
 
+    public BigDecimal calcolaSpesaMedia(){
 
+        Double spesaMedia = 0.0;
+        for(Prodotto dispositivo : prodotti){
+            spesaMedia += dispositivo.getPrezzoVendita();
+        }
+        return BigDecimal.valueOf(spesaMedia / prodotti.size());
+    }
 }
