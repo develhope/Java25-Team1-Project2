@@ -8,9 +8,11 @@ public class Metodi {
 
     private Magazzino articoli;
     private Scanner scanner = new Scanner(System.in);
+    private Carrello prodotti;
 
     public Metodi(){
-        articoli = new Magazzino();
+        this.articoli = new Magazzino();
+        this.prodotti = new Carrello(articoli);
 
     }
 
@@ -99,7 +101,6 @@ public class Metodi {
         }
         return null;
     }
-
 
     // Cerca e stampa i dispositivi presenti in un determinato Range di prezzo
 

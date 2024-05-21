@@ -16,9 +16,6 @@ public enum SpazioDiArchiviazione {
 
 
 
-
-
-
 private final Integer valore;
 SpazioDiArchiviazione(Integer valore){
     this.valore = valore;
