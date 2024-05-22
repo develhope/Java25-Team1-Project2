@@ -240,7 +240,7 @@ public class MenuPrincipale {
 
         }
 
-        System.out.println("Inserisci il produttore: ");
+        System.out.println("Inserisci il produttore2: ");
         String produttore = scanner.next();
 
         System.out.println("Inserisci il modello: ");
