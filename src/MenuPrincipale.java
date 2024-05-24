@@ -157,20 +157,18 @@ public class MenuPrincipale {
                 case 0:
                     menuMagazzino();
                 case 1:
-                    //TODO
                     System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
                     String tipoDispositivoStr = scanner.next().toUpperCase();
 
+                    TipoDispositivo tipoDispositivo = null;
                     try {
-                        TipoDispositivo tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
-                        ArrayList<Prodotto> dispositiviTrovati = Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
-
-                        for (Prodotto dispositivo : dispositiviTrovati) {
-                            System.out.println(dispositivo);
-                        }
+                        tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
                     } catch (IllegalArgumentException e) {
                         System.out.println("Tipo di dispositivo non valido.");
+                        break;
                     }
+
+                    Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
                     break;
                 case 2:
                     metodi.cercaPerRangePrezzo();
