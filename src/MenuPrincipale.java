@@ -51,20 +51,20 @@ public class MenuPrincipale {
 
     // Metodo per gestire il menu del magazzino
     public void menuMagazzino() {
-        String scelta = "";
+
         System.out.println("Menu Magazzino:");
         System.out.println("1. Aggiungi Prodotto");
         System.out.println("2. Cerca Prodotto");
         System.out.println("3. Accedi al carrello");
         System.out.println("4. Visualizza Inventario");
         System.out.println("0. Torna al menu principale");
-
-        while (true) {
+        boolean stato = true;
+        while (stato) {
 
             System.out.print("Scelta: ");
 
             try {
-                scelta = scanner.nextLine();
+                String scelta = scanner.nextLine();
 
                 switch (scelta) {
                     case "1":
@@ -80,6 +80,7 @@ public class MenuPrincipale {
                         visualizzaInventario();
                         break;
                     case "0":
+                        stato = false;
                         mostraMenu();
                         break;
                     default:
@@ -95,54 +96,63 @@ public class MenuPrincipale {
 
     // Metodo per gestire il menu del carrello
     public void menuCarrello() {
-        System.out.println("Carrello:");
-        boolean continua = true;
-        while (continua) {
-            System.out.println("\nMenu:");
-            System.out.println("1. Aggiungi Prodotto al Carrello");
-            System.out.println("2. Rimuovi Prodotto dal Carrello");
-            System.out.println("3. Calcola Totale Carrello");
-            System.out.println("4. Finalizza Acquisto");
-            System.out.println("5. Accedi al Magazzino");
-            System.out.println("6. Visualizza Carrello");
-            System.out.println("7. Calcola Spesa Media");
-            System.out.println("0. Torna al menu principale");
+        System.out.println(" Menu Carrello:");
+        System.out.println("1. Aggiungi Prodotto al Carrello");
+        System.out.println("2. Rimuovi Prodotto dal Carrello");
+        System.out.println("3. Calcola Totale Carrello");
+        System.out.println("4. Finalizza Acquisto");
+        System.out.println("5. Accedi al Magazzino");
+        System.out.println("6. Visualizza Carrello");
+        System.out.println("7. Calcola Spesa Media");
+        System.out.println("0. Torna al menu principale");
+
+        boolean stato = true;
+
+        while (stato) {
+
             System.out.print("Scelta: ");
+            try {
+                String scelta = scanner.nextLine();
 
-            int scelta = scanner.nextInt();
-
-            switch (scelta) {
-                case 1:
-                    aggiungiAlCarrello();
-                    break;
-                case 2:
-                    rimuoviDalCarrello();
-                    break;
-                case 3:
-                    calcolaTotaleCarrello();
-                    break;
-                case 4:
-                    finalizzaAcquisto();
-                    break;
-                case 5:
-                    menuMagazzino();
-                    break;
-                case 6:
-                    visualizzaCarrello();
-                    break;
-                case 7:
-                    BigDecimal mediaSpesaTotale = carrello.calcolaSpesaMedia();
-                    System.out.println("La spesa media dell'aquisto è: " + mediaSpesaTotale + "€");
-                    break;
-                case 0:
-                    continua = false;
-                    mostraMenu();
-                    break;
-                default:
-                    System.out.println("Scelta non valida!");
-                    break;
+                switch (scelta) {
+                    case "1":
+                        aggiungiAlCarrello();
+                        break;
+                    case "2":
+                        rimuoviDalCarrello();
+                        break;
+                    case "3":
+                        calcolaTotaleCarrello();
+                        break;
+                    case "4":
+                        finalizzaAcquisto();
+                        break;
+                    case "5":
+                        menuMagazzino();
+                        break;
+                    case "6":
+                        visualizzaCarrello();
+                        break;
+                    case "7":
+                        getMediaSpesaTotale();
+                        break;
+                    case "0":
+                        stato = false;
+                        mostraMenu();
+                        break;
+                    default:
+                        System.out.println("Scelta non valida. Riprova.");
+                        break;
+                }
+            }catch (InputMismatchException e){
+                scanner.nextLine();
             }
         }
+    }
+
+    private void getMediaSpesaTotale() {
+        BigDecimal mediaSpesaTotale =carrello.calcolaSpesaMedia();
+        System.out.println("La spesa media dell'aquisto è: " + mediaSpesaTotale + "€");
     }
 
     // Metodo per gestire il menu del carrello
@@ -166,7 +176,7 @@ public class MenuPrincipale {
                 case 0:
                     menuMagazzino();
                 case 1:
-                    //TODO
+
                     System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
                     String tipoDispositivoStr = scanner.next().toUpperCase();
 
