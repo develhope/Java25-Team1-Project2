@@ -60,23 +60,24 @@ public class MenuPrincipale {
             System.out.print("Scelta: ");
 
             //visualizzaInventario();
-            int scelta = scanner.nextInt();
+            String scelta = scanner.nextLine();
 
             switch (scelta) {
-                case 1:
+                case "1":
                     aggiungiAlMagazzino();
                     break;
-                case 2:
+                case "2":
                    menuRicerca();
                     break;
-                case 3:
+                case "3":
                     menuCarrello();
                     break;
-                case 4:
+                case "4":
                     visualizzaInventario();
                     break;
-                case 0:
-                    return;
+                case "0":
+                    mostraMenu();
+                    break;
                 default:
                     System.out.println("Scelta non valida!");
                     break;
