@@ -18,31 +18,36 @@ public class MenuPrincipale {
     }
 
     public void mostraMenu() {
-        int scelta;
-
+        String scelta = "";
+        System.out.println("\nCosa vuoi fare?");
+        System.out.println("1. Accedi al magazzino");
+        System.out.println("2. Accedi al carrello");
+        System.out.println("0. Esci");
         do {
-            System.out.println("\nCosa vuoi fare?");
-            System.out.println("1. Accedi al magazzino");
-            System.out.println("2. Accedi al carrello");
-            System.out.println("0. Esci");
             System.out.print("Scelta: ");
 
-            scelta = scanner.nextInt();
+            try{
+                scelta = scanner.nextLine();
+                switch (scelta) {
+                    case "0":
+                        System.out.println("Arrivederci!");
+                        break;
+                    case "1":
+                        menuMagazzino();
+                        break;
+                    case "2":
+                        menuCarrello();
+                        break;
+                    default:
+                        System.out.println("Scelta non valida. Riprova.");
+                }
 
-            switch (scelta) {
-                case 0:
-                    System.out.println("Arrivederci!");
-                    break;
-                case 1:
-                    menuMagazzino();
-                    break;
-                case 2:
-                    menuCarrello();
-                    break;
-                default:
-                    System.out.println("Scelta non valida. Riprova.");
+            }catch (InputMismatchException e){
+                System.out.println("Scelta non valida.");
+                System.out.println("Inserisci una scelta valida: ");
+                scanner.nextLine();
             }
-        } while (scelta != 0);
+        } while (!scelta.equals("0"));
         scanner.close();
     }
 
