@@ -43,6 +43,8 @@ public class MenuPrincipale {
                 }
 
             }catch (InputMismatchException e){
+                System.out.println("Scelta non valida.");
+                System.out.println("Inserisci una scelta valida: ");
                 scanner.nextLine();
             }
         } while (!scelta.equals("0"));
@@ -51,115 +53,100 @@ public class MenuPrincipale {
 
     // Metodo per gestire il menu del magazzino
     public void menuMagazzino() {
-
-        System.out.println("Menu Magazzino:");
-        System.out.println("1. Aggiungi Prodotto");
-        System.out.println("2. Cerca Prodotto");
-        System.out.println("3. Accedi al carrello");
-        System.out.println("4. Visualizza Inventario");
-        System.out.println("0. Torna al menu principale");
-        boolean stato = true;
-        while (stato) {
-
+        System.out.println("Magazzino:");
+        boolean continua = true;
+        while (continua) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Aggiungi Prodotto");
+            System.out.println("2. Cerca Prodotto");
+            System.out.println("3. Accedi al carrello");
+            System.out.println("4. Visualizza Inventario");
+            System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
 
-            try {
-                String scelta = scanner.nextLine();
+            //visualizzaInventario();
+            String scelta = scanner.nextLine();
 
-                switch (scelta) {
-                    case "1":
-                        aggiungiAlMagazzino();
-                        break;
-                    case "2":
-                        menuRicerca();
-                        break;
-                    case "3":
-                        menuCarrello();
-                        break;
-                    case "4":
-                        visualizzaInventario();
-                        break;
-                    case "0":
-                        stato = false;
-                        mostraMenu();
-                        break;
-                    default:
-                        System.out.println("Scelta non valida. Riprova.");
-                        break;
-                }
-            }catch (InputMismatchException e){
-                scanner.nextLine();
+            switch (scelta) {
+                case "1":
+                    aggiungiAlMagazzino();
+                    break;
+                case "2":
+                   menuRicerca();
+                    break;
+                case "3":
+                    menuCarrello();
+                    break;
+                case "4":
+                    visualizzaInventario();
+                    break;
+                case "0":
+                    mostraMenu();
+                    break;
+                default:
+                    System.out.println("Scelta non valida!");
+                    break;
             }
-
         }
     }
 
     // Metodo per gestire il menu del carrello
     public void menuCarrello() {
-        System.out.println(" Menu Carrello:");
-        System.out.println("1. Aggiungi Prodotto al Carrello");
-        System.out.println("2. Rimuovi Prodotto dal Carrello");
-        System.out.println("3. Calcola Totale Carrello");
-        System.out.println("4. Finalizza Acquisto");
-        System.out.println("5. Accedi al Magazzino");
-        System.out.println("6. Visualizza Carrello");
-        System.out.println("7. Calcola Spesa Media");
-        System.out.println("0. Torna al menu principale");
-
-        boolean stato = true;
-
-        while (stato) {
-
+        System.out.println("Carrello:");
+        boolean continua = true;
+        while (continua) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Aggiungi Prodotto al Carrello");
+            System.out.println("2. Rimuovi Prodotto dal Carrello");
+            System.out.println("3. Calcola Totale Carrello");
+            System.out.println("4. Finalizza Acquisto");
+            System.out.println("5. Accedi al Magazzino");
+            System.out.println("6. Visualizza Carrello");
+            System.out.println("7. Calcola Spesa Media");
+            System.out.println("0. Torna al menu principale");
             System.out.print("Scelta: ");
-            try {
-                String scelta = scanner.nextLine();
 
-                switch (scelta) {
-                    case "1":
-                        aggiungiAlCarrello();
-                        break;
-                    case "2":
-                        rimuoviDalCarrello();
-                        break;
-                    case "3":
-                        calcolaTotaleCarrello();
-                        break;
-                    case "4":
-                        finalizzaAcquisto();
-                        break;
-                    case "5":
-                        menuMagazzino();
-                        break;
-                    case "6":
-                        visualizzaCarrello();
-                        break;
-                    case "7":
-                        getMediaSpesaTotale();
-                        break;
-                    case "0":
-                        stato = false;
-                        mostraMenu();
-                        break;
-                    default:
-                        System.out.println("Scelta non valida. Riprova.");
-                        break;
-                }
-            }catch (InputMismatchException e){
-                scanner.nextLine();
+            int scelta = scanner.nextInt();
+
+            switch (scelta) {
+                case 1:
+                    aggiungiAlCarrello();
+                    break;
+                case 2:
+                    rimuoviDalCarrello();
+                    break;
+                case 3:
+                    calcolaTotaleCarrello();
+                    break;
+                case 4:
+                    finalizzaAcquisto();
+                    break;
+                case 5:
+                    menuMagazzino();
+                    break;
+                case 6:
+                    visualizzaCarrello();
+                    break;
+                case 7:
+                    BigDecimal mediaSpesaTotale = carrello.calcolaSpesaMedia();
+                    System.out.println("La spesa media dell'aquisto è: " + mediaSpesaTotale + "€");
+                    break;
+                case 0:
+                    continua = false;
+                    mostraMenu();
+                    break;
+                default:
+                    System.out.println("Scelta non valida!");
+                    break;
             }
         }
-    }
-
-    private void getMediaSpesaTotale() {
-        BigDecimal mediaSpesaTotale =carrello.calcolaSpesaMedia();
-        System.out.println("La spesa media dell'aquisto è: " + mediaSpesaTotale + "€");
     }
 
     // Metodo per gestire il menu del carrello
     public void menuRicerca() {
         System.out.println("cerca:");
-        //boolean continua = true;
-        while (true) {
+        boolean continua = true;
+        while (continua) {
             System.out.println("Scegli il tipo di ricerca:");
             System.out.println("1. Per tipo di dispositivo");
             System.out.println("2. Per range di prezzo");
@@ -176,20 +163,18 @@ public class MenuPrincipale {
                 case 0:
                     menuMagazzino();
                 case 1:
-
                     System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
                     String tipoDispositivoStr = scanner.next().toUpperCase();
 
+                    TipoDispositivo tipoDispositivo = null;
                     try {
-                        TipoDispositivo tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
-                        ArrayList<Prodotto> dispositiviTrovati = Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
-
-                        for (Prodotto dispositivo : dispositiviTrovati) {
-                            System.out.println(dispositivo);
-                        }
+                        tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
                     } catch (IllegalArgumentException e) {
                         System.out.println("Tipo di dispositivo non valido.");
+                        break;
                     }
+
+                    Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
                     break;
                 case 2:
                     metodi.cercaPerRangePrezzo();

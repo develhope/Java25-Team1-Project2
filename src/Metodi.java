@@ -23,29 +23,30 @@ public class Metodi {
                 .filter(condition)
                 .toList();
 
-        if (dispositiviRicercati.isEmpty()) {
-            System.out.println("Nessun dispositivo " + message + " trovato.");
-        } else {
-            System.out.println("Dispositivi " + message + " trovati:");
-            dispositiviRicercati.forEach(System.out::println);
-        }
-
         return new ArrayList<>(dispositiviRicercati);
     }
 
     // Metodo per fare la ricerca per tipo di dispositivo
-    public static ArrayList<Prodotto> cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
-        ArrayList<Prodotto> dispositiviTrovati = cercaDispositivi(magazzino, dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
-                "di tipo " + tipoDispositivo);
+    public static void cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
+        try {
+            ArrayList<Prodotto> dispositiviTrovati = cercaDispositivi(magazzino,
+                    dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
+                    "di tipo " + tipoDispositivo);
 
-        if (dispositiviTrovati.isEmpty()) {
-            System.out.println("Dispositivo non trovato.");
-            System.out.println("Dispositivi già presenti nel magazzino:");
-            for (Prodotto dispositivo : magazzino.getInventario()) {
-                System.out.println(dispositivo);
+            if (dispositiviTrovati.isEmpty()) {
+                System.out.println("Dispositivo non trovato.");
+                System.out.println("Dispositivi già presenti nel magazzino:");
+                for (Prodotto dispositivo : magazzino.getInventario()) {
+                    System.out.println(dispositivo);
+                }
+            } else {
+                for (Prodotto dispositivo : dispositiviTrovati) {
+                    System.out.println(dispositivo);
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Errore durante la ricerca dei dispositivi: " + e.getMessage());
         }
-        return dispositiviTrovati;
     }
 
     // Metodo per fare la ricerca per produttore
