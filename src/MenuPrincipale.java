@@ -43,8 +43,6 @@ public class MenuPrincipale {
                 }
 
             }catch (InputMismatchException e){
-                System.out.println("Scelta non valida.");
-                System.out.println("Inserisci una scelta valida: ");
                 scanner.nextLine();
             }
         } while (!scelta.equals("0"));
@@ -53,40 +51,45 @@ public class MenuPrincipale {
 
     // Metodo per gestire il menu del magazzino
     public void menuMagazzino() {
-        System.out.println("Magazzino:");
-        boolean continua = true;
-        while (continua) {
-            System.out.println("\nMenu:");
-            System.out.println("1. Aggiungi Prodotto");
-            System.out.println("2. Cerca Prodotto");
-            System.out.println("3. Accedi al carrello");
-            System.out.println("4. Visualizza Inventario");
-            System.out.println("0. Torna al menu principale");
+        String scelta = "";
+        System.out.println("Menu Magazzino:");
+        System.out.println("1. Aggiungi Prodotto");
+        System.out.println("2. Cerca Prodotto");
+        System.out.println("3. Accedi al carrello");
+        System.out.println("4. Visualizza Inventario");
+        System.out.println("0. Torna al menu principale");
+
+        while (true) {
+
             System.out.print("Scelta: ");
 
-            //visualizzaInventario();
-            String scelta = scanner.nextLine();
+            try {
+                scelta = scanner.nextLine();
 
-            switch (scelta) {
-                case "1":
-                    aggiungiAlMagazzino();
-                    break;
-                case "2":
-                   menuRicerca();
-                    break;
-                case "3":
-                    menuCarrello();
-                    break;
-                case "4":
-                    visualizzaInventario();
-                    break;
-                case "0":
-                    mostraMenu();
-                    break;
-                default:
-                    System.out.println("Scelta non valida!");
-                    break;
+                switch (scelta) {
+                    case "1":
+                        aggiungiAlMagazzino();
+                        break;
+                    case "2":
+                        menuRicerca();
+                        break;
+                    case "3":
+                        menuCarrello();
+                        break;
+                    case "4":
+                        visualizzaInventario();
+                        break;
+                    case "0":
+                        mostraMenu();
+                        break;
+                    default:
+                        System.out.println("Scelta non valida. Riprova.");
+                        break;
+                }
+            }catch (InputMismatchException e){
+                scanner.nextLine();
             }
+
         }
     }
 
@@ -145,8 +148,8 @@ public class MenuPrincipale {
     // Metodo per gestire il menu del carrello
     public void menuRicerca() {
         System.out.println("cerca:");
-        boolean continua = true;
-        while (continua) {
+        //boolean continua = true;
+        while (true) {
             System.out.println("Scegli il tipo di ricerca:");
             System.out.println("1. Per tipo di dispositivo");
             System.out.println("2. Per range di prezzo");
