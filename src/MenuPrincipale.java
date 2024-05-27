@@ -46,7 +46,6 @@ public class MenuPrincipale {
                 scanner.nextLine();
             }
         } while (!scelta.equals("0"));
-        scanner.close();
     }
 
     // Metodo per gestire il menu del magazzino
