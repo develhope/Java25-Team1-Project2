@@ -87,4 +87,32 @@ public class MainTest {
             System.setOut(originalOut);
         }
     }
+
+    @Test
+    public void testCercaDispositiviPerProduttoreInvalidInput() throws Exception {
+        String input = "NonEsistente\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        InputStream originalIn = System.in;
+        PrintStream originalOut = System.out;
+
+        try {
+            System.setIn(in);
+            System.setOut(new PrintStream(out));
+
+            Metodi.cercaDispositiviPerProduttore(magazzino);
+
+            String output = out.toString();
+            assertTrue(output.contains("Produttore non trovato."));
+            assertTrue(output.contains("Produttori già presenti nel magazzino:"));
+            assertTrue(output.contains("Asus"));
+            assertTrue(output.contains("Apple"));
+            assertTrue(output.contains("Samsung"));
+            assertTrue(output.contains("Acer"));
+        } finally {
+            System.setIn(originalIn);
+            System.setOut(originalOut);
+        }
+    }
 }
