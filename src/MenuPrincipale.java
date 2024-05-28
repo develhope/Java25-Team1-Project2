@@ -174,7 +174,6 @@ public class MenuPrincipale {
                     case "2":
                         metodi.cercaPerRangePrezzo();
                         break;
-
                     case "3":
                         Metodi.cercaDispositiviPerProduttore(magazzino);
                         break;
