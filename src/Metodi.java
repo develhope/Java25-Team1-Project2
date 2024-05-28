@@ -50,7 +50,11 @@ public class Metodi {
     }
 
     // Metodo per fare la ricerca per produttore
-    public static ArrayList<Prodotto> cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
+    public static void cercaDispositiviPerProduttore(Magazzino magazzino) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Inserisci il produttore: ");
+        String produttore = scanner.nextLine().trim().toUpperCase();
+
         ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
 
         for (Prodotto dispositivo : magazzino.getInventario()) {
@@ -65,8 +69,11 @@ public class Metodi {
             for (Prodotto dispositivo : magazzino.getInventario()) {
                 System.out.println(dispositivo.getProduttore());
             }
+        } else {
+            for (Prodotto dispositivo : dispositiviTrovati) {
+                System.out.println(dispositivo);
+            }
         }
-        return dispositiviTrovati;
     }
 
     // Metodo per fare la ricerca per modello

@@ -187,13 +187,7 @@ public class MenuPrincipale {
                         break;
 
                     case "3":
-                        System.out.print("Inserisci il produttore: ");
-                        String produttore = scanner.next().toUpperCase();
-                        ArrayList<Prodotto> dispositiviTrovati1 = Metodi.cercaDispositiviPerProduttore(magazzino, produttore);
-
-                        for (Prodotto dispositivo : dispositiviTrovati1) {
-                            System.out.println(dispositivo);
-                        }
+                        Metodi.cercaDispositiviPerProduttore(magazzino);
                         break;
                     case "4":
                         Metodi.cercaDispositiviPerModello(magazzino);
