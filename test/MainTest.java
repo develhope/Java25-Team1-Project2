@@ -1,19 +1,90 @@
-import org.junit.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.UUID;
-import java.util.function.Predicate;
-
-import static org.junit.Assert.assertTrue;
 
 public class MainTest {
+    private Magazzino magazzino;
 
-    /*@Test
-    public void testAggiungiProdotto() {
+    @BeforeEach
+    public void setUp() {
+        magazzino = new Magazzino();
+    }
 
-        Magazzino magazzino = new Magazzino();
-        Notebook notebook = new Notebook(TipoDispositivo.NOTEBOOK, "Intel", "Chuwi", "Ciao2", 15.4, TipoMemoriaArchiviazione.HDD, 128, 269.99, 599.99, UUID.randomUUID());
+    @Test
+    public void testCercaDispositiviPerTipoValidInput() throws Exception {
+        String input = "SMARTPHONE\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        assertTrue(magazzino.aggiungiProdotto(notebook));
-    }*/
+        InputStream originalIn = System.in;
+        PrintStream originalOut = System.out;
+
+        try {
+            System.setIn(in);
+            System.setOut(new PrintStream(out));
+
+            Metodi.cercaDispositiviPerTipo(magazzino);
+
+            String output = out.toString();
+            assertTrue(output.contains("Prodotto{ tipoDispositivo=SMARTPHONE"));
+            assertFalse(output.contains("Dispositivo non trovato."));
+        } finally {
+            System.setIn(originalIn);
+            System.setOut(originalOut);
+        }
+    }
+
+    @Test
+    public void testCercaDispositiviPerTipoInvalidInput() throws Exception {
+        String input = "INVALID\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        InputStream originalIn = System.in;
+        PrintStream originalOut = System.out;
+
+        try {
+            System.setIn(in);
+            System.setOut(new PrintStream(out));
+
+            Metodi.cercaDispositiviPerTipo(magazzino);
+
+            String output = out.toString();
+            assertTrue(output.contains("Tipo di dispositivo non valido."));
+        } finally {
+            System.setIn(originalIn);
+            System.setOut(originalOut);
+        }
+    }
+
+    @Test
+    public void testCercaDispositiviPerTipoNoDispositiviTrovati() throws Exception {
+        String input = "NOTEBOOK\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        Magazzino emptyMagazzino = new Magazzino();
+        emptyMagazzino.setInventario(new ArrayList<>()); // Assicurarsi che l'inventario sia vuoto
+
+        InputStream originalIn = System.in;
+        PrintStream originalOut = System.out;
+
+        try {
+            System.setIn(in);
+            System.setOut(new PrintStream(out));
+
+            Metodi.cercaDispositiviPerTipo(emptyMagazzino);
+
+            String output = out.toString();
+            assertTrue(output.contains("Dispositivo non trovato."));
+        } finally {
+            System.setIn(originalIn);
+            System.setOut(originalOut);
+        }
+    }
 }
