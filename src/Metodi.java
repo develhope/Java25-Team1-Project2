@@ -112,69 +112,88 @@ public class Metodi {
     // Metodo per fare la ricerca per prezzo di acquisto
     public void ricercaPerPrezzoAcquisto(Magazzino magazzino) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Inserisci il prezzo di acquisto: ");
-        try {
-            String inputPrezzo = scanner.next();
-            inputPrezzo = inputPrezzo.replace(",", ".");
+        boolean inputValido = false;
+        boolean risultatiTrovati = false;
 
-            BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
+        while (!inputValido || !risultatiTrovati) {
+            System.out.print("Inserisci il prezzo di acquisto: ");
+            try {
+                String inputPrezzo = scanner.next();
+                inputPrezzo = inputPrezzo.replace(",", ".");
 
-            double prezzoAcquistoDouble = prezzoAcquisto.doubleValue();
-            double rangeMinimo = prezzoAcquistoDouble - 150;
-            double rangeMassimo = prezzoAcquistoDouble + 150;
+                BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
 
-            ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
-            for (Prodotto dispositivo : magazzino.getInventario()) {
-                if (dispositivo.getPrezzoAcquisto() >= rangeMinimo && dispositivo.getPrezzoAcquisto() <= rangeMassimo) {
-                    dispositiviTrovati.add(dispositivo);
+                double prezzoAcquistoDouble = prezzoAcquisto.doubleValue();
+                double rangeMinimo = prezzoAcquistoDouble - 150;
+                double rangeMassimo = prezzoAcquistoDouble + 150;
+
+                ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
+                for (Prodotto dispositivo : magazzino.getInventario()) {
+                    if (dispositivo.getPrezzoAcquisto() >= rangeMinimo && dispositivo.getPrezzoAcquisto() <= rangeMassimo) {
+                        dispositiviTrovati.add(dispositivo);
+                    }
                 }
-            }
 
-            if (dispositiviTrovati.isEmpty()) {
-                System.out.println("Nessun dispositivo trovato con un prezzo di acquisto entro " + rangeMinimo + " e " + rangeMassimo + " €.");
-            } else {
-                for (Prodotto dispositivo : dispositiviTrovati) {
-                    System.out.println(dispositivo);
+                if (dispositiviTrovati.isEmpty()) {
+                    System.out.println("Nessun dispositivo trovato con un prezzo di acquisto entro " + rangeMinimo + " e " + rangeMassimo + " €.");
+                    inputValido = true; // Il prezzo è valido, ma non ci sono risultati
+                    risultatiTrovati = false; // Nessun risultato trovato
+                } else {
+                    for (Prodotto dispositivo : dispositiviTrovati) {
+                        System.out.println(dispositivo);
+                    }
+                    inputValido = true;
+                    risultatiTrovati = true;
                 }
+            } catch (NumberFormatException | ArithmeticException e) {
+                System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+                inputValido = false; // Imposta come falso per richiedere nuovamente l'input
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
         }
     }
 
     // Metodo per fare la ricerca per prezzo di vendita
     public void ricercaPerPrezzoVendita(Magazzino magazzino) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Inserisci il prezzo di vendita: ");
-        try {
-            String inputPrezzo = scanner.next();
-            inputPrezzo = inputPrezzo.replace(",", ".");
+        boolean inputValido = false;
+        boolean risultatiTrovati = false;
 
-            BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
+        while (!inputValido || !risultatiTrovati) {
+            System.out.print("Inserisci il prezzo di vendita: ");
+            try {
+                String inputPrezzo = scanner.next();
+                inputPrezzo = inputPrezzo.replace(",", ".");
 
-            double prezzoVenditaDouble = prezzoVendita.doubleValue();
-            double rangeMinimo = prezzoVenditaDouble - 150;
-            double rangeMassimo = prezzoVenditaDouble + 150;
+                BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
 
-            ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
-            for (Prodotto dispositivo : magazzino.getInventario()) {
-                if (dispositivo.getPrezzoVendita() >= rangeMinimo && dispositivo.getPrezzoVendita() <= rangeMassimo) {
-                    dispositiviTrovati.add(dispositivo);
+                double prezzoVenditaDouble = prezzoVendita.doubleValue();
+                double rangeMinimo = prezzoVenditaDouble - 150;
+                double rangeMassimo = prezzoVenditaDouble + 150;
+
+                ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
+                for (Prodotto dispositivo : magazzino.getInventario()) {
+                    if (dispositivo.getPrezzoVendita() >= rangeMinimo && dispositivo.getPrezzoVendita() <= rangeMassimo) {
+                        dispositiviTrovati.add(dispositivo);
+                    }
                 }
-            }
 
-            if (dispositiviTrovati.isEmpty()) {
-                System.out.println("Nessun dispositivo trovato con un prezzo di vendita entro " + rangeMinimo + " e " + rangeMassimo + " €.");
-            } else {
-                for (Prodotto dispositivo : dispositiviTrovati) {
-                    System.out.println(dispositivo);
+                if (dispositiviTrovati.isEmpty()) {
+                    System.out.println("Nessun dispositivo trovato con un prezzo di vendita entro " + rangeMinimo + " e " + rangeMassimo + " €.");
+                    inputValido = true; // Il prezzo è valido, ma non ci sono risultati
+                    risultatiTrovati = false; // Nessun risultato trovato
+                } else {
+                    for (Prodotto dispositivo : dispositiviTrovati) {
+                        System.out.println(dispositivo);
+                    }
+                    inputValido = true;
+                    risultatiTrovati = true;
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+                inputValido = false; // Imposta come falso per richiedere nuovamente l'input
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
         }
     }
-
     // Metodo che cerca e stampa i dispositivi presenti in un determinato Range di prezzo
     public List<Prodotto> cercaPerRangePrezzo() {
         List<Prodotto> result = new ArrayList<>();
