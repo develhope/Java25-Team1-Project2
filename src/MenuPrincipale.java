@@ -169,18 +169,7 @@ public class MenuPrincipale {
                     case "0":
                         menuMagazzino();
                     case "1":
-                        System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
-                        String tipoDispositivoStr = scanner.next().toUpperCase();
-
-                        TipoDispositivo tipoDispositivo = null;
-                        try {
-                            tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
-                        } catch (IllegalArgumentException e) {
-                            System.out.println("Tipo di dispositivo non valido.");
-                            break;
-                        }
-
-                        Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
+                        Metodi.cercaDispositiviPerTipo(magazzino);
                         break;
                     case "2":
                         metodi.cercaPerRangePrezzo();

@@ -27,25 +27,34 @@ public class Metodi {
     }
 
     // Metodo per fare la ricerca per tipo di dispositivo
-    public static void cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
-        try {
-            ArrayList<Prodotto> dispositiviTrovati = cercaDispositivi(magazzino,
-                    dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
-                    "di tipo " + tipoDispositivo);
+    public static void cercaDispositiviPerTipo(Magazzino magazzino) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
+        String tipoDispositivoStr = scanner.nextLine().trim().toUpperCase();
 
-            if (dispositiviTrovati.isEmpty()) {
-                System.out.println("Dispositivo non trovato.");
-                System.out.println("Dispositivi già presenti nel magazzino:");
-                for (Prodotto dispositivo : magazzino.getInventario()) {
-                    System.out.println(dispositivo);
-                }
-            } else {
-                for (Prodotto dispositivo : dispositiviTrovati) {
-                    System.out.println(dispositivo);
-                }
+        TipoDispositivo tipoDispositivo = null;
+        try {
+            tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Tipo di dispositivo non valido.");
+            return;
+        }
+
+        TipoDispositivo finalTipoDispositivo = tipoDispositivo;
+        ArrayList<Prodotto> dispositiviTrovati = cercaDispositivi(magazzino,
+                dispositivo -> dispositivo.getTipoDispositivo() == finalTipoDispositivo,
+                "di tipo " + tipoDispositivo);
+
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Dispositivo non trovato.");
+            System.out.println("Dispositivi già presenti nel magazzino:");
+            for (Prodotto dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo);
             }
-        } catch (Exception e) {
-            System.out.println("Errore durante la ricerca dei dispositivi: " + e.getMessage());
+        } else {
+            for (Prodotto dispositivo : dispositiviTrovati) {
+                System.out.println(dispositivo);
+            }
         }
     }
 
