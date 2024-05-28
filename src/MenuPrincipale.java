@@ -196,21 +196,7 @@ public class MenuPrincipale {
                         }
                         break;
                     case "4":
-                        System.out.print("Inserisci il modello: ");
-                        String modello = scanner.nextLine().trim().toUpperCase();
-                        ArrayList<Prodotto> dispositiviTrovati2 = Metodi.cercaDispositiviPerModello(magazzino, modello);
-
-                        if (dispositiviTrovati2.isEmpty()) {
-                            System.out.println("Modello non trovato.");
-                            System.out.println("Modelli già presenti nel magazzino:");
-                            for (Prodotto dispositivo : magazzino.getInventario()) {
-                                System.out.println(dispositivo.getModello());
-                            }
-                        } else {
-                            for (Prodotto dispositivo : dispositiviTrovati2) {
-                                System.out.println(dispositivo);
-                            }
-                        }
+                        Metodi.cercaDispositiviPerModello(magazzino);
                         break;
                     case "5":
                         metodi.ricercaPerPrezzoAcquisto(magazzino);
