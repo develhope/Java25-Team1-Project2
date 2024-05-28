@@ -31,6 +31,7 @@ public class MenuPrincipale {
                 switch (scelta) {
                     case "0":
                         System.out.println("Arrivederci!");
+                        scanner.close();
                         break;
                     case "1":
                         menuMagazzino();
@@ -65,6 +66,10 @@ public class MenuPrincipale {
                 String scelta = scanner.nextLine();
 
                 switch (scelta) {
+                    case "0":
+                        mostraMenu();
+                        continua = false;
+                        break;
                     case "1":
                         aggiungiAlMagazzino();
                         break;
@@ -76,9 +81,6 @@ public class MenuPrincipale {
                         break;
                     case "4":
                         visualizzaInventario();
-                        break;
-                    case "0":
-                        mostraMenu();
                         break;
                     default:
                         System.out.println("Scelta non valida!");
@@ -110,6 +112,10 @@ public class MenuPrincipale {
             try{
                 String scelta = scanner.nextLine();
                 switch (scelta) {
+                    case "0":
+                        continua = false;
+                        mostraMenu();
+                        break;
                     case "1":
                         aggiungiAlCarrello();
                         break;
@@ -131,10 +137,6 @@ public class MenuPrincipale {
                     case "7":
                         BigDecimal mediaSpesaTotale = carrello.calcolaSpesaMedia();
                         System.out.println("La spesa media dell'aquisto è: " + mediaSpesaTotale + "€");
-                        break;
-                    case "0":
-                        continua = false;
-                        mostraMenu();
                         break;
                     default:
                         System.out.println("Scelta non valida!");
@@ -167,6 +169,7 @@ public class MenuPrincipale {
 
                 switch (sceltaRicerca) {
                     case "0":
+                        continua = false;
                         menuMagazzino();
                     case "1":
                         Metodi.cercaDispositiviPerTipo(magazzino);
@@ -293,23 +296,23 @@ public class MenuPrincipale {
     }
 
     private void aggiungiAlCarrello() {
-            // Richiedi all'utente l'ID del prodotto da aggiungere al carrello
-            System.out.println("Inserisci l'ID del prodotto da aggiungere al carrello:");
-            String idString = scanner.next();
-            try {
-                UUID id = UUID.fromString(idString);
-                // Trova il prodotto nell'inventario e aggiungilo al carrello
-                Prodotto prodotto = magazzino.trovaProdottoPerId(id);
-                if (prodotto != null) {
-                    carrello.aggiungiProdotto(prodotto);
-                    System.out.println("Prodotto aggiunto al carrello.");
-                } else {
-                    System.out.println("Prodotto non trovato nell'inventario.");
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println("ID non valido.");
+        // Richiedi all'utente l'ID del prodotto da aggiungere al carrello
+        System.out.println("Inserisci l'ID del prodotto da aggiungere al carrello:");
+        String idString = scanner.next();
+        try {
+            UUID id = UUID.fromString(idString);
+            // Trova il prodotto nell'inventario e aggiungilo al carrello
+            Prodotto prodotto = magazzino.trovaProdottoPerId(id);
+            if (prodotto != null) {
+                carrello.aggiungiProdotto(prodotto);
+                System.out.println("Prodotto aggiunto al carrello.");
+            } else {
+                System.out.println("Prodotto non trovato nell'inventario.");
             }
+        } catch (IllegalArgumentException e) {
+            System.out.println("ID non valido.");
         }
+    }
 
     private void rimuoviDalCarrello() {
         // Richiedi all'utente l'ID del prodotto da rimuovere dal carrello
