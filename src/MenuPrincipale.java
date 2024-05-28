@@ -18,35 +18,36 @@ public class MenuPrincipale {
     }
 
     public void mostraMenu() {
-        String scelta = "";
-        System.out.println("\nCosa vuoi fare?");
-        System.out.println("1. Accedi al magazzino");
-        System.out.println("2. Accedi al carrello");
-        System.out.println("0. Esci");
+        boolean continuaEsecuzione = true;
+
         do {
+            String scelta = "";
+            System.out.println("\nCosa vuoi fare?");
+            System.out.println("1. Accedi al magazzino");
+            System.out.println("2. Accedi al carrello");
+            System.out.println("0. Esci");
+
             System.out.print("Scelta: ");
+            int sceltaInt = scanner.nextInt();
+            scanner.nextLine();
 
-            try{
-                scelta = scanner.nextLine();
-                switch (scelta) {
-                    case "0":
-                        System.out.println("Arrivederci!");
-                        scanner.close();
-                        break;
-                    case "1":
-                        menuMagazzino();
-                        break;
-                    case "2":
-                        menuCarrello();
-                        break;
-                    default:
-                        System.out.println("Scelta non valida. Riprova.");
-                }
+            scelta = String.valueOf(sceltaInt);
 
-            }catch (InputMismatchException e){
-                scanner.nextLine();
+            switch (scelta) {
+                case "0":
+                    System.out.println("Arrivederci!");
+                    scanner.close();
+                    System.exit(0);
+                case "1":
+                    menuMagazzino();
+                    break;
+                case "2":
+                    menuCarrello();
+                    break;
+                default:
+                    System.out.println("Scelta non valida. Riprova.");
             }
-        } while (!scelta.equals("0"));
+        } while (continuaEsecuzione);
     }
 
     // Metodo per gestire il menu del magazzino
@@ -61,7 +62,7 @@ public class MenuPrincipale {
         boolean continua = true;
 
         while (continua) {
-            System.out.println("Scelta: ");
+            System.out.print("Scelta: ");
             try {
                 String scelta = scanner.nextLine();
 
@@ -213,7 +214,7 @@ public class MenuPrincipale {
 
         }
 
-        System.out.println("Inserisci il produttore2: ");
+        System.out.println("Inserisci il produttore: ");
         String produttore = scanner.next();
 
         System.out.println("Inserisci il modello: ");
