@@ -169,48 +169,16 @@ public class MenuPrincipale {
                     case "0":
                         menuMagazzino();
                     case "1":
-                        System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
-                        String tipoDispositivoStr = scanner.next().toUpperCase();
-
-                        TipoDispositivo tipoDispositivo = null;
-                        try {
-                            tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
-                        } catch (IllegalArgumentException e) {
-                            System.out.println("Tipo di dispositivo non valido.");
-                            break;
-                        }
-
-                        Metodi.cercaDispositiviPerTipo(magazzino, tipoDispositivo);
+                        Metodi.cercaDispositiviPerTipo(magazzino);
                         break;
                     case "2":
                         metodi.cercaPerRangePrezzo();
                         break;
-
                     case "3":
-                        System.out.print("Inserisci il produttore: ");
-                        String produttore = scanner.next().toUpperCase();
-                        ArrayList<Prodotto> dispositiviTrovati1 = Metodi.cercaDispositiviPerProduttore(magazzino, produttore);
-
-                        for (Prodotto dispositivo : dispositiviTrovati1) {
-                            System.out.println(dispositivo);
-                        }
+                        Metodi.cercaDispositiviPerProduttore(magazzino);
                         break;
                     case "4":
-                        System.out.print("Inserisci il modello: ");
-                        String modello = scanner.nextLine().trim().toUpperCase();
-                        ArrayList<Prodotto> dispositiviTrovati2 = Metodi.cercaDispositiviPerModello(magazzino, modello);
-
-                        if (dispositiviTrovati2.isEmpty()) {
-                            System.out.println("Modello non trovato.");
-                            System.out.println("Modelli già presenti nel magazzino:");
-                            for (Prodotto dispositivo : magazzino.getInventario()) {
-                                System.out.println(dispositivo.getModello());
-                            }
-                        } else {
-                            for (Prodotto dispositivo : dispositiviTrovati2) {
-                                System.out.println(dispositivo);
-                            }
-                        }
+                        Metodi.cercaDispositiviPerModello(magazzino);
                         break;
                     case "5":
                         metodi.ricercaPerPrezzoAcquisto(magazzino);

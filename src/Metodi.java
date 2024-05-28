@@ -27,30 +27,43 @@ public class Metodi {
     }
 
     // Metodo per fare la ricerca per tipo di dispositivo
-    public static void cercaDispositiviPerTipo(Magazzino magazzino, TipoDispositivo tipoDispositivo) {
-        try {
-            ArrayList<Prodotto> dispositiviTrovati = cercaDispositivi(magazzino,
-                    dispositivo -> dispositivo.getTipoDispositivo() == tipoDispositivo,
-                    "di tipo " + tipoDispositivo);
+    public static void cercaDispositiviPerTipo(Magazzino magazzino) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Inserisci il tipo di dispositivo (SMARTPHONE, NOTEBOOK, TABLET): ");
+        String tipoDispositivoStr = scanner.nextLine().trim().toUpperCase();
 
-            if (dispositiviTrovati.isEmpty()) {
-                System.out.println("Dispositivo non trovato.");
-                System.out.println("Dispositivi già presenti nel magazzino:");
-                for (Prodotto dispositivo : magazzino.getInventario()) {
-                    System.out.println(dispositivo);
-                }
-            } else {
-                for (Prodotto dispositivo : dispositiviTrovati) {
-                    System.out.println(dispositivo);
-                }
+        TipoDispositivo tipoDispositivo = null;
+        try {
+            tipoDispositivo = TipoDispositivo.valueOf(tipoDispositivoStr);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Tipo di dispositivo non valido.");
+            return;
+        }
+
+        TipoDispositivo finalTipoDispositivo = tipoDispositivo;
+        ArrayList<Prodotto> dispositiviTrovati = cercaDispositivi(magazzino,
+                dispositivo -> dispositivo.getTipoDispositivo() == finalTipoDispositivo,
+                "di tipo " + tipoDispositivo);
+
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Dispositivo non trovato.");
+            System.out.println("Dispositivi già presenti nel magazzino:");
+            for (Prodotto dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo);
             }
-        } catch (Exception e) {
-            System.out.println("Errore durante la ricerca dei dispositivi: " + e.getMessage());
+        } else {
+            for (Prodotto dispositivo : dispositiviTrovati) {
+                System.out.println(dispositivo);
+            }
         }
     }
 
     // Metodo per fare la ricerca per produttore
-    public static ArrayList<Prodotto> cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
+    public static void cercaDispositiviPerProduttore(Magazzino magazzino) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Inserisci il produttore: ");
+        String produttore = scanner.nextLine().trim().toUpperCase();
+
         ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
 
         for (Prodotto dispositivo : magazzino.getInventario()) {
@@ -65,18 +78,35 @@ public class Metodi {
             for (Prodotto dispositivo : magazzino.getInventario()) {
                 System.out.println(dispositivo.getProduttore());
             }
+        } else {
+            for (Prodotto dispositivo : dispositiviTrovati) {
+                System.out.println(dispositivo);
+            }
         }
-        return dispositiviTrovati;
     }
 
     // Metodo per fare la ricerca per modello
-    public static ArrayList<Prodotto> cercaDispositiviPerModello(Magazzino magazzino, String modello) {
+    public static void cercaDispositiviPerModello(Magazzino magazzino) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Inserisci il modello: ");
+        String modello = scanner.nextLine().trim().toLowerCase();
+
         String modelloLowerCase = modello.toLowerCase();
         ArrayList<Prodotto> dispositiviTrovati = cercaDispositivi(magazzino,
                 dispositivo -> dispositivo.getModello().toLowerCase().contains(modelloLowerCase),
                 "con il modello " + modello);
 
-        return dispositiviTrovati;
+        if (dispositiviTrovati.isEmpty()) {
+            System.out.println("Modello non trovato.");
+            System.out.println("Modelli già presenti nel magazzino:");
+            for (Prodotto dispositivo : magazzino.getInventario()) {
+                System.out.println(dispositivo.getModello());
+            }
+        } else {
+            for (Prodotto dispositivo : dispositiviTrovati) {
+                System.out.println(dispositivo);
+            }
+        }
     }
 
     // Metodo per fare la ricerca per prezzo di acquisto
