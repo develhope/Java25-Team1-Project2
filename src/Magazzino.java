@@ -14,7 +14,7 @@ public class Magazzino {
 
     public List<Prodotto> dispositivi() {
         //Prodotti per test funzionamento
-        Smartphone smartphoneBuilder = new Smartphone();
+      /*  Smartphone smartphoneBuilder = new Smartphone();
         smartphoneBuilder.setTipoDispositivo(TipoDispositivo.SMARTPHONE);
         smartphoneBuilder.setProduttore("Asus");
         smartphoneBuilder.setModello("Rog Phone 7 Ultimate");
@@ -92,7 +92,7 @@ public class Magazzino {
         inventario.add(notebook2);
         inventario.add(tablet1);
         inventario.add(tablet2);
-
+*/
         return inventario;
     }
 
