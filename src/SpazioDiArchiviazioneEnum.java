@@ -1,4 +1,4 @@
-public enum SpazioDiArchiviazione {
+public enum SpazioDiArchiviazioneEnum {
     DUE(2),
     QUATTRO(4),
     OTTO(8),
@@ -17,15 +17,15 @@ public enum SpazioDiArchiviazione {
 
 
 private final Integer valore;
-SpazioDiArchiviazione(Integer valore){
+SpazioDiArchiviazioneEnum(Integer valore){
     this.valore = valore;
 }
     public int getValue() {
         return valore;
     }
 
-    public static SpazioDiArchiviazione fromInt(Integer valore) {
-        for (SpazioDiArchiviazione numero : values()) {
+    public static SpazioDiArchiviazioneEnum fromInt(Integer valore) {
+        for (SpazioDiArchiviazioneEnum numero : values()) {
             if (numero.getValue() == valore) {
                 return numero;
             }
