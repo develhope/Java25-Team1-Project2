@@ -1,11 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Main {
 
     public static void main(String[] args) {
-        Magazzino magazzino1 = new Magazzino();
-        Magazzino magazzino2 = new Magazzino();
-        Magazzino magazzino3 = new Magazzino();
+         List<Prodotto> magazzino1 = new ArrayList<>();
+         List<Prodotto> magazzino2 = new ArrayList<>();
+         List<Prodotto> magazzino3 = new ArrayList<>();
 
 
       Smartphone smartphone1 = new Smartphone(TipoDispositivoEnum.SMARTPHONE, "Asus","Rog Phone 7 Ultimate",5.7,TipoMemoriaArchiviazioneEnum.NVMe,SpazioDiArchiviazioneEnum.CINQUECENTODODICI,
@@ -26,5 +28,41 @@ public class Main {
       Tablet tablet2 = new Tablet(TipoDispositivoEnum.TABLET, "Samsung", "Galaxy Tab a9+", 12.0, TipoMemoriaArchiviazioneEnum.SSD, SpazioDiArchiviazioneEnum.SESSANTAQUATTRO,
                               999.99, 1599.99, UUID.randomUUID());
 
+
+
+         aggiungiProdotto(magazzino1 , smartphone1);
+         aggiungiProdotto(magazzino1 , smartphone2);
+         aggiungiProdotto(magazzino2 , notebook1);
+         aggiungiProdotto(magazzino2 , notebook2);
+         aggiungiProdotto(magazzino3 , tablet1);
+         aggiungiProdotto(magazzino3 , tablet2);
+
+        System.out.println(magazzino1);
+        System.out.println(magazzino2);
+        System.out.println(magazzino3);
+
+
+
+
+    }
+
+    // metedo magazzino per Aggiungere un prodotto all'inventario
+    public static void aggiungiProdotto(List<Prodotto> magazzino , Prodotto prodotto) {
+         magazzino.add(prodotto);
+    }
+
+    // metodo magazzino per Rimuovere un prodotto dall'inventario
+    public static void rimuoviProdotto(List<Prodotto> magazzino , UUID id) {
+         magazzino.removeIf(p -> p.getId().equals(id));
+    }
+
+    // metodo magazzino per Trovare un prodotto per id
+   public static Prodotto trovaProdottoPerId(List<Prodotto> magazzino , UUID id) {
+        for (Prodotto prodotto : magazzino) {
+            if (prodotto.getId().equals(id)) {
+                return prodotto;
+            }
+        }
+        return null;
     }
 }
