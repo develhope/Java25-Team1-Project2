@@ -1,19 +1,19 @@
 import java.util.UUID;
 
 public class Prodotto {
-    private TipoDispositivo tipoDispositivo;
+    private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
     private String modello;
     private Double dimensioneDisplay;
-    private TipoMemoriaArchiviazione tipoMemoria;
-    private SpazioDiArchiviazione dimensioneArchiviazione;
+    private TipoMemoriaArchiviazioneEnum tipoMemoria;
+    private SpazioDiArchiviazioneEnum dimensioneArchiviazione;
     private Double prezzoAcquisto;
     private Double prezzoVendita;
     private UUID id;
 
 
-    public Prodotto(TipoDispositivo tipoDispositivo, String produttore, String modello, Double dimensioneDisplay,
-                    TipoMemoriaArchiviazione tipoMemoria, SpazioDiArchiviazione dimensioneArchiviazione,
+    public Prodotto(TipoDispositivoEnum tipoDispositivo, String produttore, String modello, Double dimensioneDisplay,
+                    TipoMemoriaArchiviazioneEnum tipoMemoria, SpazioDiArchiviazioneEnum dimensioneArchiviazione,
                     Double prezzoAcquisto, Double prezzoVendita, UUID id) {
         this.tipoDispositivo = tipoDispositivo;
         this.produttore = produttore;
@@ -26,7 +26,7 @@ public class Prodotto {
         this.id = id;
 
     }
-    public TipoDispositivo getTipoDispositivo() {
+    public TipoDispositivoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
 
@@ -42,11 +42,11 @@ public class Prodotto {
         return dimensioneDisplay;
     }
 
-    public TipoMemoriaArchiviazione getTipoMemoria() {
+    public TipoMemoriaArchiviazioneEnum getTipoMemoria() {
         return tipoMemoria;
     }
 
-    public SpazioDiArchiviazione getDimensioneArchiviazione() {
+    public SpazioDiArchiviazioneEnum getDimensioneArchiviazione() {
         return dimensioneArchiviazione;
     }
 

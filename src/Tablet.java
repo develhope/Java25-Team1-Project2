@@ -1,8 +1,8 @@
 import java.util.UUID;
 
-public class Tablet {
+public class Tablet extends Prodotto{
 
-    private TipoDispositivo tipoDispositivo;
+    private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
     private String modello;
     private Double dimensioneDisplay;
@@ -11,6 +11,10 @@ public class Tablet {
     private Double prezzoAcquisto;
     private Double prezzoVendita;
     private UUID id;
+
+    public Tablet(TipoDispositivoEnum tipoDispositivo, String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazione tipoMemoria, SpazioDiArchiviazione dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
+        super(tipoDispositivo, produttore, modello, dimensioneDisplay, tipoMemoria, dimensioneArchiviazione, prezzoAcquisto, prezzoVendita, id);
+    }
 
     public void setTipoDispositivo(TipoDispositivo tipoDispositivo) {
         this.tipoDispositivo = tipoDispositivo;

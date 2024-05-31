@@ -1,4 +1,4 @@
-import java.math.BigDecimal;
+/*import java.math.BigDecimal;
 import java.util.*;
 
 //TODO aggiungere quantità del prodotto in modo tale che non venga più eliminato il prodotto dal magazzino e dia un messaggiodi errore se è terminato
@@ -340,3 +340,4 @@ public class MenuPrincipale {
         carrello.finalizzaAcquisto();
     }
 }
+*/
