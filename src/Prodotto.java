@@ -1,5 +1,5 @@
 import java.util.UUID;
-
+//TODO AGGIUNGERE DASCRIZIONE
 public class Prodotto {
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
