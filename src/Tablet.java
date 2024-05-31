@@ -6,17 +6,17 @@ public class Tablet extends Prodotto{
     private String produttore;
     private String modello;
     private Double dimensioneDisplay;
-    private TipoMemoriaArchiviazione tipoMemoria;
-    private SpazioDiArchiviazione dimensioneArchiviazione;
+    private TipoMemoriaArchiviazioneEnum tipoMemoria;
+    private SpazioDiArchiviazioneEnum dimensioneArchiviazione;
     private Double prezzoAcquisto;
     private Double prezzoVendita;
     private UUID id;
 
-    public Tablet(TipoDispositivoEnum tipoDispositivo, String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazione tipoMemoria, SpazioDiArchiviazione dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
+    public Tablet(TipoDispositivoEnum tipoDispositivo, String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria, SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
         super(tipoDispositivo, produttore, modello, dimensioneDisplay, tipoMemoria, dimensioneArchiviazione, prezzoAcquisto, prezzoVendita, id);
     }
 
-    public void setTipoDispositivo(TipoDispositivo tipoDispositivo) {
+    public void setTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
         this.tipoDispositivo = tipoDispositivo;
     }
 
@@ -32,11 +32,11 @@ public class Tablet extends Prodotto{
         this.dimensioneDisplay = dimensioneDisplay;
     }
 
-    public void setTipoMemoria(TipoMemoriaArchiviazione tipoMemoria) {
+    public void setTipoMemoria(TipoMemoriaArchiviazioneEnum tipoMemoria) {
         this.tipoMemoria = tipoMemoria;
     }
 
-    public void setDimensioneArchiviazione(SpazioDiArchiviazione dimensioneArchiviazione) {
+    public void setDimensioneArchiviazione(SpazioDiArchiviazioneEnum dimensioneArchiviazione) {
         this.dimensioneArchiviazione = dimensioneArchiviazione;
     }
 
