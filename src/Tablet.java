@@ -16,6 +16,51 @@ public class Tablet extends Prodotto{
         super(tipoDispositivo, produttore, modello, dimensioneDisplay, tipoMemoria, dimensioneArchiviazione, prezzoAcquisto, prezzoVendita, id);
     }
 
+    @Override
+    public TipoDispositivoEnum getTipoDispositivo() {
+        return tipoDispositivo;
+    }
+
+    @Override
+    public String getProduttore() {
+        return produttore;
+    }
+
+    @Override
+    public String getModello() {
+        return modello;
+    }
+
+    @Override
+    public Double getDimensioneDisplay() {
+        return dimensioneDisplay;
+    }
+
+    @Override
+    public TipoMemoriaArchiviazioneEnum getTipoMemoria() {
+        return tipoMemoria;
+    }
+
+    @Override
+    public SpazioDiArchiviazioneEnum getDimensioneArchiviazione() {
+        return dimensioneArchiviazione;
+    }
+
+    @Override
+    public Double getPrezzoAcquisto() {
+        return prezzoAcquisto;
+    }
+
+    @Override
+    public Double getPrezzoVendita() {
+        return prezzoVendita;
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
+    }
+
     public void setTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
         this.tipoDispositivo = tipoDispositivo;
     }
