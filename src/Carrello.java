@@ -1,105 +1,64 @@
-import java.math.BigDecimal;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.UUID;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 
-public class Carrello {
-    private List<Prodotto> prodotti;
-    private Magazzino magazzino;
+    public class Carrello {
+        private List<Prodotto> prodotti;
+        private Magazzino magazzino;
 
-    public Carrello(Magazzino magazzino) {
-        this.prodotti = new ArrayList<>();
-        this.magazzino = magazzino;
-    }
-
-    // Aggiungi un prodotto al carrello
-/*    public Boolean aggiungiProdotto(Prodotto prodotto) {
-        Boolean aggProdotto = prodotti.add(prodotto);
-        if(aggProdotto){
-            magazzino.rimuoviProdotto(prodotto.getId());
+        public Carrello(Magazzino magazzino) {
+            this.prodotti = new ArrayList<>();
+            this.magazzino = magazzino;
         }
-        return aggProdotto;
-    }
-*/
 
-
-    // Calcola il totale del carrello
-    public double calcolaTotale() {
-        double totale = 0;
-        for (Prodotto prodotto : prodotti) {
-            totale += prodotto.getPrezzoVendita();
+        public List<Prodotto> getProdotti() {
+            return prodotti;
         }
-        return totale;
-    }
 
-    // Finalizza l'operazione di acquisto
-    public void finalizzaAcquisto() {
-        prodotti.clear();
-        System.out.println("Acquisto concluso. Carrello svuotato.");
-    }
-
-    // Trova un prodotto nel carrello per id
-    private Prodotto trovaProdottoPerId(UUID id) {
-        for (Prodotto prodotto : prodotti) {
-            if (prodotto.getId().equals(id)) {
-                return prodotto;
+        public void aggiungiProdottoACarrello(UUID id) {
+            Prodotto prodotto = trovaProdottoPerIdMagazzino(id);
+            if (prodotto != null) {
+                prodotti.add(prodotto);
             }
         }
-        return null;
-    }
 
-    // Restituisce i prodotti nel carrello
-    public List<Prodotto> getProdotti() {
-        return prodotti;
-    }
+        public void rimuoviProdottoDalCarrello(UUID id) {
+            prodotti.removeIf(p -> p.getId().equals(id));
+        }
 
-  /*  public Boolean rimuoviProdotto(UUID id) {
-        for (Prodotto prodotto : prodotti) {
-            if (prodotto.getId().equals(id)) {
-                Boolean rimuoviProdotto = prodotti.remove(prodotto);
-                if (rimuoviProdotto) {
-                    magazzino.aggiungiProdotto(prodotto);
+        public BigDecimal calcolaTotaleCarrello() {
+            return prodotti.stream()
+                    .map(p -> BigDecimal.valueOf(p.getPrezzoVendita()))
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+        }
+
+        public void finalizzaAcquistoCarrello() {
+            prodotti.clear();
+        }
+
+        public Prodotto trovaProdottoPerIdCarrello(UUID id) {
+            return prodotti.stream()
+                    .filter(p -> p.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        }
+
+        public void visualizzaCarrello() {
+            if (prodotti.isEmpty()) {
+                System.out.println("Il carrello è vuoto.");
+            } else {
+                prodotti.forEach(System.out::println);
+            }
+        }
+
+        private Prodotto trovaProdottoPerIdMagazzino(UUID id) {
+            for (Prodotto prodotto : magazzino.getMagazzino()) {
+                if (prodotto.getId().equals(id)) {
+                    return prodotto;
                 }
-                return rimuoviProdotto;
             }
-        } return false;
-    }
-*/
-    // Rimuove un prodotto dal carrello tramite l'ID e aggiorna l'inventario nel magazzino
-   /* public List<Prodotto> rimuoviProdottoDalCarrello(UUID id) {
-        Prodotto prodottoDaRimuovere = null;
-        for (Prodotto prodotto : prodotti) {
-            if (prodotto.getId().equals(id)) {
-                prodottoDaRimuovere = prodotto;
-                break;
-            }
-        }
-        if (prodottoDaRimuovere != null) {
-            prodotti.remove(prodottoDaRimuovere);
-            // Aggiorna l'inventario nel magazzino
-            magazzino.aggiungiProdotto(prodottoDaRimuovere);
-            System.out.println("Prodotto rimosso dal carrello e aggiunto nuovamente al magazzino.");
-        } else {
-            System.out.println("Prodotto non trovato nel carrello.");
-        }
-        return prodotti;
-    }
-
-    */
-
-    public void visualizzaCarrello() {
-        System.out.println("Prodotti nel carrello:");
-        for (Prodotto prodotto : prodotti) {
-            System.out.println(prodotto);
+            return null;
         }
     }
-
-    public BigDecimal calcolaSpesaMedia(){
-
-        Double spesaMedia = 0.0;
-        for(Prodotto dispositivo : prodotti){
-            spesaMedia += dispositivo.getPrezzoVendita();
-        }
-        return BigDecimal.valueOf(spesaMedia / prodotti.size());
-    }
-}
