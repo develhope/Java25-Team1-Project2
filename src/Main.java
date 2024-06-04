@@ -51,7 +51,6 @@ public class Main {
         magazzino2.getMagazzino().forEach(System.out::println);
         System.out.println("Magazzino 3:");
         magazzino3.getMagazzino().forEach(System.out::println);
-
     }
 
 
