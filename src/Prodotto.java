@@ -1,5 +1,5 @@
 import java.util.UUID;
-//TODO AGGIUNGERE nome, prezzo e DESCRIZIONE, pulire la classe prodotto
+//TODO AGGIUNGERE nome, prezzo e DESCRIZIONE, pulire la classe prodotto in modo da rendere prodotto generico (aggiungere enum per tipologia prodotto, es. Alimentare, Elettronico, Arredamento)
 public class Prodotto {
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
