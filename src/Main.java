@@ -55,7 +55,7 @@ public class Main {
     }
 
 
-    // TODO togliere le lambda function (stream) e usare il for each
+    // TODO togliere le lambda function (stream) e usare il for each - e spostare i metodi nelle relative classi
     // Metodo generico per la ricerca di dispositivi
     public static ArrayList<Prodotto> cercaDispositivi(Magazzino magazzino, Predicate<Prodotto> condition, String message) {
         List<Prodotto> dispositiviRicercati = magazzino.getMagazzino().stream()
