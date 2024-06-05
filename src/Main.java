@@ -2,7 +2,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Predicate;
 
 public class Main {
 
@@ -51,7 +50,7 @@ public class Main {
     // Metodo generico per la ricerca di dispositivi
     public static ArrayList<Prodotto> cercaDispositivi(Magazzino magazzino, String categoria, String message) {
         List<Prodotto> dispositiviRicercati = new ArrayList<>();
-        for(Prodotto prodotto : magazzino.getMagazzino()){
+        for(Prodotto prodotto : magazzino.getListaProdottiMagazzino()){
             if(prodotto.test(prodotto)){
                 dispositiviRicercati.add(prodotto);
             }
@@ -77,7 +76,7 @@ public class Main {
         if (dispositiviTrovati.isEmpty()) {
             System.out.println("Dispositivo non trovato.");
             System.out.println("Dispositivi già presenti nel magazzino:");
-            for (Prodotto dispositivo : magazzino.getMagazzino()) {
+            for (Prodotto dispositivo : magazzino.getListaProdottiMagazzino()) {
                 System.out.println(dispositivo);
             }
         } else {
@@ -91,7 +90,7 @@ public class Main {
     public static void cercaDispositiviPerProduttore(Magazzino magazzino, String produttore) {
         ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
 
-        for (Prodotto dispositivo : magazzino.getMagazzino()) {
+        for (Prodotto dispositivo : magazzino.getListaProdottiMagazzino()) {
             if (dispositivo.getProduttore().equalsIgnoreCase(produttore.trim().toUpperCase())) {
                 dispositiviTrovati.add(dispositivo);
             }
@@ -100,7 +99,7 @@ public class Main {
         if (dispositiviTrovati.isEmpty()) {
             System.out.println("Produttore non trovato.");
             System.out.println("Produttori già presenti nel magazzino:");
-            for (Prodotto dispositivo : magazzino.getMagazzino()) {
+            for (Prodotto dispositivo : magazzino.getListaProdottiMagazzino()) {
                 System.out.println(dispositivo.getProduttore());
             }
         } else {
@@ -120,7 +119,7 @@ public class Main {
         if (dispositiviTrovati.isEmpty()) {
             System.out.println("Modello non trovato.");
             System.out.println("Modelli già presenti nel magazzino:");
-            for (Prodotto dispositivo : magazzino.getMagazzino()) {
+            for (Prodotto dispositivo : magazzino.getListaProdottiMagazzino()) {
                 System.out.println(dispositivo.getModello());
             }
         } else {
@@ -141,7 +140,7 @@ public class Main {
             double rangeMassimo = prezzoAcquistoDouble + 150;
 
             ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
-            for (Prodotto dispositivo : magazzino.getMagazzino()) {
+            for (Prodotto dispositivo : magazzino.getListaProdottiMagazzino()) {
                 if (dispositivo.getPrezzoAcquisto() >= rangeMinimo && dispositivo.getPrezzoAcquisto() <= rangeMassimo) {
                     dispositiviTrovati.add(dispositivo);
                 }
@@ -170,7 +169,7 @@ public class Main {
             double rangeMassimo = prezzoVenditaDouble + 150;
 
             ArrayList<Prodotto> dispositiviTrovati = new ArrayList<>();
-            for (Prodotto dispositivo : magazzino.getMagazzino()) {
+            for (Prodotto dispositivo : magazzino.getListaProdottiMagazzino()) {
                 if (dispositivo.getPrezzoVendita() >= rangeMinimo && dispositivo.getPrezzoVendita() <= rangeMassimo) {
                     dispositiviTrovati.add(dispositivo);
                 }

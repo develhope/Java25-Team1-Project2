@@ -3,28 +3,27 @@ import java.util.List;
 import java.util.UUID;
 
 class Magazzino {
-    // TODO rifattorizzare nome con lista prodotti
-    private List<Prodotto> magazzino;
+    private List<Prodotto> listaProdottiMagazzino;
 
     public Magazzino() {
-        this.magazzino = new ArrayList<>();
+        this.listaProdottiMagazzino = new ArrayList<>();
     }
 
-    public List<Prodotto> getMagazzino() {
-        return magazzino;
+    public List<Prodotto> getListaProdottiMagazzino() {
+        return listaProdottiMagazzino;
     }
 
     public void aggiungiProdotto(Prodotto prodotto) {
-        magazzino.add(prodotto);
+        listaProdottiMagazzino.add(prodotto);
     }
 
     // TODO deve lavorare su oggetto della lista
     public void rimuoviProdotto(UUID id) {
-        magazzino.remove();
+        listaProdottiMagazzino.remove(listaProdottiMagazzino);
     }
 
     public void stampaProdottoPerId(UUID id) {
-        for (Prodotto prodotto : magazzino) {
+        for (Prodotto prodotto : listaProdottiMagazzino) {
             if (prodotto.getId().equals(id)) {
                 System.out.println(prodotto);
             }
@@ -34,5 +33,15 @@ class Magazzino {
 
     // TODO aggiungi metodo stampa prodotti
 
-    // TODO aggiungi metodo stampa duplicati
+    public void stampaProdotti() {
+        System.out.println(listaProdottiMagazzino);
+    }
+
+    // TODO aggiungi metodo stampa duplicati , se trova due prodotti uguali stampa il prodotto una volta sola. Che venga aggiunga il numero di prodotti contenuti nel magazzino
+    /*public void stampaDuplicati(listaProdottiMagazzino) {
+       for(Prodotto prodotto : listaProdottiMagazzino){
+
+        }
+       */
 }
+
