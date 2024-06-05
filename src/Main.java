@@ -8,10 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // TODO rinominare magazzini (es. Esselunga, Coop, Amazon)
-        Magazzino magazzino1 = new Magazzino();
-        Magazzino magazzino2 = new Magazzino();
-        Magazzino magazzino3 = new Magazzino();
+        Magazzino magazzinoEuronics = new Magazzino();
+        Magazzino magazzinoEsselunga = new Magazzino();
+        Magazzino magazzinoArmani = new Magazzino();
 
         Carrello carrello = new Carrello();
 
@@ -39,19 +38,12 @@ public class Main {
                 TipoMemoriaArchiviazioneEnum.SSD, SpazioDiArchiviazioneEnum.SESSANTAQUATTRO, 999.99, 1599.99,
                 UUID.randomUUID());
 
-        magazzino1.aggiungiProdotto(smartphone1);
-        magazzino1.aggiungiProdotto(smartphone2);
-        magazzino2.aggiungiProdotto(notebook1);
-        magazzino2.aggiungiProdotto(notebook2);
-        magazzino3.aggiungiProdotto(tablet1);
-        magazzino3.aggiungiProdotto(tablet2);
-
-        System.out.println("Magazzino 1:");
-        magazzino1.getMagazzino().forEach(System.out::println);
-        System.out.println("Magazzino 2:");
-        magazzino2.getMagazzino().forEach(System.out::println);
-        System.out.println("Magazzino 3:");
-        magazzino3.getMagazzino().forEach(System.out::println);
+        magazzinoEuronics.aggiungiProdotto(smartphone1);
+        magazzinoEuronics.aggiungiProdotto(smartphone2);
+        magazzinoEuronics.aggiungiProdotto(notebook1);
+        magazzinoEuronics.aggiungiProdotto(notebook2);
+        magazzinoEuronics.aggiungiProdotto(tablet1);
+        magazzinoEuronics.aggiungiProdotto(tablet2);
     }
 
 
