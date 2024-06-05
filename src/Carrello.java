@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class Carrello {
     private List<Prodotto> listaProdottiCarrello;
-
+    public Magazzino magazzino = new Magazzino();
     public Carrello() {
         this.listaProdottiCarrello = new ArrayList<>();
     }
@@ -16,7 +16,13 @@ public class Carrello {
     }
 
     public void aggiungiProdottoACarrello(Prodotto prodotto) {
+        // Aggiunta del prodotto al carrello con rimozione dal magazzino.
         listaProdottiCarrello.add(prodotto);
+        magazzino.getListaProdottiMagazzino().remove(prodotto);
+        // Visualizzazione del totale provvisorio del carrello, numero di articoli presenti nel carrello e la visualizzazione della lista completa del carrello.
+        System.out.println("Totale provvisorio carrello: " + calcolaTotaleCarrello());
+        System.out.println("Prodotti nel carrello: " + listaProdottiCarrello.size());
+        System.out.println(listaProdottiCarrello);
     }
 
     public double calcolaTotaleCarrello() {
@@ -31,18 +37,9 @@ public class Carrello {
         // Implementazione del metodo per finalizzare l'acquisto
     }
 
-    public void  trovaProdottoPerIdCarrello(UUID id) {
-        for (Prodotto prodotto : listaProdottiCarrello) {
-            if (prodotto.getId().equals(id)) {
-                System.out.println(prodotto);
-            }
-        }
-        System.out.println(" nessun prodotto trovato.");
-
-    }
-
-    public void rimuoviProdottoDalCarrello(UUID id) {
-        listaProdottiCarrello.removeIf(p -> p.getId().equals(id));
+    public void rimuoviProdottoDalCarrello(Prodotto prodotto) {
+        listaProdottiCarrello.remove(prodotto);
+        magazzino.getListaProdottiMagazzino().add(prodotto);
     }
 
     public void visualizzaCarrello() {
