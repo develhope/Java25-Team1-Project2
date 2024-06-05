@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-// TODO aggiungi nome, quantità e con add di prodotto va aggiornata quantità e prezzo
-
 public class Carrello {
     private List<Prodotto> listaProdottiCarrello;
     public Magazzino magazzino = new Magazzino();
@@ -33,6 +31,7 @@ public class Carrello {
         return totale;
     }
 
+    // TODO completare metodo finalizzaAcquistoCarrello
     public void finalizzaAcquistoCarrello() {
         // Implementazione del metodo per finalizzare l'acquisto
     }
