@@ -23,16 +23,16 @@ class Magazzino {
         magazzino.remove();
     }
 
-    // TODO metodo non può restituire null - diventa void e stampa direttamente oggetto
-    public void Prodotto stampaProdottoPerId(UUID id) {
+    public void stampaProdottoPerId(UUID id) {
         for (Prodotto prodotto : magazzino) {
             if (prodotto.getId().equals(id)) {
-                return prodotto;
+                System.out.println(prodotto);
             }
         }
-        return null;
+        System.out.println(" Prodotto non trovato.");
     }
 
     // TODO aggiungi metodo stampa prodotti
+
     // TODO aggiungi metodo stampa duplicati
 }

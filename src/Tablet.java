@@ -9,95 +9,84 @@ public class Tablet extends Prodotto{
     private TipoMemoriaArchiviazioneEnum tipoMemoria;
     private SpazioDiArchiviazioneEnum dimensioneArchiviazione;
     private Double prezzoAcquisto;
-    private Double prezzoVendita;
-    private UUID id;
 
-    public Tablet(TipoDispositivoEnum tipoDispositivo, String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria, SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto, Double prezzoVendita, UUID id) {
-        super(tipoDispositivo, produttore, modello, dimensioneDisplay, tipoMemoria, dimensioneArchiviazione, prezzoAcquisto, prezzoVendita, id);
+
+    public Tablet(UUID id, TipologiaProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita,
+                      TipoDispositivoEnum tipoDispositivo, String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
+                      SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto) {
+        super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
+        this.tipoDispositivo = tipoDispositivo;
+        this.produttore = produttore;
+        this.modello = modello;
+        this.dimensioneDisplay = dimensioneDisplay;
+        this.tipoMemoria = tipoMemoria;
+        this.dimensioneArchiviazione = dimensioneArchiviazione;
+        this.prezzoAcquisto = prezzoAcquisto;
     }
 
-    @Override
     public TipoDispositivoEnum getTipoDispositivo() {
         return tipoDispositivo;
-    }
-
-    @Override
-    public String getProduttore() {
-        return produttore;
-    }
-
-    @Override
-    public String getModello() {
-        return modello;
-    }
-
-    @Override
-    public Double getDimensioneDisplay() {
-        return dimensioneDisplay;
-    }
-
-    @Override
-    public TipoMemoriaArchiviazioneEnum getTipoMemoria() {
-        return tipoMemoria;
-    }
-
-    @Override
-    public SpazioDiArchiviazioneEnum getDimensioneArchiviazione() {
-        return dimensioneArchiviazione;
-    }
-
-    @Override
-    public Double getPrezzoAcquisto() {
-        return prezzoAcquisto;
-    }
-
-    @Override
-    public Double getPrezzoVendita() {
-        return prezzoVendita;
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
     }
 
     public void setTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
         this.tipoDispositivo = tipoDispositivo;
     }
 
+    public String getProduttore() {
+        return produttore;
+    }
+
     public void setProduttore(String produttore) {
         this.produttore = produttore;
+    }
+
+    public String getModello() {
+        return modello;
     }
 
     public void setModello(String modello) {
         this.modello = modello;
     }
 
+    public Double getDimensioneDisplay() {
+        return dimensioneDisplay;
+    }
+
     public void setDimensioneDisplay(Double dimensioneDisplay) {
         this.dimensioneDisplay = dimensioneDisplay;
+    }
+
+    public TipoMemoriaArchiviazioneEnum getTipoMemoria() {
+        return tipoMemoria;
     }
 
     public void setTipoMemoria(TipoMemoriaArchiviazioneEnum tipoMemoria) {
         this.tipoMemoria = tipoMemoria;
     }
 
+    public SpazioDiArchiviazioneEnum getDimensioneArchiviazione() {
+        return dimensioneArchiviazione;
+    }
+
     public void setDimensioneArchiviazione(SpazioDiArchiviazioneEnum dimensioneArchiviazione) {
         this.dimensioneArchiviazione = dimensioneArchiviazione;
+    }
+
+    public Double getPrezzoAcquisto() {
+        return prezzoAcquisto;
     }
 
     public void setPrezzoAcquisto(Double prezzoAcquisto) {
         this.prezzoAcquisto = prezzoAcquisto;
     }
 
-    public void setPrezzoVendita(Double prezzoVendita) {
-        this.prezzoVendita = prezzoVendita;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public Prodotto tabletBiuld(){
-        return new Prodotto(tipoDispositivo,produttore,modello,dimensioneDisplay,tipoMemoria,dimensioneArchiviazione,prezzoAcquisto,prezzoVendita,id);
+    @Override
+    public void stampaDettagliProdotto() {
+        super.stampaDettagliProdotto();
+        System.out.println("Tipo Dispositivo: " + TipoDispositivoEnum.TABLET + ", Produttore: " + produttore +
+                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + ", Tipo di memoria: "
+                + TipoMemoriaArchiviazioneEnum.NVMe + ", Dimensione: " + dimensioneArchiviazione +
+                ", Prezzo acquisto: " + prezzoAcquisto);
     }
 }
+

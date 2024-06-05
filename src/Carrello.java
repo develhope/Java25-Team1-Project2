@@ -31,14 +31,14 @@ public class Carrello {
         // Implementazione del metodo per finalizzare l'acquisto
     }
 
-    // TODO metodo non può tornare null
-    public Prodotto trovaProdottoPerIdCarrello(UUID id) {
+    public void  trovaProdottoPerIdCarrello(UUID id) {
         for (Prodotto prodotto : prodotti) {
             if (prodotto.getId().equals(id)) {
-                return prodotto;
+                System.out.println(prodotto);
             }
         }
-        return null;
+        System.out.println(" nessun prodotto trovato.");
+
     }
 
     public void rimuoviProdottoDalCarrello(UUID id) {
