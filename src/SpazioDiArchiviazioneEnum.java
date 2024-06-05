@@ -24,14 +24,5 @@ public enum SpazioDiArchiviazioneEnum {
     public int getValue() {
         return valore;
     }
-
-    // TODO risistemare con getValue
-    public static SpazioDiArchiviazioneEnum fromInt(Integer valore) {
-        for (SpazioDiArchiviazioneEnum numero : values()) {
-            if (numero.getValue() == valore) {
-                return numero;
-            }
-        }
-        throw new IllegalArgumentException("Nessun enum con questo valore: " + valore);
-    }
 }
+
