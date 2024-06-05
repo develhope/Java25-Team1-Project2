@@ -15,15 +15,17 @@ public enum SpazioDiArchiviazioneEnum {
     CINQUEMILA(5000);
 
 
+    private final Integer valore;
 
-private final Integer valore;
-SpazioDiArchiviazioneEnum(Integer valore){
-    this.valore = valore;
-}
+    SpazioDiArchiviazioneEnum(Integer valore) {
+        this.valore = valore;
+    }
+
     public int getValue() {
         return valore;
     }
 
+    // TODO risistemare con getValue
     public static SpazioDiArchiviazioneEnum fromInt(Integer valore) {
         for (SpazioDiArchiviazioneEnum numero : values()) {
             if (numero.getValue() == valore) {

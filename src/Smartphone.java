@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-public class Smartphone extends  Prodotto{
+public class Smartphone extends Prodotto{
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
     private String modello;

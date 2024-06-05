@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // TODO rinominare magazzini (es. Esselunga, Coop, Amazon)
         Magazzino magazzino1 = new Magazzino();
         Magazzino magazzino2 = new Magazzino();
         Magazzino magazzino3 = new Magazzino();
@@ -54,6 +55,7 @@ public class Main {
     }
 
 
+    // TODO togliere le lambda function (stream) e usare il for each
     // Metodo generico per la ricerca di dispositivi
     public static ArrayList<Prodotto> cercaDispositivi(Magazzino magazzino, Predicate<Prodotto> condition, String message) {
         List<Prodotto> dispositiviRicercati = magazzino.getMagazzino().stream()

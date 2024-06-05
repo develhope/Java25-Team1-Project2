@@ -1,5 +1,5 @@
 import java.util.UUID;
-//TODO AGGIUNGERE DASCRIZIONE
+//TODO AGGIUNGERE nome, prezzo e DESCRIZIONE, pulire la classe prodotto
 public class Prodotto {
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
@@ -12,6 +12,7 @@ public class Prodotto {
     private UUID id;
 
 
+    // TODO usare ereditarietà per prodotto base, eliminare i campi non utili
     public Prodotto(TipoDispositivoEnum tipoDispositivo, String produttore, String modello, Double dimensioneDisplay,
                     TipoMemoriaArchiviazioneEnum tipoMemoria, SpazioDiArchiviazioneEnum dimensioneArchiviazione,
                     Double prezzoAcquisto, Double prezzoVendita, UUID id) {
@@ -99,19 +100,6 @@ public class Prodotto {
         return id;
     }
 
+    // TODO aggiungere metodo stampa dettagli
 
-    @Override
-    public String toString() {
-        return "Prodotto{ " +
-                "tipoDispositivo=" + tipoDispositivo +
-                ", produttore='" + produttore + '\'' +
-                ", modello='" + modello + '\'' +
-                ", dimensioneDisplay=" + dimensioneDisplay +
-                ", tipoMemoria=" + tipoMemoria +
-                ", dimensioneArchiviazione=" + dimensioneArchiviazione +
-                ", prezzoAcquisto=" + prezzoAcquisto +
-                ", prezzoVendita=" + prezzoVendita +
-                ", id=" + id +
-                '}';
-    }
 }

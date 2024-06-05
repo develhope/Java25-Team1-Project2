@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.UUID;
 
 class Magazzino {
+    // TODO rifattorizzare nome con lista prodotti
     private List<Prodotto> magazzino;
 
     public Magazzino() {
@@ -17,11 +18,13 @@ class Magazzino {
         magazzino.add(prodotto);
     }
 
+    // TODO deve lavorare su oggetto della lista
     public void rimuoviProdotto(UUID id) {
-        magazzino.removeIf(p -> p.getId().equals(id));
+        magazzino.remove();
     }
 
-    public Prodotto trovaProdottoPerId(UUID id) {
+    // TODO metodo non può restituire null - diventa void e stampa direttamente oggetto
+    public void Prodotto stampaProdottoPerId(UUID id) {
         for (Prodotto prodotto : magazzino) {
             if (prodotto.getId().equals(id)) {
                 return prodotto;
@@ -29,4 +32,7 @@ class Magazzino {
         }
         return null;
     }
+
+    // TODO aggiungi metodo stampa prodotti
+    // TODO aggiungi metodo stampa duplicati
 }

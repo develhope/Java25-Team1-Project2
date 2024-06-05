@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-class Carrello {
+// TODO aggiungi nome, quantità e con add di prodotto va aggiornata quantità e prezzo
+
+public class Carrello {
     private List<Prodotto> prodotti;
 
     public Carrello() {
@@ -29,6 +31,7 @@ class Carrello {
         // Implementazione del metodo per finalizzare l'acquisto
     }
 
+    // TODO metodo non può tornare null
     public Prodotto trovaProdottoPerIdCarrello(UUID id) {
         for (Prodotto prodotto : prodotti) {
             if (prodotto.getId().equals(id)) {
