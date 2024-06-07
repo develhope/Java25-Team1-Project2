@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 class Magazzino {
     private List<Prodotto> listaProdottiMagazzino;
@@ -34,14 +32,23 @@ class Magazzino {
     // TODO aggiungi metodo stampa prodotti
 
     public void stampaProdotti() {
-        System.out.println(listaProdottiMagazzino);
+        for (Prodotto prodotto : listaProdottiMagazzino) {
+            System.out.println(prodotto);
+        }
     }
 
     // TODO aggiungi metodo stampa duplicati , se trova due prodotti uguali stampa il prodotto una volta sola. Che venga aggiunga il numero di prodotti contenuti nel magazzino
-    /*public void stampaDuplicati(listaProdottiMagazzino) {
-       for(Prodotto prodotto : listaProdottiMagazzino){
-
+    public void stampaDuplicati() {
+        Map<Prodotto, Integer> prodottoCount = new HashMap<>();
+        for (Prodotto prodotto : listaProdottiMagazzino) {
+            prodottoCount.put(prodotto, prodottoCount.getOrDefault(prodotto, 0) + 1);
         }
-       */
+
+        for (Map.Entry<Prodotto, Integer> entry : prodottoCount.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry.getKey() + " - Quantità: " + entry.getValue());
+            }
+        }
+    }
 }
 
