@@ -11,9 +11,9 @@ public class Tablet extends Prodotto{
     private Double prezzoAcquisto;
 
 
-    public Tablet(UUID id, TipologiaProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita,
-                      TipoDispositivoEnum tipoDispositivo, String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
-                      SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto) {
+    public Tablet(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita,
+                  String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
+                  SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto) {
         super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
         this.tipoDispositivo = tipoDispositivo;
         this.produttore = produttore;

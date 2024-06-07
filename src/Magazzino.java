@@ -50,5 +50,101 @@ class Magazzino {
             }
         }
     }
+    public List<Prodotto> cercaDispositiviPerTipo(TipoDispositivoEnum tipoDispositivo) {
+        List<Prodotto> dispositiviTrovati = new ArrayList<>();
+        for (Prodotto prodotto : listaProdottiMagazzino) {
+            if (prodotto.getTipoDispositivo() == tipoDispositivo) {
+                dispositiviTrovati.add(prodotto);
+            }
+        }
+        return dispositiviTrovati;
+    }
+
+    public List<Prodotto> cercaDispositiviPerProduttore(String produttore) {
+        List<Prodotto> dispositiviTrovati = new ArrayList<>();
+        for (Prodotto prodotto : listaProdottiMagazzino) {
+            if (prodotto.getTipoDispositivo().equalsIgnoreCase(produttore)) {
+                dispositiviTrovati.add(prodotto);
+            }
+        }
+        return dispositiviTrovati;
+    }
+
+    public List<Prodotto> cercaDispositiviPerModello(String modello) {
+        List<Prodotto> dispositiviTrovati = new ArrayList<>();
+        for (Prodotto prodotto : listaProdottiMagazzino) {
+            if (prodotto.getModello().toLowerCase().contains(modello.toLowerCase())) {
+                dispositiviTrovati.add(prodotto);
+            }
+        }
+        return dispositiviTrovati;
+    }
+
+        public List<Prodotto> cercaDispositiviPerPrezzoAcquisto(Double prezzo) {
+        List<Prodotto> dispositiviTrovati = new ArrayList<>();
+        double rangeMinimo = prezzo - 150;
+        double rangeMassimo = prezzo + 150;
+        for (Prodotto prodotto : listaProdottiMagazzino) {
+            if (prodotto.getPrezzoAcquisto() >= rangeMinimo && prodotto.getPrezzoAcquisto() <= rangeMassimo) {
+                dispositiviTrovati.add(prodotto);
+            }
+        }
+        return dispositiviTrovati;
+    }
+
+    public List<Prodotto> cercaDispositiviPerPrezzoVendita(Double prezzo) {
+        List<Prodotto> dispositiviTrovati = new ArrayList<>();
+        double rangeMinimo = prezzo - 150;
+        double rangeMassimo = prezzo + 150;
+        for (Prodotto prodotto : listaProdottiMagazzino) {
+            if (prodotto.getPrezzoVendita() >= rangeMinimo && prodotto.getPrezzoVendita() <= rangeMassimo) {
+                dispositiviTrovati.add(prodotto);
+            }
+        }
+        return dispositiviTrovati;
+    }
+
+    public void ricercaPerPrezzoAcquisto(Double inputPrezzo) {
+        try {
+            inputPrezzo = inputPrezzo.replace(",", ".");
+            BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
+
+            double prezzoAcquistoDouble = prezzoAcquisto.doubleValue();
+            List<Prodotto> dispositiviTrovati = cercaDispositiviPerPrezzoAcquisto(prezzoAcquistoDouble);
+
+            if (dispositiviTrovati.isEmpty()) {
+                System.out.println("Nessun dispositivo trovato con un prezzo di acquisto entro " + (prezzoAcquistoDouble - 150) + " e " + (prezzoAcquistoDouble + 150) + " €.");
+            } else {
+                for (Prodotto dispositivo : dispositiviTrovati) {
+                    System.out.println(dispositivo);
+                }
+            }
+        } catch (NumberFormatException | ArithmeticException e) {
+            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+        }
+    }
+    //TODO Correggere metodo commentato sotto
+    // Metodo che cerca e stampa i dispositivi presenti in un determinato Range di prezzo
+
+    public void ricercaPerPrezzoVendita(Double inputPrezzo) {
+        try {
+            inputPrezzo = inputPrezzo.replace(",", ".");
+            BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
+
+            double prezzoVenditaDouble = prezzoVendita.doubleValue();
+            List<Prodotto> dispositiviTrovati = cercaDispositiviPerPrezzoVendita(prezzoVenditaDouble);
+
+            if (dispositiviTrovati.isEmpty()) {
+                System.out.println("Nessun dispositivo trovato con un prezzo di vendita entro " + (prezzoVenditaDouble - 150) + " e " + (prezzoVenditaDouble + 150) + " €.");
+            } else {
+                for (Prodotto dispositivo : dispositiviTrovati) {
+                    System.out.println(dispositivo);
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+        }
+    }
 }
+
 
