@@ -16,21 +16,9 @@ class Magazzino {
         listaProdottiMagazzino.add(prodotto);
     }
 
-    // TODO deve lavorare su oggetto della lista
-    public void rimuoviProdotto(UUID id) {
-        listaProdottiMagazzino.remove(listaProdottiMagazzino);
+    public void rimuoviProdotto(Prodotto prodotto) {
+        listaProdottiMagazzino.remove(prodotto);
     }
-
-    public void stampaProdottoPerId(UUID id) {
-        for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto.getId().equals(id)) {
-                System.out.println(prodotto);
-            }
-        }
-        System.out.println(" Prodotto non trovato.");
-    }
-
-    // TODO aggiungi metodo stampa prodotti
 
     public void stampaProdotti() {
         for (Prodotto prodotto : listaProdottiMagazzino) {
@@ -38,13 +26,12 @@ class Magazzino {
         }
     }
 
-    // TODO aggiungi metodo stampa duplicati , se trova due prodotti uguali stampa il prodotto una volta sola. Che venga aggiunga il numero di prodotti contenuti nel magazzino
+
     public void stampaDuplicati() {
         Map<Prodotto, Integer> prodottoCount = new HashMap<>();
         for (Prodotto prodotto : listaProdottiMagazzino) {
             prodottoCount.put(prodotto, prodottoCount.getOrDefault(prodotto, 0) + 1);
         }
-
         for (Map.Entry<Prodotto, Integer> entry : prodottoCount.entrySet()) {
             if (entry.getValue() > 1) {
                 System.out.println(entry.getKey() + " - Quantità: " + entry.getValue());
@@ -52,47 +39,72 @@ class Magazzino {
         }
     }
 
-    public List<Prodotto> cercaDispositiviPerTipoProdotto(TipologiaProdottoEnum tipoDispositivo) {
+    public List<Prodotto> cercaPerTipoProdotto(TipologiaProdottoEnum tipoProdotto) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
         for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto.getTipologiaProdotto() == tipoDispositivo) {
+            if (prodotto.getTipologiaProdotto() == tipoProdotto) {
                 dispositiviTrovati.add(prodotto);
             }
         }
         return dispositiviTrovati;
     }
-
-    public List<Prodotto> cercaDispositiviPerProduttore(String produttore) {
+    //Metodo di ricerca per i prodotti Elettronici
+    public List<Prodotto> cercaPerTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
+        // Creazione di una lista vuota per memorizzare i dispositivi trovati
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
+
+        // Ciclo attraverso tutti i prodotti nella lista del magazzino
         for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto.getTipoDispositivo().equalsIgnoreCase(produttore)) {
+
+            // Controlla se il prodotto è un'istanza di Smartphone e se il suo tipo di dispositivo corrisponde a quello specificato
+            if (prodotto instanceof Smartphone && ((Smartphone) prodotto).getTipoDispositivo() == tipoDispositivo) {
+                // Aggiungi il prodotto alla lista dei dispositivi trovati
+                dispositiviTrovati.add(prodotto);
+
+            } else if (prodotto instanceof Tablet && ((Tablet) prodotto).getTipoDispositivo() == tipoDispositivo) {
+                dispositiviTrovati.add(prodotto);
+
+            } else if (prodotto instanceof Notebook && ((Notebook) prodotto).getTipoDispositivo() == tipoDispositivo) {
                 dispositiviTrovati.add(prodotto);
             }
         }
+
+        // Restituisce la lista dei dispositivi trovati
         return dispositiviTrovati;
     }
 
     public List<Prodotto> cercaDispositiviPerModello(String modello) {
+
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
+
         for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto.getModello().toLowerCase().contains(modello.toLowerCase())) {
+
+            // Controlla se il prodotto è un'istanza di Smartphone e se il suo tipo di dispositivo corrisponde a quello specificato
+            if (prodotto instanceof Smartphone && Objects.equals(((Smartphone) prodotto).getModello(), modello)) {
+                // Aggiungi il prodotto alla lista dei dispositivi trovati
+                dispositiviTrovati.add(prodotto);
+
+            } else if (prodotto instanceof Tablet && Objects.equals(((Tablet) prodotto).getModello(), modello)){
+                dispositiviTrovati.add(prodotto);
+
+            } else if (prodotto instanceof Notebook && Objects.equals(((Notebook) prodotto).getModello(), modello)) {
                 dispositiviTrovati.add(prodotto);
             }
         }
         return dispositiviTrovati;
     }
 
-    public List<Prodotto> cercaDispositiviPerPrezzoAcquisto(Double prezzo) {
-        List<Prodotto> dispositiviTrovati = new ArrayList<>();
-        double rangeMinimo = prezzo - 150;
-        double rangeMassimo = prezzo + 150;
-        for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto.getPrezzoAcquisto() >= rangeMinimo && prodotto.getPrezzoAcquisto() <= rangeMassimo) {
-                dispositiviTrovati.add(prodotto);
-            }
-        }
-        return dispositiviTrovati;
-    }
+//    public List<Prodotto> cercaDispositiviPerPrezzoAcquisto(Double prezzo) {
+//        List<Prodotto> dispositiviTrovati = new ArrayList<>();
+//        double rangeMinimo = prezzo - 150;
+//        double rangeMassimo = prezzo + 150;
+//        for (Prodotto prodotto : listaProdottiMagazzino) {
+//            if (prodotto.getPrezzoAcquisto() >= rangeMinimo && prodotto.getPrezzoAcquisto() <= rangeMassimo) {
+//                dispositiviTrovati.add(prodotto);
+//            }
+//        }
+//        return dispositiviTrovati;
+//    }
 
     public List<Prodotto> cercaDispositiviPerPrezzoVendita(Double prezzo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
@@ -106,31 +118,27 @@ class Magazzino {
         return dispositiviTrovati;
     }
 
-    public void ricercaPerPrezzoAcquisto(Double inputPrezzo) {
-        try {
-            inputPrezzo = inputPrezzo.replace(",", ".");
-            BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
-
-            double prezzoAcquistoDouble = prezzoAcquisto.doubleValue();
-            List<Prodotto> dispositiviTrovati = cercaDispositiviPerPrezzoAcquisto(prezzoAcquistoDouble);
-
-            if (dispositiviTrovati.isEmpty()) {
-                System.out.println("Nessun dispositivo trovato con un prezzo di acquisto entro " + (prezzoAcquistoDouble - 150) + " e " + (prezzoAcquistoDouble + 150) + " €.");
-            } else {
-                for (Prodotto dispositivo : dispositiviTrovati) {
-                    System.out.println(dispositivo);
-                }
-            }
-        } catch (NumberFormatException | ArithmeticException e) {
-            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
-        }
-    }
-    //TODO Correggere metodo commentato sotto
-    // Metodo che cerca e stampa i dispositivi presenti in un determinato Range di prezzo
+//    public void ricercaPerPrezzoAcquisto(Double inputPrezzo) {
+//        try {
+//            inputPrezzo = inputPrezzo.replace(",", ".");
+//            BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
+//
+//            double prezzoAcquistoDouble = prezzoAcquisto.doubleValue();
+//            List<Prodotto> dispositiviTrovati = cercaDispositiviPerPrezzoAcquisto(prezzoAcquistoDouble);
+//
+//            if (dispositiviTrovati.isEmpty()) {
+//                System.out.println("Nessun dispositivo trovato con un prezzo di acquisto entro " + (prezzoAcquistoDouble - 150) + " e " + (prezzoAcquistoDouble + 150) + " €.");
+//            } else {
+//                for (Prodotto dispositivo : dispositiviTrovati) {
+//                    System.out.println(dispositivo);
+//                }
+//            }
+//        } catch (NumberFormatException | ArithmeticException e) {
+//            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+//        }
 
     public void ricercaPerPrezzoVendita(Double inputPrezzo) {
         try {
-            inputPrezzo = inputPrezzo.replace(",", ".");
             BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
 
             double prezzoVenditaDouble = prezzoVendita.doubleValue();

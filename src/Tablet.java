@@ -10,7 +10,7 @@ public class Tablet extends Prodotto{
     private SpazioDiArchiviazioneEnum dimensioneArchiviazione;
     private Double prezzoAcquisto;
 
-
+    //TODO eliminare le variabili produttore e modello sostituendoli con nomeProdotto
     public Tablet(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita,
                   String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
                   SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto) {
@@ -23,7 +23,6 @@ public class Tablet extends Prodotto{
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
     }
-
     public TipoDispositivoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }

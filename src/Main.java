@@ -28,6 +28,7 @@ public class Main {
 
         Prodotto tablet2 = new Tablet(UUID.randomUUID(),TipologiaProdottoEnum.ELETTRONICA,TipoDispositivoEnum.TABLET,"Samsung Galaxy S8","",599.99,"","",5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe,SpazioDiArchiviazioneEnum.CINQUECENTODODICI,300.00);
+        //TODO aggiungere prodotti alimentari e abbigliamento
 
         magazzinoEuronics.aggiungiProdotto(smartphone1);
         magazzinoEuronics.aggiungiProdotto(smartphone2);
@@ -36,11 +37,12 @@ public class Main {
         magazzinoEuronics.aggiungiProdotto(tablet1);
         magazzinoEuronics.aggiungiProdotto(tablet2);
 
+        magazzinoEuronics.rimuoviProdotto(tablet1);
+
         // Esempio di utilizzo dei metodi di ricerca
-        magazzinoEuronics.cercaDispositiviPerTipoProdotto(TipologiaProdottoEnum.ELETTRONICA);
-        magazzinoEuronics.cercaDispositiviPerProduttore("Samsung");
+        magazzinoEuronics.cercaPerTipoProdotto(TipologiaProdottoEnum.ELETTRONICA);
+        magazzinoEuronics.cercaPerTipoDispositivo(TipoDispositivoEnum.SMARTPHONE);
         magazzinoEuronics.cercaDispositiviPerModello("Galaxy S8");
-        magazzinoEuronics.ricercaPerPrezzoAcquisto(450.00);
         magazzinoEuronics.ricercaPerPrezzoVendita(600.00);
     }
 }
