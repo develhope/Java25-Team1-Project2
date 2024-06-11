@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.*;
 
 class Magazzino {
@@ -50,10 +51,11 @@ class Magazzino {
             }
         }
     }
-    public List<Prodotto> cercaDispositiviPerTipo(TipoDispositivoEnum tipoDispositivo) {
+
+    public List<Prodotto> cercaDispositiviPerTipoProdotto(TipologiaProdottoEnum tipoDispositivo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
         for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto.getTipoDispositivo() == tipoDispositivo) {
+            if (prodotto.getTipologiaProdotto() == tipoDispositivo) {
                 dispositiviTrovati.add(prodotto);
             }
         }
@@ -80,7 +82,7 @@ class Magazzino {
         return dispositiviTrovati;
     }
 
-        public List<Prodotto> cercaDispositiviPerPrezzoAcquisto(Double prezzo) {
+    public List<Prodotto> cercaDispositiviPerPrezzoAcquisto(Double prezzo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
         double rangeMinimo = prezzo - 150;
         double rangeMassimo = prezzo + 150;
