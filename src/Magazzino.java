@@ -48,17 +48,10 @@ class Magazzino {
         }
         return dispositiviTrovati;
     }
-    public List<Prodotto> cercaPerTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
-        List<Prodotto> dispositiviTrovati = new ArrayList<>();
 
-        for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto instanceof Dispositivo && ((Dispositivo) prodotto).getTipoDispositivo() == tipoDispositivo) {
-                dispositiviTrovati.add(prodotto);
-            }
-        }
+    // TODO sistemare il metodo e renderlo generico
+    //Metodo di ricerca per i prodotti Elettronici
 
-        return dispositiviTrovati;
-    }
 
     public List<Prodotto> cercaDispositiviPerModello(String modello) {
 
@@ -71,7 +64,7 @@ class Magazzino {
                 // Aggiungi il prodotto alla lista dei dispositivi trovati
                 dispositiviTrovati.add(prodotto);
 
-            } else if (prodotto instanceof Tablet && Objects.equals(((Tablet) prodotto).getModello(), modello)){
+            //} else if (prodotto instanceof Tablet && Objects.equals(((Tablet) prodotto).getModello(), modello)){
                 dispositiviTrovati.add(prodotto);
 
             } else if (prodotto instanceof Notebook && Objects.equals(((Notebook) prodotto).getModello(), modello)) {
@@ -124,6 +117,7 @@ class Magazzino {
 //            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
 //        }
 
+    // TODO il metodo stampa, far in modo che ritorni un oggetto
     public void ricercaPerPrezzoVendita(Double inputPrezzo) {
         try {
             BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
@@ -142,6 +136,7 @@ class Magazzino {
             System.out.println("Input non valido. Assicurati di inserire un numero valido.");
         }
     }
-}
+    }
+
 
 

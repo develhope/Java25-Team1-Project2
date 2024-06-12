@@ -1,7 +1,7 @@
 public enum TipoDispositivoEnum {
-    SMARTPHONE ("Smartphone"),
-    NOTEBOOK ("Notebook"),
-    TABLET ("Tablet");
+    SMARTPHONE("Smartphone"),
+    NOTEBOOK("Notebook"),
+    TABLET("Tablet");
 
     private String descrizione;
 

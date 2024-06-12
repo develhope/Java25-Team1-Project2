@@ -3,7 +3,8 @@ import java.util.List;
 
 public class Carrello {
     private List<Prodotto> listaProdottiCarrello;
-    public Magazzino magazzino = new Magazzino();
+    //public Magazzino magazzino = new Magazzino();
+
     public Carrello() {
         this.listaProdottiCarrello = new ArrayList<>();
     }

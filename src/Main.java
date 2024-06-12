@@ -11,23 +11,23 @@ public class Main {
 
         Carrello carrello = new Carrello();
 
-        Prodotto smartphone1 = new Smartphone(UUID.randomUUID(),TipologiaProdottoEnum.ELETTRONICA,TipoDispositivoEnum.SMARTPHONE,"Samsung Galaxy S8","",599.99,"","",5.6,
-                                TipoMemoriaArchiviazioneEnum.NVMe,SpazioDiArchiviazioneEnum.CINQUECENTODODICI,300.00);
+        Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+                TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto smartphone2 = new Smartphone(UUID.randomUUID(),TipologiaProdottoEnum.ELETTRONICA,TipoDispositivoEnum.SMARTPHONE,"Samsung Galaxy S8","",599.99,"","",5.6,
-                TipoMemoriaArchiviazioneEnum.NVMe,SpazioDiArchiviazioneEnum.CINQUECENTODODICI,300.00);
+        Prodotto smartphone2 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+                TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto notebook1 = new Notebook(UUID.randomUUID(),TipologiaProdottoEnum.ELETTRONICA,TipoDispositivoEnum.NOTEBOOK,"Samsung Galaxy S8","",599.99,"","",5.6,
-                TipoMemoriaArchiviazioneEnum.NVMe,SpazioDiArchiviazioneEnum.CINQUECENTODODICI,300.00);
+        Prodotto notebook1 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+                TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto notebook2 = new Notebook(UUID.randomUUID(),TipologiaProdottoEnum.ELETTRONICA,TipoDispositivoEnum.NOTEBOOK,"Samsung Galaxy S8","",599.99,"","",5.6,
-                TipoMemoriaArchiviazioneEnum.NVMe,SpazioDiArchiviazioneEnum.CINQUECENTODODICI,300.00);
+        Prodotto notebook2 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+                TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto tablet1 = new Tablet(UUID.randomUUID(),TipologiaProdottoEnum.ELETTRONICA,TipoDispositivoEnum.TABLET,"Samsung Galaxy S8","",599.99,"","",5.6,
-                TipoMemoriaArchiviazioneEnum.NVMe,SpazioDiArchiviazioneEnum.CINQUECENTODODICI,300.00);
+        Prodotto tablet1 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+                TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto tablet2 = new Tablet(UUID.randomUUID(),TipologiaProdottoEnum.ELETTRONICA,TipoDispositivoEnum.TABLET,"Samsung Galaxy S8","",599.99,"","",5.6,
-                TipoMemoriaArchiviazioneEnum.NVMe,SpazioDiArchiviazioneEnum.CINQUECENTODODICI,300.00);
+        Prodotto tablet2 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+                TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
         //TODO aggiungere prodotti alimentari e abbigliamento
 
         magazzinoEuronics.aggiungiProdotto(smartphone1);
@@ -41,7 +41,7 @@ public class Main {
 
         // Esempio di utilizzo dei metodi di ricerca
         magazzinoEuronics.cercaPerTipoProdotto(TipologiaProdottoEnum.ELETTRONICA);
-        magazzinoEuronics.cercaPerTipoDispositivo(TipoDispositivoEnum.SMARTPHONE);
+        //magazzinoEuronics.cercaPerTipoDispositivo(TipoDispositivoEnum.SMARTPHONE);
         magazzinoEuronics.cercaDispositiviPerModello("Galaxy S8");
         magazzinoEuronics.ricercaPerPrezzoVendita(600.00);
 
