@@ -63,6 +63,7 @@ public class Carrello {
         //per refreshare la lista carrello in fase di acquisto.
         listaProdottiCarrello.clear();
         System.out.println("Acquisto confermato. Grazie per il tuo acquisto!");
+        //ciaone
 
     }
 
