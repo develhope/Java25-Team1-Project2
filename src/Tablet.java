@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-public class Tablet extends Prodotto{
+public class Tablet extends Prodotto {
 
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
@@ -23,6 +23,7 @@ public class Tablet extends Prodotto{
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
     }
+
     public TipoDispositivoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }

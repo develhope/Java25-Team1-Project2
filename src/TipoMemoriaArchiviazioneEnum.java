@@ -1,7 +1,7 @@
 public enum TipoMemoriaArchiviazioneEnum {
-    HDD ("HDD"),
-    SSD ("SSD"),
-    NVMe ("NVMe");
+    HDD("HDD"),
+    SSD("SSD"),
+    NVMe("NVMe");
 
     private String descrizione;
 

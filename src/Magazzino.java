@@ -2,6 +2,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 class Magazzino {
+    // TODO sistemare nome magazzino, aggiungere carrello
     private List<Prodotto> listaProdottiMagazzino;
 
     public Magazzino() {
@@ -48,8 +49,10 @@ class Magazzino {
         }
         return dispositiviTrovati;
     }
+
+    // TODO sistemare il metodo e renderlo generico
     //Metodo di ricerca per i prodotti Elettronici
-    public List<Prodotto> cercaPerTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
+    /*public List<Prodotto> cercaPerTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
         // Creazione di una lista vuota per memorizzare i dispositivi trovati
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
 
@@ -57,21 +60,14 @@ class Magazzino {
         for (Prodotto prodotto : listaProdottiMagazzino) {
 
             // Controlla se il prodotto è un'istanza di Smartphone e se il suo tipo di dispositivo corrisponde a quello specificato
-            if (prodotto instanceof Smartphone && ((Smartphone) prodotto).getTipoDispositivo() == tipoDispositivo) {
-                // Aggiungi il prodotto alla lista dei dispositivi trovati
-                dispositiviTrovati.add(prodotto);
-
-            } else if (prodotto instanceof Tablet && ((Tablet) prodotto).getTipoDispositivo() == tipoDispositivo) {
-                dispositiviTrovati.add(prodotto);
-
-            } else if (prodotto instanceof Notebook && ((Notebook) prodotto).getTipoDispositivo() == tipoDispositivo) {
+            if (prodotto.getTipoDispositivo() == tipoDispositivo) {
                 dispositiviTrovati.add(prodotto);
             }
         }
 
         // Restituisce la lista dei dispositivi trovati
         return dispositiviTrovati;
-    }
+    }*/
 
     public List<Prodotto> cercaDispositiviPerModello(String modello) {
 
@@ -84,7 +80,7 @@ class Magazzino {
                 // Aggiungi il prodotto alla lista dei dispositivi trovati
                 dispositiviTrovati.add(prodotto);
 
-            } else if (prodotto instanceof Tablet && Objects.equals(((Tablet) prodotto).getModello(), modello)){
+            } else if (prodotto instanceof Tablet && Objects.equals(((Tablet) prodotto).getModello(), modello)) {
                 dispositiviTrovati.add(prodotto);
 
             } else if (prodotto instanceof Notebook && Objects.equals(((Notebook) prodotto).getModello(), modello)) {
@@ -137,6 +133,7 @@ class Magazzino {
 //            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
 //        }
 
+    // TODO il metodo stampa, far in modo che ritorni un oggetto
     public void ricercaPerPrezzoVendita(Double inputPrezzo) {
         try {
             BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
