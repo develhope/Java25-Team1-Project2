@@ -87,5 +87,23 @@ public class Tablet extends Prodotto{
                 + TipoMemoriaArchiviazioneEnum.NVMe + ", Dimensione: " + dimensioneArchiviazione +
                 ", Prezzo acquisto: " + prezzoAcquisto);
     }
+
+    @Override
+    public String toString() {
+        return "Tablet{" +
+                "id=" + getId() +
+                ", tipologiaProdotto=" + getTipologiaProdotto() +
+                ", nomeProdotto='" + getNomeProdotto() + '\'' +
+                ", descrizioneProdotto='" + getDescrizioneProdotto() + '\'' +
+                ", prezzoVendita=" + getPrezzoVendita() +
+                ", tipoDispositivo=" + tipoDispositivo +
+                ", produttore='" + produttore + '\'' +
+                ", modello='" + modello + '\'' +
+                ", dimensioneDisplay=" + dimensioneDisplay +
+                ", tipoMemoria=" + tipoMemoria +
+                ", dimensioneArchiviazione=" + dimensioneArchiviazione +
+                ", prezzoAcquisto=" + prezzoAcquisto +
+                '}';
+    }
 }
 

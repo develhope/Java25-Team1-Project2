@@ -32,7 +32,31 @@ public class Carrello {
 
     // TODO completare metodo finalizzaAcquistoCarrello
     public void finalizzaAcquistoCarrello() {
-        // Implementazione del metodo per finalizzare l'acquisto
+        // Calcolare il totale dell'acquisto
+        double totaleAcquisto = calcolaTotaleCarrello();
+
+        // Effettuare il pagamento
+        boolean pagamentoEffettuato = effettuaPagamento(totaleAcquisto);
+
+        if (pagamentoEffettuato) {
+            // Se il pagamento è stato effettuato con successo, conferma l'acquisto
+            confermaAcquisto();
+            // Svuota il carrello dopo l'acquisto
+            listaProdottiCarrello.clear();
+        } else {
+            System.out.println("Pagamento non riuscito. Riprovare.");
+        }
+    }
+    private boolean effettuaPagamento(double totaleAcquisto) {
+        //facciamo che il pagamento risulta sempre in ok.
+        return true;
+    }
+
+    public void confermaAcquisto(){
+        //per refreshare la lista carrello in fase di acquisto.
+        listaProdottiCarrello.clear();
+        System.out.println("Acquisto confermato. Grazie per il tuo acquisto!");
+
     }
 
     public void rimuoviProdottoDalCarrello(Prodotto prodotto) {
