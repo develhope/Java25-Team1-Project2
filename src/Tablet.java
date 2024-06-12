@@ -1,7 +1,6 @@
 import java.util.UUID;
 
-public class Tablet extends Prodotto{
-
+public class Tablet extends Prodotto implements Dispositivo {
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
     private String modello;
@@ -22,7 +21,11 @@ public class Tablet extends Prodotto{
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
+        this.setDescrizioneProdotto(descrizioneProdotto + ", Display: " + dimensioneDisplay +
+                "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
+
+    @Override
     public TipoDispositivoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
@@ -82,9 +85,9 @@ public class Tablet extends Prodotto{
     @Override
     public void stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
-        System.out.println("Tipo Dispositivo: " + TipoDispositivoEnum.TABLET + ", Produttore: " + produttore +
-                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + ", Tipo di memoria: "
-                + TipoMemoriaArchiviazioneEnum.NVMe + ", Dimensione: " + dimensioneArchiviazione +
+        System.out.println("Tipo Dispositivo: " + tipoDispositivo + ", Produttore: " + produttore +
+                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + "\", Tipo di memoria: "
+                + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione +
                 ", Prezzo acquisto: " + prezzoAcquisto);
     }
 
@@ -106,4 +109,3 @@ public class Tablet extends Prodotto{
                 '}';
     }
 }
-

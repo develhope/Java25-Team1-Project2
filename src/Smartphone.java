@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-public class Smartphone extends Prodotto {
+public class Smartphone extends Prodotto implements Dispositivo {
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
     private String modello;
@@ -9,9 +9,8 @@ public class Smartphone extends Prodotto {
     private SpazioDiArchiviazioneEnum dimensioneArchiviazione;
     private Double prezzoAcquisto;
 
-
     public Smartphone(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita,
-                       String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
+                      String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
                       SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto) {
         super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
         this.tipoDispositivo = tipoDispositivo;
@@ -21,8 +20,11 @@ public class Smartphone extends Prodotto {
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
+        this.setDescrizioneProdotto(descrizioneProdotto + ", Display: " + dimensioneDisplay +
+                "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
 
+    @Override
     public TipoDispositivoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
@@ -82,9 +84,9 @@ public class Smartphone extends Prodotto {
     @Override
     public void stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
-        System.out.println("Tipo Dispositivo: " + TipoDispositivoEnum.SMARTPHONE + ", Produttore: " + produttore +
-                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + ", Tipo di memoria: "
-                + TipoMemoriaArchiviazioneEnum.NVMe + ", Dimensione: " + dimensioneArchiviazione +
+        System.out.println("Tipo Dispositivo: " + tipoDispositivo + ", Produttore: " + produttore +
+                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + "\", Tipo di memoria: "
+                + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione +
                 ", Prezzo acquisto: " + prezzoAcquisto);
     }
 

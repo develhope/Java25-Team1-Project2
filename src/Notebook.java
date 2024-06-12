@@ -1,7 +1,6 @@
 import java.util.UUID;
 
-public class Notebook extends Prodotto {
-
+public class Notebook extends Prodotto implements Dispositivo {
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
     private String modello;
@@ -9,7 +8,6 @@ public class Notebook extends Prodotto {
     private TipoMemoriaArchiviazioneEnum tipoMemoria;
     private SpazioDiArchiviazioneEnum dimensioneArchiviazione;
     private Double prezzoAcquisto;
-
 
     public Notebook(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita,
                     String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
@@ -22,8 +20,11 @@ public class Notebook extends Prodotto {
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
+        this.setDescrizioneProdotto(descrizioneProdotto + ", Display: " + dimensioneDisplay +
+                "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
 
+    @Override
     public TipoDispositivoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
@@ -83,8 +84,8 @@ public class Notebook extends Prodotto {
     @Override
     public void stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
-        System.out.println("Tipo Dispositivo: " + TipoDispositivoEnum.NOTEBOOK + ", Produttore: " + produttore +
-                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + ", Tipo di memoria: "
+        System.out.println("Tipo Dispositivo: " + tipoDispositivo + ", Produttore: " + produttore +
+                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + "\", Tipo di memoria: "
                 + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione +
                 ", Prezzo acquisto: " + prezzoAcquisto);
     }

@@ -48,28 +48,15 @@ class Magazzino {
         }
         return dispositiviTrovati;
     }
-    //Metodo di ricerca per i prodotti Elettronici
     public List<Prodotto> cercaPerTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
-        // Creazione di una lista vuota per memorizzare i dispositivi trovati
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
 
-        // Ciclo attraverso tutti i prodotti nella lista del magazzino
         for (Prodotto prodotto : listaProdottiMagazzino) {
-
-            // Controlla se il prodotto è un'istanza di Smartphone e se il suo tipo di dispositivo corrisponde a quello specificato
-            if (prodotto instanceof Smartphone && ((Smartphone) prodotto).getTipoDispositivo() == tipoDispositivo) {
-                // Aggiungi il prodotto alla lista dei dispositivi trovati
-                dispositiviTrovati.add(prodotto);
-
-            } else if (prodotto instanceof Tablet && ((Tablet) prodotto).getTipoDispositivo() == tipoDispositivo) {
-                dispositiviTrovati.add(prodotto);
-
-            } else if (prodotto instanceof Notebook && ((Notebook) prodotto).getTipoDispositivo() == tipoDispositivo) {
+            if (prodotto instanceof Dispositivo && ((Dispositivo) prodotto).getTipoDispositivo() == tipoDispositivo) {
                 dispositiviTrovati.add(prodotto);
             }
         }
 
-        // Restituisce la lista dei dispositivi trovati
         return dispositiviTrovati;
     }
 
