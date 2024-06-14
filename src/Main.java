@@ -43,11 +43,11 @@ public class Main {
         magazzinoEuronics.cercaPerTipoProdotto(TipologiaProdottoEnum.ELETTRONICA);
         //magazzinoEuronics.cercaPerTipoDispositivo(TipoDispositivoEnum.SMARTPHONE);
         magazzinoEuronics.cercaDispositiviPerModello("Galaxy S8");
-        magazzinoEuronics.ricercaPerPrezzoVendita(600.00);
 
         //test metodi
 
         carrello.aggiungiProdottoACarrello(smartphone1);
         carrello.finalizzaAcquistoCarrello();
+        magazzinoEuronics.ricercaPerPrezzoVendita(500.00);
     }
 }
