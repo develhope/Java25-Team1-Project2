@@ -1,7 +1,6 @@
-import java.math.BigDecimal;
 import java.util.*;
 
-class Magazzino {
+class Magazzino{
     private List<Prodotto> listaProdottiMagazzino;
 
     public Magazzino() {
@@ -64,7 +63,7 @@ class Magazzino {
                 // Aggiungi il prodotto alla lista dei dispositivi trovati
                 dispositiviTrovati.add(prodotto);
 
-            //} else if (prodotto instanceof Tablet && Objects.equals(((Tablet) prodotto).getModello(), modello)){
+                //} else if (prodotto instanceof Tablet && Objects.equals(((Tablet) prodotto).getModello(), modello)){
                 dispositiviTrovati.add(prodotto);
 
             } else if (prodotto instanceof Notebook && Objects.equals(((Notebook) prodotto).getModello(), modello)) {
@@ -74,69 +73,41 @@ class Magazzino {
         return dispositiviTrovati;
     }
 
-//    public List<Prodotto> cercaDispositiviPerPrezzoAcquisto(Double prezzo) {
-//        List<Prodotto> dispositiviTrovati = new ArrayList<>();
-//        double rangeMinimo = prezzo - 150;
-//        double rangeMassimo = prezzo + 150;
-//        for (Prodotto prodotto : listaProdottiMagazzino) {
-//            if (prodotto.getPrezzoAcquisto() >= rangeMinimo && prodotto.getPrezzoAcquisto() <= rangeMassimo) {
-//                dispositiviTrovati.add(prodotto);
-//            }
-//        }
-//        return dispositiviTrovati;
-//    }
-
-    public List<Prodotto> cercaDispositiviPerPrezzoVendita(Double prezzo) {
+    public List<Prodotto> ricercaPerPrezzoVendita(Double inputPrezzo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
-        double rangeMinimo = prezzo - 150;
-        double rangeMassimo = prezzo + 150;
-        for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto.getPrezzoVendita() >= rangeMinimo && prodotto.getPrezzoVendita() <= rangeMassimo) {
-                dispositiviTrovati.add(prodotto);
-            }
-        }
-        return dispositiviTrovati;
-    }
 
-//    public void ricercaPerPrezzoAcquisto(Double inputPrezzo) {
-//        try {
-//            inputPrezzo = inputPrezzo.replace(",", ".");
-//            BigDecimal prezzoAcquisto = new BigDecimal(inputPrezzo);
-//
-//            double prezzoAcquistoDouble = prezzoAcquisto.doubleValue();
-//            List<Prodotto> dispositiviTrovati = cercaDispositiviPerPrezzoAcquisto(prezzoAcquistoDouble);
-//
-//            if (dispositiviTrovati.isEmpty()) {
-//                System.out.println("Nessun dispositivo trovato con un prezzo di acquisto entro " + (prezzoAcquistoDouble - 150) + " e " + (prezzoAcquistoDouble + 150) + " €.");
-//            } else {
-//                for (Prodotto dispositivo : dispositiviTrovati) {
-//                    System.out.println(dispositivo);
-//                }
-//            }
-//        } catch (NumberFormatException | ArithmeticException e) {
-//            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
-//        }
-
-    // TODO il metodo stampa, far in modo che ritorni un oggetto
-    public void ricercaPerPrezzoVendita(Double inputPrezzo) {
         try {
-            BigDecimal prezzoVendita = new BigDecimal(inputPrezzo);
+            if (inputPrezzo == null) {
+                throw new IllegalArgumentException("Prezzo di input non può essere nullo.");
+            }
 
-            double prezzoVenditaDouble = prezzoVendita.doubleValue();
-            List<Prodotto> dispositiviTrovati = cercaDispositiviPerPrezzoVendita(prezzoVenditaDouble);
+            double rangeMinimo = inputPrezzo - 150;
+            double rangeMassimo = inputPrezzo + 150;
+
+            if (rangeMinimo < 0 || rangeMassimo < 0) {
+                throw new IllegalArgumentException("Il prezzo di input crea un intervallo di prezzo non valido.");
+            }
+
+            for (Prodotto prodotto : listaProdottiMagazzino) {
+                if (prodotto.getPrezzoVendita() >= rangeMinimo && prodotto.getPrezzoVendita() <= rangeMassimo) {
+                    dispositiviTrovati.add(prodotto);
+                }
+            }
 
             if (dispositiviTrovati.isEmpty()) {
-                System.out.println("Nessun dispositivo trovato con un prezzo di vendita entro " + (prezzoVenditaDouble - 150) + " e " + (prezzoVenditaDouble + 150) + " €.");
+                throw new IllegalStateException("Nessun dispositivo trovato con un prezzo di vendita entro " + rangeMinimo + " e " + rangeMassimo + " €.");
             } else {
                 for (Prodotto dispositivo : dispositiviTrovati) {
                     System.out.println(dispositivo);
                 }
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Input non valido. Assicurati di inserire un numero valido.");
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println("Errore: " + e.getMessage());
         }
+
+        return dispositiviTrovati;
     }
-    }
+}
 
 
 

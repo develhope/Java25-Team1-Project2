@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-public class Tablet extends Prodotto{
+public class Tablet extends Prodotto {
 
     private TipoDispositivoEnum tipoDispositivo;
     private String produttore;
@@ -25,6 +25,7 @@ public class Tablet extends Prodotto{
         this.setDescrizioneProdotto(descrizioneProdotto + ", Display: " + dimensioneDisplay +
                 "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
+
     public TipoDispositivoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
@@ -89,11 +90,9 @@ public class Tablet extends Prodotto{
                 + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione +
                 ", Prezzo acquisto: " + prezzoAcquisto);
     }
-}
 
-
-   /* @Override
-  public String toString() {
+    @Override
+    public String toString() {
         return "Tablet{" +
                 "id=" + getId() +
                 ", tipologiaProdotto=" + getTipologiaProdotto() +
@@ -108,4 +107,9 @@ public class Tablet extends Prodotto{
                 ", dimensioneArchiviazione=" + dimensioneArchiviazione +
                 ", prezzoAcquisto=" + prezzoAcquisto +
                 '}';
-    }*/
+    }
+}
+
+
+
+

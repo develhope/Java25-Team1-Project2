@@ -59,4 +59,11 @@ public class Prodotto {
     public void stampaDettagliProdotto() {
         System.out.println("ID prodotto: " + id + ", Tipologia prodotto: " + tipologiaProdotto + ", Nome: " + nomeProdotto + ", Descrizione prodotto: " + descrizioneProdotto + ", Prezzo vendita: " + prezzoVendita);
     }
+
+    @Override
+    public String toString() {
+        return "Prodotto: " +
+                "nome=" + nomeProdotto +
+        ", prezzoVendita= " + prezzoVendita + "€";
+    }
 }
