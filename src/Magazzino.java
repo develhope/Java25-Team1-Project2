@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Magazzino {
+class Magazzino{
     private List<Prodotto> listaProdottiMagazzino;
 
     public Magazzino() {

@@ -11,6 +11,7 @@ public class Main {
 
         Carrello carrello = new Carrello();
 
+        // Prodotti ELETTRONICA
         Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
@@ -28,7 +29,6 @@ public class Main {
 
         Prodotto tablet2 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
-        //TODO aggiungere prodotti alimentari e abbigliamento
 
         magazzinoEuronics.aggiungiProdotto(smartphone1);
         magazzinoEuronics.aggiungiProdotto(smartphone2);
@@ -39,8 +39,24 @@ public class Main {
 
         magazzinoEuronics.rimuoviProdotto(tablet1);
 
+        // Prodotti Alimentari
+        Prodotto cereali = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Cereali Kellogs", "", 3.99);
+        Prodotto cocaCola = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Coca-Cola", "", 1.70);
+        Prodotto fanta = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Fanta", "", 1.60);
+        Prodotto patatine = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", 1.20);
+        Prodotto gelato = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Maxi-Bon", "", 1.50);
+
+        magazzinoEsselunga.aggiungiProdotto(cereali);
+        magazzinoEsselunga.aggiungiProdotto(cocaCola);
+        magazzinoEsselunga.aggiungiProdotto(fanta);
+        magazzinoEsselunga.aggiungiProdotto(patatine);
+        magazzinoEsselunga.aggiungiProdotto(gelato);
+
+        //
+        //TODO aggiungere prodotti alimentari e abbigliamento
         // Esempio di utilizzo dei metodi di ricerca
-        magazzinoEuronics.cercaPerTipoProdotto(TipologiaProdottoEnum.ELETTRONICA);
+
+        /*magazzinoEuronics.cercaPerTipoProdotto(TipologiaProdottoEnum.ELETTRONICA);
         //magazzinoEuronics.cercaPerTipoDispositivo(TipoDispositivoEnum.SMARTPHONE);
         magazzinoEuronics.cercaDispositiviPerModello("Galaxy S8");
 
@@ -48,6 +64,11 @@ public class Main {
 
         carrello.aggiungiProdottoACarrello(smartphone1);
         carrello.finalizzaAcquistoCarrello();
+
         magazzinoEuronics.ricercaPerPrezzoVendita(500.00);
+
+         */
+        magazzinoEsselunga.stampaProdotti();
+
     }
 }
