@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Carrello {
     private List<Prodotto> listaProdottiCarrello;
-    public Magazzino magazzino = new Magazzino();
 
     public Carrello() {
         this.listaProdottiCarrello = new ArrayList<>();
@@ -13,48 +12,39 @@ public class Carrello {
         return listaProdottiCarrello;
     }
 
-    public void aggiungiProdottoACarrello(Prodotto prodotto) {
-        // Aggiunta del prodotto al carrello con rimozione dal magazzino.
+    public void aggiungiProdotto(Prodotto prodotto) {
         listaProdottiCarrello.add(prodotto);
-        magazzino.getListaProdottiMagazzino().remove(prodotto);
-        // Visualizzazione del totale provvisorio del carrello, numero di articoli presenti nel carrello e la visualizzazione della lista completa del carrello.
-        System.out.println("Totale provvisorio carrello: " + calcolaTotaleCarrello());
-        System.out.println("Prodotti nel carrello: " + listaProdottiCarrello.size());
-        System.out.println(listaProdottiCarrello);
+    }
+
+    public void rimuoviProdotto(Prodotto prodotto) {
+        listaProdottiCarrello.remove(prodotto);
+    }
+
+    public void stampaProdottiCarrello() {
+        System.out.println("Lista prodotti Carrello: ");
+        for (Prodotto prodotto : listaProdottiCarrello) {
+            System.out.println(prodotto);
+        }
     }
 
     public double calcolaTotaleCarrello() {
-        double totale = 0;
+        double totale = 0.0;
         for (Prodotto prodotto : listaProdottiCarrello) {
             totale += prodotto.getPrezzoVendita();
         }
         return totale;
     }
 
-    // TODO completare metodo finalizzaAcquistoCarrello
-    public void finalizzaAcquistoCarrello() {
-        double totaleAcquisto = calcolaTotaleCarrello();
-        // Effettuare il pagamento
-        boolean pagamentoEffettuato = effettuaPagamento(totaleAcquisto);
 
-        if (pagamentoEffettuato) {
-            confermaAcquisto();
-            // Svuota il carrello dopo l'acquisto
-            listaProdottiCarrello.clear();
-        } else {
-            System.out.println("Pagamento non riuscito. Riprovare.");
-        }
-    }
-    private boolean effettuaPagamento(double totaleAcquisto) {
+    public boolean effettuaPagamento() {
         // fingo che sto vendendo effettivamente un prodotto.
-        boolean pagamentoRiuscito = simulaPagamento();
-        if (!pagamentoRiuscito) {
-            System.out.println("Pagamento non riuscito. Riprovare.");
+        if (listaProdottiCarrello.isEmpty()) {
+            System.out.println("Il carrello è vuoto. Impossibile effettuare il pagamento.");
+            return false;
         }
-        return pagamentoRiuscito;
-    }
-
-    private boolean simulaPagamento() {
+        double totaleCarrello = calcolaTotaleCarrello();
+        System.out.println("Il totale da pagare è: " + totaleCarrello + " €");
+        confermaAcquisto();
         return true;
     }
 
@@ -63,17 +53,6 @@ public class Carrello {
         //per refreshare la lista carrello in fase di acquisto.
         listaProdottiCarrello.clear();
         System.out.println("Acquisto confermato. Grazie per il tuo acquisto!");
-
-    }
-
-    public void rimuoviProdottoDalCarrello(Prodotto prodotto) {
-        listaProdottiCarrello.remove(prodotto);
-        magazzino.getListaProdottiMagazzino().add(prodotto);
-    }
-
-    public void visualizzaCarrello() {
-        for (Prodotto prodotto : listaProdottiCarrello) {
-            System.out.println(prodotto);
-        }
+        System.out.println("Il carrello è stato svuotato.");
     }
 }
