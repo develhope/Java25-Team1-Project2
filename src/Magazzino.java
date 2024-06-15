@@ -1,14 +1,30 @@
 import java.util.*;
 
 class Magazzino{
-    private List<Prodotto> listaProdottiMagazzino;
+    private List< Prodotto> listaProdottiMagazzino;
+    private String nomeMagazzino;
+    private String ubicazione;
 
-    public Magazzino() {
+    public Magazzino(String nomeMagazzino, String ubicazione) {
         this.listaProdottiMagazzino = new ArrayList<>();
+        this.nomeMagazzino = nomeMagazzino;
+        this.ubicazione = ubicazione;
+
     }
 
     public List<Prodotto> getListaProdottiMagazzino() {
         return listaProdottiMagazzino;
+    }
+    public String getNomeMagazzino(){return nomeMagazzino;}
+    public String getUbicazione(){return ubicazione;}
+
+
+    public  void setNomeMagazzino(String nomeMagazzino){
+        this.nomeMagazzino = nomeMagazzino;
+    }
+
+    public void setUbicazione(String ubicazione){
+        this.ubicazione = ubicazione;
     }
 
     public void aggiungiProdotto(Prodotto prodotto) {
@@ -19,7 +35,8 @@ class Magazzino{
         listaProdottiMagazzino.remove(prodotto);
     }
 
-    public void stampaProdotti() {
+    public void stampaMagazzino() {
+        System.out.println("Lista prodotti Magazzino: ");
         for (Prodotto prodotto : listaProdottiMagazzino) {
             System.out.println(prodotto);
         }
@@ -106,6 +123,26 @@ class Magazzino{
         }
 
         return dispositiviTrovati;
+    }
+    public boolean aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto) {
+        if (listaProdottiMagazzino.contains(prodotto)) {
+            carrello.aggiungiProdotto(prodotto);
+            listaProdottiMagazzino.remove(prodotto);
+            return true;
+        } else {
+            System.out.println("Prodotto non disponibile in magazzino.");
+            return false;
+        }
+    }
+    public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto) {
+        if (carrello.getListaProdottiCarrello().contains(prodotto)) {
+            carrello.rimuoviProdotto(prodotto);
+            listaProdottiMagazzino.add(prodotto);
+            return true;
+        } else {
+            System.out.println("Prodotto non presente nel carrello.");
+            return false;
+        }
     }
 }
 

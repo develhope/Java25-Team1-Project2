@@ -5,29 +5,29 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Magazzino magazzinoEuronics = new Magazzino();
-        Magazzino magazzinoEsselunga = new Magazzino();
-        Magazzino magazzinoArmani = new Magazzino();
-
-        Carrello carrello = new Carrello();
+        Magazzino magazzinoEuronics = new Magazzino("Euronics Bruno","Via Libica, 91100 TRAPANI (TP)");
+        Magazzino magazzinoEsselunga = new Magazzino("Esselunga di Aprilia","Via Misurata 8, 04011 APRILIA (LT)" );
+        Magazzino magazzinoArmani = new Magazzino("Emporio Armani", "Piazza dei Martiri 61-62, 80121 NAPOLI (NA)");
+        Carrello carrello1 = new Carrello();
+        Carrello carrello2 = new Carrello();
 
         // Prodotti ELETTRONICA
-        Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+        Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", 799.99, "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto smartphone2 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+        Prodotto smartphone2 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Asus Rog Phone 7 Ultimate", "", 1299.99, "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto notebook1 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+        Prodotto notebook1 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "Acer Predator Helios 300", "", 23599.99, "", "", 15.0,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto notebook2 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+        Prodotto notebook2 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "MacBook pro", "", 1799.99, "", "", 14.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto tablet1 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+        Prodotto tablet1 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy Note 3", "", 299.99, "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto tablet2 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy S8", "", 599.99, "", "", 5.6,
+        Prodotto tablet2 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy S12", "", 699.99, "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
         magazzinoEuronics.aggiungiProdotto(smartphone1);
@@ -52,12 +52,24 @@ public class Main {
         magazzinoEsselunga.aggiungiProdotto(patatine);
         magazzinoEsselunga.aggiungiProdotto(gelato);
 
-        //
+        //satampa magazzino prima della vendita
+        magazzinoEuronics.stampaMagazzino();
+
+        //simulazione acquisto
+        magazzinoEuronics.aggiungiProdottoACarrello(carrello1,smartphone1);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrello1,notebook1);
+
+        carrello1.stampaProdottiCarrello();
+        carrello1.calcolaTotaleCarrello();
+        carrello1.effettuaPagamento();
+
+        //satampa magazzino dopo la vendita
+        magazzinoEuronics.stampaMagazzino();
         //TODO aggiungere prodotti alimentari e abbigliamento
         // Esempio di utilizzo dei metodi di ricerca
 
         /*magazzinoEuronics.cercaPerTipoProdotto(TipologiaProdottoEnum.ELETTRONICA);
-        //magazzinoEuronics.cercaPerTipoDispositivo(TipoDispositivoEnum.SMARTPHONE);
+
         magazzinoEuronics.cercaDispositiviPerModello("Galaxy S8");
 
         //test metodi
@@ -68,7 +80,7 @@ public class Main {
         magazzinoEuronics.ricercaPerPrezzoVendita(500.00);
 
          */
-        magazzinoEsselunga.stampaProdotti();
+
 
     }
 }
