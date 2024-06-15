@@ -1,14 +1,32 @@
 import java.util.*;
 
 class Magazzino{
-    private List<Prodotto> listaProdottiMagazzino;
+    private List< Prodotto> listaProdottiMagazzino;
+    private String nomeMagazzino;
+    private String ubicazione;
 
-    public Magazzino() {
+    public Magazzino(String nomeMagazzino, String ubicazione) {
         this.listaProdottiMagazzino = new ArrayList<>();
+        this.nomeMagazzino = nomeMagazzino;
+        this.ubicazione = ubicazione;
+
     }
 
     public List<Prodotto> getListaProdottiMagazzino() {
         return listaProdottiMagazzino;
+    }
+    public String getNomeMagazzino(){return nomeMagazzino;}
+    public String getUbicazione(){return ubicazione;}
+
+    public void setListaProdottiMagazzino(List<Prodotto> listaProdottiMagazzino) {
+        this.listaProdottiMagazzino = listaProdottiMagazzino;
+    }
+    public  void setNomeMagazzino(String nomeMagazzino){
+        this.nomeMagazzino = nomeMagazzino;
+    }
+
+    public void setUbicazione(String ubicazione){
+        this.ubicazione = ubicazione;
     }
 
     public void aggiungiProdotto(Prodotto prodotto) {

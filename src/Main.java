@@ -5,9 +5,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Magazzino magazzinoEuronics = new Magazzino();
-        Magazzino magazzinoEsselunga = new Magazzino();
-        Magazzino magazzinoArmani = new Magazzino();
+        Magazzino magazzinoEuronics = new Magazzino("Euronics Bruno","Via Libica, 91100 TRAPANI (TP)");
+        Magazzino magazzinoEsselunga = new Magazzino("Esselunga di Aprilia","Via Misurata 8, 04011 APRILIA (LT)" );
+        Magazzino magazzinoArmani = new Magazzino("Emporio Armani", "Piazza dei Martiri 61-62, 80121 NAPOLI (NA)");
 
         Carrello carrello = new Carrello();
 
@@ -51,6 +51,8 @@ public class Main {
         magazzinoEsselunga.aggiungiProdotto(fanta);
         magazzinoEsselunga.aggiungiProdotto(patatine);
         magazzinoEsselunga.aggiungiProdotto(gelato);
+        magazzinoEuronics.stampaDuplicati();
+
 
         //
         //TODO aggiungere prodotti alimentari e abbigliamento
