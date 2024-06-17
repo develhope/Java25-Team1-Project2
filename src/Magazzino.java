@@ -19,6 +19,21 @@ public class Magazzino {
     }
 
     // Metodi getter e setter per nomeMagazzino e ubicazione
+    public String getUbicazione() {
+        return ubicazione;
+    }
+
+    public void setUbicazione(String ubicazione) {
+        this.ubicazione = ubicazione;
+    }
+
+    public String getNomeMagazzino() {
+        return nomeMagazzino;
+    }
+
+    public void setNomeMagazzino(String nomeMagazzino) {
+        this.nomeMagazzino = nomeMagazzino;
+    }
 
     public List<Prodotto> getListaProdottiMagazzino() {
         return listaProdottiMagazzino;
