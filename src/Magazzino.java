@@ -1,31 +1,31 @@
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-class Magazzino{
-    private List< Prodotto> listaProdottiMagazzino;
+public class Magazzino {
+    private List<Prodotto> listaProdottiMagazzino;
+    private List<Carrello> carrelli;
     private String nomeMagazzino;
     private String ubicazione;
 
     public Magazzino(String nomeMagazzino, String ubicazione) {
         this.listaProdottiMagazzino = new ArrayList<>();
+        this.carrelli = new ArrayList<>();
         this.nomeMagazzino = nomeMagazzino;
         this.ubicazione = ubicazione;
-
     }
+
+    // Metodi getter e setter per nomeMagazzino e ubicazione
 
     public List<Prodotto> getListaProdottiMagazzino() {
         return listaProdottiMagazzino;
     }
-    public String getNomeMagazzino(){return nomeMagazzino;}
-    public String getUbicazione(){return ubicazione;}
 
-
-    public  void setNomeMagazzino(String nomeMagazzino){
-        this.nomeMagazzino = nomeMagazzino;
-    }
-
-    public void setUbicazione(String ubicazione){
-        this.ubicazione = ubicazione;
+    public List<Carrello> getCarrelli() {
+        return carrelli;
     }
 
     public void aggiungiProdotto(Prodotto prodotto) {
@@ -36,13 +36,20 @@ class Magazzino{
         listaProdottiMagazzino.remove(prodotto);
     }
 
+    public void aggiungiCarrello(Carrello carrello) {
+        carrelli.add(carrello);
+    }
+
+    public void rimuoviCarrello(Carrello carrello) {
+        carrelli.remove(carrello);
+    }
+
     public void stampaMagazzino() {
         System.out.println("Lista prodotti Magazzino: ");
         for (Prodotto prodotto : listaProdottiMagazzino) {
             System.out.println(prodotto);
         }
     }
-
 
     public void stampaDuplicati() {
         Map<Prodotto, Integer> prodottoCount = new HashMap<>();
@@ -66,24 +73,11 @@ class Magazzino{
         return dispositiviTrovati;
     }
 
-    // TODO sistemare il metodo e renderlo generico
-    //Metodo di ricerca per i prodotti Elettronici
-
-
     public List<Prodotto> cercaDispositiviPerModello(String modello) {
-
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
-
         for (Prodotto prodotto : listaProdottiMagazzino) {
-
-            // Controlla se il prodotto è un'istanza di Smartphone e se il suo tipo di dispositivo corrisponde a quello specificato
             if (prodotto instanceof Smartphone && Objects.equals(((Smartphone) prodotto).getModello(), modello)) {
-                // Aggiungi il prodotto alla lista dei dispositivi trovati
                 dispositiviTrovati.add(prodotto);
-
-                //} else if (prodotto instanceof Tablet && Objects.equals(((Tablet) prodotto).getModello(), modello)){
-                dispositiviTrovati.add(prodotto);
-
             } else if (prodotto instanceof Notebook && Objects.equals(((Notebook) prodotto).getModello(), modello)) {
                 dispositiviTrovati.add(prodotto);
             }
@@ -93,26 +87,21 @@ class Magazzino{
 
     public List<Prodotto> ricercaPerPrezzoVendita(BigDecimal inputPrezzo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
-
         try {
             if (inputPrezzo == null) {
                 throw new IllegalArgumentException("Prezzo di input non può essere nullo.");
             }
-
             BigDecimal rangeMinimo = inputPrezzo.subtract(new BigDecimal("150"));
             BigDecimal rangeMassimo = inputPrezzo.add(new BigDecimal("150"));
-
             if (rangeMinimo.compareTo(BigDecimal.ZERO) < 0 || rangeMassimo.compareTo(BigDecimal.ZERO) < 0) {
                 throw new IllegalArgumentException("Il prezzo di input crea un intervallo di prezzo non valido.");
             }
-
             for (Prodotto prodotto : listaProdottiMagazzino) {
                 BigDecimal prezzoVendita = prodotto.getPrezzoVendita();
                 if (prezzoVendita.compareTo(rangeMinimo) >= 0 && prezzoVendita.compareTo(rangeMassimo) <= 0) {
                     dispositiviTrovati.add(prodotto);
                 }
             }
-
             if (dispositiviTrovati.isEmpty()) {
                 throw new IllegalStateException("Nessun dispositivo trovato con un prezzo di vendita entro " + rangeMinimo + " e " + rangeMassimo + " €.");
             } else {
@@ -123,9 +112,9 @@ class Magazzino{
         } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println("Errore: " + e.getMessage());
         }
-
         return dispositiviTrovati;
     }
+
     public boolean aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto) {
         if (listaProdottiMagazzino.contains(prodotto)) {
             carrello.aggiungiProdotto(prodotto);
@@ -136,6 +125,7 @@ class Magazzino{
             return false;
         }
     }
+
     public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto) {
         if (carrello.getListaProdottiCarrello().contains(prodotto)) {
             carrello.rimuoviProdotto(prodotto);
@@ -147,6 +137,3 @@ class Magazzino{
         }
     }
 }
-
-
-
