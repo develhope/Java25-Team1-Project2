@@ -7,14 +7,18 @@ public class Main {
 
         Magazzino magazzinoEuronics = new Magazzino("Euronics Bruno", "Via Libica, 91100 TRAPANI (TP)");
         Magazzino magazzinoEsselunga = new Magazzino("Esselunga", "Piazza Gae Aulenti, 20124 Milano (MI)");
+        Magazzino magazzinoArmani = new Magazzino("Emporio Armani", "Piazza dei Martiri 61-62, 80121 NAPOLI (NA)");
 
         Carrello carrelloEuronics1 = new Carrello();
         Carrello carrelloEuronics2 = new Carrello();
-        Carrello carrelloEsselunga = new Carrello();
+        Carrello carrelloEsselunga1 = new Carrello();
+        Carrello carrelloEsselunga2 = new Carrello();
+        Carrello carrelloArmani1 = new Carrello();
+        Carrello carrelloArmani2 = new Carrello();
 
         magazzinoEuronics.aggiungiCarrello(carrelloEuronics1);
         magazzinoEuronics.aggiungiCarrello(carrelloEuronics2);
-        magazzinoEsselunga.aggiungiCarrello(carrelloEsselunga);
+        magazzinoEsselunga.aggiungiCarrello(carrelloEsselunga1);
 
         // Prodotti di tipo ELETTRONICA
         Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", new BigDecimal("599.99"), "", "", 5.6,
@@ -63,20 +67,20 @@ public class Main {
         System.out.println();
 
         // Simulazione dell'acquisto
-        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga, cereali);
-        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga, gelato);
+        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, cereali);
+        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, gelato);
 
         // Stampa dei prodotti nel carrello Esselunga
         System.out.println("Prodotti nel carrello di Esselunga:");
-        carrelloEsselunga.stampaProdottiCarrello();
+        carrelloEsselunga1.stampaProdottiCarrello();
         System.out.println();
 
         // Calcolo del totale del carrello Esselunga
-        BigDecimal totaleCarrello = carrelloEsselunga.calcolaTotaleCarrello();
+        BigDecimal totaleCarrello = carrelloEsselunga1.calcolaTotaleCarrello();
         System.out.println("Totale da pagare: " + totaleCarrello + " €");
 
         // Effettuazione del pagamento
-        carrelloEsselunga.effettuaPagamento();
+        carrelloEsselunga1.effettuaPagamento();
         System.out.println();
 
         // Stampa del magazzino Esselunga dopo la vendita
