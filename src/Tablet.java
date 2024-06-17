@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Tablet extends Prodotto {
@@ -11,7 +12,7 @@ public class Tablet extends Prodotto {
     private Double prezzoAcquisto;
 
     //TODO eliminare le variabili produttore e modello sostituendoli con nomeProdotto
-    public Tablet(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita,
+    public Tablet(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
                   String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
                   SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto) {
         super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);

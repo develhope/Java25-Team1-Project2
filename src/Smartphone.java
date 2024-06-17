@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Smartphone extends Prodotto implements Dispositivo {
@@ -9,7 +10,7 @@ public class Smartphone extends Prodotto implements Dispositivo {
     private SpazioDiArchiviazioneEnum dimensioneArchiviazione;
     private Double prezzoAcquisto;
 
-    public Smartphone(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita,
+    public Smartphone(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
                       String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
                       SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto) {
         super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);

@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Prodotto {
@@ -5,9 +6,9 @@ public class Prodotto {
     private TipologiaProdottoEnum tipologiaProdotto;
     private String nomeProdotto;
     private String descrizioneProdotto;
-    private Double prezzoVendita;
+    private BigDecimal prezzoVendita;
 
-    public Prodotto(UUID id, TipologiaProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, Double prezzoVendita) {
+    public Prodotto(UUID id, TipologiaProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita) {
         this.id = id;
         this.tipologiaProdotto = tipologiaProdotto;
         this.nomeProdotto = nomeProdotto;
@@ -47,11 +48,11 @@ public class Prodotto {
         this.descrizioneProdotto = descrizioneProdotto;
     }
 
-    public Double getPrezzoVendita() {
+    public BigDecimal getPrezzoVendita() {
         return prezzoVendita;
     }
 
-    public void setPrezzoVendita(Double prezzoVendita) {
+    public void setPrezzoVendita(BigDecimal prezzoVendita) {
         this.prezzoVendita = prezzoVendita;
     }
 
