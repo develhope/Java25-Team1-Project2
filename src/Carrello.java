@@ -1,5 +1,4 @@
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,13 +33,11 @@ public class Carrello {
         for (Prodotto prodotto : listaProdottiCarrello) {
             totale = totale.add(prodotto.getPrezzoVendita());
         }
-        totale = totale.setScale(2, RoundingMode.HALF_UP);
+        totale = totale.setScale(2, BigDecimal.ROUND_HALF_UP);
         return totale;
     }
 
-
     public boolean effettuaPagamento() {
-        // fingo che sto vendendo effettivamente un prodotto.
         if (listaProdottiCarrello.isEmpty()) {
             System.out.println("Il carrello è vuoto. Impossibile effettuare il pagamento.");
             return false;
@@ -51,9 +48,7 @@ public class Carrello {
         return true;
     }
 
-
-    public void confermaAcquisto(){
-        //per refreshare la lista carrello in fase di acquisto.
+    public void confermaAcquisto() {
         listaProdottiCarrello.clear();
         System.out.println("Acquisto confermato. Grazie per il tuo acquisto!");
         System.out.println("Il carrello è stato svuotato.");
