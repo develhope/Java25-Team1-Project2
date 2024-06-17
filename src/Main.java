@@ -1,4 +1,5 @@
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Main {
@@ -12,22 +13,22 @@ public class Main {
         Carrello carrello2 = new Carrello();
 
         // Prodotti ELETTRONICA
-        Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", 799.99, "", "", 5.6,
+        Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", new BigDecimal("599.99"), "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto smartphone2 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Asus Rog Phone 7 Ultimate", "", 1299.99, "", "", 5.6,
+        Prodotto smartphone2 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Asus Rog Phone 7 Ultimate", "", new BigDecimal("799.99"), "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto notebook1 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "Acer Predator Helios 300", "", 23599.99, "", "", 15.0,
+        Prodotto notebook1 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "Acer Predator Helios 300", "", new BigDecimal("2399.99"), "", "", 15.0,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto notebook2 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "MacBook pro", "", 1799.99, "", "", 14.6,
+        Prodotto notebook2 = new Notebook(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.NOTEBOOK, "MacBook pro", "", new BigDecimal("1599.99"), "", "", 14.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto tablet1 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy Note 3", "", 299.99, "", "", 5.6,
+        Prodotto tablet1 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy Note 3", "", new BigDecimal("299.99"), "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
-        Prodotto tablet2 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy S12", "", 699.99, "", "", 5.6,
+        Prodotto tablet2 = new Tablet(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6,
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
         magazzinoEuronics.aggiungiProdotto(smartphone1);
@@ -40,11 +41,11 @@ public class Main {
         magazzinoEuronics.rimuoviProdotto(tablet1);
 
         // Prodotti Alimentari
-        Prodotto cereali = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Cereali Kellogs", "", 3.99);
-        Prodotto cocaCola = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Coca-Cola", "", 1.70);
-        Prodotto fanta = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Fanta", "", 1.60);
-        Prodotto patatine = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", 1.20);
-        Prodotto gelato = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Maxi-Bon", "", 1.50);
+        Prodotto cereali = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Cereali Kellogs", "", new BigDecimal("4.995"));
+        Prodotto cocaCola = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"));
+        Prodotto fanta = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7"));
+        Prodotto patatine = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", new BigDecimal("1.2"));
+        Prodotto gelato = new Prodotto(UUID.randomUUID(),TipologiaProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"));
 
         magazzinoEsselunga.aggiungiProdotto(cereali);
         magazzinoEsselunga.aggiungiProdotto(cocaCola);
@@ -53,18 +54,18 @@ public class Main {
         magazzinoEsselunga.aggiungiProdotto(gelato);
 
         //satampa magazzino prima della vendita
-        magazzinoEuronics.stampaMagazzino();
+        magazzinoEsselunga.stampaMagazzino();
 
         //simulazione acquisto
-        magazzinoEuronics.aggiungiProdottoACarrello(carrello1,smartphone1);
-        magazzinoEuronics.aggiungiProdottoACarrello(carrello1,notebook1);
+        magazzinoEsselunga.aggiungiProdottoACarrello(carrello1,cereali);
+        magazzinoEsselunga.aggiungiProdottoACarrello(carrello1,gelato);
 
         carrello1.stampaProdottiCarrello();
         carrello1.calcolaTotaleCarrello();
         carrello1.effettuaPagamento();
 
         //satampa magazzino dopo la vendita
-        magazzinoEuronics.stampaMagazzino();
+        magazzinoEsselunga.stampaMagazzino();
         //TODO aggiungere prodotti alimentari e abbigliamento
         // Esempio di utilizzo dei metodi di ricerca
 

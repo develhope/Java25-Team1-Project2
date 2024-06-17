@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +29,12 @@ public class Carrello {
         }
     }
 
-    public double calcolaTotaleCarrello() {
-        double totale = 0.0;
+    public BigDecimal calcolaTotaleCarrello() {
+        BigDecimal totale = BigDecimal.ZERO;
         for (Prodotto prodotto : listaProdottiCarrello) {
-            totale += prodotto.getPrezzoVendita();
+            totale = totale.add(prodotto.getPrezzoVendita());
         }
+        totale = totale.setScale(2, RoundingMode.HALF_UP);
         return totale;
     }
 
@@ -42,7 +45,7 @@ public class Carrello {
             System.out.println("Il carrello è vuoto. Impossibile effettuare il pagamento.");
             return false;
         }
-        double totaleCarrello = calcolaTotaleCarrello();
+        BigDecimal totaleCarrello = calcolaTotaleCarrello();
         System.out.println("Il totale da pagare è: " + totaleCarrello + " €");
         confermaAcquisto();
         return true;

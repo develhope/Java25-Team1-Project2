@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.*;
 
 class Magazzino{
@@ -90,7 +91,7 @@ class Magazzino{
         return dispositiviTrovati;
     }
 
-    public List<Prodotto> ricercaPerPrezzoVendita(Double inputPrezzo) {
+    public List<Prodotto> ricercaPerPrezzoVendita(BigDecimal inputPrezzo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
 
         try {
@@ -98,15 +99,16 @@ class Magazzino{
                 throw new IllegalArgumentException("Prezzo di input non può essere nullo.");
             }
 
-            double rangeMinimo = inputPrezzo - 150;
-            double rangeMassimo = inputPrezzo + 150;
+            BigDecimal rangeMinimo = inputPrezzo.subtract(new BigDecimal("150"));
+            BigDecimal rangeMassimo = inputPrezzo.add(new BigDecimal("150"));
 
-            if (rangeMinimo < 0 || rangeMassimo < 0) {
+            if (rangeMinimo.compareTo(BigDecimal.ZERO) < 0 || rangeMassimo.compareTo(BigDecimal.ZERO) < 0) {
                 throw new IllegalArgumentException("Il prezzo di input crea un intervallo di prezzo non valido.");
             }
 
             for (Prodotto prodotto : listaProdottiMagazzino) {
-                if (prodotto.getPrezzoVendita() >= rangeMinimo && prodotto.getPrezzoVendita() <= rangeMassimo) {
+                BigDecimal prezzoVendita = prodotto.getPrezzoVendita();
+                if (prezzoVendita.compareTo(rangeMinimo) >= 0 && prezzoVendita.compareTo(rangeMassimo) <= 0) {
                     dispositiviTrovati.add(prodotto);
                 }
             }
