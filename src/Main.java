@@ -58,7 +58,6 @@ public class Main {
         Prodotto gelato = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"));
 
         // Aggiunta dei prodotti alimentari ai carrelli Esselunga
-        // TODO aggiungi prodotti a carrelli, i prodotti sono già contenuti nel magazzino
         carrelloEsselunga1.aggiungiProdotto(cereali);
         carrelloEsselunga2.aggiungiProdotto(cocaCola);
         carrelloEsselunga2.aggiungiProdotto(fanta);
