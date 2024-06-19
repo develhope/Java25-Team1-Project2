@@ -75,6 +75,7 @@ public class Main {
         carrelloArmani2.aggiungiProdotto(giacca);
         carrelloArmani1.aggiungiProdotto(scarpa);
 
+
         // Stampa del magazzino Esselunga prima della vendita
         System.out.println("Magazzino Esselunga prima della vendita:");
         magazzinoEsselunga.stampaMagazzino();
