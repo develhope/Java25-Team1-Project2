@@ -68,11 +68,20 @@ public class Main {
         Prodotto pantalone = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99"));
         Prodotto giacca = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Giacca tinta unita in lana cotta", "", new BigDecimal("685.50"));
         Prodotto scarpa = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Scarpe decollete col tacco", "", new BigDecimal("450.00"));
+        Prodotto calzini = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Calzini a taglia unica", "", new BigDecimal("99.99"));
+        Prodotto maglietta = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "t-shirt a taglia unica", "", new BigDecimal("110.99"));
+        Prodotto intimo = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "intimo super fresco ed elegante", "", new BigDecimal("179.99"));
 
         // Aggiunta dei prodotti abbigliamento ai magazzini Armani
         carrelloArmani1.aggiungiProdotto(pantalone);
         carrelloArmani2.aggiungiProdotto(giacca);
         carrelloArmani1.aggiungiProdotto(scarpa);
+        carrelloArmani1.aggiungiProdotto(calzini);
+        carrelloArmani2.aggiungiProdotto(maglietta);
+        carrelloArmani2.aggiungiProdotto(intimo);
+
+
+
 
 
         // Stampa del magazzino Esselunga prima della vendita
