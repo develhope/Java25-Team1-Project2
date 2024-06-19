@@ -70,6 +70,11 @@ public class Main {
         Prodotto giacca = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Giacca tinta unita in lana cotta", "", new BigDecimal("685.50"));
         Prodotto scarpa = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Scarpe decollete col tacco", "", new BigDecimal("450.00"));
 
+        // Aggiunta dei prodotti abbigliamento ai magazzini Armani
+        carrelloArmani1.aggiungiProdotto(pantalone);
+        carrelloArmani2.aggiungiProdotto(giacca);
+        carrelloArmani1.aggiungiProdotto(scarpa);
+
         // Stampa del magazzino Esselunga prima della vendita
         System.out.println("Magazzino Esselunga prima della vendita:");
         magazzinoEsselunga.stampaMagazzino();
