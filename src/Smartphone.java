@@ -30,6 +30,16 @@ public class Smartphone extends Prodotto implements Dispositivo {
         return tipoDispositivo;
     }
 
+    @Override
+    public String getNome() {
+        return "";
+    }
+
+    @Override
+    public String getDescrizione() {
+        return "";
+    }
+
     public void setTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
         this.tipoDispositivo = tipoDispositivo;
     }
