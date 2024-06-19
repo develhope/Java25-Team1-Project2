@@ -16,9 +16,11 @@ public class Main {
         Carrello carrelloArmani1 = new Carrello();
         Carrello carrelloArmani2 = new Carrello();
 
+        // TODO popolare i carrelli con i prodotti e poi aggiungerli al magazzino (carrello.add)
         magazzinoEuronics.aggiungiCarrello(carrelloEuronics1);
         magazzinoEuronics.aggiungiCarrello(carrelloEuronics2);
         magazzinoEsselunga.aggiungiCarrello(carrelloEsselunga1);
+        magazzinoEsselunga.aggiungiCarrello(carrelloEsselunga2);
 
         // Prodotti di tipo ELETTRONICA
         Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), TipologiaProdottoEnum.ELETTRONICA, TipoDispositivoEnum.SMARTPHONE, "Samsung Galaxy S8", "", new BigDecimal("599.99"), "", "", 5.6,
@@ -40,6 +42,7 @@ public class Main {
                 TipoMemoriaArchiviazioneEnum.NVMe, SpazioDiArchiviazioneEnum.CINQUECENTODODICI, 300.00);
 
         // Aggiunta dei prodotti ai rispettivi magazzini
+        // TODO aggiungi prodotti a carrelli, i prodotti sono già contenuti nel magazzino
         magazzinoEuronics.aggiungiProdotto(smartphone1);
         magazzinoEuronics.aggiungiProdotto(smartphone2);
         magazzinoEuronics.aggiungiProdotto(notebook1);
@@ -55,11 +58,17 @@ public class Main {
         Prodotto gelato = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"));
 
         // Aggiunta dei prodotti alimentari al magazzino Esselunga
+        // TODO aggiungi prodotti a carrelli, i prodotti sono già contenuti nel magazzino
         magazzinoEsselunga.aggiungiProdotto(cereali);
         magazzinoEsselunga.aggiungiProdotto(cocaCola);
         magazzinoEsselunga.aggiungiProdotto(fanta);
         magazzinoEsselunga.aggiungiProdotto(patatine);
         magazzinoEsselunga.aggiungiProdotto(gelato);
+
+        // Prodotti di tipo ABBIGLIAMENTO
+        Prodotto pantalone = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99"));
+        Prodotto giacca = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Giacca tinta unita in lana cotta", "", new BigDecimal("685.50"));
+        Prodotto scarpa = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Scarpe decollete col tacco", "", new BigDecimal("450.00"));
 
         // Stampa del magazzino Esselunga prima della vendita
         System.out.println("Magazzino Esselunga prima della vendita:");

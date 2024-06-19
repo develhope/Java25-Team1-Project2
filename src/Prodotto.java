@@ -1,6 +1,8 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
+// TODO crea nuove interfacce per tipizzare prodotti, es. per dispositivi elettronici - accendi/spegni, per alimentari - frigo/scaffale, etc.
+
 public class Prodotto {
     private UUID id;
     private TipologiaProdottoEnum tipologiaProdotto;
@@ -59,12 +61,5 @@ public class Prodotto {
     // Metodo per stampare i dettagli del prodotto
     public void stampaDettagliProdotto() {
         System.out.println("ID prodotto: " + id + ", Tipologia prodotto: " + tipologiaProdotto + ", Nome: " + nomeProdotto + ", Descrizione prodotto: " + descrizioneProdotto + ", Prezzo vendita: " + prezzoVendita);
-    }
-
-    @Override
-    public String toString() {
-        return "Prodotto: " +
-                "nome=" + nomeProdotto +
-        ", prezzoVendita= " + prezzoVendita + "€";
     }
 }

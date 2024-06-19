@@ -15,6 +15,7 @@ public class Carrello {
 
     public void aggiungiProdotto(Prodotto prodotto) {
         listaProdottiCarrello.add(prodotto);
+        // TODO aggiungi incremento automatico totale
     }
 
     public void rimuoviProdotto(Prodotto prodotto) {
