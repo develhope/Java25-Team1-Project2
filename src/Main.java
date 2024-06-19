@@ -65,6 +65,11 @@ public class Main {
         magazzinoEsselunga.aggiungiProdotto(patatine);
         magazzinoEsselunga.aggiungiProdotto(gelato);
 
+        // Prodotti di tipo ABBIGLIAMENTO
+        Prodotto pantalone = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99"));
+        Prodotto giacca = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Giacca tinta unita in lana cotta", "", new BigDecimal("685.50"));
+        Prodotto scarpa = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Scarpe decollete col tacco", "", new BigDecimal("450.00"));
+
         // Stampa del magazzino Esselunga prima della vendita
         System.out.println("Magazzino Esselunga prima della vendita:");
         magazzinoEsselunga.stampaMagazzino();
