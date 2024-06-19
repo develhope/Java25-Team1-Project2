@@ -57,13 +57,13 @@ public class Main {
         Prodotto patatine = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", new BigDecimal("1.2"));
         Prodotto gelato = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"));
 
-        // Aggiunta dei prodotti alimentari al magazzino Esselunga
+        // Aggiunta dei prodotti alimentari ai carrelli Esselunga
         // TODO aggiungi prodotti a carrelli, i prodotti sono già contenuti nel magazzino
-        magazzinoEsselunga.aggiungiProdotto(cereali);
-        magazzinoEsselunga.aggiungiProdotto(cocaCola);
-        magazzinoEsselunga.aggiungiProdotto(fanta);
-        magazzinoEsselunga.aggiungiProdotto(patatine);
-        magazzinoEsselunga.aggiungiProdotto(gelato);
+        carrelloEsselunga1.aggiungiProdotto(cereali);
+        carrelloEsselunga2.aggiungiProdotto(cocaCola);
+        carrelloEsselunga2.aggiungiProdotto(fanta);
+        carrelloEsselunga2.aggiungiProdotto(patatine);
+        carrelloEsselunga1.aggiungiProdotto(gelato);
 
         // Prodotti di tipo ABBIGLIAMENTO
         Prodotto pantalone = new Prodotto(UUID.randomUUID(), TipologiaProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99"));
