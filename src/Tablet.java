@@ -3,17 +3,17 @@ import java.util.UUID;
 
 public class Tablet extends Prodotto {
 
-    private TipoDispositivoEnum tipoDispositivo;
+    private ProdottoEnum tipoDispositivo;
     private String produttore;
     private String modello;
     private Double dimensioneDisplay;
-    private TipoMemoriaArchiviazioneEnum tipoMemoria;
-    private SpazioDiArchiviazioneEnum dimensioneArchiviazione;
+    private ProdottoEnum tipoMemoria;
+    private String dimensioneArchiviazione;
     private Double prezzoAcquisto;
 
-    public Tablet(UUID id, TipologiaProdottoEnum tipologiaProdotto, TipoDispositivoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
-                  String produttore, String modello, Double dimensioneDisplay, TipoMemoriaArchiviazioneEnum tipoMemoria,
-                  SpazioDiArchiviazioneEnum dimensioneArchiviazione, Double prezzoAcquisto) {
+    public Tablet(UUID id, ProdottoEnum tipologiaProdotto, ProdottoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
+                  String produttore, String modello, Double dimensioneDisplay, ProdottoEnum tipoMemoria,
+                  String dimensioneArchiviazione, Double prezzoAcquisto) {
         super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
         this.tipoDispositivo = tipoDispositivo;
         this.produttore = produttore;
@@ -26,11 +26,11 @@ public class Tablet extends Prodotto {
                 "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
 
-    public TipoDispositivoEnum getTipoDispositivo() {
+    public ProdottoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
 
-    public void setTipoDispositivo(TipoDispositivoEnum tipoDispositivo) {
+    public void setTipoDispositivo(ProdottoEnum tipoDispositivo) {
         this.tipoDispositivo = tipoDispositivo;
     }
 
@@ -58,19 +58,19 @@ public class Tablet extends Prodotto {
         this.dimensioneDisplay = dimensioneDisplay;
     }
 
-    public TipoMemoriaArchiviazioneEnum getTipoMemoria() {
+    public ProdottoEnum getTipoMemoria() {
         return tipoMemoria;
     }
 
-    public void setTipoMemoria(TipoMemoriaArchiviazioneEnum tipoMemoria) {
+    public void setTipoMemoria(ProdottoEnum tipoMemoria) {
         this.tipoMemoria = tipoMemoria;
     }
 
-    public SpazioDiArchiviazioneEnum getDimensioneArchiviazione() {
+    public String getDimensioneArchiviazione() {
         return dimensioneArchiviazione;
     }
 
-    public void setDimensioneArchiviazione(SpazioDiArchiviazioneEnum dimensioneArchiviazione) {
+    public void setDimensioneArchiviazione(String dimensioneArchiviazione) {
         this.dimensioneArchiviazione = dimensioneArchiviazione;
     }
 
@@ -90,26 +90,5 @@ public class Tablet extends Prodotto {
                 + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione +
                 ", Prezzo acquisto: " + prezzoAcquisto);
     }
-
-    @Override
-    public String toString() {
-        return "Tablet{" +
-                "id=" + getId() +
-                ", tipologiaProdotto=" + getTipologiaProdotto() +
-                ", nomeProdotto='" + getNomeProdotto() + '\'' +
-                ", descrizioneProdotto='" + getDescrizioneProdotto() + '\'' +
-                ", prezzoVendita=" + getPrezzoVendita() +
-                ", tipoDispositivo=" + tipoDispositivo +
-                ", produttore='" + produttore + '\'' +
-                ", modello='" + modello + '\'' +
-                ", dimensioneDisplay=" + dimensioneDisplay +
-                ", tipoMemoria=" + tipoMemoria +
-                ", dimensioneArchiviazione=" + dimensioneArchiviazione +
-                ", prezzoAcquisto=" + prezzoAcquisto +
-                '}';
-    }
 }
-
-
-
 

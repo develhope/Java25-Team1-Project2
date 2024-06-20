@@ -23,6 +23,7 @@ public class Carrello {
         listaProdottiCarrello.remove(prodotto);
     }
 
+    // TODO correggere il metodo in modo che stampi l'oggetto e non l'hashcode
     public void stampaProdottiCarrello() {
         System.out.println("Lista prodotti Carrello: ");
         for (Prodotto prodotto : listaProdottiCarrello) {

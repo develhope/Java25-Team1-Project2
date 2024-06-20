@@ -5,12 +5,12 @@ import java.util.UUID;
 
 public class Prodotto {
     private UUID id;
-    private TipologiaProdottoEnum tipologiaProdotto;
+    private ProdottoEnum tipologiaProdotto;
     private String nomeProdotto;
     private String descrizioneProdotto;
     private BigDecimal prezzoVendita;
 
-    public Prodotto(UUID id, TipologiaProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita) {
+    public Prodotto(UUID id, ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita) {
         this.id = id;
         this.tipologiaProdotto = tipologiaProdotto;
         this.nomeProdotto = nomeProdotto;
@@ -26,11 +26,11 @@ public class Prodotto {
         this.id = id;
     }
 
-    public TipologiaProdottoEnum getTipologiaProdotto() {
+    public ProdottoEnum getTipologiaProdotto() {
         return tipologiaProdotto;
     }
 
-    public void setTipologiaProdotto(TipologiaProdottoEnum tipologiaProdotto) {
+    public void setTipologiaProdotto(ProdottoEnum tipologiaProdotto) {
         this.tipologiaProdotto = tipologiaProdotto;
     }
 
@@ -60,6 +60,6 @@ public class Prodotto {
 
     // Metodo per stampare i dettagli del prodotto
     public void stampaDettagliProdotto() {
-        System.out.println("ID prodotto: " + id + ", Tipologia prodotto: " + tipologiaProdotto + ", Nome: " + nomeProdotto + ", Descrizione prodotto: " + descrizioneProdotto + ", Prezzo vendita: " + prezzoVendita);
+        System.out.println("ID prodotto: " + getId() + ", Tipologia prodotto: " + getTipologiaProdotto() + ", Nome: " + getNomeProdotto() + ", Descrizione prodotto: " + getDescrizioneProdotto() + ", Prezzo vendita: " + getPrezzoVendita());
     }
 }

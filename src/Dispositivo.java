@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public interface Dispositivo {
-    TipoDispositivoEnum getTipoDispositivo();
+    ProdottoEnum getTipoDispositivo();
 
         UUID getId();
         String getNome();
