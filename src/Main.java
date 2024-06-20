@@ -108,9 +108,9 @@ public class Main {
         carrelloEsselunga1.stampaProdottiCarrello();
         System.out.println();
 
-        // Calcolo del totale del carrello Esselunga
-        BigDecimal totaleCarrello = carrelloEsselunga1.calcolaTotaleCarrello();
-        System.out.println("Totale da pagare: " + totaleCarrello + " €");
+//        // Calcolo del totale del carrello Esselunga
+//        BigDecimal totaleCarrello = carrelloEsselunga1.calcolaTotaleCarrello();
+//        System.out.println("Totale da pagare: " + totaleCarrello + " €");
 
         // Effettuazione del pagamento
         carrelloEsselunga1.effettuaPagamento();
@@ -135,10 +135,6 @@ public class Main {
         System.out.println("Prodotti nel carrello Euronics:");
         carrelloEuronics1.stampaProdottiCarrello();
         System.out.println();
-
-        // Calcolo del totale del carrello Esselunga
-        BigDecimal totaleCarrelloEuronics = carrelloEuronics1.calcolaTotaleCarrello();
-        System.out.println("Totale da pagare: " + totaleCarrelloEuronics + " €");
 
         // Effettuazione del pagamento
         carrelloEuronics1.effettuaPagamento();
