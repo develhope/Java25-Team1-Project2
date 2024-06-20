@@ -62,7 +62,7 @@ public class Magazzino {
     public void stampaMagazzino() {
         System.out.println("Lista prodotti Magazzino: ");
         for (Prodotto prodotto : listaProdottiMagazzino) {
-            System.out.println(prodotto);
+            prodotto.stampaDettagliProdotto();
         }
     }
 
@@ -78,7 +78,7 @@ public class Magazzino {
         }
     }
 
-    public List<Prodotto> cercaPerTipoProdotto(TipologiaProdottoEnum tipoProdotto) {
+    public List<Prodotto> cercaPerTipoProdotto(ProdottoEnum tipoProdotto) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
         for (Prodotto prodotto : listaProdottiMagazzino) {
             if (prodotto.getTipologiaProdotto() == tipoProdotto) {
@@ -88,6 +88,8 @@ public class Magazzino {
         return dispositiviTrovati;
     }
 
+    // TODO vedere cosa ha che non va metodo cercaDispositiviPerModello
+    /*
     public List<Prodotto> cercaDispositiviPerModello(String modello) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
         for (Prodotto prodotto : listaProdottiMagazzino) {
@@ -99,6 +101,8 @@ public class Magazzino {
         }
         return dispositiviTrovati;
     }
+
+     */
 
     public List<Prodotto> ricercaPerPrezzoVendita(BigDecimal inputPrezzo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();

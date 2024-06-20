@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class Carrello {
         listaProdottiCarrello.remove(prodotto);
     }
 
+    // TODO correggere il metodo in modo che stampi l'oggetto e non l'hashcode
     public void stampaProdottiCarrello() {
         System.out.println("Lista prodotti Carrello: ");
         for (Prodotto prodotto : listaProdottiCarrello) {
@@ -34,9 +36,11 @@ public class Carrello {
         for (Prodotto prodotto : listaProdottiCarrello) {
             totale = totale.add(prodotto.getPrezzoVendita());
         }
-        totale = totale.setScale(2, BigDecimal.ROUND_HALF_UP);
+        totale = totale.setScale(2, RoundingMode.HALF_UP);
         return totale;
     }
+
+
 
     public boolean effettuaPagamento() {
         if (listaProdottiCarrello.isEmpty()) {
