@@ -41,22 +41,18 @@ public class Main {
         Prodotto tablet2 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6,
                 ProdottoEnum.MVME, "512GB", 300.00);
 
-
-        // TODO aggiungi prodotti a carrelli, i prodotti sono già contenuti nel magazzino
+        magazzinoEuronics.stampaMagazzino();
+//        // TODO aggiungi prodotti a carrelli, i prodotti sono già contenuti nel magazzino
 
         // Aggiunta dei prodotti ai carrelli di euronics.
         carrelloEuronics1.aggiungiProdotto(smartphone1);
         carrelloEuronics1.aggiungiProdotto(smartphone2);
-
-
-        carrelloEuronics2.aggiungiProdotto(notebook1);
-
-        notebook1.stampaDettagliProdotto();
-
-
-        carrelloEuronics2.aggiungiProdotto(notebook2);
         carrelloEuronics1.aggiungiProdotto(tablet1);
+
         carrelloEuronics2.aggiungiProdotto(tablet2);
+        carrelloEuronics2.aggiungiProdotto(notebook1);
+        carrelloEuronics2.aggiungiProdotto(notebook2);
+        notebook1.stampaDettagliProdotto();
 
         //da qui aggiungo poi i carrelli ai magazzini di euronics.
 
@@ -145,4 +141,5 @@ public class Main {
         magazzinoEuronics.stampaMagazzino();
         System.out.println();
     }
+
 }
