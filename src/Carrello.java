@@ -16,12 +16,12 @@ public class Carrello {
         return listaProdottiCarrello;
     }
 
-    public void aggiungiProdotto(Prodotto prodotto) {
+    private void aggiungiProdotto(Prodotto prodotto) {
         this.listaProdottiCarrello.add(prodotto);
         this.totale = this.totale.add(prodotto.getPrezzoVendita());
     }
 
-    public void rimuoviProdotto(Prodotto prodotto) {
+    private void rimuoviProdotto(Prodotto prodotto) {
         listaProdottiCarrello.remove(prodotto);
         this.totale = this.totale.subtract(prodotto.getPrezzoVendita());
     }
@@ -49,5 +49,12 @@ public class Carrello {
         listaProdottiCarrello.clear();
         System.out.println("Acquisto confermato. Grazie per il tuo acquisto!");
         System.out.println("Il carrello è stato svuotato.");
+    }
+
+    public void getAggiungiProdottoCarrello(Prodotto prodotto){
+        aggiungiProdotto(prodotto);
+    }
+    public void getRimuoviProdottoCarrello(Prodotto prodotto){
+        rimuoviProdotto(prodotto);
     }
 }

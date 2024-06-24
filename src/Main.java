@@ -1,63 +1,59 @@
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchMethodException {
 
         Magazzino magazzinoEuronics = new Magazzino("Euronics Bruno", "Via Libica, 91100 TRAPANI (TP)");
         Magazzino magazzinoEsselunga = new Magazzino("Esselunga", "Piazza Gae Aulenti, 20124 Milano (MI)");
         Magazzino magazzinoArmani = new Magazzino("Emporio Armani", "Piazza dei Martiri 61-62, 80121 NAPOLI (NA)");
 
-        Carrello carrelloEuronics1 = new Carrello();
-        Carrello carrelloEuronics2 = new Carrello();
-        Carrello carrelloEsselunga1 = new Carrello();
-        Carrello carrelloEsselunga2 = new Carrello();
-        Carrello carrelloArmani1 = new Carrello();
-        Carrello carrelloArmani2 = new Carrello();
-
-        // TODO popolare i carrelli con i prodotti e poi aggiungerli al magazzino (carrello.add)
-        magazzinoEuronics.aggiungiCarrello(carrelloEuronics1);
-        magazzinoEuronics.aggiungiCarrello(carrelloEuronics2);
-        magazzinoEsselunga.aggiungiCarrello(carrelloEsselunga1);
-        magazzinoEsselunga.aggiungiCarrello(carrelloEsselunga2);
-
         // Prodotti di tipo ELETTRONICA
-        Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Samsung Galaxy S8", "", new BigDecimal("599.99"), "", "", 5.6,
-                ProdottoEnum.MVME, "512GB", 300.00);
+        Prodotto smartphone1 = magazzinoEuronics.aggiungiProdotto(new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Samsung Galaxy S8", "", new BigDecimal("599.99"), "", "", 5.6,
+                ProdottoEnum.MVME, "512GB", 300.00));
 
-        Prodotto smartphone2 = new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Asus Rog Phone 7 Ultimate", "", new BigDecimal("799.99"), "", "", 5.6,
-                ProdottoEnum.MVME, "512GB", 300.00);
+        Prodotto smartphone2 = magazzinoEuronics.aggiungiProdotto(new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Asus Rog Phone 7 Ultimate", "", new BigDecimal("799.99"), "", "", 5.6,
+                ProdottoEnum.MVME, "512GB", 300.00));
 
-        Prodotto notebook1 = new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "Acer Predator Helios 300", "", new BigDecimal("2399.99"), "", "", 15.0,
-                ProdottoEnum.SSD, "512GB", 300.00);
+        Prodotto notebook1 = magazzinoEuronics.aggiungiProdotto(new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "Acer Predator Helios 300", "", new BigDecimal("2399.99"), "", "", 15.0,
+                ProdottoEnum.SSD, "512GB", 300.00));
 
-        Prodotto notebook2 = new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "MacBook pro", "", new BigDecimal("1599.99"), "", "", 14.6,
-                ProdottoEnum.SSD, "512GB", 300.00);
+        Prodotto notebook2 = magazzinoEuronics.aggiungiProdotto(new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "MacBook pro", "", new BigDecimal("1599.99"), "", "", 14.6,
+                ProdottoEnum.SSD, "512GB", 300.00));
 
-        Prodotto tablet1 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy Note 3", "", new BigDecimal("299.99"), "", "", 5.6,
-                ProdottoEnum.MVME, "512GB", 300.00);
+        Prodotto tablet1 = magazzinoEuronics.aggiungiProdotto(new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy Note 3", "", new BigDecimal("299.99"), "", "", 5.6,
+                ProdottoEnum.MVME, "512GB", 300.00));
 
-        Prodotto tablet2 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6,
-                ProdottoEnum.MVME, "512GB", 300.00);
+        Prodotto tablet2 = magazzinoEuronics.aggiungiProdotto(new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6,
+                ProdottoEnum.MVME, "512GB", 300.00));
+
+
+        magazzinoEuronics.creaNuovoCarrello();
+        magazzinoEuronics.creaNuovoCarrello();
+        magazzinoEuronics.aggiungiProdottoACarrello(carrello1,smartphone1);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrello1,smartphone2);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrello2,notebook1);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrello2,notebook2);
 
         magazzinoEuronics.stampaMagazzino();
-//        // TODO aggiungi prodotti a carrelli, i prodotti sono già contenuti nel magazzino
+        // TODO aggiungi prodotti a carrelli, i prodotti sono già contenuti nel magazzino
 
         // Aggiunta dei prodotti ai carrelli di euronics.
-        carrelloEuronics1.aggiungiProdotto(smartphone1);
-        carrelloEuronics1.aggiungiProdotto(smartphone2);
-        carrelloEuronics1.aggiungiProdotto(tablet1);
-
-        carrelloEuronics2.aggiungiProdotto(tablet2);
-        carrelloEuronics2.aggiungiProdotto(notebook1);
-        carrelloEuronics2.aggiungiProdotto(notebook2);
-        notebook1.stampaDettagliProdotto();
+//        carrelloEuronics1.aggiungiProdotto(smartphone1);
+//        carrelloEuronics1.aggiungiProdotto(smartphone2);
+//        carrelloEuronics1.aggiungiProdotto(tablet1);
+//
+//        carrelloEuronics2.aggiungiProdotto(tablet2);
+//        carrelloEuronics2.aggiungiProdotto(notebook1);
+//        carrelloEuronics2.aggiungiProdotto(notebook2);
+//        notebook1.stampaDettagliProdotto();
 
         //da qui aggiungo poi i carrelli ai magazzini di euronics.
 
-        magazzinoEuronics.aggiungiCarrello(carrelloEuronics1);
-        magazzinoEuronics.aggiungiCarrello(carrelloEuronics2);
+//        magazzinoEuronics.aggiungiCarrello(carrelloEuronics1);
+//        magazzinoEuronics.aggiungiCarrello(carrelloEuronics2);
 
         // Prodotti di tipo ALIMENTARE
         Prodotto cereali = new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Cereali Kellogs", "", new BigDecimal("4.995"));
@@ -66,12 +62,12 @@ public class Main {
         Prodotto patatine = new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", new BigDecimal("1.2"));
         Prodotto gelato = new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"));
 
-        // Aggiunta dei prodotti alimentari ai carrelli Esselunga
-        carrelloEsselunga1.aggiungiProdotto(cereali);
-        carrelloEsselunga2.aggiungiProdotto(cocaCola);
-        carrelloEsselunga2.aggiungiProdotto(fanta);
-        carrelloEsselunga2.aggiungiProdotto(patatine);
-        carrelloEsselunga1.aggiungiProdotto(gelato);
+//        // Aggiunta dei prodotti alimentari ai carrelli Esselunga
+//        carrelloEsselunga1.aggiungiProdotto(cereali);
+//        carrelloEsselunga2.aggiungiProdotto(cocaCola);
+//        carrelloEsselunga2.aggiungiProdotto(fanta);
+//        carrelloEsselunga2.aggiungiProdotto(patatine);
+//        carrelloEsselunga1.aggiungiProdotto(gelato);
 
         // Prodotti di tipo ABBIGLIAMENTO
         Prodotto pantalone = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99"));
@@ -82,12 +78,12 @@ public class Main {
         Prodotto intimo = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "intimo super fresco ed elegante", "", new BigDecimal("179.99"));
 
         // Aggiunta dei prodotti abbigliamento ai magazzini Armani
-        carrelloArmani1.aggiungiProdotto(pantalone);
-        carrelloArmani2.aggiungiProdotto(giacca);
-        carrelloArmani1.aggiungiProdotto(scarpe);
-        carrelloArmani1.aggiungiProdotto(calzini);
-        carrelloArmani2.aggiungiProdotto(maglietta);
-        carrelloArmani2.aggiungiProdotto(intimo);
+//        carrelloArmani1.aggiungiProdotto(pantalone);
+//        carrelloArmani2.aggiungiProdotto(giacca);
+//        carrelloArmani1.aggiungiProdotto(scarpe);
+//        carrelloArmani1.aggiungiProdotto(calzini);
+//        carrelloArmani2.aggiungiProdotto(maglietta);
+//        carrelloArmani2.aggiungiProdotto(intimo);
 
 
         // Stampa del magazzino Esselunga prima della vendita
@@ -95,51 +91,51 @@ public class Main {
         magazzinoEsselunga.stampaMagazzino();
         System.out.println();
 
-        // Simulazione dell'acquisto
-        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, cereali);
-        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, gelato);
-
-        // Stampa dei prodotti nel carrello Esselunga
-        System.out.println("Prodotti nel carrello di Esselunga:");
-        carrelloEsselunga1.stampaProdottiCarrello();
-        System.out.println();
-
-//        // Calcolo del totale del carrello Esselunga
-//        BigDecimal totaleCarrello = carrelloEsselunga1.calcolaTotaleCarrello();
-//        System.out.println("Totale da pagare: " + totaleCarrello + " €");
-
-        // Effettuazione del pagamento
-        carrelloEsselunga1.effettuaPagamento();
-        System.out.println();
-
-        // Stampa del magazzino Esselunga dopo la vendita
-        System.out.println("Magazzino Esselunga dopo la vendita:");
-        magazzinoEsselunga.stampaMagazzino();
-        System.out.println();
-
-
-        // Stampa del magazzino Euronics prima della vendita
-        System.out.println("Magazzino Euronics prima della vendita:");
-        magazzinoEuronics.stampaMagazzino();
-        System.out.println();
-
-        // Simulazione dell'acquisto
-        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1, notebook1);
-        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1, smartphone1);
-
-        // Stampa dei prodotti nel carrello Esselunga
-        System.out.println("Prodotti nel carrello Euronics:");
-        carrelloEuronics1.stampaProdottiCarrello();
-        System.out.println();
-
-        // Effettuazione del pagamento
-        carrelloEuronics1.effettuaPagamento();
-        System.out.println();
-
-        // Stampa del magazzino Esselunga dopo la vendita
-        System.out.println("Magazzino Euronics dopo la vendita:");
-        magazzinoEuronics.stampaMagazzino();
-        System.out.println();
+//        // Simulazione dell'acquisto
+//        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, cereali);
+//        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, gelato);
+//
+//        // Stampa dei prodotti nel carrello Esselunga
+//        System.out.println("Prodotti nel carrello di Esselunga:");
+//        carrelloEsselunga1.stampaProdottiCarrello();
+//        System.out.println();
+//
+////        // Calcolo del totale del carrello Esselunga
+////        BigDecimal totaleCarrello = carrelloEsselunga1.calcolaTotaleCarrello();
+////        System.out.println("Totale da pagare: " + totaleCarrello + " €");
+//
+//        // Effettuazione del pagamento
+//        carrelloEsselunga1.effettuaPagamento();
+//        System.out.println();
+//
+//        // Stampa del magazzino Esselunga dopo la vendita
+//        System.out.println("Magazzino Esselunga dopo la vendita:");
+//        magazzinoEsselunga.stampaMagazzino();
+//        System.out.println();
+//
+//
+//        // Stampa del magazzino Euronics prima della vendita
+//        System.out.println("Magazzino Euronics prima della vendita:");
+//        magazzinoEuronics.stampaMagazzino();
+//        System.out.println();
+//
+//        // Simulazione dell'acquisto
+//        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1, notebook1);
+//        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1, smartphone1);
+//
+//        // Stampa dei prodotti nel carrello Esselunga
+//        System.out.println("Prodotti nel carrello Euronics:");
+//        carrelloEuronics1.stampaProdottiCarrello();
+//        System.out.println();
+//
+//        // Effettuazione del pagamento
+//        carrelloEuronics1.effettuaPagamento();
+//        System.out.println();
+//
+//        // Stampa del magazzino Esselunga dopo la vendita
+//        System.out.println("Magazzino Euronics dopo la vendita:");
+//        magazzinoEuronics.stampaMagazzino();
+//        System.out.println();
     }
 
 }

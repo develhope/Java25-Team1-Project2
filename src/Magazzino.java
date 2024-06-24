@@ -1,22 +1,20 @@
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+
 
 public class Magazzino {
-    private List<Prodotto> listaProdottiMagazzino;
-    private List<Carrello> carrelli;
+    private  List<Prodotto> listaProdottiMagazzino;
+    private  Carrello carrelli;
     private String nomeMagazzino;
     private String ubicazione;
 
     public Magazzino(String nomeMagazzino, String ubicazione) {
         this.listaProdottiMagazzino = new ArrayList<>();
-        this.carrelli = new ArrayList<>();
+        this.carrelli = new Carrello();
         this.nomeMagazzino = nomeMagazzino;
         this.ubicazione = ubicazione;
     }
+
 
     // Metodi getter e setter per nomeMagazzino e ubicazione
     public String getUbicazione() {
@@ -39,25 +37,19 @@ public class Magazzino {
         return listaProdottiMagazzino;
     }
 
-    public List<Carrello> getCarrelli() {
+    public Carrello getCarrelli() {
         return carrelli;
     }
 
-    public void aggiungiProdotto(Prodotto prodotto) {
+    public Prodotto aggiungiProdotto(Prodotto prodotto) {
         listaProdottiMagazzino.add(prodotto);
+        return prodotto;
     }
 
     public void rimuoviProdotto(Prodotto prodotto) {
         listaProdottiMagazzino.remove(prodotto);
     }
 
-    public void aggiungiCarrello(Carrello carrello) {
-        carrelli.add(carrello);
-    }
-
-    public void rimuoviCarrello(Carrello carrello) {
-        carrelli.remove(carrello);
-    }
 
     public void stampaMagazzino() {
         System.out.println("Lista prodotti Magazzino: ");
@@ -87,22 +79,6 @@ public class Magazzino {
         }
         return dispositiviTrovati;
     }
-
-    // TODO vedere cosa ha che non va metodo cercaDispositiviPerModello
-    /*
-    public List<Prodotto> cercaDispositiviPerModello(String modello) {
-        List<Prodotto> dispositiviTrovati = new ArrayList<>();
-        for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto instanceof Smartphone && Objects.equals(((Smartphone) prodotto).getModello(), modello)) {
-                dispositiviTrovati.add(prodotto);
-            } else if (prodotto instanceof Notebook && Objects.equals(((Notebook) prodotto).getModello(), modello)) {
-                dispositiviTrovati.add(prodotto);
-            }
-        }
-        return dispositiviTrovati;
-    }
-
-     */
 
     public List<Prodotto> ricercaPerPrezzoVendita(BigDecimal inputPrezzo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
@@ -134,25 +110,27 @@ public class Magazzino {
         return dispositiviTrovati;
     }
 
-    public boolean aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto) {
+    public void aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto) throws NoSuchMethodException {
         if (listaProdottiMagazzino.contains(prodotto)) {
-            carrello.aggiungiProdotto(prodotto);
+            carrelli.getAggiungiProdotto(prodotto);
             listaProdottiMagazzino.remove(prodotto);
-            return true;
         } else {
             System.out.println("Prodotto non disponibile in magazzino.");
-            return false;
         }
+
     }
 
-    public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto) {
+    public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto)  {
         if (carrello.getListaProdottiCarrello().contains(prodotto)) {
-            carrello.rimuoviProdotto(prodotto);
-            listaProdottiMagazzino.add(prodotto);
+            carrelli.getRimuoviProdotto(prodotto);
             return true;
         } else {
             System.out.println("Prodotto non presente nel carrello.");
             return false;
         }
+    }
+    public Carrello creaNuovoCarrello(){
+        Carrello nomeCarrello = new Carrello();
+        return nomeCarrello;
     }
 }
