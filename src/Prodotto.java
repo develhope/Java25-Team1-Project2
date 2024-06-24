@@ -3,7 +3,7 @@ import java.util.UUID;
 
 // TODO crea nuove interfacce per tipizzare prodotti, es. per dispositivi elettronici - accendi/spegni, per alimentari - frigo/scaffale, etc.
 
-public class Prodotto {
+public class  Prodotto {
     private UUID id;
     private ProdottoEnum tipologiaProdotto;
     private String nomeProdotto;

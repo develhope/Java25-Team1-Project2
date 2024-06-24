@@ -58,7 +58,7 @@ public class Magazzino {
             prodotto.stampaDettagliProdotto();
         }
     }
-
+    //TODO metodo non funzionante
     public void stampaDuplicati() {
         Map<Prodotto, Integer> prodottoCount = new HashMap<>();
         for (Prodotto prodotto : listaProdottiMagazzino) {

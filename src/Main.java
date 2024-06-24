@@ -1,4 +1,4 @@
-import java.lang.reflect.InvocationTargetException;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -36,7 +36,7 @@ public class Main {
         Prodotto patatine = magazzinoEsselunga.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", new BigDecimal("1.2")));
         Prodotto gelato = magazzinoEsselunga.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509")));
 
-// Prodotti di tipo ABBIGLIAMENTO
+        // Prodotti di tipo ABBIGLIAMENTO
         Prodotto pantalone = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99")));
         Prodotto giacca = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Giacca tinta unita in lana cotta", "", new BigDecimal("685.50")));
         Prodotto scarpe = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Scarpe decollete col tacco", "", new BigDecimal("450.00")));
