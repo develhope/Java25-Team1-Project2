@@ -5,22 +5,25 @@ import java.util.List;
 
 public class Carrello {
     private List<Prodotto> listaProdottiCarrello;
+    private BigDecimal totale;
 
     public Carrello() {
         this.listaProdottiCarrello = new ArrayList<>();
+        this.totale = BigDecimal.ZERO;
     }
 
     public List<Prodotto> getListaProdottiCarrello() {
         return listaProdottiCarrello;
     }
 
-    public void aggiungiProdotto(Prodotto prodotto) {
-        listaProdottiCarrello.add(prodotto);
-        // TODO aggiungi incremento automatico totale
+    private void aggiungiProdotto(Prodotto prodotto) {
+        this.listaProdottiCarrello.add(prodotto);
+        this.totale = this.totale.add(prodotto.getPrezzoVendita());
     }
 
-    public void rimuoviProdotto(Prodotto prodotto) {
+    private void rimuoviProdotto(Prodotto prodotto) {
         listaProdottiCarrello.remove(prodotto);
+        this.totale = this.totale.subtract(prodotto.getPrezzoVendita());
     }
 
     // TODO correggere il metodo in modo che stampi l'oggetto e non l'hashcode
@@ -31,23 +34,12 @@ public class Carrello {
         }
     }
 
-    public BigDecimal calcolaTotaleCarrello() {
-        BigDecimal totale = BigDecimal.ZERO;
-        for (Prodotto prodotto : listaProdottiCarrello) {
-            totale = totale.add(prodotto.getPrezzoVendita());
-        }
-        totale = totale.setScale(2, RoundingMode.HALF_UP);
-        return totale;
-    }
-
-
-
     public boolean effettuaPagamento() {
         if (listaProdottiCarrello.isEmpty()) {
             System.out.println("Il carrello è vuoto. Impossibile effettuare il pagamento.");
             return false;
         }
-        BigDecimal totaleCarrello = calcolaTotaleCarrello();
+        BigDecimal totaleCarrello = totale.setScale(2,RoundingMode.HALF_UP);
         System.out.println("Il totale da pagare è: " + totaleCarrello + " €");
         confermaAcquisto();
         return true;
@@ -57,5 +49,12 @@ public class Carrello {
         listaProdottiCarrello.clear();
         System.out.println("Acquisto confermato. Grazie per il tuo acquisto!");
         System.out.println("Il carrello è stato svuotato.");
+    }
+
+    public void getAggiungiProdottoCarrello(Prodotto prodotto){
+        aggiungiProdotto(prodotto);
+    }
+    public void getRimuoviProdottoCarrello(Prodotto prodotto){
+        rimuoviProdotto(prodotto);
     }
 }
