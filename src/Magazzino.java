@@ -4,13 +4,13 @@ import java.util.*;
 
 public class Magazzino {
     private  List<Prodotto> listaProdottiMagazzino;
-    private  Carrello carrelli;
+    private  List<Carrello> carrelli;
     private String nomeMagazzino;
     private String ubicazione;
 
     public Magazzino(String nomeMagazzino, String ubicazione) {
         this.listaProdottiMagazzino = new ArrayList<>();
-        this.carrelli = new Carrello();
+        this.carrelli = new ArrayList<>();
         this.nomeMagazzino = nomeMagazzino;
         this.ubicazione = ubicazione;
     }
@@ -37,7 +37,7 @@ public class Magazzino {
         return listaProdottiMagazzino;
     }
 
-    public Carrello getCarrelli() {
+    public List<Carrello> getCarrelli() {
         return carrelli;
     }
 
@@ -46,8 +46,9 @@ public class Magazzino {
         return prodotto;
     }
 
-    public void rimuoviProdotto(Prodotto prodotto) {
+    public Prodotto rimuoviProdotto(Prodotto prodotto) {
         listaProdottiMagazzino.remove(prodotto);
+        return prodotto;
     }
 
 
@@ -110,9 +111,9 @@ public class Magazzino {
         return dispositiviTrovati;
     }
 
-    public void aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto) throws NoSuchMethodException {
+    public void aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto)  {
         if (listaProdottiMagazzino.contains(prodotto)) {
-            carrelli.getAggiungiProdotto(prodotto);
+            carrello.getAggiungiProdottoCarrello(prodotto);
             listaProdottiMagazzino.remove(prodotto);
         } else {
             System.out.println("Prodotto non disponibile in magazzino.");
@@ -122,7 +123,7 @@ public class Magazzino {
 
     public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto)  {
         if (carrello.getListaProdottiCarrello().contains(prodotto)) {
-            carrelli.getRimuoviProdotto(prodotto);
+            carrello.getRimuoviProdottoCarrello(prodotto);
             return true;
         } else {
             System.out.println("Prodotto non presente nel carrello.");
@@ -130,7 +131,8 @@ public class Magazzino {
         }
     }
     public Carrello creaNuovoCarrello(){
-        Carrello nomeCarrello = new Carrello();
-        return nomeCarrello;
+        Carrello nuovoCarrello = new Carrello();
+        carrelli.add(nuovoCarrello);
+        return nuovoCarrello;
     }
 }
