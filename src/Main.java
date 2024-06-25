@@ -3,7 +3,7 @@ import java.util.UUID;
 
 public class Main {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         Magazzino magazzinoEuronics = new Magazzino("Euronics Bruno", "Via Libica, 91100 TRAPANI (TP)");
         Magazzino magazzinoEsselunga = new Magazzino("Esselunga", "Piazza Gae Aulenti, 20124 Milano (MI)");
@@ -29,11 +29,11 @@ public class Main {
                 ProdottoEnum.MVME, "512GB", 300.00));
 
         // Prodotti di tipo ALIMENTARE
-        Prodotto cereali = magazzinoEsselunga.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Cereali Kellogs", "", new BigDecimal("4.995")));
-        Prodotto cocaCola = magazzinoEsselunga.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79")));
-        Prodotto fanta = magazzinoEsselunga.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7")));
-        Prodotto patatine = magazzinoEsselunga.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", new BigDecimal("1.2")));
-        Prodotto gelato = magazzinoEsselunga.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509")));
+        Prodotto cereali = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Cereali Kellogs", "", new BigDecimal("4.995"), false, "2025-12-01"));
+        Prodotto cocaCola = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"), false, "2026-12-01"));
+        Prodotto fanta = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7"), false, "2026-12-01"));
+        Prodotto patatine = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", new BigDecimal("1.2"), false, "2025-08-01"));
+        Prodotto gelato = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"), true, "2024-06-01"));
 
         // Prodotti di tipo ABBIGLIAMENTO
         Prodotto pantalone = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99")));
@@ -59,12 +59,12 @@ public class Main {
         magazzinoEuronics.stampaMagazzino();
         System.out.println();
 
-        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1,smartphone1);
-        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1,smartphone2);
-        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1,tablet1);
-        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics2,tablet2);
-        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics2,notebook1);
-        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics2,notebook2);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1, smartphone1);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1, smartphone2);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics1, tablet1);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics2, tablet2);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics2, notebook1);
+        magazzinoEuronics.aggiungiProdottoACarrello(carrelloEuronics2, notebook2);
 
         // Stampa dei prodotti nei carrelli Euronics
         System.out.println("Prodotti nel carrello1 di Euronics:");
@@ -84,9 +84,9 @@ public class Main {
 
         magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, cereali);
         magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, gelato);
-        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1,cocaCola);
-        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga2,fanta);
-        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga2,patatine);
+        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga1, cocaCola);
+        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga2, fanta);
+        magazzinoEsselunga.aggiungiProdottoACarrello(carrelloEsselunga2, patatine);
 
         // Stampa dei prodotti nel carrello Esselunga
         System.out.println("Prodotti nel carrello1 di Esselunga:");
@@ -108,9 +108,9 @@ public class Main {
         magazzinoEsselunga.stampaMagazzino();
         System.out.println();
 
-        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1,calzini);
-        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1,giacca);
-        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani2,maglietta);
+        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1, calzini);
+        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1, giacca);
+        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani2, maglietta);
         // Stampa dei prodotti nel carrello Esselunga
         System.out.println("Prodotti nel carrello1 di Armani:");
         carrelloArmani1.stampaProdottiCarrello();
