@@ -69,12 +69,17 @@ public class Main {
         // Stampa dei prodotti nei carrelli Euronics
         System.out.println("Prodotti nel carrello1 di Euronics:");
         carrelloEuronics1.stampaProdottiCarrello();
+
+        // Effettuazione del pagamento
+        carrelloEuronics1.effettuaPagamento();
+        System.out.println();
+
         System.out.println("Prodotti nel carrello2 di Euronics:");
         carrelloEuronics2.stampaProdottiCarrello();
         System.out.println();
 
         // Effettuazione del pagamento
-        carrelloEsselunga1.effettuaPagamento();
+        carrelloEuronics2.effettuaPagamento();
         System.out.println();
 
         // Stampa del magazzino Esselunga prima della vendita
@@ -92,37 +97,37 @@ public class Main {
         System.out.println("Prodotti nel carrello1 di Esselunga:");
         carrelloEsselunga1.stampaProdottiCarrello();
         System.out.println();
-        System.out.println("Prodotti nel carrello2 di Esselunga:");
-        carrelloEsselunga2.stampaProdottiCarrello();
-        System.out.println();
 
         // Effettuazione del pagamento
         carrelloEsselunga1.effettuaPagamento();
         System.out.println();
 
-        carrelloEsselunga2.effettuaPagamento();
+
+        System.out.println("Prodotti nel carrello2 di Esselunga:");
+        carrelloEsselunga2.stampaProdottiCarrello();
         System.out.println();
 
-        // Stampa del magazzino Esselunga dopo la vendita
-        System.out.println("Magazzino Esselunga dopo la vendita:");
-        magazzinoEsselunga.stampaMagazzino();
+        // Effettuazione del pagamento
+        carrelloEsselunga2.effettuaPagamento();
         System.out.println();
 
         magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1,calzini);
         magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1,giacca);
         magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani2,maglietta);
-        // Stampa dei prodotti nel carrello Esselunga
+        // Stampa dei prodotti nel carrello Armani
         System.out.println("Prodotti nel carrello1 di Armani:");
         carrelloArmani1.stampaProdottiCarrello();
-        System.out.println();
-        System.out.println("Prodotti nel carrello2 di Armani:");
-        carrelloArmani2.stampaProdottiCarrello();
         System.out.println();
 
         // Effettuazione del pagamento
         carrelloArmani1.effettuaPagamento();
         System.out.println();
 
+        System.out.println("Prodotti nel carrello2 di Armani:");
+        carrelloArmani2.stampaProdottiCarrello();
+        System.out.println();
+
+        // Effettuazione del pagamento
         carrelloArmani2.effettuaPagamento();
         System.out.println();
     }
