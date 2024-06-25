@@ -29,11 +29,11 @@ public class Main {
                 ProdottoEnum.MVME, "512GB", 300.00));
 
         // Prodotti di tipo ALIMENTARE
-        Prodotto cereali = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Cereali Kellogs", "", new BigDecimal("4.995"), false, "2025-12-01"));
-        Prodotto cocaCola = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"), false, "2026-12-01"));
-        Prodotto fanta = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7"), false, "2026-12-01"));
-        Prodotto patatine = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Patatine San Carlo", "", new BigDecimal("1.2"), false, "2025-08-01"));
-        Prodotto gelato = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"), true, "2024-06-01"));
+        Prodotto cereali = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Cereali", "", new BigDecimal("4.995"), false, "2025-12-01", "Kellogs"));
+        Prodotto cocaCola = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"), false, "2026-12-01", "Coca-Cola"));
+        Prodotto fanta = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7"), false, "2026-12-01", "Fanta"));
+        Prodotto patatine = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Patatine", "", new BigDecimal("1.2"), false, "2025-08-01", "San Carlo"));
+        Prodotto gelato = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"), true, "2024-06-01", "Nestle"));
 
         // Prodotti di tipo ABBIGLIAMENTO
         Prodotto pantalone = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99")));
@@ -50,7 +50,6 @@ public class Main {
         Carrello carrelloEsselunga2 = magazzinoEsselunga.creaNuovoCarrello();
         Carrello carrelloArmani1 = magazzinoArmani.creaNuovoCarrello();
         Carrello carrelloArmani2 = magazzinoArmani.creaNuovoCarrello();
-
 
         // Simulazione dell'acquisto
 

@@ -15,7 +15,6 @@ public class Magazzino {
         this.ubicazione = ubicazione;
     }
 
-
     // Metodi getter e setter per nomeMagazzino e ubicazione
     public String getUbicazione() {
         return ubicazione;
@@ -50,7 +49,6 @@ public class Magazzino {
         listaProdottiMagazzino.remove(prodotto);
         return prodotto;
     }
-
 
     public void stampaMagazzino() {
         System.out.println("Lista prodotti Magazzino: ");
