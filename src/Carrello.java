@@ -30,7 +30,7 @@ public class Carrello {
     public void stampaProdottiCarrello() {
         System.out.println("Lista prodotti Carrello: ");
         for (Prodotto prodotto : listaProdottiCarrello) {
-            System.out.println(prodotto);
+            prodotto.stampaDettagliProdotto();
         }
     }
 
