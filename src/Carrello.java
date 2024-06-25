@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Carrello {
-    private List<Prodotto> listaProdottiCarrello;
+    private final List<Prodotto> listaProdottiCarrello;
     private BigDecimal totale;
 
     public Carrello() {
@@ -30,7 +30,7 @@ public class Carrello {
     public void stampaProdottiCarrello() {
         System.out.println("Lista prodotti Carrello: ");
         for (Prodotto prodotto : listaProdottiCarrello) {
-            System.out.println(prodotto);
+            prodotto.stampaDettagliProdotto();
         }
     }
 
@@ -39,7 +39,7 @@ public class Carrello {
             System.out.println("Il carrello è vuoto. Impossibile effettuare il pagamento.");
             return false;
         }
-        BigDecimal totaleCarrello = totale.setScale(2,RoundingMode.HALF_UP);
+        BigDecimal totaleCarrello = totale.setScale(2, RoundingMode.HALF_UP);
         System.out.println("Il totale da pagare è: " + totaleCarrello + " €");
         confermaAcquisto();
         return true;
@@ -51,10 +51,11 @@ public class Carrello {
         System.out.println("Il carrello è stato svuotato.");
     }
 
-    public void getAggiungiProdottoCarrello(Prodotto prodotto){
+    public void getAggiungiProdottoCarrello(Prodotto prodotto) {
         aggiungiProdotto(prodotto);
     }
-    public void getRimuoviProdottoCarrello(Prodotto prodotto){
+
+    public void getRimuoviProdottoCarrello(Prodotto prodotto) {
         rimuoviProdotto(prodotto);
     }
 }
