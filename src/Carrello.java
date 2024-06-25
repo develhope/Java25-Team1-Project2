@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Carrello {
-    private List<Prodotto> listaProdottiCarrello;
+    private final List<Prodotto> listaProdottiCarrello;
     private BigDecimal totale;
 
     public Carrello() {
