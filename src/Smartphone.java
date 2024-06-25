@@ -1,8 +1,12 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class Smartphone extends Prodotto implements Dispositivo {
+public class Smartphone extends Prodotto implements Dispositivo.Smartphone {
+    private UUID id;
     private ProdottoEnum tipoDispositivo;
+    private String nomeProdotto;
+    private String descrizioneProdotto;
+    private BigDecimal prezzoVendita;
     private String produttore;
     private String modello;
     private Double dimensioneDisplay;
@@ -14,7 +18,11 @@ public class Smartphone extends Prodotto implements Dispositivo {
                       String produttore, String modello, Double dimensioneDisplay, ProdottoEnum tipoMemoria,
                       String dimensioneArchiviazione, Double prezzoAcquisto) {
         super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
+        this.id = id;
         this.tipoDispositivo = tipoDispositivo;
+        this.nomeProdotto = nomeProdotto;
+        this.descrizioneProdotto = descrizioneProdotto;
+        this.prezzoVendita = prezzoVendita;
         this.produttore = produttore;
         this.modello = modello;
         this.dimensioneDisplay = dimensioneDisplay;
@@ -31,13 +39,43 @@ public class Smartphone extends Prodotto implements Dispositivo {
     }
 
     @Override
+    public UUID getId() {
+        return id;
+    }
+
+    @Override
     public String getNome() {
-        return "";
+        return nomeProdotto;
     }
 
     @Override
     public String getDescrizione() {
-        return "";
+        return descrizioneProdotto;
+    }
+
+    @Override
+    public BigDecimal getPrezzoVendita() {
+        return prezzoVendita;
+    }
+
+    @Override
+    public void accendi() {
+        System.out.println("Smartphone acceso");
+    }
+
+    @Override
+    public void spegni() {
+        System.out.println("Smartphone spento");
+    }
+
+    @Override
+    public void chiamare(String numero) {
+        System.out.println("Chiamata al numero: " + numero);
+    }
+
+    @Override
+    public void inviareSMS(String numero, String messaggio) {
+        System.out.println("SMS inviato al numero: " + numero + " con il messaggio: " + messaggio);
     }
 
     public void setTipoDispositivo(ProdottoEnum tipoDispositivo) {
