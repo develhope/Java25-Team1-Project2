@@ -3,8 +3,8 @@ import java.util.*;
 
 
 public class Magazzino {
-    private  List<Prodotto> listaProdottiMagazzino;
-    private  List<Carrello> carrelli;
+    private List<Prodotto> listaProdottiMagazzino;
+    private List<Carrello> carrelli;
     private String nomeMagazzino;
     private String ubicazione;
 
@@ -58,6 +58,7 @@ public class Magazzino {
             prodotto.stampaDettagliProdotto();
         }
     }
+
     //TODO metodo non funzionante
     public void stampaDuplicati() {
         Map<Prodotto, Integer> prodottoCount = new HashMap<>();
@@ -111,7 +112,7 @@ public class Magazzino {
         return dispositiviTrovati;
     }
 
-    public void aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto)  {
+    public void aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto) {
         if (listaProdottiMagazzino.contains(prodotto)) {
             carrello.getAggiungiProdottoCarrello(prodotto);
             listaProdottiMagazzino.remove(prodotto);
@@ -121,7 +122,7 @@ public class Magazzino {
 
     }
 
-    public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto)  {
+    public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto) {
         if (carrello.getListaProdottiCarrello().contains(prodotto)) {
             carrello.getRimuoviProdottoCarrello(prodotto);
             return true;
@@ -130,7 +131,8 @@ public class Magazzino {
             return false;
         }
     }
-    public Carrello creaNuovoCarrello(){
+
+    public Carrello creaNuovoCarrello() {
         Carrello nuovoCarrello = new Carrello();
         carrelli.add(nuovoCarrello);
         return nuovoCarrello;
