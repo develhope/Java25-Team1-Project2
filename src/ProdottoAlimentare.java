@@ -1,6 +1,7 @@
 public interface ProdottoAlimentare {
 
-    Boolean isDaFrigo();
+   // TODO boolean piccolo
+    boolean isDaFrigo();
 
     String getDataScadenza();
 

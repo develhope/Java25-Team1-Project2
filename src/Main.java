@@ -10,46 +10,49 @@ public class Main {
         Magazzino magazzinoArmani = new Magazzino("Emporio Armani", "Piazza dei Martiri 61-62, 80121 NAPOLI (NA)");
 
         // Prodotti di tipo ELETTRONICA
-        Prodotto smartphone1 = magazzinoEuronics.aggiungiProdotto(new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Samsung Galaxy S8", "", new BigDecimal("599.99"), "", "", 5.6,
-                ProdottoEnum.MVME, "512GB", 300.00));
+        Prodotto smartphone1 = new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Samsung Galaxy S8", "", new BigDecimal("599.99"), "", "", 5.6,
+                ProdottoEnum.MVME, "512GB", 300.00);
 
-        Prodotto smartphone2 = magazzinoEuronics.aggiungiProdotto(new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Asus Rog Phone 7 Ultimate", "", new BigDecimal("799.99"), "", "", 5.6,
-                ProdottoEnum.MVME, "512GB", 300.00));
+        Prodotto smartphone2 = new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Asus Rog Phone 7 Ultimate", "", new BigDecimal("799.99"), "", "", 5.6,
+                ProdottoEnum.MVME, "512GB", 300.00);
 
-        Prodotto notebook1 = magazzinoEuronics.aggiungiProdotto(new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "Acer Predator Helios 300", "", new BigDecimal("2399.99"), "", "", 15.0,
-                ProdottoEnum.SSD, "512GB", 300.00));
+        Prodotto notebook1 = new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "Acer Predator Helios 300", "", new BigDecimal("2399.99"), "", "", 15.0,
+                ProdottoEnum.SSD, "512GB", 300.00);
 
-        Prodotto notebook2 = magazzinoEuronics.aggiungiProdotto(new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "MacBook pro", "", new BigDecimal("1599.99"), "", "", 14.6,
-                ProdottoEnum.SSD, "512GB", 300.00));
+        Prodotto notebook2 = new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "MacBook pro", "", new BigDecimal("1599.99"), "", "", 14.6,
+                ProdottoEnum.SSD, "512GB", 300.00);
 
-        Prodotto tablet1 = magazzinoEuronics.aggiungiProdotto(new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy Note 3", "", new BigDecimal("299.99"), "", "", 5.6,
-                ProdottoEnum.MVME, "512GB", 300.00));
+        Prodotto tablet1 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy Note 3", "", new BigDecimal("299.99"), "", "", 5.6,
+                ProdottoEnum.MVME, "512GB", 300.00);
 
-        Prodotto tablet2 = magazzinoEuronics.aggiungiProdotto(new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6,
-                ProdottoEnum.MVME, "512GB", 300.00));
+        Prodotto tablet2 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6,
+                ProdottoEnum.MVME, "512GB", 300.00);
 
         // Prodotti di tipo ALIMENTARE
-        Prodotto cereali = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Cereali", "", new BigDecimal("4.995"), false, "2025-12-01", "Kellogs"));
-        Prodotto cocaCola = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"), false, "2026-12-01", "Coca-Cola"));
-        Prodotto fanta = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7"), false, "2026-12-01", "Fanta"));
-        Prodotto patatine = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Patatine", "", new BigDecimal("1.2"), false, "2025-08-01", "San Carlo"));
-        Prodotto gelato = magazzinoEsselunga.aggiungiProdotto(new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"), true, "2024-06-01", "Nestle"));
+        Prodotto cereali = new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Cereali", "", new BigDecimal("4.995"), false, "2025-12-01", "Kellogs");
+        Prodotto cocaCola = new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"), false, "2026-12-01", "Coca-Cola");
+        Prodotto fanta = new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7"), false, "2026-12-01", "Fanta");
+        Prodotto patatine = new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Patatine", "", new BigDecimal("1.2"), false, "2025-08-01", "San Carlo");
+        Prodotto gelato = new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"), true, "2024-06-01", "Nestle");
 
+        // TODO step 1: creazione prodotti, step 2: creazione carrello, step 3: aggiungiamo prodotti a carrello, step 4: creazione magazzino, step 5: aggiungiamo il carrello al magazzino, step 6: effetuazione operazioni del magazzino
         // Prodotti di tipo ABBIGLIAMENTO
-        Prodotto pantalone = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99")));
-        Prodotto giacca = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Giacca tinta unita in lana cotta", "", new BigDecimal("685.50")));
-        Prodotto scarpe = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Scarpe decollete col tacco", "", new BigDecimal("450.00")));
-        Prodotto calzini = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Calzini a taglia unica", "", new BigDecimal("99.99")));
-        Prodotto maglietta = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "t-shirt a taglia unica", "", new BigDecimal("110.99")));
-        Prodotto intimo = magazzinoArmani.aggiungiProdotto(new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "intimo super fresco ed elegante", "", new BigDecimal("179.99")));
+        Prodotto pantalone = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99"));
+        Prodotto giacca = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Giacca tinta unita in lana cotta", "", new BigDecimal("685.50"));
+        Prodotto scarpe = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Scarpe decollete col tacco", "", new BigDecimal("450.00"));
+        Prodotto calzini = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Calzini a taglia unica", "", new BigDecimal("99.99"));
+        Prodotto maglietta = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "t-shirt a taglia unica", "", new BigDecimal("110.99"));
+        Prodotto intimo = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "intimo super fresco ed elegante", "", new BigDecimal("179.99"));
 
         //Creazione carrelli
-        Carrello carrelloEuronics1 = magazzinoEuronics.creaNuovoCarrello();
-        Carrello carrelloEuronics2 = magazzinoEuronics.creaNuovoCarrello();
-        Carrello carrelloEsselunga1 = magazzinoEsselunga.creaNuovoCarrello();
-        Carrello carrelloEsselunga2 = magazzinoEsselunga.creaNuovoCarrello();
-        Carrello carrelloArmani1 = magazzinoArmani.creaNuovoCarrello();
-        Carrello carrelloArmani2 = magazzinoArmani.creaNuovoCarrello();
+        Carrello carrelloEuronics1 = new Carrello();
+        Carrello carrelloEuronics2 = new Carrello();
+        Carrello carrelloEsselunga1 = new Carrello();
+        Carrello carrelloEsselunga2 = new Carrello();
+        Carrello carrelloArmani1 = new Carrello();
+        Carrello carrelloArmani2 = new Carrello();
+
+        // TODO aggiungi prodotti a carrelli
 
         // Simulazione dell'acquisto
 

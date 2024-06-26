@@ -15,7 +15,7 @@ public class Alimentare extends Prodotto implements ProdottoAlimentare {
     }
 
     @Override
-    public Boolean isDaFrigo() {
+    public boolean isDaFrigo() {
         return daFrigo;
     }
 

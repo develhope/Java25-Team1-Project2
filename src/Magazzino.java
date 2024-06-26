@@ -129,10 +129,4 @@ public class Magazzino {
             return false;
         }
     }
-
-    public Carrello creaNuovoCarrello() {
-        Carrello nuovoCarrello = new Carrello();
-        carrelli.add(nuovoCarrello);
-        return nuovoCarrello;
-    }
 }

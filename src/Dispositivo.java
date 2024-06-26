@@ -1,17 +1,8 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
+// TODO sistemare interfaccia
 public interface Dispositivo {
-    ProdottoEnum getTipoDispositivo();
-
-    UUID getId();
-
-    String getNome();
-
-    String getDescrizione();
-
-    BigDecimal getPrezzoVendita();
-
 
     public interface DispositivoElettronico extends Dispositivo {
         void accendi();
