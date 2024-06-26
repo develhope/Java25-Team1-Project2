@@ -3,7 +3,7 @@ import java.util.UUID;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
 
         Magazzino magazzinoEuronics = new Magazzino("Euronics Bruno", "Via Libica, 91100 TRAPANI (TP)");
         Magazzino magazzinoEsselunga = new Magazzino("Esselunga", "Piazza Gae Aulenti, 20124 Milano (MI)");
@@ -68,12 +68,17 @@ public class Main {
         // Stampa dei prodotti nei carrelli Euronics
         System.out.println("Prodotti nel carrello1 di Euronics:");
         carrelloEuronics1.stampaProdottiCarrello();
+
+        // Effettuazione del pagamento
+        carrelloEuronics1.effettuaPagamento();
+        System.out.println();
+
         System.out.println("Prodotti nel carrello2 di Euronics:");
         carrelloEuronics2.stampaProdottiCarrello();
         System.out.println();
 
         // Effettuazione del pagamento
-        carrelloEsselunga1.effettuaPagamento();
+        carrelloEuronics2.effettuaPagamento();
         System.out.println();
 
         // Stampa del magazzino Esselunga prima della vendita
@@ -91,37 +96,37 @@ public class Main {
         System.out.println("Prodotti nel carrello1 di Esselunga:");
         carrelloEsselunga1.stampaProdottiCarrello();
         System.out.println();
-        System.out.println("Prodotti nel carrello2 di Esselunga:");
-        carrelloEsselunga2.stampaProdottiCarrello();
-        System.out.println();
 
         // Effettuazione del pagamento
         carrelloEsselunga1.effettuaPagamento();
         System.out.println();
 
+
+        System.out.println("Prodotti nel carrello2 di Esselunga:");
+        carrelloEsselunga2.stampaProdottiCarrello();
+        System.out.println();
+
+        // Effettuazione del pagamento
         carrelloEsselunga2.effettuaPagamento();
         System.out.println();
 
-        // Stampa del magazzino Esselunga dopo la vendita
-        System.out.println("Magazzino Esselunga dopo la vendita:");
-        magazzinoEsselunga.stampaMagazzino();
-        System.out.println();
-
-        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1, calzini);
-        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1, giacca);
-        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani2, maglietta);
-        // Stampa dei prodotti nel carrello Esselunga
+        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1,calzini);
+        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani1,giacca);
+        magazzinoArmani.aggiungiProdottoACarrello(carrelloArmani2,maglietta);
+        // Stampa dei prodotti nel carrello Armani
         System.out.println("Prodotti nel carrello1 di Armani:");
         carrelloArmani1.stampaProdottiCarrello();
-        System.out.println();
-        System.out.println("Prodotti nel carrello2 di Armani:");
-        carrelloArmani2.stampaProdottiCarrello();
         System.out.println();
 
         // Effettuazione del pagamento
         carrelloArmani1.effettuaPagamento();
         System.out.println();
 
+        System.out.println("Prodotti nel carrello2 di Armani:");
+        carrelloArmani2.stampaProdottiCarrello();
+        System.out.println();
+
+        // Effettuazione del pagamento
         carrelloArmani2.effettuaPagamento();
         System.out.println();
     }
