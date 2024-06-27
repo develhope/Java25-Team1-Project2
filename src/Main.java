@@ -28,6 +28,7 @@ public class Main {
         Prodotto tablet2 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6,
                 ProdottoEnum.MVME, "512GB", 300.00);
 
+
         // Prodotti di tipo ALIMENTARE
         Prodotto cereali = new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Cereali", "", new BigDecimal("4.995"), false, "2025-12-01", "Kellogs");
         Prodotto cocaCola = new Alimentare(UUID.randomUUID(), ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"), false, "2026-12-01", "Coca-Cola");
@@ -37,12 +38,12 @@ public class Main {
 
         // TODO step 1: creazione prodotti, step 2: creazione carrello, step 3: aggiungiamo prodotti a carrello, step 4: creazione magazzino, step 5: aggiungiamo il carrello al magazzino, step 6: effetuazione operazioni del magazzino
         // Prodotti di tipo ABBIGLIAMENTO
-        Prodotto pantalone = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni a vita alta", "", new BigDecimal("179.99"));
-        Prodotto giacca = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Giacca tinta unita in lana cotta", "", new BigDecimal("685.50"));
-        Prodotto scarpe = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Scarpe decollete col tacco", "", new BigDecimal("450.00"));
-        Prodotto calzini = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Calzini a taglia unica", "", new BigDecimal("99.99"));
-        Prodotto maglietta = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "t-shirt a taglia unica", "", new BigDecimal("110.99"));
-        Prodotto intimo = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "intimo super fresco ed elegante", "", new BigDecimal("179.99"));
+        Prodotto pantalone = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni ", "a vita alta", new BigDecimal("179.99"));
+        Prodotto giacca = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Giacca tinta ", "unita in lana cotta", new BigDecimal("685.50"));
+        Prodotto scarpe = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Scarpe ", "decollete col tacco", new BigDecimal("450.00"));
+        Prodotto calzini = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Calzini", " a taglia unica", new BigDecimal("99.99"));
+        Prodotto maglietta = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "t-shirt", " a taglia unica", new BigDecimal("110.99"));
+        Prodotto intimo = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "intimo ", "super fresco ed elegante", new BigDecimal("179.99"));
 
         //Creazione carrelli
         Carrello carrelloEuronics1 = new Carrello();
@@ -132,5 +133,15 @@ public class Main {
         // Effettuazione del pagamento
         carrelloArmani2.effettuaPagamento();
         System.out.println();
+
+        //check dispositivi
+
+        ((Smartphone)smartphone1).checkSmartphone();
+
+        //check su vestiario
+       giacca.stampaDettagliProdotto();
+
+
     }
+
 }

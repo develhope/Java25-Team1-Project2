@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class Smartphone extends Prodotto implements Dispositivo.Smartphone {
+public class Smartphone extends Prodotto implements Dispositivo {
     private UUID id;
     private ProdottoEnum tipoDispositivo;
     private String nomeProdotto;
@@ -13,6 +13,8 @@ public class Smartphone extends Prodotto implements Dispositivo.Smartphone {
     private ProdottoEnum tipoMemoria;
     private String dimensioneArchiviazione;
     private Double prezzoAcquisto;
+    private boolean acceso;
+    private boolean spento;
 
     public Smartphone(UUID id, ProdottoEnum tipologiaProdotto, ProdottoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
                       String produttore, String modello, Double dimensioneDisplay, ProdottoEnum tipoMemoria,
@@ -29,53 +31,38 @@ public class Smartphone extends Prodotto implements Dispositivo.Smartphone {
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
+        this.acceso = false;
+        this.spento = true;
         this.setDescrizioneProdotto(descrizioneProdotto + ", Display: " + dimensioneDisplay +
                 "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
 
-    @Override
     public ProdottoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
 
-    @Override
     public UUID getId() {
         return id;
     }
 
-    @Override
     public String getNome() {
         return nomeProdotto;
     }
 
-    @Override
     public String getDescrizione() {
         return descrizioneProdotto;
     }
 
-    @Override
     public BigDecimal getPrezzoVendita() {
         return prezzoVendita;
     }
 
-    @Override
-    public void accendi() {
-        System.out.println("Smartphone acceso");
+    public boolean isAcceso() {
+        return acceso;
     }
 
-    @Override
-    public void spegni() {
-        System.out.println("Smartphone spento");
-    }
-
-    @Override
-    public void chiamare(String numero) {
-        System.out.println("Chiamata al numero: " + numero);
-    }
-
-    @Override
-    public void inviareSMS(String numero, String messaggio) {
-        System.out.println("SMS inviato al numero: " + numero + " con il messaggio: " + messaggio);
+    public boolean isSpento() {
+        return spento;
     }
 
     public void setTipoDispositivo(ProdottoEnum tipoDispositivo) {
@@ -130,6 +117,48 @@ public class Smartphone extends Prodotto implements Dispositivo.Smartphone {
         this.prezzoAcquisto = prezzoAcquisto;
     }
 
+    public void setAcceso(boolean acceso) {
+        this.acceso = acceso;
+        this.spento = !acceso;
+        if (acceso) {
+            accendi();
+        } else {
+            spegni();
+        }
+    }
+
+    public void chiamare(String numero) {
+        System.out.println("Chiamata al numero: " + numero);
+    }
+
+    public void inviareSMS(String numero, String messaggio) {
+        System.out.println("SMS inviato al numero: " + numero + " con il messaggio: " + messaggio);
+    }
+
+    public void inviaChiamata(String chiamare, String numero) {
+        if (isAcceso()) {
+            chiamare(numero);
+        } else {
+            System.out.println("Il dispositivo è spento. Impossibile chiamare.");
+        }
+    }
+
+    public void inviaSMS(String SMS, String numero) {
+        if (isAcceso()) {
+            inviareSMS(numero, SMS);
+        } else {
+            System.out.println("Il dispositivo è spento. Impossibile inviare SMS.");
+        }
+    }
+
+    public void accendi() {
+        System.out.println("Smartphone acceso");
+    }
+
+    public void spegni() {
+        System.out.println("Smartphone spento");
+    }
+
     @Override
     public void stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
@@ -137,5 +166,15 @@ public class Smartphone extends Prodotto implements Dispositivo.Smartphone {
                 ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + "\", Tipo di memoria: "
                 + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione +
                 ", Prezzo acquisto: " + prezzoAcquisto);
+    }
+
+
+    public void checkSmartphone() {
+        setAcceso(true);
+        inviaChiamata("Chiamata di test", "3895382595");
+        inviaSMS("Messaggio di test", "3895382595");
+        setSpento(true);
+        inviaChiamata("Chiamata di test", "3895382595");
+        inviaSMS("Messaggio di test", "3895382595");
     }
 }

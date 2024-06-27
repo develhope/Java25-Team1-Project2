@@ -2,15 +2,6 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public interface Abito {
-    UUID getId();
-
-    String getNome();
-
-    String getDescrizione();
-
-    BigDecimal getPrezzoVendita();
-
-    ProdottoEnum getTipologiaProdotto();
 
     String getTaglia();
 

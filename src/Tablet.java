@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class Tablet extends Prodotto implements Dispositivo.DispositivoElettronico {
+public class Tablet extends Prodotto implements Dispositivo{
     private UUID id;
     private ProdottoEnum tipoDispositivo;
     private String nomeProdotto;
@@ -33,37 +33,32 @@ public class Tablet extends Prodotto implements Dispositivo.DispositivoElettroni
                 "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
 
-    @Override
+
     public ProdottoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
 
-    @Override
     public UUID getId() {
         return id;
     }
 
-    @Override
+
     public String getNome() {
         return nomeProdotto;
     }
 
-    @Override
     public String getDescrizione() {
         return descrizioneProdotto;
     }
 
-    @Override
     public BigDecimal getPrezzoVendita() {
         return prezzoVendita;
     }
 
-    @Override
     public void accendi() {
         System.out.println("Tablet acceso");
     }
 
-    @Override
     public void spegni() {
         System.out.println("Tablet spento");
     }
@@ -120,7 +115,6 @@ public class Tablet extends Prodotto implements Dispositivo.DispositivoElettroni
         this.prezzoAcquisto = prezzoAcquisto;
     }
 
-    @Override
     public void stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
         System.out.println("Tipo Dispositivo: " + tipoDispositivo + ", Produttore: " + produttore +

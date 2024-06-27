@@ -3,11 +3,11 @@ import java.util.UUID;
 
 public class Alimentare extends Prodotto implements ProdottoAlimentare {
 
-    private Boolean daFrigo;
+    private boolean daFrigo;
     private String dataScadenza;
     private String marca;
 
-    public Alimentare(UUID id, ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, Boolean daFrigo, String dataScadenza, String marca) {
+    public Alimentare(UUID id, ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, boolean daFrigo, String dataScadenza, String marca) {
         super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
         this.daFrigo = daFrigo;
         this.dataScadenza = dataScadenza;
@@ -19,8 +19,8 @@ public class Alimentare extends Prodotto implements ProdottoAlimentare {
         return daFrigo;
     }
 
-    @Override
-    public void setDaFrigo(Boolean daFrigo) {
+
+    public void setDaFrigo(boolean daFrigo) {
         this.daFrigo = daFrigo;
     }
 

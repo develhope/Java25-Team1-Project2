@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class Vestito implements Abito.ProdottoAbbigliamento, Abito.LavaggioSecco {
+public class Abigliamento implements Abito {
     private UUID id;
     private String nome;
     private String descrizione;
@@ -12,8 +12,8 @@ public class Vestito implements Abito.ProdottoAbbigliamento, Abito.LavaggioSecco
     private String materiale;
     private boolean lavaggioSecco;
 
-    public Vestito(UUID id, String nome, String descrizione, BigDecimal prezzoVendita, ProdottoEnum tipologiaProdotto,
-                   String taglia, String colore, String materiale, boolean lavaggioSecco) {
+    public Abigliamento(UUID id, String nome, String descrizione, BigDecimal prezzoVendita, ProdottoEnum tipologiaProdotto,
+                        String taglia, String colore, String materiale, boolean lavaggioSecco) {
         this.id = id;
         this.nome = nome;
         this.descrizione = descrizione;
@@ -25,47 +25,38 @@ public class Vestito implements Abito.ProdottoAbbigliamento, Abito.LavaggioSecco
         this.lavaggioSecco = lavaggioSecco;
     }
 
-    @Override
     public UUID getId() {
         return id;
     }
 
-    @Override
     public String getNome() {
         return nome;
     }
 
-    @Override
     public String getDescrizione() {
         return descrizione;
     }
 
-    @Override
     public BigDecimal getPrezzoVendita() {
         return prezzoVendita;
     }
 
-    @Override
     public ProdottoEnum getTipologiaProdotto() {
         return tipologiaProdotto;
     }
 
-    @Override
     public String getTaglia() {
         return taglia;
     }
 
-    @Override
     public String getColore() {
         return colore;
     }
 
-    @Override
     public String getMateriale() {
         return materiale;
     }
 
-    @Override
     public boolean isLavaggioSecco() {
         return lavaggioSecco;
     }
@@ -106,18 +97,11 @@ public class Vestito implements Abito.ProdottoAbbigliamento, Abito.LavaggioSecco
         this.lavaggioSecco = lavaggioSecco;
     }
 
-    @Override
-    public String toString() {
-        return "Vestito{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descrizione='" + descrizione + '\'' +
-                ", prezzoVendita=" + prezzoVendita +
-                ", tipologiaProdotto=" + tipologiaProdotto +
-                ", taglia='" + taglia + '\'' +
-                ", colore='" + colore + '\'' +
-                ", materiale='" + materiale + '\'' +
-                ", lavaggioSecco=" + lavaggioSecco +
-                '}';
+
+    public void stampaDettagliProdotto(){
+        System.out.println("nome prodotto: " + this.nome + "descrizione prodotto: " + this.descrizione + "prezzo: "
+        + this.prezzoVendita + "tipologia: " + this.tipologiaProdotto + "taglia :" + getTaglia() + "colore: "
+        + getColore() + "materiale: " + getMateriale()+ "lavaggio a secco? " + this.isLavaggioSecco());
     }
 }
+

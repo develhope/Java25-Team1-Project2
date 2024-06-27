@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class Notebook extends Prodotto implements Dispositivo.Notebook {
+public class Notebook extends Prodotto implements Dispositivo {
     private UUID id;
     private ProdottoEnum tipoDispositivo;
     private String nomeProdotto;
@@ -33,47 +33,35 @@ public class Notebook extends Prodotto implements Dispositivo.Notebook {
                 "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
 
-    @Override
+
     public ProdottoEnum getTipoDispositivo() {
         return tipoDispositivo;
     }
 
-    @Override
     public UUID getId() {
         return id;
     }
 
-    @Override
+
     public String getNome() {
         return nomeProdotto;
     }
 
-    @Override
+
     public String getDescrizione() {
         return descrizioneProdotto;
     }
 
-    @Override
     public BigDecimal getPrezzoVendita() {
         return prezzoVendita;
     }
 
-    @Override
-    public void accendi() {
-        System.out.println("Notebook acceso");
-    }
 
-    @Override
-    public void spegni() {
-        System.out.println("Notebook spento");
-    }
-
-    @Override
     public void avviaApplicazione(String nomeApp) {
         System.out.println("Applicazione " + nomeApp + " avviata");
     }
 
-    @Override
+
     public void spegniApplicazione(String nomeApp) {
         System.out.println("Applicazione " + nomeApp + " spenta");
     }
@@ -130,7 +118,6 @@ public class Notebook extends Prodotto implements Dispositivo.Notebook {
         this.prezzoAcquisto = prezzoAcquisto;
     }
 
-    @Override
     public void stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
         System.out.println("Tipo Dispositivo: " + tipoDispositivo + ", Produttore: " + produttore +

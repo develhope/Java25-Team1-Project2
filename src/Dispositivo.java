@@ -1,24 +1,23 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
-// TODO sistemare interfaccia
+
 public interface Dispositivo {
+//controllo dello stato del dispositivo
+    boolean isAcceso();
 
-    public interface DispositivoElettronico extends Dispositivo {
-        void accendi();
+    boolean isSpento();
 
-        void spegni();
-    }
+    void setAcceso(boolean acceso);
 
-    public interface Smartphone extends DispositivoElettronico {
-        void chiamare(String numero);
+    void setSpento(boolean spento);
 
-        void inviareSMS(String numero, String messaggio);
-    }
+// controllo per la gestione delle chiamate ed sms
+    String Chiamare();
 
-    public interface Notebook extends DispositivoElettronico {
-        void avviaApplicazione(String nomeApp);
+    String SMS();
 
-        void spegniApplicazione(String nomeApp);
-    }
+    void inviaChiamata(String chiamare, String numero);
+
+    void inviaSMS(String SMS, String numero);
 }
