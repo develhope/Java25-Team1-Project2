@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 public class MagazzinoTest {
     private Magazzino magazzino;
     private Prodotto prodotto1,prodotto2;
+    private Carrello carrello;
 
     /**
      * Metodo setUp: Annotato con @Before, questo metodo viene eseguito prima di ogni test per
@@ -89,9 +90,7 @@ public class MagazzinoTest {
      */
     @Test
     public void testAggiungiProdottoACarrello() {
-        Carrello carrello = magazzino.creaNuovoCarrello();
         magazzino.aggiungiProdottoACarrello(carrello, prodotto1);
-
         assertFalse(magazzino.getListaProdottiMagazzino().contains(prodotto1));
         assertTrue(carrello.getListaProdottiCarrello().contains(prodotto1));
     }
@@ -103,10 +102,9 @@ public class MagazzinoTest {
 
     @Test
     public void testRimuoviProdottoDaCarrello() {
-        Carrello carrello = magazzino.creaNuovoCarrello();
         magazzino.aggiungiProdottoACarrello(carrello, prodotto1);
-
         assertTrue(magazzino.rimuoviProdottoDaCarrello(carrello, prodotto1));
         assertFalse(carrello.getListaProdottiCarrello().contains(prodotto1));
+        assertTrue(magazzino.getListaProdottiMagazzino().contains(prodotto1));
     }
 }

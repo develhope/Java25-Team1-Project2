@@ -5,7 +5,6 @@ public enum ProdottoEnum {
     ELETTRONICA("Elettronica", "Prodotto elettronico"),
     ABBIGLIAMENTO("Abbigliamento", "Prodotto di abbigliamento"),
 
-
     // Prodotti elettronici
     SMARTPHONE("TipoDispositivo", "Smartphone"),
     NOTEBOOK("TipoDispositivo", "Notebook"),

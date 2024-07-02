@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class Tablet extends Prodotto implements Dispositivo{
+public class Tablet extends Prodotto implements Dispositivo {
     private ProdottoEnum tipoDispositivo;
     private String produttore;
     private String modello;
@@ -9,6 +9,7 @@ public class Tablet extends Prodotto implements Dispositivo{
     private ProdottoEnum tipoMemoria;
     private String dimensioneArchiviazione;
     private Double prezzoAcquisto;
+    private boolean acceso;
 
     public Tablet(UUID id, ProdottoEnum tipologiaProdotto, ProdottoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
                   String produttore, String modello, Double dimensioneDisplay, ProdottoEnum tipoMemoria,
@@ -21,21 +22,11 @@ public class Tablet extends Prodotto implements Dispositivo{
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
-        this.setDescrizioneProdotto(descrizioneProdotto + ", Display: " + dimensioneDisplay +
-                "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
+        this.acceso = false;
     }
-
 
     public ProdottoEnum getTipoDispositivo() {
         return tipoDispositivo;
-    }
-
-    public void accendi() {
-        System.out.println("Tablet acceso");
-    }
-
-    public void spegni() {
-        System.out.println("Tablet spento");
     }
 
     public void setTipoDispositivo(ProdottoEnum tipoDispositivo) {
@@ -88,6 +79,45 @@ public class Tablet extends Prodotto implements Dispositivo{
 
     public void setPrezzoAcquisto(Double prezzoAcquisto) {
         this.prezzoAcquisto = prezzoAcquisto;
+    }
+
+    public boolean isAcceso() {
+        return acceso;
+    }
+
+    public void setAcceso(boolean acceso) {
+        this.acceso = acceso;
+        if (acceso) {
+            accendi();
+        } else {
+            spegni();
+        }
+    }
+
+    @Override
+    public void avviaApplicazione(String nomeApp) {
+        if (isAcceso()) {
+            System.out.println("Applicazione " + nomeApp + " avviata");
+        } else {
+            System.out.println("Il dispositivo è spento. Impossibile avviare l'applicazione.");
+        }
+    }
+
+    @Override
+    public void spegniApplicazione(String nomeApp) {
+        if (isAcceso()) {
+            System.out.println("Applicazione " + nomeApp + " spenta");
+        } else {
+            System.out.println("Il dispositivo è spento. Impossibile spegnere l'applicazione.");
+        }
+    }
+
+    public void accendi() {
+        System.out.println("Tablet acceso");
+    }
+
+    public void spegni() {
+        System.out.println("Tablet spento");
     }
 
     @Override

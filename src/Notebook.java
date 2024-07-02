@@ -21,23 +21,11 @@ public class Notebook extends Prodotto implements Dispositivo {
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
-        this.setDescrizioneProdotto(descrizioneProdotto + ", Display: " + dimensioneDisplay +
-                "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
 
 
     public ProdottoEnum getTipoDispositivo() {
         return tipoDispositivo;
-    }
-
-
-    public void avviaApplicazione(String nomeApp) {
-        System.out.println("Applicazione " + nomeApp + " avviata");
-    }
-
-
-    public void spegniApplicazione(String nomeApp) {
-        System.out.println("Applicazione " + nomeApp + " spenta");
     }
 
     public void setTipoDispositivo(ProdottoEnum tipoDispositivo) {
@@ -90,6 +78,16 @@ public class Notebook extends Prodotto implements Dispositivo {
 
     public void setPrezzoAcquisto(Double prezzoAcquisto) {
         this.prezzoAcquisto = prezzoAcquisto;
+    }
+
+    @Override
+    public void avviaApplicazione(String nomeApp) {
+        System.out.println("Applicazione " + nomeApp + " avviata");
+    }
+
+    @Override
+    public void spegniApplicazione(String nomeApp) {
+        System.out.println("Applicazione " + nomeApp + " spenta");
     }
 
     @Override

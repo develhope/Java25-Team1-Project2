@@ -1,7 +1,6 @@
 import java.math.BigDecimal;
 import java.util.*;
 
-
 public class Magazzino {
     private List<Prodotto> listaProdottiMagazzino;
     private List<Carrello> carrelli;
@@ -40,14 +39,12 @@ public class Magazzino {
         return carrelli;
     }
 
-    public Prodotto aggiungiProdotto(Prodotto prodotto) {
+    public void aggiungiProdotto(Prodotto prodotto) {
         listaProdottiMagazzino.add(prodotto);
-        return prodotto;
     }
 
-    public Prodotto rimuoviProdotto(Prodotto prodotto) {
+    public void rimuoviProdotto(Prodotto prodotto) {
         listaProdottiMagazzino.remove(prodotto);
-        return prodotto;
     }
 
     public void stampaMagazzino() {
@@ -57,7 +54,6 @@ public class Magazzino {
         }
     }
 
-    //TODO metodo non funzionante
     public void stampaDuplicati() {
         Map<Prodotto, Integer> prodottoCount = new HashMap<>();
         for (Prodotto prodotto : listaProdottiMagazzino) {
@@ -112,17 +108,16 @@ public class Magazzino {
 
     public void aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto) {
         if (listaProdottiMagazzino.contains(prodotto)) {
-            carrello.getAggiungiProdottoCarrello(prodotto);
+            carrello.aggiungiProdotto(prodotto);
             listaProdottiMagazzino.remove(prodotto);
         } else {
             System.out.println("Prodotto non disponibile in magazzino.");
         }
-
     }
 
     public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto) {
         if (carrello.getListaProdottiCarrello().contains(prodotto)) {
-            carrello.getRimuoviProdottoCarrello(prodotto);
+            carrello.rimuoviProdotto(prodotto);
             return true;
         } else {
             System.out.println("Prodotto non presente nel carrello.");

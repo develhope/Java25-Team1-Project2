@@ -16,14 +16,18 @@ public class Carrello {
         return listaProdottiCarrello;
     }
 
-    private void aggiungiProdotto(Prodotto prodotto) {
+    public void aggiungiProdotto(Prodotto prodotto) {
         this.listaProdottiCarrello.add(prodotto);
         this.totale = this.totale.add(prodotto.getPrezzoVendita());
     }
 
-    private void rimuoviProdotto(Prodotto prodotto) {
-        listaProdottiCarrello.remove(prodotto);
+    public void rimuoviProdotto(Prodotto prodotto) {
+        this.listaProdottiCarrello.remove(prodotto);
         this.totale = this.totale.subtract(prodotto.getPrezzoVendita());
+    }
+
+    public BigDecimal getTotale() {
+        return totale;
     }
 
     public void stampaProdottiCarrello() {
@@ -33,28 +37,21 @@ public class Carrello {
         }
     }
 
-    public boolean effettuaPagamento() {
+    public void effettuaPagamento() {
         if (listaProdottiCarrello.isEmpty()) {
             System.out.println("Il carrello è vuoto. Impossibile effettuare il pagamento.");
-            return false;
+            return;
         }
+
         BigDecimal totaleCarrello = totale.setScale(2, RoundingMode.HALF_UP);
         System.out.println("Il totale da pagare è: " + totaleCarrello + " €");
         confermaAcquisto();
-        return true;
     }
 
     public void confermaAcquisto() {
         listaProdottiCarrello.clear();
         System.out.println("Acquisto confermato. Grazie per il tuo acquisto!");
         System.out.println("Il carrello è stato svuotato.");
-    }
-
-    public void getAggiungiProdottoCarrello(Prodotto prodotto) {
-        aggiungiProdotto(prodotto);
-    }
-
-    public void getRimuoviProdottoCarrello(Prodotto prodotto) {
-        rimuoviProdotto(prodotto);
+        this.totale = BigDecimal.ZERO;
     }
 }

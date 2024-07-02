@@ -10,7 +10,6 @@ public class Smartphone extends Prodotto implements Dispositivo {
     private String dimensioneArchiviazione;
     private Double prezzoAcquisto;
     private boolean acceso;
-    private boolean spento;
 
     public Smartphone(UUID id, ProdottoEnum tipologiaProdotto, ProdottoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
                       String produttore, String modello, Double dimensioneDisplay, ProdottoEnum tipoMemoria,
@@ -24,21 +23,10 @@ public class Smartphone extends Prodotto implements Dispositivo {
         this.dimensioneArchiviazione = dimensioneArchiviazione;
         this.prezzoAcquisto = prezzoAcquisto;
         this.acceso = false;
-        this.spento = true;
-        this.setDescrizioneProdotto(descrizioneProdotto + ", Display: " + dimensioneDisplay +
-                "\", Memoria: " + tipoMemoria + ", Spazio: " + dimensioneArchiviazione);
     }
 
     public ProdottoEnum getTipoDispositivo() {
         return tipoDispositivo;
-    }
-
-    public boolean isAcceso() {
-        return acceso;
-    }
-
-    public boolean isSpento() {
-        return spento;
     }
 
     public void setTipoDispositivo(ProdottoEnum tipoDispositivo) {
@@ -93,9 +81,12 @@ public class Smartphone extends Prodotto implements Dispositivo {
         this.prezzoAcquisto = prezzoAcquisto;
     }
 
+    public boolean isAcceso() {
+        return acceso;
+    }
+
     public void setAcceso(boolean acceso) {
         this.acceso = acceso;
-        this.spento = !acceso;
         if (acceso) {
             accendi();
         } else {
@@ -103,25 +94,27 @@ public class Smartphone extends Prodotto implements Dispositivo {
         }
     }
 
+    @Override
+    public void avviaApplicazione(String nomeApp) {
+        System.out.println("Applicazione " + nomeApp + " avviata");
+    }
+
+    @Override
+    public void spegniApplicazione(String nomeApp) {
+        System.out.println("Applicazione " + nomeApp + " spenta");
+    }
+
     public void chiamare(String numero) {
-        System.out.println("Chiamata al numero: " + numero);
-    }
-
-    public void inviareSMS(String numero, String messaggio) {
-        System.out.println("SMS inviato al numero: " + numero + " con il messaggio: " + messaggio);
-    }
-
-    public void inviaChiamata(String chiamare, String numero) {
         if (isAcceso()) {
-            chiamare(numero);
+            System.out.println("Chiamata al numero: " + numero);
         } else {
             System.out.println("Il dispositivo è spento. Impossibile chiamare.");
         }
     }
 
-    public void inviaSMS(String SMS, String numero) {
+    public void inviareSMS(String numero, String messaggio) {
         if (isAcceso()) {
-            inviareSMS(numero, SMS);
+            System.out.println("SMS inviato al numero: " + numero + " con il messaggio: " + messaggio);
         } else {
             System.out.println("Il dispositivo è spento. Impossibile inviare SMS.");
         }
@@ -144,13 +137,12 @@ public class Smartphone extends Prodotto implements Dispositivo {
                 ", Prezzo acquisto: " + prezzoAcquisto);
     }
 
-
     public void checkSmartphone() {
         setAcceso(true);
-        inviaChiamata("Chiamata di test", "3895382595");
-        inviaSMS("Messaggio di test", "3895382595");
-        setSpento(true);
-        inviaChiamata("Chiamata di test", "3895382595");
-        inviaSMS("Messaggio di test", "3895382595");
+        chiamare("3895382595");
+        inviareSMS("3895382595", "Messaggio di test");
+        setAcceso(false);
+        chiamare("3895382595");
+        inviareSMS("3895382595", "Messaggio di test");
     }
 }

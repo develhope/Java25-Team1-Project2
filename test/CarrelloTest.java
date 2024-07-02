@@ -24,25 +24,26 @@ public class CarrelloTest {
 
     @Test
     public void testAggiungiProdotto() {
-        carrello.getAggiungiProdottoCarrello(prodotto1);
+        carrello.aggiungiProdotto(prodotto1);
         assertEquals(1, carrello.getListaProdottiCarrello().size());
-        assertEquals(new BigDecimal("4.99"), carrello.getListaProdottiCarrello().get(0).getPrezzoVendita());
-        assertEquals(new BigDecimal("4.99"), carrello.getListaProdottiCarrello().get(0).getPrezzoVendita());
+        assertEquals(prodotto1, carrello.getListaProdottiCarrello().get(0));
+        assertEquals(new BigDecimal("4.99"), carrello.getTotale());
     }
 
     @Test
     public void testRimuoviProdotto() {
-        carrello.getAggiungiProdottoCarrello(prodotto1);
-        carrello.getAggiungiProdottoCarrello(prodotto2);
-        carrello.getRimuoviProdottoCarrello(prodotto1);
+        carrello.aggiungiProdotto(prodotto1);
+        carrello.aggiungiProdotto(prodotto2);
+        carrello.rimuoviProdotto(prodotto1);
         assertEquals(1, carrello.getListaProdottiCarrello().size());
         assertEquals(prodotto2, carrello.getListaProdottiCarrello().get(0));
+        assertEquals(new BigDecimal("2.50"), carrello.getTotale());
     }
 
     @Test
     public void testStampaProdottiCarrello() {
-        carrello.getAggiungiProdottoCarrello(prodotto1);
-        carrello.getAggiungiProdottoCarrello(prodotto2);
+        carrello.aggiungiProdotto(prodotto1);
+        carrello.aggiungiProdotto(prodotto2);
         carrello.stampaProdottiCarrello();
     }
 
@@ -53,16 +54,19 @@ public class CarrelloTest {
 
     @Test
     public void testEffettuaPagamentoCarrelloConProdotti() {
-        carrello.getAggiungiProdottoCarrello(prodotto1);
-        carrello.getAggiungiProdottoCarrello(prodotto2);
+        carrello.aggiungiProdotto(prodotto1);
+        carrello.aggiungiProdotto(prodotto2);
         assertTrue(carrello.effettuaPagamento());
+        assertEquals(0, carrello.getListaProdottiCarrello().size());
+        assertEquals(BigDecimal.ZERO, carrello.getTotale());
     }
 
     @Test
     public void testConfermaAcquisto() {
-        carrello.getAggiungiProdottoCarrello(prodotto1);
-        carrello.getAggiungiProdottoCarrello(prodotto2);
-        carrello.effettuaPagamento();
+        carrello.aggiungiProdotto(prodotto1);
+        carrello.aggiungiProdotto(prodotto2);
+        carrello.confermaAcquisto();
         assertEquals(0, carrello.getListaProdottiCarrello().size());
+        assertEquals(BigDecimal.ZERO, carrello.getTotale());
     }
 }
