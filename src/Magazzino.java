@@ -2,13 +2,13 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Magazzino {
-    private List<Prodotto> listaProdottiMagazzino;
+    private Map<Prodotto, Integer> listaProdottiMagazzino;
     private List<Carrello> carrelli;
     private String nomeMagazzino;
     private String ubicazione;
 
     public Magazzino(String nomeMagazzino, String ubicazione) {
-        this.listaProdottiMagazzino = new ArrayList<>();
+        this.listaProdottiMagazzino = new HashMap<>();
         this.carrelli = new ArrayList<>();
         this.nomeMagazzino = nomeMagazzino;
         this.ubicazione = ubicazione;
@@ -31,7 +31,7 @@ public class Magazzino {
         this.nomeMagazzino = nomeMagazzino;
     }
 
-    public List<Prodotto> getListaProdottiMagazzino() {
+    public Map<Prodotto, Integer> getListaProdottiMagazzino() {
         return listaProdottiMagazzino;
     }
 
@@ -40,59 +40,61 @@ public class Magazzino {
     }
 
     public void aggiungiProdotto(Prodotto prodotto) {
-        listaProdottiMagazzino.add(prodotto);
+        listaProdottiMagazzino.put(prodotto,listaProdottiMagazzino.getOrDefault(prodotto.getNomeProdotto(),0) + prodotto.getQuantita());
     }
 
     public void rimuoviProdotto(Prodotto prodotto) {
         listaProdottiMagazzino.remove(prodotto);
     }
 
+
     public void stampaMagazzino() {
-        System.out.println("Lista prodotti Magazzino: ");
-        for (Prodotto prodotto : listaProdottiMagazzino) {
-            prodotto.stampaDettagliProdotto();
+
+        for (Map.Entry<Prodotto, Integer> entryMagazzino : listaProdottiMagazzino.entrySet())  {
+            System.out.println(entryMagazzino.getKey() + ": " + entryMagazzino.getValue());
         }
+
+    }
+    public void aggiungiDaCarrello(Carrello carrello) {
+        for (Prodotto prodotto : carrello.getListaProdottiCarrello()) {
+            aggiungiProdotto(prodotto);
+        }
+
     }
 
-    public void stampaDuplicati() {
-        Map<Prodotto, Integer> prodottoCount = new HashMap<>();
-        for (Prodotto prodotto : listaProdottiMagazzino) {
-            prodottoCount.put(prodotto, prodottoCount.getOrDefault(prodotto, 0) + 1);
-        }
-        for (Map.Entry<Prodotto, Integer> entry : prodottoCount.entrySet()) {
-            if (entry.getValue() > 1) {
-                System.out.println(entry.getKey() + " - Quantità: " + entry.getValue());
-            }
-        }
-    }
-
+    // Metodo per cercare prodotti per tipo
     public List<Prodotto> cercaPerTipoProdotto(ProdottoEnum tipoProdotto) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
-        for (Prodotto prodotto : listaProdottiMagazzino) {
-            if (prodotto.getTipologiaProdotto() == tipoProdotto) {
-                dispositiviTrovati.add(prodotto);
+        for (Map.Entry<Prodotto, Integer> entryMagazzino : listaProdottiMagazzino.entrySet()) {
+            if (entryMagazzino.getKey().getTipologiaProdotto() == tipoProdotto) {
+                dispositiviTrovati.add(entryMagazzino.getKey());
             }
         }
         return dispositiviTrovati;
     }
 
+    // Metodo per cercare prodotti per prezzo di vendita
     public List<Prodotto> ricercaPerPrezzoVendita(BigDecimal inputPrezzo) {
         List<Prodotto> dispositiviTrovati = new ArrayList<>();
         try {
             if (inputPrezzo == null) {
                 throw new IllegalArgumentException("Prezzo di input non può essere nullo.");
             }
-            BigDecimal rangeMinimo = inputPrezzo.subtract(new BigDecimal("150"));
-            BigDecimal rangeMassimo = inputPrezzo.add(new BigDecimal("150"));
-            if (rangeMinimo.compareTo(BigDecimal.ZERO) < 0 || rangeMassimo.compareTo(BigDecimal.ZERO) < 0) {
-                throw new IllegalArgumentException("Il prezzo di input crea un intervallo di prezzo non valido.");
+
+            BigDecimal rangeMinimo = inputPrezzo.subtract(new BigDecimal("50"));
+            BigDecimal rangeMassimo = inputPrezzo.add(new BigDecimal("50"));
+
+            if (rangeMinimo.compareTo(BigDecimal.ZERO) < 0) {
+                rangeMinimo = BigDecimal.ZERO;
             }
-            for (Prodotto prodotto : listaProdottiMagazzino) {
+
+            for (Prodotto prodotto : listaProdottiMagazzino.keySet()) {
                 BigDecimal prezzoVendita = prodotto.getPrezzoVendita();
                 if (prezzoVendita.compareTo(rangeMinimo) >= 0 && prezzoVendita.compareTo(rangeMassimo) <= 0) {
                     dispositiviTrovati.add(prodotto);
                 }
             }
+
             if (dispositiviTrovati.isEmpty()) {
                 throw new IllegalStateException("Nessun dispositivo trovato con un prezzo di vendita entro " + rangeMinimo + " e " + rangeMassimo + " €.");
             } else {
@@ -104,24 +106,5 @@ public class Magazzino {
             System.out.println("Errore: " + e.getMessage());
         }
         return dispositiviTrovati;
-    }
-
-    public void aggiungiProdottoACarrello(Carrello carrello, Prodotto prodotto) {
-        if (listaProdottiMagazzino.contains(prodotto)) {
-            carrello.aggiungiProdotto(prodotto);
-            listaProdottiMagazzino.remove(prodotto);
-        } else {
-            System.out.println("Prodotto non disponibile in magazzino.");
-        }
-    }
-
-    public boolean rimuoviProdottoDaCarrello(Carrello carrello, Prodotto prodotto) {
-        if (carrello.getListaProdottiCarrello().contains(prodotto)) {
-            carrello.rimuoviProdotto(prodotto);
-            return true;
-        } else {
-            System.out.println("Prodotto non presente nel carrello.");
-            return false;
-        }
     }
 }

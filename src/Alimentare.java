@@ -7,8 +7,8 @@ public class Alimentare extends Prodotto implements ProdottoAlimentare {
     private String dataScadenza;
     private String marca;
 
-    public Alimentare(UUID id, ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, boolean daFrigo, String dataScadenza, String marca) {
-        super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
+    public Alimentare(ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, boolean daFrigo, String dataScadenza, String marca, Integer quantita) {
+        super( tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita, quantita );
         this.daFrigo = daFrigo;
         this.dataScadenza = dataScadenza;
         this.marca = marca;
@@ -44,8 +44,9 @@ public class Alimentare extends Prodotto implements ProdottoAlimentare {
     }
 
     @Override
-    public void stampaDettagliProdotto() {
+    public String stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
         System.out.println("Da frigo: " + isDaFrigo() + ", Data di scadenza: " + getDataScadenza() + ", Marca: " + getMarca());
+        return null;
     }
 }

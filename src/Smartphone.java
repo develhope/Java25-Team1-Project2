@@ -8,20 +8,18 @@ public class Smartphone extends Prodotto implements Dispositivo {
     private Double dimensioneDisplay;
     private ProdottoEnum tipoMemoria;
     private String dimensioneArchiviazione;
-    private Double prezzoAcquisto;
     private boolean acceso;
 
-    public Smartphone(UUID id, ProdottoEnum tipologiaProdotto, ProdottoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
+    public Smartphone(ProdottoEnum tipologiaProdotto, ProdottoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
                       String produttore, String modello, Double dimensioneDisplay, ProdottoEnum tipoMemoria,
-                      String dimensioneArchiviazione, Double prezzoAcquisto) {
-        super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
+                      String dimensioneArchiviazione, Integer quantita) {
+        super(tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita, quantita);
         this.tipoDispositivo = tipoDispositivo;
         this.produttore = produttore;
         this.modello = modello;
         this.dimensioneDisplay = dimensioneDisplay;
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
-        this.prezzoAcquisto = prezzoAcquisto;
         this.acceso = false;
     }
 
@@ -73,14 +71,6 @@ public class Smartphone extends Prodotto implements Dispositivo {
         this.dimensioneArchiviazione = dimensioneArchiviazione;
     }
 
-    public Double getPrezzoAcquisto() {
-        return prezzoAcquisto;
-    }
-
-    public void setPrezzoAcquisto(Double prezzoAcquisto) {
-        this.prezzoAcquisto = prezzoAcquisto;
-    }
-
     public boolean isAcceso() {
         return acceso;
     }
@@ -129,12 +119,12 @@ public class Smartphone extends Prodotto implements Dispositivo {
     }
 
     @Override
-    public void stampaDettagliProdotto() {
+    public String stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
         System.out.println("Tipo Dispositivo: " + tipoDispositivo + ", Produttore: " + produttore +
                 ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + "\", Tipo di memoria: "
-                + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione +
-                ", Prezzo acquisto: " + prezzoAcquisto);
+                + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione);
+        return null;
     }
 
     public void checkSmartphone() {

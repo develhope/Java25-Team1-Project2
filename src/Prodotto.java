@@ -1,27 +1,29 @@
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Prodotto {
-    private UUID id;
+
     private ProdottoEnum tipologiaProdotto;
     private String nomeProdotto;
     private String descrizioneProdotto;
     private BigDecimal prezzoVendita;
+    private Integer quantita;
 
-    public Prodotto(UUID id, ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita) {
-        this.id = id;
+    public Prodotto( ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, Integer quantita) {
         this.tipologiaProdotto = tipologiaProdotto;
         this.nomeProdotto = nomeProdotto;
         this.descrizioneProdotto = descrizioneProdotto;
         this.prezzoVendita = prezzoVendita;
+        this.quantita = quantita;
     }
 
-    public UUID getId() {
-        return id;
+    public Integer getQuantita() {
+        return quantita;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setQuantita(Integer quantita) {
+        this.quantita = quantita;
     }
 
     public ProdottoEnum getTipologiaProdotto() {
@@ -56,9 +58,23 @@ public class Prodotto {
         this.prezzoVendita = prezzoVendita;
     }
 
-    public void stampaDettagliProdotto() {
-        System.out.println("ID prodotto: " + getId() + ", Tipologia prodotto: " + getTipologiaProdotto() + ", Nome: "
-                + getNomeProdotto() + ", Descrizione prodotto: " + getDescrizioneProdotto() + ", Prezzo vendita: "
-                + getPrezzoVendita());
+    public String stampaDettagliProdotto() {
+        System.out.println( "Tipologia prodotto: " + getTipologiaProdotto() + ", Nome: "
+                + getNomeProdotto() + ", Prezzo vendita: "
+                + getPrezzoVendita() + " x" + quantita);
+
+        return null;
+    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prodotto prodotto = (Prodotto) o;
+        return prezzoVendita.compareTo(prodotto.prezzoVendita) == 0 &&
+                nomeProdotto.equals(prodotto.nomeProdotto) &&
+                tipologiaProdotto.equals(prodotto.tipologiaProdotto);
+    }
+
+    public int hashCode() {
+        return Objects.hash(nomeProdotto, tipologiaProdotto, prezzoVendita);
     }
 }

@@ -15,25 +15,28 @@ public class Carrello {
     public List<Prodotto> getListaProdottiCarrello() {
         return listaProdottiCarrello;
     }
-
-    public void aggiungiProdotto(Prodotto prodotto) {
-        this.listaProdottiCarrello.add(prodotto);
-        this.totale = this.totale.add(prodotto.getPrezzoVendita());
-    }
-
-    public void rimuoviProdotto(Prodotto prodotto) {
-        this.listaProdottiCarrello.remove(prodotto);
-        this.totale = this.totale.subtract(prodotto.getPrezzoVendita());
-    }
-
     public BigDecimal getTotale() {
         return totale;
+    }
+
+
+    public void aggiungiProdotto(Prodotto prodotto, Integer quantita) {
+        this.listaProdottiCarrello.add(prodotto);
+        this.totale = this.totale.add(prodotto.getPrezzoVendita().multiply(BigDecimal.valueOf(quantita)));
+    }
+
+    public void rimuoviProdotto(Prodotto nomeProdotto, Integer quantita) {
+        this.listaProdottiCarrello.removeIf(prodotto -> prodotto.getNomeProdotto().equals(nomeProdotto));
+        this.totale = this.totale.subtract(nomeProdotto.getPrezzoVendita().divide(BigDecimal.valueOf(quantita)));
+    }
+    public void svuotaCarrello() {
+        listaProdottiCarrello.clear();
     }
 
     public void stampaProdottiCarrello() {
         System.out.println("Lista prodotti Carrello: ");
         for (Prodotto prodotto : listaProdottiCarrello) {
-            prodotto.stampaDettagliProdotto();
+            System.out.println(prodotto.getNomeProdotto() + " Prezzo:  " + prodotto.getPrezzoVendita() + " €");
         }
     }
 
@@ -46,6 +49,7 @@ public class Carrello {
         BigDecimal totaleCarrello = totale.setScale(2, RoundingMode.HALF_UP);
         System.out.println("Il totale da pagare è: " + totaleCarrello + " €");
         confermaAcquisto();
+
     }
 
     public void confermaAcquisto() {

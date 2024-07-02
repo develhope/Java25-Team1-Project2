@@ -8,19 +8,19 @@ public class Notebook extends Prodotto implements Dispositivo {
     private Double dimensioneDisplay;
     private ProdottoEnum tipoMemoria;
     private String dimensioneArchiviazione;
-    private Double prezzoAcquisto;
 
-    public Notebook(UUID id, ProdottoEnum tipologiaProdotto, ProdottoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
+
+    public Notebook(ProdottoEnum tipologiaProdotto, ProdottoEnum tipoDispositivo, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita,
                     String produttore, String modello, Double dimensioneDisplay, ProdottoEnum tipoMemoria,
-                    String dimensioneArchiviazione, Double prezzoAcquisto) {
-        super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
+                    String dimensioneArchiviazione, Integer quantita) {
+        super( tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita, quantita);
         this.tipoDispositivo = tipoDispositivo;
         this.produttore = produttore;
         this.modello = modello;
         this.dimensioneDisplay = dimensioneDisplay;
         this.tipoMemoria = tipoMemoria;
         this.dimensioneArchiviazione = dimensioneArchiviazione;
-        this.prezzoAcquisto = prezzoAcquisto;
+
     }
 
 
@@ -72,14 +72,6 @@ public class Notebook extends Prodotto implements Dispositivo {
         this.dimensioneArchiviazione = dimensioneArchiviazione;
     }
 
-    public Double getPrezzoAcquisto() {
-        return prezzoAcquisto;
-    }
-
-    public void setPrezzoAcquisto(Double prezzoAcquisto) {
-        this.prezzoAcquisto = prezzoAcquisto;
-    }
-
     @Override
     public void avviaApplicazione(String nomeApp) {
         System.out.println("Applicazione " + nomeApp + " avviata");
@@ -91,11 +83,12 @@ public class Notebook extends Prodotto implements Dispositivo {
     }
 
     @Override
-    public void stampaDettagliProdotto() {
+    public String stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
         System.out.println("Tipo Dispositivo: " + tipoDispositivo + ", Produttore: " + produttore +
-                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + "\", Tipo di memoria: "
-                + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione +
-                ", Prezzo acquisto: " + prezzoAcquisto);
+                ", Modello: " + modello + ", Dimensione display: " + dimensioneDisplay + ", Tipo di memoria: "
+                + tipoMemoria + ", Dimensione: " + dimensioneArchiviazione);
+        return null;
     }
+
 }

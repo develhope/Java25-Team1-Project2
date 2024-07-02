@@ -18,13 +18,13 @@ public class CarrelloTest {
     @BeforeEach
     public void setUp() {
         carrello = new Carrello();
-        prodotto1 = new Prodotto(UUID.randomUUID(), ProdottoEnum.CEREALI, "Cereali Kellogs", "Deliziosi cereali", new BigDecimal("4.99"));
-        prodotto2 = new Prodotto(UUID.randomUUID(), ProdottoEnum.GELATO, "Maxi-Bon", "Gelato al cioccolato", new BigDecimal("2.50"));
+        prodotto1 = new Prodotto(ProdottoEnum.CEREALI, "Cereali Kellogs", "Deliziosi cereali", new BigDecimal("4.99"),23);
+        prodotto2 = new Prodotto(ProdottoEnum.GELATO, "Maxi-Bon", "Gelato al cioccolato", new BigDecimal("2.50"),23);
     }
 
     @Test
     public void testAggiungiProdotto() {
-        carrello.aggiungiProdotto(prodotto1);
+        carrello.aggiungiProdotto(prodotto1,1);
         assertEquals(1, carrello.getListaProdottiCarrello().size());
         assertEquals(prodotto1, carrello.getListaProdottiCarrello().getFirst());
         assertEquals(new BigDecimal("4.99"), carrello.getTotale());
@@ -32,9 +32,9 @@ public class CarrelloTest {
 
     @Test
     public void testRimuoviProdotto() {
-        carrello.aggiungiProdotto(prodotto1);
-        carrello.aggiungiProdotto(prodotto2);
-        carrello.rimuoviProdotto(prodotto1);
+        carrello.aggiungiProdotto(prodotto1,2);
+        carrello.aggiungiProdotto(prodotto2,2);
+        carrello.rimuoviProdotto(prodotto1,2);
         assertEquals(1, carrello.getListaProdottiCarrello().size());
         assertEquals(prodotto2, carrello.getListaProdottiCarrello().getFirst());
         assertEquals(new BigDecimal("2.50"), carrello.getTotale());
@@ -42,8 +42,8 @@ public class CarrelloTest {
 
     @Test
     public void testStampaProdottiCarrello() {
-        carrello.aggiungiProdotto(prodotto1);
-        carrello.aggiungiProdotto(prodotto2);
+        carrello.aggiungiProdotto(prodotto1,2);
+        carrello.aggiungiProdotto(prodotto2,2);
         carrello.stampaProdottiCarrello();
     }
 
@@ -56,8 +56,8 @@ public class CarrelloTest {
 
     @Test
     public void testEffettuaPagamentoCarrelloConProdotti() {
-        carrello.aggiungiProdotto(prodotto1);
-        carrello.aggiungiProdotto(prodotto2);
+        carrello.aggiungiProdotto(prodotto1,1);
+        carrello.aggiungiProdotto(prodotto2,1);
         carrello.effettuaPagamento();
         assertEquals(0, carrello.getListaProdottiCarrello().size());
         assertEquals(BigDecimal.ZERO, carrello.getTotale());
@@ -65,8 +65,8 @@ public class CarrelloTest {
 
     @Test
     public void testConfermaAcquisto() {
-        carrello.aggiungiProdotto(prodotto1);
-        carrello.aggiungiProdotto(prodotto2);
+        carrello.aggiungiProdotto(prodotto1,2);
+        carrello.aggiungiProdotto(prodotto2,3);
         carrello.confermaAcquisto();
         assertEquals(0, carrello.getListaProdottiCarrello().size());
         assertEquals(BigDecimal.ZERO, carrello.getTotale());

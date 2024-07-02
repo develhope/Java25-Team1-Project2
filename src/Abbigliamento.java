@@ -8,8 +8,8 @@ public class Abbigliamento extends Prodotto implements Abito {
     private String materiale;
     private boolean lavaggioSecco;
 
-    public Abbigliamento(UUID id, ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, String taglia, String colore, String materiale, boolean lavaggioSecco) {
-        super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
+    public Abbigliamento(ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, String taglia, String colore, String materiale, boolean lavaggioSecco, Integer quantita) {
+        super(tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita, quantita);
         this.taglia = taglia;
         this.colore = colore;
         this.materiale = materiale;
@@ -57,9 +57,10 @@ public class Abbigliamento extends Prodotto implements Abito {
     }
 
     @Override
-    public void stampaDettagliProdotto() {
+    public String stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
             System.out.println("Taglia :" + getTaglia() + ", colore: " + getColore() + ", materiale: " + getMateriale() + ", lavaggio a secco: " + this.isLavaggioSecco());
+        return null;
     }
 }
 
