@@ -2,11 +2,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Notebook extends Prodotto implements Dispositivo {
-    private UUID id;
     private ProdottoEnum tipoDispositivo;
-    private String nomeProdotto;
-    private String descrizioneProdotto;
-    private BigDecimal prezzoVendita;
     private String produttore;
     private String modello;
     private Double dimensioneDisplay;
@@ -18,11 +14,7 @@ public class Notebook extends Prodotto implements Dispositivo {
                     String produttore, String modello, Double dimensioneDisplay, ProdottoEnum tipoMemoria,
                     String dimensioneArchiviazione, Double prezzoAcquisto) {
         super(id, tipologiaProdotto, nomeProdotto, descrizioneProdotto, prezzoVendita);
-        this.id = id;
         this.tipoDispositivo = tipoDispositivo;
-        this.nomeProdotto = nomeProdotto;
-        this.descrizioneProdotto = descrizioneProdotto;
-        this.prezzoVendita = prezzoVendita;
         this.produttore = produttore;
         this.modello = modello;
         this.dimensioneDisplay = dimensioneDisplay;
@@ -36,24 +28,6 @@ public class Notebook extends Prodotto implements Dispositivo {
 
     public ProdottoEnum getTipoDispositivo() {
         return tipoDispositivo;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-
-    public String getNome() {
-        return nomeProdotto;
-    }
-
-
-    public String getDescrizione() {
-        return descrizioneProdotto;
-    }
-
-    public BigDecimal getPrezzoVendita() {
-        return prezzoVendita;
     }
 
 
@@ -118,6 +92,7 @@ public class Notebook extends Prodotto implements Dispositivo {
         this.prezzoAcquisto = prezzoAcquisto;
     }
 
+    @Override
     public void stampaDettagliProdotto() {
         super.stampaDettagliProdotto();
         System.out.println("Tipo Dispositivo: " + tipoDispositivo + ", Produttore: " + produttore +

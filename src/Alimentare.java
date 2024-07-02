@@ -19,7 +19,6 @@ public class Alimentare extends Prodotto implements ProdottoAlimentare {
         return daFrigo;
     }
 
-
     public void setDaFrigo(boolean daFrigo) {
         this.daFrigo = daFrigo;
     }

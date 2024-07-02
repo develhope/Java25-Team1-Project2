@@ -103,7 +103,6 @@ public class Prodotto implements Dispositivo {
         }
     }
 
-
     public void stampaDettagliProdotto() {
         System.out.println("ID prodotto: " + getId() + ", Tipologia prodotto: " + getTipologiaProdotto() + ", Nome: "
                 + getNomeProdotto() + ", Descrizione prodotto: " + getDescrizioneProdotto() + ", Prezzo vendita: "

@@ -38,12 +38,12 @@ public class Main {
 
         // TODO step 1: creazione prodotti, step 2: creazione carrello, step 3: aggiungiamo prodotti a carrello, step 4: creazione magazzino, step 5: aggiungiamo il carrello al magazzino, step 6: effetuazione operazioni del magazzino
         // Prodotti di tipo ABBIGLIAMENTO
-        Prodotto pantalone = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni ", "a vita alta", new BigDecimal("179.99"));
-        Prodotto giacca = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Giacca tinta ", "unita in lana cotta", new BigDecimal("685.50"));
-        Prodotto scarpe = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Scarpe ", "decollete col tacco", new BigDecimal("450.00"));
-        Prodotto calzini = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Calzini", " a taglia unica", new BigDecimal("99.99"));
-        Prodotto maglietta = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "t-shirt", " a taglia unica", new BigDecimal("110.99"));
-        Prodotto intimo = new Prodotto(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "intimo ", "super fresco ed elegante", new BigDecimal("179.99"));
+        Prodotto pantalone = new Abbigliamento(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Pantaloni ", "a vita alta", new BigDecimal("179.99"), "L", "Blu", "Raso", true);
+        Prodotto giacca = new Abbigliamento(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Giacca ", "tinta unita in lana cotta", new BigDecimal("685.50"), "L", "Nero", "Lana cotta", true);
+        Prodotto scarpe = new Abbigliamento(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Scarpe ", "decollete col tacco", new BigDecimal("450.00"), "40", "Nero", "Cuoio", false);
+        Prodotto calzini = new Abbigliamento(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Calzini", " a taglia unica", new BigDecimal("19.99"), "Taglia unica", "Bianchi", "Cotone", false);
+        Prodotto maglietta = new Abbigliamento(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "T-shirt", " a taglia unica", new BigDecimal("110.99"), "M", "Verde", "Cotone", false);
+        Prodotto intimo = new Abbigliamento(UUID.randomUUID(), ProdottoEnum.ABBIGLIAMENTO, "Intimo ", "super fresco ed elegante", new BigDecimal("179.99"), "S", "Nero", "Cotone", false);
 
         //Creazione carrelli
         Carrello carrelloEuronics1 = new Carrello();

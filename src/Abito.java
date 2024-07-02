@@ -1,6 +1,3 @@
-import java.math.BigDecimal;
-import java.util.UUID;
-
 public interface Abito {
 
     String getTaglia();
@@ -11,17 +8,12 @@ public interface Abito {
 
     boolean isLavaggioSecco();
 
+    void setTaglia(String getTaglia);
 
-    public interface ProdottoAbbigliamento extends Abito {
-        String getTaglia();
+    void setColore(String getColore);
 
-        String getColore();
+    void setMateriale(String getMateriale);
 
-        String getMateriale();
-    }
-
-    public interface LavaggioSecco {
-        boolean isLavaggioSecco();
-    }
+    void setLavaggioSecco(boolean isLavaggioSecco);
 }
 

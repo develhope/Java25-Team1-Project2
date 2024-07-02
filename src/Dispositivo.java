@@ -1,9 +1,5 @@
-import java.math.BigDecimal;
-import java.util.UUID;
-
-
 public interface Dispositivo {
-//controllo dello stato del dispositivo
+    //controllo dello stato del dispositivo
     boolean isAcceso();
 
     boolean isSpento();
@@ -12,7 +8,7 @@ public interface Dispositivo {
 
     void setSpento(boolean spento);
 
-// controllo per la gestione delle chiamate ed sms
+    // controllo per la gestione delle chiamate ed sms
     String Chiamare();
 
     String SMS();
