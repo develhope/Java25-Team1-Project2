@@ -14,7 +14,7 @@ public class Main {
         Prodotto smartphone2 = new Smartphone(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Asus Rog Phone 7 Ultimate", "", new BigDecimal("799.99"), "", "", 5.6, ProdottoEnum.MVME, "512GB", 300.00);
         Prodotto notebook1 = new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "Acer Predator Helios 300", "", new BigDecimal("2399.99"), "", "", 15.0, ProdottoEnum.SSD, "512GB", 300.00);
         Prodotto notebook2 = new Notebook(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.NOTEBOOK, "MacBook pro", "", new BigDecimal("1599.99"), "", "", 14.6, ProdottoEnum.SSD, "512GB", 300.00);
-        Prodotto tablet1 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy Note 3", "", new BigDecimal("299.99"), "", "", 5.6, ProdottoEnum.MVME, "512GB", 300.00);
+        Tablet tablet1 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy Note 3", "", new BigDecimal("299.99"), "", "", 5.6, ProdottoEnum.MVME, "512GB", 300.00);
         Prodotto tablet2 = new Tablet(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6, ProdottoEnum.MVME, "512GB", 300.00);
 
         // Prodotti di tipo ALIMENTARE
@@ -132,11 +132,20 @@ public class Main {
         System.out.println("Totale da pagare: ");
         carrelloArmani2.effettuaPagamento();
 
-        System.out.println();
-        // Utilizzo specifico
+        // Verifica delle funzionalità aggiuntive dei dispositivi
+        System.out.println("\nVerifica dello smartphone 1:");
         smartphone1.checkSmartphone();
 
-        System.out.println();
+        // Verifica specifica per tablet
+        System.out.println("\nVerifica avvio dell'applicazione su tablet1:");
+        tablet1.avviaApplicazione("Nome dell'applicazione da verificare");
+
+        // Verifica della stampa dettagliata di un capo d'abbigliamento
+        System.out.println("\nVerifica della giacca:");
         giacca.stampaDettagliProdotto();
+
+        // Verifica della stampa dettagliata di un alimento
+        System.out.println("\nVerifica dei cereali:");
+        cereali.stampaDettagliProdotto();
     }
 }
