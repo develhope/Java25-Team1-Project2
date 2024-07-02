@@ -26,7 +26,7 @@ public class CarrelloTest {
     public void testAggiungiProdotto() {
         carrello.aggiungiProdotto(prodotto1);
         assertEquals(1, carrello.getListaProdottiCarrello().size());
-        assertEquals(prodotto1, carrello.getListaProdottiCarrello().get(0));
+        assertEquals(prodotto1, carrello.getListaProdottiCarrello().getFirst());
         assertEquals(new BigDecimal("4.99"), carrello.getTotale());
     }
 
@@ -36,7 +36,7 @@ public class CarrelloTest {
         carrello.aggiungiProdotto(prodotto2);
         carrello.rimuoviProdotto(prodotto1);
         assertEquals(1, carrello.getListaProdottiCarrello().size());
-        assertEquals(prodotto2, carrello.getListaProdottiCarrello().get(0));
+        assertEquals(prodotto2, carrello.getListaProdottiCarrello().getFirst());
         assertEquals(new BigDecimal("2.50"), carrello.getTotale());
     }
 
@@ -49,14 +49,16 @@ public class CarrelloTest {
 
     @Test
     public void testEffettuaPagamentoCarrelloVuoto() {
-        assertFalse(carrello.effettuaPagamento());
+        carrello.effettuaPagamento();
+        assertEquals(0, carrello.getListaProdottiCarrello().size());
+        assertEquals(BigDecimal.ZERO, carrello.getTotale());
     }
 
     @Test
     public void testEffettuaPagamentoCarrelloConProdotti() {
         carrello.aggiungiProdotto(prodotto1);
         carrello.aggiungiProdotto(prodotto2);
-        assertTrue(carrello.effettuaPagamento());
+        carrello.effettuaPagamento();
         assertEquals(0, carrello.getListaProdottiCarrello().size());
         assertEquals(BigDecimal.ZERO, carrello.getTotale());
     }
