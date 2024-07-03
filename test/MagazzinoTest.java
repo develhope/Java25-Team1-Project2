@@ -14,8 +14,7 @@ import static org.junit.Assert.*;
  */
 public class MagazzinoTest {
     private Magazzino magazzino;
-    private Prodotto prodotto1,prodotto2;
-    private Carrello carrello;
+    private Prodotto prodotto1, prodotto2;
 
     /**
      * Metodo setUp: Annotato con @Before, questo metodo viene eseguito prima di ogni test per
@@ -26,8 +25,9 @@ public class MagazzinoTest {
     public void setUp() {
         magazzino = new Magazzino("Magazzino Centrale", "Via Roma 1");
 
-        prodotto1 = new Prodotto(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, "TABLET", "", new BigDecimal("400"));
-        prodotto2 = new Prodotto(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, "NOTEBOOK", "",new BigDecimal("1200"));
+        prodotto1 = new Smartphone(ProdottoEnum.ELETTRONICA, ProdottoEnum.SMARTPHONE, "Samsung Galaxy S8", "", new BigDecimal("599.99"), "", "", 5.6, ProdottoEnum.MVME, "512GB", 12);
+        prodotto2 = new Alimentare(ProdottoEnum.ALIMENTARE, "Cereali", "", new BigDecimal("4.99"), false, "2025-12-01", "Kellogs", 23);
+
 
         magazzino.aggiungiProdotto(prodotto1);
         magazzino.aggiungiProdotto(prodotto2);
@@ -39,22 +39,25 @@ public class MagazzinoTest {
      */
     @Test
     public void testAggiungiProdotto() {
-        Prodotto prodotto3 = new Prodotto(UUID.randomUUID(), ProdottoEnum.ELETTRONICA, "SMARTPHONE", "", new BigDecimal("250"));
-        magazzino.aggiungiProdotto(prodotto3);
+        magazzino.aggiungiProdotto(prodotto1);
 
-        //assertTrue(magazzino.getListaProdottiMagazzino().contains(prodotto3));
+        assertTrue(magazzino.getListaProdottiMagazzino().containsKey(prodotto1));
+
+        assertEquals(54, magazzino.getListaProdottiMagazzino().get(prodotto1).intValue());
     }
 
     /**
      * Test testRimuoviProdotto: Rimuove prodotto1 dal magazzino
      * e verifica che non sia più presente usando assertFalse.
      */
-//    @Test
-//    public void testRimuoviProdotto() {
-//        magazzino.rimuoviProdotto(prodotto1);
-//
-//        assertFalse(magazzino.getListaProdottiMagazzino().contains(prodotto1));
-//    }
+    @Test
+    public void testRimuoviProdotto() {
+        magazzino.aggiungiProdotto(prodotto1);
+
+        magazzino.rimuoviProdotto(prodotto1);
+
+        assertFalse(magazzino.getListaProdottiMagazzino().containsKey(prodotto1));
+    }
 
     /**
      * Test testCercaPerTipoProdotto: Cerca prodotti di tipo ELETTRONICA e verifica che
@@ -76,35 +79,13 @@ public class MagazzinoTest {
      * Usa assertEquals per controllare la dimensione della lista
      * e assertTrue per verificare la presenza di prodotto2.
      */
-//    @Test
-//    public void testRicercaPerPrezzoVendita() {
-//        List<Prodotto> prodottiInRange = magazzino.ricercaPerPrezzoVendita(new BigDecimal("1100"));
-//
-//        assertEquals(1, prodottiInRange.size());
-//        assertTrue(prodottiInRange.contains(prodotto2));
-//    }
+    @Test
+    public void testRicercaPerPrezzoVendita() {
+        List<Prodotto> prodottiInRange = magazzino.ricercaPerPrezzoVendita(new BigDecimal("1100"));
 
-    /**
-     * Test testAggiungiProdottoACarrello: Crea un nuovo carrello,
-     * aggiunge prodotto1 al carrello e verifica che prodotto1 non sia più nel magazzino e sia presente nel carrello.
-     */
-    //   @Test
-//    public void testAggiungiProdottoACarrello() {
-//        magazzino.aggiungiProdottoACarrello(carrello, prodotto1);
-//        assertFalse(magazzino.getListaProdottiMagazzino().contains(prodotto1));
-//        assertTrue(carrello.getListaProdottiCarrello().contains(prodotto1));
-//    }
+        assertEquals(1, prodottiInRange.size());
+        assertTrue(prodottiInRange.contains(prodotto2));
+    }
 
-    /**
-     * Test testRimuoviProdottoDaCarrello: Aggiunge prodotto1 al carrello,
-     * poi lo rimuove dal carrello e verifica che l'operazione di rimozione abbia avuto successo e che il prodotto non sia più nel carrello.
-     */
 
-//    @Test
-//    public void testRimuoviProdottoDaCarrello() {
-//        magazzino.aggiungiProdottoACarrello(carrello, prodotto1);
-//        assertTrue(magazzino.rimuoviProdottoDaCarrello(carrello, prodotto1));
-//        assertFalse(carrello.getListaProdottiCarrello().contains(prodotto1));
-//        assertTrue(magazzino.getListaProdottiMagazzino().contains(prodotto1));
-//    }
 }

@@ -1,5 +1,4 @@
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public class Abbigliamento extends Prodotto implements Abito {
 

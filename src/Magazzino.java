@@ -40,7 +40,7 @@ public class Magazzino {
     }
 
     public void aggiungiProdotto(Prodotto prodotto) {
-        listaProdottiMagazzino.put(prodotto,listaProdottiMagazzino.getOrDefault(prodotto.getNomeProdotto(),0) + prodotto.getQuantita());
+        listaProdottiMagazzino.put(prodotto,listaProdottiMagazzino.getOrDefault(prodotto,0) + prodotto.getQuantita());
     }
 
     public void rimuoviProdotto(Prodotto prodotto) {
