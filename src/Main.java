@@ -14,11 +14,11 @@ public class Main {
         Prodotto tablet2 = new Tablet(ProdottoEnum.ELETTRONICA, ProdottoEnum.TABLET, "Samsung Galaxy S12", "", new BigDecimal("699.99"), "", "", 5.6, ProdottoEnum.MVME, "512GB",14);
 
         // Prodotti di tipo ALIMENTARE
-        Prodotto cereali = new Alimentare(ProdottoEnum.ALIMENTARE, "Cereali", "", new BigDecimal("4.995"), false, "2025-12-01", "Kellogs",23);
+        Prodotto cereali = new Alimentare(ProdottoEnum.ALIMENTARE, "Cereali", "", new BigDecimal("4.99"), false, "2025-12-01", "Kellogs",23);
         Prodotto cocaCola = new Alimentare(ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"), false, "2026-12-01", "Coca-Cola",30);
         Prodotto fanta = new Alimentare(ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7"), false, "2026-12-01", "Fanta",34);
         Prodotto patatine = new Alimentare(ProdottoEnum.ALIMENTARE, "Patatine", "", new BigDecimal("1.2"), false, "2025-08-01", "San Carlo",10);
-        Prodotto gelato = new Alimentare(ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.509"), true, "2024-06-01", "Nestle",15);
+        Prodotto gelato = new Alimentare(ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.50"), true, "2024-06-01", "Nestle",15);
 
         // Prodotti di tipo ABBIGLIAMENTO
         Prodotto pantalone = new Abbigliamento(ProdottoEnum.ABBIGLIAMENTO, "Pantaloni ", "a vita alta", new BigDecimal("179.99"), "L", "Blu", "Raso", true,54);
