@@ -61,7 +61,7 @@ public class Prodotto {
     public String stampaDettagliProdotto() {
         System.out.println( "Tipologia prodotto: " + getTipologiaProdotto() + ", Nome: "
                 + getNomeProdotto() + ", Prezzo vendita: "
-                + getPrezzoVendita() + ", quantita: " + quantita);
+                + getPrezzoVendita() + ", Quantita: " + quantita);
 
         return null;
     }
