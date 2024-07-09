@@ -16,8 +16,8 @@ public class Main {
         // Prodotti di tipo ALIMENTARE
         Prodotto cereali = new Alimentare(ProdottoEnum.ALIMENTARE, "Cereali", "", new BigDecimal("4.99"), false, "2025-12-01", "Kellogs",23);
         Prodotto cocaCola = new Alimentare(ProdottoEnum.ALIMENTARE, "Coca-Cola", "", new BigDecimal("1.79"), false, "2026-12-01", "Coca-Cola",30);
-        Prodotto fanta = new Alimentare(ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.7"), false, "2026-12-01", "Fanta",34);
-        Prodotto patatine = new Alimentare(ProdottoEnum.ALIMENTARE, "Patatine", "", new BigDecimal("1.2"), false, "2025-08-01", "San Carlo",10);
+        Prodotto fanta = new Alimentare(ProdottoEnum.ALIMENTARE, "Fanta", "", new BigDecimal("1.70"), false, "2026-12-01", "Fanta",34);
+        Prodotto patatine = new Alimentare(ProdottoEnum.ALIMENTARE, "Patatine", "", new BigDecimal("1.20"), false, "2025-08-01", "San Carlo",10);
         Prodotto gelato = new Alimentare(ProdottoEnum.ALIMENTARE, "Maxi-Bon", "", new BigDecimal("2.50"), true, "2024-06-01", "Nestle",15);
 
         // Prodotti di tipo ABBIGLIAMENTO
@@ -38,12 +38,12 @@ public class Main {
 
         // Acquisti e pagamento presso Euronics
         System.out.println("\nAcquisti presso Euronics:");
-        carrelloEuronics1.aggiungiProdotto(smartphone1, 2);
-        carrelloEuronics1.aggiungiProdotto(smartphone2, 2);
-        carrelloEuronics1.aggiungiProdotto(tablet1, 3);
+        carrelloEuronics1.aggiungiProdotto(smartphone1, 1);
+        carrelloEuronics1.aggiungiProdotto(smartphone2, 1);
+        carrelloEuronics1.aggiungiProdotto(tablet1, 1);
 
-        carrelloEuronics2.aggiungiProdotto(tablet2, 4);
-        carrelloEuronics2.aggiungiProdotto(notebook1,4);
+        carrelloEuronics2.aggiungiProdotto(tablet2, 1);
+        carrelloEuronics2.aggiungiProdotto(notebook1,1);
         carrelloEuronics2.aggiungiProdotto(notebook2,1);
 
         Magazzino magazzinoEuronics = new Magazzino("Euronics Bruno", "Via Libica, 91100 TRAPANI (TP)");
@@ -63,11 +63,11 @@ public class Main {
 
         // Acquisti e pagamento presso Esselunga
         System.out.println("\nAcquisti presso Esselunga:");
-        carrelloEsselunga1.aggiungiProdotto(cereali,12);
-        carrelloEsselunga1.aggiungiProdotto(gelato,10);
-        carrelloEsselunga1.aggiungiProdotto(cocaCola,6);
-        carrelloEsselunga1.aggiungiProdotto(fanta,3);
-        carrelloEsselunga1.aggiungiProdotto(patatine,6);
+        carrelloEsselunga1.aggiungiProdotto(cereali,2);
+        carrelloEsselunga1.aggiungiProdotto(gelato,3);
+        carrelloEsselunga1.aggiungiProdotto(cocaCola,2);
+        carrelloEsselunga1.aggiungiProdotto(fanta,1);
+        carrelloEsselunga1.aggiungiProdotto(patatine,2);
 
         Magazzino magazzinoEsselunga = new Magazzino("Esselunga", "Piazza Gae Aulenti, 20124 Milano (MI)");
         magazzinoEsselunga.aggiungiDaCarrello(carrelloEsselunga1);
@@ -86,12 +86,12 @@ public class Main {
 
         // Acquisti e pagamento presso Armani
         System.out.println("\nAcquisti presso Armani:");
-        carrelloArmani1.aggiungiProdotto(calzini,5);
+        carrelloArmani1.aggiungiProdotto(calzini,2);
         carrelloArmani1.aggiungiProdotto(giacca,1);
         carrelloArmani1.aggiungiProdotto(scarpe,1);
 
-        carrelloArmani2.aggiungiProdotto(maglietta,4);
-        carrelloArmani2.aggiungiProdotto(intimo,10);
+        carrelloArmani2.aggiungiProdotto(maglietta,2);
+        carrelloArmani2.aggiungiProdotto(intimo,1);
         carrelloArmani2.aggiungiProdotto(pantalone,2);
 
         Magazzino magazzinoArmani = new Magazzino("Emporio Armani", "Piazza dei Martiri 61-62, 80121 NAPOLI (NA)");

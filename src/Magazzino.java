@@ -39,27 +39,35 @@ public class Magazzino {
         return carrelli;
     }
 
-    public void aggiungiProdotto(Prodotto prodotto) {
-        listaProdottiMagazzino.put(prodotto,listaProdottiMagazzino.getOrDefault(prodotto,0) + prodotto.getQuantita());
+    public void aggiungiProdotto(Prodotto prodotto, int quantita) {
+        listaProdottiMagazzino.merge(prodotto, quantita, Integer::sum);
     }
 
-    public void rimuoviProdotto(Prodotto prodotto) {
-        listaProdottiMagazzino.remove(prodotto);
+    public void rimuoviProdotto(Prodotto prodotto, int quantita) {
+        if (listaProdottiMagazzino.containsKey(prodotto)) {
+            int nuovaQuantita = listaProdottiMagazzino.get(prodotto) - quantita;
+            if (nuovaQuantita > 0) {
+                listaProdottiMagazzino.put(prodotto, nuovaQuantita);
+            } else {
+                listaProdottiMagazzino.remove(prodotto);
+            }
+        }
     }
-
 
     public void stampaMagazzino() {
-
-        for (Map.Entry<Prodotto, Integer> entryMagazzino : listaProdottiMagazzino.entrySet())  {
-            System.out.println(entryMagazzino.getKey() + ": " + entryMagazzino.getValue());
+        for (Map.Entry<Prodotto, Integer> entryMagazzino : listaProdottiMagazzino.entrySet()) {
+            Prodotto prodotto = entryMagazzino.getKey();
+            int quantita = entryMagazzino.getValue();
+            System.out.println(prodotto.getNomeProdotto() + ": " + quantita + " unità, Prezzo: " + prodotto.getPrezzoVendita() + " €");
         }
-
     }
-    public void aggiungiDaCarrello(Carrello carrello) {
-        for (Prodotto prodotto : carrello.getListaProdottiCarrello()) {
-            aggiungiProdotto(prodotto);
-        }
 
+    public void aggiungiDaCarrello(Carrello carrello) {
+        for (Map.Entry<Prodotto, Integer> entry : carrello.getListaProdottiCarrello().entrySet()) {
+            Prodotto prodotto = entry.getKey();
+            int quantita = entry.getValue();
+            aggiungiProdotto(prodotto, quantita);
+        }
     }
 
     // Metodo per cercare prodotti per tipo
@@ -99,7 +107,7 @@ public class Magazzino {
                 throw new IllegalStateException("Nessun dispositivo trovato con un prezzo di vendita entro " + rangeMinimo + " e " + rangeMassimo + " €.");
             } else {
                 for (Prodotto dispositivo : dispositiviTrovati) {
-                    System.out.println(dispositivo);
+                    System.out.println(dispositivo.getNomeProdotto() + ", Prezzo: " + dispositivo.getPrezzoVendita() + " €");
                 }
             }
         } catch (IllegalArgumentException | IllegalStateException e) {
