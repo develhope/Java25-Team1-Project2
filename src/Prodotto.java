@@ -9,7 +9,7 @@ public class Prodotto {
     private BigDecimal prezzoVendita;
     private Integer quantita;
 
-    public Prodotto( ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, Integer quantita) {
+    public Prodotto(ProdottoEnum tipologiaProdotto, String nomeProdotto, String descrizioneProdotto, BigDecimal prezzoVendita, Integer quantita) {
         this.tipologiaProdotto = tipologiaProdotto;
         this.nomeProdotto = nomeProdotto;
         this.descrizioneProdotto = descrizioneProdotto;
@@ -58,12 +58,13 @@ public class Prodotto {
     }
 
     public String stampaDettagliProdotto() {
-        System.out.println( "Tipologia prodotto: " + getTipologiaProdotto() + ", Nome: "
+        System.out.println("Tipologia prodotto: " + getTipologiaProdotto() + ", Nome: "
                 + getNomeProdotto() + ", Prezzo vendita: "
                 + getPrezzoVendita() + ", Quantita: " + quantita);
 
         return null;
     }
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

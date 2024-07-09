@@ -24,20 +24,22 @@ public class CarrelloTest {
 
     @Test
     public void testAggiungiProdotto() {
-        carrello.aggiungiProdotto(prodotto1,1);
+        carrello.aggiungiProdotto(prodotto1, 1);
         assertEquals(1, carrello.getListaProdottiCarrello().size());
-        assertEquals(prodotto1, carrello.getListaProdottiCarrello().getFirst());
+        assertTrue(carrello.getListaProdottiCarrello().containsKey(prodotto1));
+        assertEquals(1, carrello.getListaProdottiCarrello().get(prodotto1).intValue());
         assertEquals(new BigDecimal("4.99"), carrello.getTotale());
     }
 
     @Test
     public void testRimuoviProdotto() {
-        carrello.aggiungiProdotto(prodotto1,2);
-        carrello.aggiungiProdotto(prodotto2,2);
-        carrello.rimuoviProdotto(prodotto1,2);
+        carrello.aggiungiProdotto(prodotto1, 2);
+        carrello.aggiungiProdotto(prodotto2, 2);
+        carrello.rimuoviProdotto(prodotto1, 2);
         assertEquals(1, carrello.getListaProdottiCarrello().size());
-        assertEquals(prodotto2, carrello.getListaProdottiCarrello().getFirst());
-        assertEquals(new BigDecimal("2.50"), carrello.getTotale());
+        assertFalse(carrello.getListaProdottiCarrello().containsKey(prodotto1));
+        assertTrue(carrello.getListaProdottiCarrello().containsKey(prodotto2));
+        assertEquals(new BigDecimal("5.00"), carrello.getTotale());
     }
 
     @Test
